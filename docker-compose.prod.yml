@@ -1,0 +1,70 @@
+version: "3.9"
+services:
+
+  app:
+    container_name: vue-app
+    build:
+      context: app
+      dockerfile: Dockerfile
+    ports:
+      - "8000:8080"
+    networks:
+      serveriry:
+        ipv4_address: 10.10.0.2
+    depends_on:
+      - directus
+    restart: unless-stopped
+
+
+  db:
+    container_name: postgresql
+    image: postgres:15-alpine
+    volumes:
+      - directus_data_prod:/var/lib/postgresql/data
+    networks:
+      serveriry:
+        ipv4_address: 10.10.0.3
+    env_file:
+      - ../.env.prod.db
+    restart: unless-stopped
+
+  cache:
+    container_name: cache
+    image: redis:6
+    networks:
+      serveriry:
+        ipv4_address: 10.10.0.4
+    restart: unless-stopped
+
+  directus:
+    container_name: directus
+    image: directus/directus:latest
+    ports:
+      - "8001:8055"
+    volumes:
+      # By default, uploads are stored in /directus/uploads
+      # Always make sure your volumes matches the storage root when using
+      # local driver
+      - directus_uploads_prod:/directus/uploads
+    networks:
+      serveriry:
+        ipv4_address: 10.10.0.5
+    depends_on:
+      - cache
+      - db
+    env_file:
+      - ../.env.prod
+    restart: unless-stopped
+
+volumes:
+  directus_data_prod:
+  directus_uploads_prod:
+
+networks:
+  serveriry:
+    driver: bridge
+    name: "www-serveri-ry-prod"
+    ipam:
+      config:
+        - subnet: 10.10.0.0/16
+          gateway: 10.10.0.1
