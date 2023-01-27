@@ -37,6 +37,8 @@
     "*": "prettier -w -u"
   },
   "dependencies": {
-    "@types/node": "^18.11.18"
+    "vue-router": "^4.1.6",
+    "@types/node": "^18.11.18",
+    "nuxt": "^3.1.0"
   }
 }
