@@ -18,8 +18,10 @@
 <script setup>
    import { useDark, useToggle } from '@vueuse/core';
    import { onMounted } from 'vue';
+   import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 
    const id = defineProps({
+      // eslint-disable-next-line vue/require-default-prop
       id: String,
    });
 
@@ -30,6 +32,7 @@
       toggleDark();
       toggleButton();
    }
+
    function toggleButton() {
       // There are two theme toggle, they need to have separate ID's
       const switchToggle = document.getElementById(`switch-toggle-${id.id}`);
@@ -39,11 +42,13 @@
       const light = isDark._value === undefined ? document.documentElement.classList.contains('dark') : isDark._value;
 
       if (light) {
+         console.log('light');
          switchToggle.classList.remove('bg-yellow-500', '-translate-x-2');
          switchToggle.classList.add('bg-gray-700', 'translate-x-full');
          iconSun.classList.add('hidden');
          iconMoon.classList.remove('hidden');
       } else {
+         console.log('dark');
          switchToggle.classList.add('bg-yellow-500', '-translate-x-2');
          switchToggle.classList.remove('bg-gray-700', 'translate-x-full');
          iconSun.classList.remove('hidden');

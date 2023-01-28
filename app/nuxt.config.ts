@@ -1,7 +1,10 @@
 export default defineNuxtConfig({
    ssr: false,
    srcDir: 'src/',
-   css: ['~/assets/css/main.css', '@fortawesome/fontawesome-svg-core/styles.css'],
+   css: [
+      // '@fortawesome/fontawesome-svg-core/styles.css', // NOT NEEDED THO
+      '~/assets/css/main.css',
+   ],
    postcss: {
       plugins: {
          tailwindcss: {},
