@@ -1,5 +1,5 @@
 export default defineNuxtConfig({
-   ssr: false,
+   ssr: true,
    srcDir: 'src/',
    css: [
       // '@fortawesome/fontawesome-svg-core/styles.css', // NOT NEEDED THO
@@ -12,4 +12,5 @@ export default defineNuxtConfig({
       },
    },
    plugins: [{ src: '~/plugins/fontawesome.ts' }],
+   modules: ['@nuxtjs/i18n'],
 });

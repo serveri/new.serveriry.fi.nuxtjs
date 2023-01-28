@@ -8,21 +8,27 @@
       <span
          :id="'switch-toggle-' + id.id"
          class="flex justify-center items-center w-12 h-12 relative rounded-full transition duration-500 transform bg-yellow-500 -translate-x-2 p-1 text-white"
-      >
-         <font-awesome-icon :id="'icon-sun-' + id.id" class="hidden" :icon="['fas', 'sun']" />
-         <font-awesome-icon :id="'icon-moon-' + id.id" class="hidden" :icon="['fas', 'moon']" />
+         ><ClientOnly fallback-tag="span" fallback="">
+            <font-awesome-icon :id="'icon-moon-' + id.id" class="hidden" :icon="['fas', 'moon']" />
+            <font-awesome-icon :id="'icon-sun-' + id.id" class="hidden" :icon="['fas', 'sun']" />
+         </ClientOnly>
       </span>
    </button>
 </template>
 
-<script setup>
+<script setup lang="ts">
    import { useDark, useToggle } from '@vueuse/core';
-   import { onMounted } from 'vue';
    import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
+   import { onMounted } from 'vue';
+
+   import { nextTick } from 'vue';
 
    const id = defineProps({
-      // eslint-disable-next-line vue/require-default-prop
-      id: String,
+      id: {
+         type: String,
+         default: 'Default',
+         required: true,
+      },
    });
 
    const isDark = useDark();
@@ -35,33 +41,37 @@
 
    function toggleButton() {
       // There are two theme toggle, they need to have separate ID's
-      const switchToggle = document.getElementById(`switch-toggle-${id.id}`);
-      const iconSun = document.getElementById(`icon-sun-${id.id}`);
-      const iconMoon = document.getElementById(`icon-moon-${id.id}`);
-      // if isDark._value is undef, isDark._value = bool if class list contains dark
-      const light = isDark._value === undefined ? document.documentElement.classList.contains('dark') : isDark._value;
+      const switchToggle: HTMLElement | null = document.getElementById(`switch-toggle-${id.id}`);
+      const iconSun: HTMLElement | null = document.getElementById(`icon-sun-${id.id}`);
+      const iconMoon: HTMLElement | null = document.getElementById(`icon-moon-${id.id}`);
 
-      if (light) {
-         console.log('light');
-         switchToggle.classList.remove('bg-yellow-500', '-translate-x-2');
-         switchToggle.classList.add('bg-gray-700', 'translate-x-full');
-         iconSun.classList.add('hidden');
-         iconMoon.classList.remove('hidden');
+      if (isDark.value) {
+         light(switchToggle, iconSun, iconMoon);
       } else {
-         console.log('dark');
-         switchToggle.classList.add('bg-yellow-500', '-translate-x-2');
-         switchToggle.classList.remove('bg-gray-700', 'translate-x-full');
-         iconSun.classList.remove('hidden');
-         iconMoon.classList.add('hidden');
+         dark(switchToggle, iconSun, iconMoon);
       }
    }
 
+   function dark(switchToggle: HTMLElement | null, iconSun: HTMLElement | null, iconMoon: HTMLElement | null) {
+      switchToggle?.classList.add('bg-yellow-500', '-translate-x-2');
+      switchToggle?.classList.remove('bg-gray-700', 'translate-x-full');
+      iconSun?.classList.remove('hidden');
+      iconMoon?.classList.add('hidden');
+   }
+   function light(switchToggle: HTMLElement | null, iconSun: HTMLElement | null, iconMoon: HTMLElement | null) {
+      switchToggle?.classList.remove('bg-yellow-500', '-translate-x-2');
+      switchToggle?.classList.add('bg-gray-700', 'translate-x-full');
+      iconSun?.classList.add('hidden');
+      iconMoon?.classList.remove('hidden');
+   }
    onMounted(() => {
-      toggleButton();
+      nextTick(function () {
+         toggleButton();
+      });
    });
 </script>
 
-<script>
+<script lang="ts">
    export default {
       name: 'DarkMode',
    };
