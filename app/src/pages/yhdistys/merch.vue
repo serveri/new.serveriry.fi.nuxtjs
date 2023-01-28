@@ -1,8 +1,8 @@
 <template>
    <div>
       <Head>
-         <Title>Etusivu - Serveri ry</Title>
+         <Title>Merch - Serveri ry</Title>
       </Head>
-      <h1>Etusivu</h1>
+      <h1>Merch</h1>
    </div>
 </template>

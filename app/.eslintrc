@@ -10,5 +10,13 @@
       "ecmaVersion": 2021
    },
    "plugins": [],
-   "rules": {}
+   "rules": {},
+   "overrides": [
+      {
+         "files": ["src/pages/**/*.vue", "src/pages/*.vue"],
+         "rules": {
+            "vue/multi-word-component-names": 0
+         }
+      }
+   ]
 }

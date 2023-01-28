@@ -103,10 +103,10 @@
    import ServerLogoRound from '@/components/ServerLogoRound.vue';
 
    const links = [
-      { text: 'Serverin säännöt', href: '#säänöt' },
+      { text: 'Serverin säännöt', href: '/yhdistys/saannot' },
       { text: 'Tietosuoja ja jäsenrekisteri', href: '#tietosuoja' },
-      { text: 'Tietojenkäsittelytieteen laitos', href: '#laitos' },
-      { text: 'Skripti ry - Joensuun tkt-ainejärjestö', href: '#skripti' },
+      { text: 'Tietojenkäsittelytieteen laitos', href: 'https://www.uef.fi/fi/koulutus/tietojenkasittelytiede' },
+      { text: 'Skripti ry - Joensuun tkt-ainejärjestö', href: 'https://www.skripti.org/' },
       { text: 'Linkkejä', href: '#links' },
    ];
 </script>

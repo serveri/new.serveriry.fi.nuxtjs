@@ -33,7 +33,7 @@
    };
 </script>
 
-<style scoped>
+<style lang="css">
    svg {
       fill-rule: evenodd;
       clip-rule: evenodd;
