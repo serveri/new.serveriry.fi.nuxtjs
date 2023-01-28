@@ -54,7 +54,8 @@
                         </div>
                      </div>
                      <!-- Ain't rly bug but only one toggle button is updated at time -->
-                     <DarkMode id="nav" />
+
+                    <DarkMode id="nav" />
                   </div>
                </div>
             </div>
