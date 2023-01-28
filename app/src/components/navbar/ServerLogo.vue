@@ -5,7 +5,7 @@
       viewBox="1500 3000 10000 6000"
       xmlns="http://www.w3.org/2000/svg"
       xml:space="preserve"
-      class="logo-svg fill-black dark:fill-white"
+      class="logo-svg fill-black dark:fill-white hover:scale-105 active:scale-95"
       title="Server logo mouse"
       aria-label="Server logo mouse"
    >
