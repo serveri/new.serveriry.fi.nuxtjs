@@ -1,8 +1,8 @@
 <template>
    <div>
       <Head>
-         <Title>Hallitustoiminta - Serveri ry</Title>
+         <Title>{{ $t('board') }} - Serveri ry</Title>
       </Head>
-      <h1>Hallitustoiminta</h1>
+      <h1 class="custom-page-title">{{ $t('board') }}</h1>
    </div>
 </template>

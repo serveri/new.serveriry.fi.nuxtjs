@@ -1,8 +1,8 @@
 <template>
    <div>
       <Head>
-         <Title>Turvallinen tila - Serveri ry</Title>
+         <Title>{{ $t('safe-space') }} - Serveri ry</Title>
       </Head>
-      <h1>Turvallinen tila</h1>
+      <h1 class="custom-page-title">{{ $t('safe-space') }}</h1>
    </div>
 </template>

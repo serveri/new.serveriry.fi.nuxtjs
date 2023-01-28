@@ -22,7 +22,17 @@
                <div class="text-right">
                   <ul class="mb-6 text-md font-medium text-gray-900 dark:text-white">
                      <li v-for="link in links" :key="link.text" class="mb-2">
-                        <a :href="link.text" class="hover:underline" aria-label="Etusivu"> {{ link.text }}</a>
+                        <nuxt-link
+                           v-if="link.href[0] === '/'"
+                           :to="localePath(link.href)"
+                           class="hover:underline"
+                           aria-label="link.text"
+                        >
+                           {{ $t(link.text) }}
+                        </nuxt-link>
+                        <a v-else :href="link.href" class="hover:underline" :aria-label="$t(link.text)" target="_blank">
+                           {{ $t(link.text) }}
+                        </a>
                      </li>
                   </ul>
                </div>
@@ -103,11 +113,11 @@
    import ServerLogoRound from '@/components/footer/ServerLogoRound.vue';
 
    const links = [
-      { text: 'Serverin säännöt', href: '/yhdistys/saannot' },
-      { text: 'Tietosuoja ja jäsenrekisteri', href: '#tietosuoja' },
-      { text: 'Tietojenkäsittelytieteen laitos', href: 'https://www.uef.fi/fi/koulutus/tietojenkasittelytiede' },
-      { text: 'Skripti ry - Joensuun tkt-ainejärjestö', href: 'https://www.skripti.org/' },
-      { text: 'Linkkejä', href: '#links' },
+      { text: 'rules-footer', href: '/yhdistys/saannot' },
+      { text: 'gdpr', href: '/gdpr' },
+      { text: 'tkt', href: 'https://www.uef.fi/fi/koulutus/tietojenkasittelytiede' },
+      { text: 'skripti', href: 'https://www.skripti.org/' },
+      { text: 'links', href: '/links' },
    ];
 </script>
 

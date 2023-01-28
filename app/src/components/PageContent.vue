@@ -1,20 +1,8 @@
 <template>
    <div
-      style="height: 56.4vh"
+      style="min-height: 50vh"
       class="bg-gradient-to-r from-[#ADA996] to-[#8e9eab] dark:from-zinc-700 dark:to-[#414345]"
    >
-      <router-view />
+      <router-view class="text-black dark:text-white" />
    </div>
 </template>
-
-<script>
-   export default {
-      name: 'PageContent',
-   };
-</script>
-
-<style scoped lang="css">
-   p {
-      color: black;
-   }
-</style>

@@ -16,14 +16,14 @@
                <!-- Server Logo -->
                <div class="flex flex-1 sm:flex-auto items-center justify-center">
                   <div class="hidden h-16 w-auto sm:block">
-                     <a href="/">
-                        <ServerLogo class="hover:bg-gray-700" />
-                     </a>
+                     <nuxt-link :to="localePath('/')">
+                        <ServerLogo />
+                     </nuxt-link>
                   </div>
                   <div class="block h-16 w-auto sm:hidden">
-                     <a href="/">
-                        <ServerLogo class="hover:bg-gray-700" />
-                     </a>
+                     <nuxt-link :to="localePath('/')">
+                        <ServerLogo />
+                     </nuxt-link>
                   </div>
                </div>
 
@@ -38,24 +38,26 @@
 
                         <!-- ELSE -->
                         <div v-else class="relative">
-                           <a :href="item.href">
+                           <nuxt-link :to="localePath(item.href)">
                               <button
                                  :class="[
                                     item.current
                                        ? 'bg-gray-900 text-white'
-                                       : 'text-gray-700 dark:text-gray-300 hover:bg-gray-700 hover:text-white',
+                                       : 'text-gray-700 dark:text-gray-300 dark:hover:bg-gray-700 hover:outline outline-2 dark:hover:text-white hover:text-blue-500',
                                     'px-1 py-1 md:px-3 md:py-2 rounded-md font-medium uppercase md:font-bold text-sm lg:text-lg whitespace-nowrap',
                                  ]"
                                  :aria-current="item.current ? 'page' : undefined"
                               >
-                                 {{ item.name }}
-                              </button></a
-                           >
+                                 {{ $t(item.name) }}
+                              </button>
+                           </nuxt-link>
                         </div>
                      </div>
                      <!-- Ain't rly bug but only one toggle button is updated at time -->
-
                      <DarkMode id="nav" />
+                     <!-- Languages -->
+                     <nuxt-link :to="switchLocalePath('en')">English</nuxt-link>
+                     <nuxt-link :to="switchLocalePath('fi')">Finnish</nuxt-link>
                   </div>
                </div>
             </div>
@@ -77,7 +79,8 @@
                </div>
                <!-- ELSE -->
                <div v-else class="relative">
-                  <div
+                  <nuxt-link
+                     :to="localePath(item.href)"
                      tabindex="0"
                      :class="[
                         item.current
@@ -86,8 +89,8 @@
                         'flex items-center justify-start block px-3 py-2 rounded-md text-base font-medium uppercase whitespace-nowrap cursor-pointer select-none',
                      ]"
                   >
-                     {{ item.name }}
-                  </div>
+                     {{ $t(item.name) }}
+                  </nuxt-link>
                </div>
             </DisclosureButton>
             <DarkMode id="mobile" />
@@ -103,38 +106,39 @@
 
    const navigation = [
       {
-         name: 'Yhdistys',
-         href: '#Yhdistys',
+         name: 'org',
+         href: '/yhdistys',
          current: false,
          subMenu: [
-            { name: 'Hallitustoiminta', href: '/yhdistys/hallitus' },
-            { name: 'Säännöt', href: '/yhdistys/saannot' },
-            { name: 'Tapahtumat', href: '/yhdistys/tapahtumat' },
-            { name: 'Merch', href: '/yhdistys/merch' },
-            { name: 'Uutiset', href: '/yhdistys/uutiset' },
-            { name: 'Turvallinen tila', href: '/yhdistys/turvallinen-tila' },
+            { name: 'board', href: '/yhdistys/hallitus' },
+            { name: 'news', href: '/yhdistys/uutiset' },
+            { name: 'events', href: '/yhdistys/tapahtumat' },
+            { name: 'merch', href: '/yhdistys/merch' },
+            { name: 'history', href: '/yhdistys/historia' },
+            { name: 'rules', href: '/yhdistys/saannot' },
+            { name: 'safe-space', href: '/yhdistys/turvallinen-tila' },
          ],
       },
-      { name: 'Jäseneksi', href: '#Jäseneksi', current: false },
+      { name: 'join-us', href: '/jaseneksi', current: false },
       {
-         name: 'Yritysyhteistyö',
-         href: '#Yritysyhteistyö',
+         name: 'business',
+         href: '/yrityksille',
          current: false,
          subMenu: [
-            { name: 'IT-rekry', href: '#' },
-            { name: 'Yhteistyökumppanit', href: '#' },
-            { name: 'Yhteistyökumppaniksi?', href: '#' },
+            { name: 'it-rekry', href: '/yrityksille/it-rekry' },
+            { name: 'partners', href: '/yrityksille/kumppanit' },
+            { name: 'collaboration', href: '/yrityksille/yhteistyo' },
          ],
       },
       {
-         name: 'Opiskelu',
-         href: '#Opiskelu',
+         name: 'study',
+         href: '/opiskelu',
          current: false,
          subMenu: [
-            { name: 'Mitä tietojenkäsittelytiede on?', href: '#' },
-            { name: 'Uudelle opiskelijalle', href: '#' },
-            { name: 'Läksykerho', href: '#' },
-            { name: 'Palaute', href: '#' },
+            { name: 'what-is-cs', href: '/opiskelu/tkt' },
+            { name: 'new-student', href: '/opiskelu/fuksille' },
+            { name: 'study-club', href: '/opiskelu/laksykerho' },
+            { name: 'feedback', href: '/opiskelu/palaute' },
          ],
       },
    ];

@@ -11,18 +11,18 @@ export default defineNuxtConfig({
    plugins: [{ src: '~/plugins/fontawesome.ts' }],
    modules: ['@nuxtjs/i18n'],
    i18n: {
-      locales: ['en', 'fi'],
-      defaultLocale: 'fi',
-      vueI18n: {
-         fallbackLocale: 'fi',
-         messages: {
-            fi: {
-               welcome: 'Tervetuloa',
-            },
-            en: {
-               welcome: 'Welcome',
-            },
+      locales: [
+         {
+            code: 'fi',
+            file: 'fi.json',
          },
-      },
+         {
+            code: 'en',
+            file: 'en.json',
+         },
+      ],
+      lazy: true,
+      langDir: 'lang/',
+      defaultLocale: 'fi',
    },
 });
