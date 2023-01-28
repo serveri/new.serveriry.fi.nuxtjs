@@ -99,7 +99,7 @@
 <script setup>
    import { Disclosure, DisclosureButton, DisclosurePanel } from '@headlessui/vue';
    import { Bars3Icon, XMarkIcon } from '@heroicons/vue/24/outline';
-   import ServerLogo from '@/components/ServerLogo.vue';
+   import ServerLogo from '@/components/navbar/ServerLogo.vue';
 
    const navigation = [
       {
@@ -141,9 +141,9 @@
 </script>
 
 <script>
-   import DropDownMenu from '@/components/DropDownMenu.vue';
-   import DropDownMobile from '@/components/DropDownMobile.vue';
-   import DarkMode from '@/components/DarkMode.vue';
+   import DropDownMenu from '@/components/navbar/DropDownMenu.vue';
+   import DropDownMobile from '@/components/navbar/DropDownMobile.vue';
+   import DarkMode from '@/components/navbar/DarkModeToggle.vue';
 
    export default {
       components: {

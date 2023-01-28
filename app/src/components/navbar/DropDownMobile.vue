@@ -41,7 +41,7 @@
 
 <script setup>
    import { Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/vue';
-   import DropDownArrow from '@/components/DropDownArrow.vue';
+   import DropDownArrow from '@/components/navbar/DropDownArrow.vue';
 </script>
 
 <script>

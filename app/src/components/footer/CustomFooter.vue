@@ -100,7 +100,7 @@
 </template>
 
 <script setup>
-   import ServerLogoRound from '@/components/ServerLogoRound.vue';
+   import ServerLogoRound from '@/components/footer/ServerLogoRound.vue';
 
    const links = [
       { text: 'Serverin säännöt', href: '/yhdistys/saannot' },
