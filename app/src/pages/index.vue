@@ -6,7 +6,8 @@ import UutisetHero from '@/components/hero/UutisetHero.vue';
          <Title>{{ $t('title_front-page') }} - Serveri ry</Title>
       </Head>
 
-      <HeroImage class="w-screen" />
+      <!-- cannot be 100vw, causes x overflow. Cannot be 100%, will be too small... -->
+      <HeroImage style="width: 100vw" />
 
       <div class="flex flex-col py-5 lg:flex-row md:flex-col sm:flex-col">
          <HeroSection />
