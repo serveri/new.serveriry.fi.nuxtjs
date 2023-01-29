@@ -53,11 +53,10 @@
                            </nuxt-link>
                         </div>
                      </div>
+                     <!-- Languages -->
+                     <lang-switcher />
                      <!-- Ain't rly bug but only one toggle button is updated at time -->
                      <DarkMode id="nav" />
-                     <!-- Languages -->
-                     <nuxt-link :to="switchLocalePath('en')">English</nuxt-link>
-                     <nuxt-link :to="switchLocalePath('fi')">Finnish</nuxt-link>
                   </div>
                </div>
             </div>
@@ -93,6 +92,8 @@
                   </nuxt-link>
                </div>
             </DisclosureButton>
+            <!-- Languages -->
+            <lang-switcher />
             <DarkMode id="mobile" />
          </div>
       </DisclosurePanel>
@@ -103,6 +104,7 @@
    import { Disclosure, DisclosureButton, DisclosurePanel } from '@headlessui/vue';
    import { Bars3Icon, XMarkIcon } from '@heroicons/vue/24/outline';
    import ServerLogo from '@/components/navbar/ServerLogo.vue';
+   import LangSwitcher from '@/components/navbar/LangSwitcher.vue';
 
    const navigation = [
       {

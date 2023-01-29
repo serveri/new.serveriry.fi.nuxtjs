@@ -1,5 +1,5 @@
 export default defineNuxtConfig({
-   ssr: true,
+   ssr: false,
    srcDir: 'src/',
    css: ['~/assets/css/main.css'],
    postcss: {
@@ -11,6 +11,9 @@ export default defineNuxtConfig({
    plugins: [{ src: '~/plugins/fontawesome.ts' }],
    modules: ['@nuxtjs/i18n'],
    i18n: {
+      vueI18n: {
+         fallbackLocale: ['fi', 'en'],
+      },
       locales: [
          {
             code: 'fi',
