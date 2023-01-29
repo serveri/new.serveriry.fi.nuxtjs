@@ -1,5 +1,5 @@
 <template>
-   <div id="app" class="bg-white dark:bg-zinc-900" style="min-height: 100vh">
+   <div id="app" class="bg-white dark:bg-zinc-800 min-h-screen">
       <NavBar />
       <page-content />
       <CustomFooter />
