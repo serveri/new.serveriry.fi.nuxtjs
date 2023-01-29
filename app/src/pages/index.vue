@@ -1,9 +1,9 @@
 <template>
    <div>
       <Head>
-         <Title>{{ $t('front-page') }} - Serveri ry</Title>
+         <Title>{{ $t('title_front-page') }} - Serveri ry</Title>
       </Head>
-      <h1 class="custom-page-title">{{ $t('front-page') }}</h1>
+      <h1 class="custom-page-title">{{ $t('h1_front-page') }}</h1>
       <p>
          Toimimme linkkinä yliopiston ja opiskelijoiden välillä mm. keräämällä ja välittämällä opiskelijapalautetta
          yliopistolle. Tarjoamme opiskelijajäsenillemme ohjausta edunvalvonnallisissa asioissa ja järjestämme opintojen

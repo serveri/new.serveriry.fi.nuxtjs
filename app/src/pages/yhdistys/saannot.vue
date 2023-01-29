@@ -1,8 +1,8 @@
 <template>
    <div>
       <Head>
-         <Title>{{ $t('rules') }} - Serveri ry</Title>
+         <Title>{{ $t('title_rules') }} - Serveri ry</Title>
       </Head>
-      <h1 class="custom-page-title">{{ $t('rules') }}</h1>
+      <h1 class="custom-page-title">{{ $t('h1_rules') }}</h1>
    </div>
 </template>
