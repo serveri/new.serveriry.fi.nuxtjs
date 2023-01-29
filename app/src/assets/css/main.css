@@ -3,8 +3,18 @@
 @tailwind utilities;
 
 @layer components {
+  body {
+    font-family: "Nunito Sans", sans-serif;
+  }
+
   .custom-page-title {
     font-size: 2em;
+    padding: 2rem;
     text-align: center;
+    font-weight: 800;
+  }
+
+  .content {
+    @apply mx-auto max-w-7xl px-2 sm:px-6 lg:px-8;
   }
 }

@@ -1,6 +1,6 @@
 <template>
    <footer class="bg-white dark:bg-zinc-900">
-      <div class="p-4 sm:p-6 mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
+      <div class="p-4 sm:p-6 content">
          <!-- Logo -->
          <div class="mx-2 sm:mx-0 flex items-stretch justify-between">
             <!-- Serveri ry-->
