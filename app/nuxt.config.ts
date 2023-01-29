@@ -1,5 +1,5 @@
 export default defineNuxtConfig({
-   ssr: false,
+   ssr: true,
    srcDir: 'src/',
    css: ['~/assets/css/main.css'],
    postcss: {
