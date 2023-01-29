@@ -1,6 +1,6 @@
 <template>
    <Disclosure v-slot="{ open }" as="nav" class="bg-zinc-50 dark:bg-zinc-900">
-      <div class="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
+      <div class="content">
          <div class="relative flex h-20 items-center justify-between">
             <div class="absolute inset-y-0 left-0 flex items-center sm:hidden">
                <!-- Mobile menu button-->
@@ -38,12 +38,12 @@
 
                         <!-- ELSE -->
                         <div v-else class="relative">
-                           <nuxt-link :to="localePath(item.href)">
+                           <nuxt-link :to="localePath(item.href)" tabindex="-1">
                               <button
                                  :class="[
                                     item.current
                                        ? 'bg-gray-900 text-white'
-                                       : 'text-gray-700 dark:text-gray-300 dark:hover:bg-gray-700 hover:outline outline-2 dark:hover:text-white hover:text-blue-500',
+                                       : 'text-gray-700 dark:text-gray-300 dark:hover:bg-gray-700 hover:outline dark:hover:outline-none outline-2 dark:hover:text-white hover:text-blue-500',
                                     'px-1 py-1 md:px-3 md:py-2 rounded-md font-medium uppercase md:font-bold text-sm lg:text-lg whitespace-nowrap',
                                  ]"
                                  :aria-current="item.current ? 'page' : undefined"
