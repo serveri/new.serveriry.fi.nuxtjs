@@ -1,4 +1,4 @@
-# new.serveriry.fi
+# new.serveriry.fi.nextjs
 
 [![Vue v3](https://img.shields.io/badge/Vue-v3-blue)](https://vuejs.org/)
 [![Nuxt](https://img.shields.io/badge/Nuxt-v3.1-blue)](https://nuxt.com/)
