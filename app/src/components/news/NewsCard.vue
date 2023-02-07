@@ -1,10 +1,10 @@
 <template>
-    <div class="uukortti">
-        <img src="" alt="ei löyvy">
-        <h1 class="korttiOtsikko">uutiskortti?</h1>
+    <div class="uukortti">  
+        <img src="@/assets/images/kokeilu.jpg" alt="">
         <div>
-            <p>Julkaistu:</p>
-            <p>111111111111111111111</p>
+            <h2>Uutiskortin otsikko</h2>
+            <h5>Julkaistu: xx.xx.xxxx</h5>
+            <p> Lorem ipsum on 1500-luvulta lähtien olemassa ollut teksti, jota käytetään usein täytetekstinä ulkoasun testaamiseen graafisessa suunnittelussa, kun oikeata tekstisisältöä ei vielä ole.  </p>
         </div>
     </div>
 </template>
@@ -20,19 +20,36 @@
    };
 </script>
 
-<style>
+<style scoped>
     .uukortti{
-     -webkit-box-shadow: 0 0 26px -5px rgba(0, 0, 0, 0.27);
-      -moz-box-shadow: 0 0 26px -5px rgba(0, 0, 0, 0.27);
-      box-shadow: 0 0 26px -5px rgba(0, 0, 0, 0.27);
-      border-radius: 15px;
-      padding: 0.8rem;   
+    border-radius: 1em;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    box-shadow: 0 0 26px -5px rgba(0, 0, 0, 0.27);
 }
-.korttiOtsikko{
-    font-size: x-large;
+h2{
+    padding-left: 1rem;
+    font-size: 1.6rem;
+    font-weight: 800;
+    margin-top: 0.8rem;
+    margin-bottom: 0.3rem;
+}
+
+h5{
+    padding-left: 1rem;
+    font-weight: 400;
+    text-transform: uppercase;
 }
 
 p{
-    font-size: larger;
+    padding-left: 1rem  ;
+    margin-top: 0.5rem;
+    margin-bottom: 0.8rem;
+}
+img{
+    width: 100%;
+    object-fit: cover;
+    height: 15rem;
 }
 </style>
