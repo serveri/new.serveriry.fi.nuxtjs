@@ -4,7 +4,12 @@
       <MenuButton>
          <!--        :to="localePath(menu.href)"-->
          <nuxt-link
-            :class="[menu.current ? 'text-server-blue' : 'text-gray-700 dark:text-gray-300', 'nav-link']"
+            :class="[
+               $route.path.split('/')[1] === localePath(menu.href).split('/')[1]
+                  ? 'text-server-blue'
+                  : 'text-gray-700 dark:text-gray-300',
+               'nav-link',
+            ]"
             :aria-current="menu.current ? 'page' : undefined"
          >
             {{ $t(menu.name) }}
@@ -25,7 +30,12 @@
             <MenuItem v-for="subMenu in menu.subMenu" v-slot="{ active }" :key="subMenu.name">
                <nuxt-link
                   :to="localePath(subMenu.href)"
-                  :class="[menu.current ? 'text-server-blue' : 'text-gray-700 dark:text-gray-200', 'nav-dropdown-link']"
+                  :class="[
+                     $route.path === localePath(subMenu.href)
+                        ? 'text-server-blue'
+                        : 'text-gray-700 dark:text-gray-200',
+                     'nav-dropdown-link',
+                  ]"
                   tabindex="1"
                   >{{ $t(subMenu.name) }}</nuxt-link
                >
@@ -77,7 +87,7 @@
    }
    /* underline effect */
    .nav-dropdown-link:hover {
-      border-bottom-color: #0c4b51;
+      @apply border-b-server-blue;
       transition: border-bottom-color 0.5s ease-out;
    }
 </style>

@@ -12,7 +12,7 @@ module.exports = {
    theme: {
       extend: {
          colors: {
-            'server-blue': '#0c4b51',
+            'server-blue': '#06919f',
          },
          backgroundImage: {
             'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
