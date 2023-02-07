@@ -41,10 +41,10 @@
                            <nuxt-link :to="localePath(item.href)" tabindex="-1">
                               <button
                                  :class="[
-                                    item.current
-                                       ? 'bg-gray-900 text-white'
-                                       : 'text-gray-700 dark:text-gray-300 dark:hover:bg-gray-700 hover:outline dark:hover:outline-none outline-2 dark:hover:text-white hover:text-blue-500',
-                                    'px-1 py-1 md:px-3 md:py-2 rounded-md font-medium uppercase md:font-bold text-sm lg:text-lg whitespace-nowrap',
+                                    $route.path === localePath(item.href)
+                                       ? 'text-server-blue'
+                                       : 'text-gray-700 dark:text-gray-300',
+                                    'nav-link',
                                  ]"
                                  :aria-current="item.current ? 'page' : undefined"
                               >
@@ -82,8 +82,8 @@
                      :to="localePath(item.href)"
                      tabindex="0"
                      :class="[
-                        item.current
-                           ? 'bg-gray-900 text-white'
+                        $route.path === localePath(item.href)
+                           ? 'text-server-blue'
                            : 'text-gray-700 dark:text-gray-300 hover:bg-gray-700 hover:text-white',
                         'flex items-center justify-start block px-3 py-2 rounded-md text-base font-medium uppercase whitespace-nowrap cursor-pointer select-none',
                      ]"
@@ -99,6 +99,29 @@
       </DisclosurePanel>
    </Disclosure>
 </template>
+
+<style>
+   .nav-link {
+      @apply px-1 py-1 md:px-3 md:py-2 font-medium text-sm lg:text-lg md:font-bold uppercase whitespace-nowrap tracking-wide;
+   }
+   /* underline effect */
+   .nav-link:after {
+      @apply bg-server-blue;
+      content: '';
+      position: absolute;
+      width: 100%;
+      transform: scaleX(0);
+      height: 2px;
+      left: 0;
+      bottom: 0;
+      transform-origin: bottom right;
+      transition: transform 0.4s ease-out;
+   }
+   .nav-link:hover:after {
+      transform: scaleX(1);
+      transform-origin: bottom left;
+   }
+</style>
 
 <script setup>
    import { Disclosure, DisclosureButton, DisclosurePanel } from '@headlessui/vue';
