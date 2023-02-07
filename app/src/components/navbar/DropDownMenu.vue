@@ -4,12 +4,7 @@
       <MenuButton>
          <!--        :to="localePath(menu.href)"-->
          <nuxt-link
-            :class="[
-               menu.current
-                  ? 'bg-gray-900 text-white'
-                  : 'text-gray-700 dark:text-gray-300 dark:hover:bg-gray-700 hover:outline dark:hover:outline-none outline-2 dark:hover:text-white hover:text-blue-500',
-               'flex items-center justify-between px-1 py-1 md:px-3 md:py-2 rounded-md font-medium uppercase md:font-bold text-sm lg:text-lg whitespace-nowrap',
-            ]"
+            :class="[menu.current ? 'text-server-blue' : 'text-gray-700 dark:text-gray-300', 'nav-link']"
             :aria-current="menu.current ? 'page' : undefined"
          >
             {{ $t(menu.name) }}
@@ -25,15 +20,12 @@
          leave-to-class="transform opacity-0 scale-95"
       >
          <MenuItems
-            class="absolute right-0 z-10 mt-2 min-w-max origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none whitespace-nowrap dark:bg-[#282828]"
+            class="absolute px-1 py-1 md:px-6 md:py-2 md:pb-4 right-0 z-10 mt-2 min-w-max origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none whitespace-nowrap dark:bg-[#282828]"
          >
             <MenuItem v-for="subMenu in menu.subMenu" v-slot="{ active }" :key="subMenu.name">
                <nuxt-link
                   :to="localePath(subMenu.href)"
-                  :class="[
-                     active ? 'bg-gray-100 dark:outline dark:outline-1' : '',
-                     'my-custom-one block px-4 py-2 text-sm text-gray-700 dark:text-gray-200 dark:hover:bg-gray-600 dark:hover:outline-none dark:even:bg-[#202020] dark:odd:bg-[#282828]',
-                  ]"
+                  :class="[menu.current ? 'text-server-blue' : 'text-gray-700 dark:text-gray-200', 'nav-dropdown-link']"
                   tabindex="1"
                   >{{ $t(subMenu.name) }}</nuxt-link
                >
@@ -58,4 +50,34 @@
    };
 </script>
 
-<style scoped></style>
+<style>
+   .nav-link {
+      @apply flex items-center justify-between font-medium text-sm lg:text-lg md:font-bold uppercase whitespace-nowrap tracking-wide;
+   }
+   /* underline effect */
+   .nav-link:after {
+      @apply bg-server-blue;
+      content: '';
+      position: absolute;
+      width: 100%;
+      transform: scaleX(0);
+      height: 2px;
+      left: 0;
+      bottom: 0;
+      transform-origin: bottom right;
+      transition: transform 0.4s ease-out;
+   }
+
+   .nav-dropdown-link {
+      @apply block px-4 py-2 text-sm tracking-wider;
+      border-bottom: 0.2em transparent solid;
+      padding: 0.5rem 0 0 0;
+      width: fit-content;
+      letter-spacing: 0.025em;
+   }
+   /* underline effect */
+   .nav-dropdown-link:hover {
+      border-bottom-color: #0c4b51;
+      transition: border-bottom-color 0.5s ease-out;
+   }
+</style>
