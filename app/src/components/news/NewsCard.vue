@@ -1,14 +1,43 @@
 <template>
     <div class="uukortti">
-        <img src="" alt="ei löyvy">
-        <h1 class="korttiOtsikko">uutiskortti?</h1>
+        <img :src="content.img" alt="Cover image for the news card">
+        <h1 class="korttiOtsikko">{{content.header}}</h1>
         <div>
-            <p>Julkaistu:</p>
-            <p>111111111111111111111</p>
+            <p>{{ $t('news_released') }}</p>
+            <p>{{content.date}}</p>
         </div>
     </div>
 </template>
 
+<script setup lang="ts">
+const content = defineProps({
+  url: {
+    type: String,
+    default: 'Default',
+    required: true,
+  },
+  img: {
+    type: String,
+    default: 'Default',
+    required: true,
+  },
+  header: {
+    type: String,
+    default: 'Default',
+    required: true,
+  },
+  date: {
+    type: String,
+    default: 'Default',
+    required: true,
+  },
+  text: {
+    type: String,
+    default: 'Default',
+    required: true,
+  },
+});
+</script>
 <script lang="ts">
    export default {
       name: 'newsCard',
