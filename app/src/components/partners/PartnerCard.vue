@@ -5,8 +5,8 @@
       @mouseover="hover = true"
       @mouseleave="hover = false"
    >
-      <img v-if="hover" :src="partner.img" alt="hurja" loading="lazy" class="scale-110" />
-      <img v-else :src="partner.img" alt="hurja" loading="lazy" class="scale-100" />
+      <img v-if="hover" :src="partner.img" :alt="partner.name" loading="lazy" class="scale-" />
+      <img v-else :src="partner.img" :alt="partner.name" loading="lazy" class="scale-100" />
    </a>
 </template>
 
@@ -22,6 +22,12 @@
          default: 'Default',
          required: true,
       },
+     name: {
+       type: String,
+       default: 'Default',
+       required: true,
+     },
+
    });
 </script>
 
