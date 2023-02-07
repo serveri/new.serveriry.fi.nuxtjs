@@ -7,9 +7,10 @@
          <div class="news pt-8">
             <NewsCard/>      
             <NewsCard/>  
-            <NewsCard/>  
+            <NewsCard/>
+            <NewsCard/>
+            <NewsCard/>
          </div>
-      
    </div>
    
    
@@ -23,8 +24,9 @@
 
 <style>
 .news{
-   display: flex;
+   padding-bottom: 3rem;
+   display: grid;
    gap: 2rem;
-   grid-auto-rows: 8rem;
+   grid-template-columns:auto auto auto;
 }
 </style>
