@@ -1,52 +1,45 @@
 <template>
-   <div class="uukortti">
-      <img :src="content.img" alt="Cover image for the news card" />
-      <h1 class="korttiOtsikko">{{ content.header }}</h1>
-      <div>
-         <p>{{ $t('news_released') }}</p>
-         <p>{{ content.date }}</p>
+   <a :href="'/news/' + content.url">
+      <div class="uukortti">
+         <img :src="content.img" alt="Cover image for the news card" />
+         <h1 class="korttiOtsikko">{{ content.header }}</h1>
+         <p>
+            {{ $t('news_released') }} <span>{{ content.date.toLocaleDateString($i18n.locale, options) }}</span>
+         </p>
+         <p>{{ content.text }}</p>
       </div>
-   </div>
+   </a>
 </template>
 
 <script setup lang="ts">
    const content = defineProps({
       url: {
-         type: String,
-         default: 'Default',
+         type: Number,
+         default: 1,
          required: true,
       },
       img: {
          type: String,
-         default: 'Default',
+         default: '/_nuxt/assets/images/placeholder.jpg',
          required: true,
       },
       header: {
          type: String,
-         default: 'Default',
-         required: true,
+         default: 'News Header Missing',
+         required: false,
       },
       date: {
-         type: String,
-         default: 'Default',
-         required: true,
+         type: Date,
+         default: new Date("01/01/1970"),
+         required: false,
       },
       text: {
          type: String,
-         default: 'Default',
-         required: true,
+         default: 'News Description missing',
+         required: false,
       },
    });
-</script>
-<script lang="ts">
-   export default {
-      name: 'newsCard',
-      data() {
-         return {
-            hover: false,
-         };
-      },
-   };
+   const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
 </script>
 
 <style scoped>
