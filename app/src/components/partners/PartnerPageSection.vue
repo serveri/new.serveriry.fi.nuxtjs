@@ -1,5 +1,5 @@
 <template>
-   <div class="partners pt-8">
+   <div class="partners pt-8 px-4 sm:px-0">
       <partner-card
          v-for="sponsor in sponsors"
          :key="sponsor.name"
