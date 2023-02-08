@@ -6,6 +6,7 @@
          :url="sponsor.url"
          :img="sponsor.img"
          :alt="'Serverin toimintaa tukee ' + sponsor.name + ' ja tässä heidän logo'"
+         :name="sponsor.name"
       />
    </div>
 </template>
