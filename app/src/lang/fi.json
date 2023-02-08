@@ -24,6 +24,7 @@
    "links": "Hyödyllisiä linkkejä",
    "history": "Historia",
    "change-language": "Vaihda kieli",
+   "companies": "Lista IT-yrityksistä",
 
    "title_front-page": "Etusivu",
    "title_join-us": "Jäseneksi",
@@ -49,6 +50,7 @@
    "title_links": "Hyödyllisiä linkkejä",
    "title_history": "Historia",
    "title_change-language": "Vaihda kieli",
+   "title_companies": "Firmat",
 
    "h1_front-page": "Etusivu",
    "h1_join-us": "Liity jäseneksi",
@@ -73,7 +75,7 @@
    "h1_skripti": "Skripti ry - Joensuun TKT-ainejärjestö",
    "h1_links": "Hyödyllisiä linkkejä",
    "h1_history": "Historia",
+   "news_released": "Julkaistu:",
    "h1_change-language": "Vaihda kieli",
-
-   "news_released": "Julkaistu:"
+   "h1_companies": "Lista IT alan yrityksistä"
 }
