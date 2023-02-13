@@ -31,9 +31,7 @@
                <nuxt-link
                   :to="localePath(subMenu.href)"
                   :class="[
-                     $route.path === localePath(subMenu.href)
-                        ? 'text-server-blue'
-                        : 'text-gray-700 dark:text-gray-200',
+                     $route.path === localePath(subMenu.href) ? 'text-server-blue' : 'text-gray-700 dark:text-gray-200',
                      'nav-dropdown-link',
                   ]"
                   tabindex="1"
