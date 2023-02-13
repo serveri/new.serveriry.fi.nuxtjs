@@ -2,10 +2,10 @@
    <!-- Profile dropdown -->
    <Menu as="div" class="relative">
       <MenuButton>
-         <!--        :to="localePath(menu.href)"-->
+         <!-- I am sorry for this purkka koodi -->
          <nuxt-link
             :class="[
-               $route.path.split('/')[1] === localePath(menu.href).split('/')[1]
+               $route.path.split('/').slice(-2)[0] === localePath(menu.href).split('/').slice(-1)[0]
                   ? 'text-server-blue'
                   : 'text-gray-700 dark:text-gray-300',
                'nav-link',
