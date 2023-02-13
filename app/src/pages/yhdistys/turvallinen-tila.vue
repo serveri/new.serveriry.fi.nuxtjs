@@ -31,7 +31,7 @@ Members should collaborate and help each other whenever possible. They should en
 Members should respect intellectual property rights and not plagiarize or use others' work without proper attribution.
 <br>
 
-<p>8. Conflicts of Interest:</p>
+<p>8. Conflicts ofyhguf Interest:</p>
 <br>
 Members should disclose any conflicts of interest and recuse themselves from any discussions or decisions that may present a conflict.
 
