@@ -30,7 +30,7 @@
       },
       date: {
          type: Date,
-         default: new Date("01/01/1970"),
+         default: new Date('01/01/1970'),
          required: false,
       },
       text: {

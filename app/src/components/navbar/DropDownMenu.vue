@@ -27,13 +27,11 @@
          <MenuItems
             class="absolute px-1 py-1 md:px-6 md:py-2 md:pb-4 right-0 z-10 mt-2 min-w-max origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none whitespace-nowrap dark:bg-[#282828]"
          >
-            <MenuItem v-for="subMenu in menu.subMenu" v-slot="{ active }" :key="subMenu.name">
+            <MenuItem v-for="subMenu in menu.subMenu" :key="subMenu.name">
                <nuxt-link
                   :to="localePath(subMenu.href)"
                   :class="[
-                     $route.path === localePath(subMenu.href)
-                        ? 'text-server-blue'
-                        : 'text-gray-700 dark:text-gray-200',
+                     $route.path === localePath(subMenu.href) ? 'text-server-blue' : 'text-gray-700 dark:text-gray-200',
                      'nav-dropdown-link',
                   ]"
                   tabindex="1"

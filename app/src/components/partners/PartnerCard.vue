@@ -23,12 +23,11 @@
          default: 'Default',
          required: true,
       },
-     name: {
-       type: String,
-       default: 'Default',
-       required: true,
-     },
-
+      name: {
+         type: String,
+         default: 'Default',
+         required: true,
+      },
    });
 </script>
 
