@@ -8,11 +8,26 @@
       "preview": "nuxt preview",
       "postinstall": "nuxt prepare",
       "lint:script": "eslint --ext .ts,vue --ignore-path .gitignore .",
-      "lint:style": "stylelint src/**/*.{css,scss,vue}",
-      "lint:markup": "vue-tsc --noEmit"
+      "lint:style": "stylelint src/**/*.{css,scss,vue}"
+   },
+   "dependencies": {
+      "@fortawesome/fontawesome-svg-core": "^6.2.1",
+      "@fortawesome/free-brands-svg-icons": "^6.2.1",
+      "@fortawesome/free-regular-svg-icons": "^6.2.1",
+      "@fortawesome/free-solid-svg-icons": "^6.2.1",
+      "@fortawesome/vue-fontawesome": "^3.0.3",
+      "@headlessui/vue": "^1.7.7",
+      "@heroicons/vue": "^2.0.13",
+      "@nuxtjs/i18n": "^8.0.0-beta.9",
+      "@types/node": "^18.11.18",
+      "@vueuse/core": "^9.11.1",
+      "nuxt": "^3.2.0",
+      "tailwindcss": "^3.2.4",
+      "uninstall": "^0.0.0",
+      "vue": "^3.2.47",
+      "vue-router": "^4.1.6"
    },
    "devDependencies": {
-      "@nuxtjs/i18n": "^8.0.0-beta.9",
       "@typescript-eslint/eslint-plugin": "^5.49.0",
       "@typescript-eslint/parser": "^5.49.0",
       "@vue/eslint-config-prettier": "^7.0.0",
@@ -23,13 +38,11 @@
       "eslint-plugin-vue": "^9.9.0",
       "husky": "^8.0.3",
       "lint-staged": "^13.1.0",
-      "nuxt": "^3.1.0",
       "postcss": "^8.4.21",
       "prettier": "^2.8.3",
       "stylelint": "^14.16.1",
       "stylelint-config-recommended": "^9.0.0",
-      "stylelint-config-standard": "^29.0.0",
-      "tailwindcss": "^3.2.4"
+      "stylelint-config-standard": "^29.0.0"
    },
    "husky": {
       "hooks": {
@@ -40,20 +53,5 @@
       "*.{ts,tsx}": "eslint --fix",
       "*.{css,scss,vue}": "stylelint --fix",
       "*": "prettier -w -u"
-   },
-   "dependencies": {
-      "@fortawesome/fontawesome-svg-core": "^6.2.1",
-      "@fortawesome/free-brands-svg-icons": "^6.2.1",
-      "@fortawesome/free-regular-svg-icons": "^6.2.1",
-      "@fortawesome/free-solid-svg-icons": "^6.2.1",
-      "@fortawesome/vue-fontawesome": "^3.0.3",
-      "@headlessui/vue": "^1.7.7",
-      "@heroicons/vue": "^2.0.13",
-      "@types/node": "^18.11.18",
-      "@vueuse/core": "^9.11.1",
-      "nuxt": "^3.1.0",
-      "uninstall": "^0.0.0",
-      "vue": "^3.2.45",
-      "vue-router": "^4.1.6"
    }
 }
