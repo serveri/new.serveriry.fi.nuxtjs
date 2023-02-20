@@ -24,6 +24,7 @@
    "links": "Useful links",
    "history": "History",
    "change-language": "Change Language",
+   "companies": "Companies",
 
    "title_front-page": "Front Page",
    "title_join-us": "Join us",
@@ -49,6 +50,7 @@
    "title_links": "Useful links",
    "title_history": "History",
    "title_change-language": "Change Language",
+   "title_companies": "Companies",
 
    "h1_front-page": "Front Page",
    "h1_join-us": "Join us",
@@ -73,7 +75,7 @@
    "h1_skripti": "Skripti ry - CS students in UEF Joensuu campus",
    "h1_links": "Useful links",
    "h1_history": "History",
+   "news_released": "Released:",
    "h1_change-language": "Change Language",
-
-   "news_released": "Released:"
+   "h1_companies": "List of all IT companies in Finland"
 }
