@@ -1,6 +1,7 @@
 <template>
    <a
       :href="partner.url"
+      target="_blank"
       class="rounded-2xl w-full h-full cursor-pointer dark:bg-zinc-900 dark:shadow-lg dark:shadow-zinc-600/50"
       @mouseover="hover = true"
       @mouseleave="hover = false"
@@ -22,12 +23,11 @@
          default: 'Default',
          required: true,
       },
-     name: {
-       type: String,
-       default: 'Default',
-       required: true,
-     },
-
+      name: {
+         type: String,
+         default: 'Default',
+         required: true,
+      },
    });
 </script>
 
