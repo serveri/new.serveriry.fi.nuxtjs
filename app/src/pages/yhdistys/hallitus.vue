@@ -1,8 +1,8 @@
 <template>
+   <Head>
+      <Title>{{ $t('title_board') }} - Serveri ry</Title>
+   </Head>
    <div>
-      <Head>
-         <Title>{{ $t('title_board') }} - Serveri ry</Title>
-      </Head>
       <h1 class="custom-page-title">{{ $t('h1_board') }}</h1>
 
       <p>
@@ -37,14 +37,84 @@
 
       <h2 class="board-header font-extrabold mt-8 mb-1 text-3xl">Kokoonpano</h2>
 
-      <div class="board-members p-8">
-         <div class="grid grid-cols-1 gap-8 md:grid-cols-2 md:gap-8 lg:grid-cols-4 lg:gap-8">
-            <CommitteeCard img="/_nuxt/assets/images/jäsenkuva.jpeg" img2="/_nuxt/assets/images/jäsenkuva2.jpeg"/>
-            <CommitteeCard img="/_nuxt/assets/images/jäsenkuva.jpeg" img2="/_nuxt/assets/images/jäsenkuva2.jpeg"/>
-            <CommitteeCard img="/_nuxt/assets/images/jäsenkuva.jpeg" img2="/_nuxt/assets/images/jäsenkuva2.jpeg"/>
-            <CommitteeCard img="/_nuxt/assets/images/jäsenkuva.jpeg" img2="/_nuxt/assets/images/jäsenkuva2.jpeg"/>
-            <CommitteeCard img="/_nuxt/assets/images/jäsenkuva.jpeg" img2="/_nuxt/assets/images/jäsenkuva2.jpeg"/>
-         </div>
+      <div class="board-members py-8 custom-grid">
+         <CommitteeCard
+            v-for="member in members"
+            :id="member.name"
+            :img="member.img"
+            :img2="member.img2"
+            :name="member.name"
+            :email="member.email"
+            :telegram="member.telegram"
+            :desc="member.desc"
+         />
       </div>
    </div>
 </template>
+
+<style>
+   .custom-grid {
+      display: grid;
+      gap: 2rem;
+      grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+   }
+</style>
+
+<script setup lang="ts">
+   const members = [
+      {
+         img: '/_nuxt/assets/images/jäsenkuva.jpeg',
+         img2: '/_nuxt/assets/images/jäsenkuva.jpeg',
+         name: 'Erika Kovanen',
+         role: 'Puheenjohtaja',
+         email: 'pj',
+         telegram: 'tg',
+         desc: 'Puheenjohtajan tehtävänä on pähkinänkuoressa johtaa kokouksia, pitää huoli, että hallitus toimii ja asiat pelittävät, sekä hoitaa erinäisiä edustustehtäviä.',
+      },
+      {
+         img: '/_nuxt/assets/images/jäsenkuva.jpeg',
+         img2: '/_nuxt/assets/images/jäsenkuva.jpeg',
+         name: 'Erika Kovanen',
+         role: 'Puheenjohtaja',
+         email: 'pj',
+         telegram: 'tg',
+         desc: 'Puheenjohtajan tehtävänä on pähkinänkuoressa johtaa kokouksia, pitää huoli, että hallitus toimii ja asiat pelittävät, sekä hoitaa erinäisiä edustustehtäviä.',
+      },
+      {
+         img: '/_nuxt/assets/images/jäsenkuva.jpeg',
+         img2: '/_nuxt/assets/images/jäsenkuva.jpeg',
+         name: 'Erika Kovanen',
+         role: 'Puheenjohtaja',
+         email: 'pj',
+         telegram: 'tg',
+         desc: 'Puheenjohtajan tehtävänä on pähkinänkuoressa johtaa kokouksia, pitää huoli, että hallitus toimii ja asiat pelittävät, sekä hoitaa erinäisiä edustustehtäviä.',
+      },
+      {
+         img: '/_nuxt/assets/images/jäsenkuva.jpeg',
+         img2: '/_nuxt/assets/images/jäsenkuva.jpeg',
+         name: 'Erika Kovanen',
+         role: 'Puheenjohtaja',
+         email: 'pj',
+         telegram: 'tg',
+         desc: 'Puheenjohtajan tehtävänä on pähkinänkuoressa johtaa kokouksia, pitää huoli, että hallitus toimii ja asiat pelittävät, sekä hoitaa erinäisiä edustustehtäviä.',
+      },
+      {
+         img: '/_nuxt/assets/images/jäsenkuva.jpeg',
+         img2: '/_nuxt/assets/images/jäsenkuva.jpeg',
+         name: 'Erika Kovanen',
+         role: 'Puheenjohtaja',
+         email: 'pj',
+         telegram: 'tg',
+         desc: 'Puheenjohtajan tehtävänä on pähkinänkuoressa johtaa kokouksia, pitää huoli, että hallitus toimii ja asiat pelittävät, sekä hoitaa erinäisiä edustustehtäviä.',
+      },
+      {
+         img: '/_nuxt/assets/images/jäsenkuva.jpeg',
+         img2: '/_nuxt/assets/images/jäsenkuva.jpeg',
+         name: 'Erika Kovanen',
+         role: 'Puheenjohtaja',
+         email: 'pj',
+         telegram: 'tg',
+         desc: 'Puheenjohtajan tehtävänä on pähkinänkuoressa johtaa kokouksia, pitää huoli, että hallitus toimii ja asiat pelittävät, sekä hoitaa erinäisiä edustustehtäviä.',
+      },
+   ];
+</script>
