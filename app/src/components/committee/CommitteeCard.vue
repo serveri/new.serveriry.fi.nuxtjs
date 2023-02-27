@@ -1,57 +1,67 @@
 <template>
-   <div class="card-container max-w-sm p-4">
-      <div class="member-info flex flex-wrap justify-center" @mouseover="hover = true" @mouseleave="hover = false">
-         <div class="w-9/12 sm:w-11/12 px-4">
-            <img
-               class="member-image"
-               v-if="hover"
-               :src="content.img2"
-               alt="Toinen kuva hallituksen jäsenestä"
-               role="img"
-               loading="lazy"
-            />
-            <img
-               class="member-image"
-               v-else
-               :src="content.img"
-               alt="Hallituksen jäsenen kuva"
-               role="img"
-               loading="lazy"
-            />
+   <div>
+      <div class="card-container">
+         <div class="member-info flex flex-wrap justify-center px-4">
+            <div class="w-9/12 sm:w-11/12" @mouseover="hover = true" @mouseleave="hover = false">
+               <img
+                  class="member-image"
+                  v-if="hover"
+                  :src="content.img2"
+                  alt="Toinen kuva hallituksen jäsenestä"
+                  role="img"
+                  loading="lazy"
+               />
+               <img
+                  class="member-image"
+                  v-else
+                  :src="content.img"
+                  alt="Hallituksen jäsenen kuva"
+                  role="img"
+                  loading="lazy"
+               />
+            </div>
          </div>
-      </div>
 
-      <div class="member-header text-center p-2">
-         <h2 class="member-role font-extrabold text-2xl">Hallitusrooli</h2>
+         <div class="member-header text-center p-2">
+            <h2 class="member-role font-extrabold text-2xl">{{ content.role }}</h2>
 
-         <h2 class="member-name font-extrabold text-2xl">Seppo Taalasmaa</h2>
-      </div>
+            <h2 class="member-name font-extrabold text-2xl">{{ content.name }}</h2>
+         </div>
 
-      <div class="member-desc text-center">
-         <a href="mailto:seppo.teelasmuu@serveri.ry" class="member-email hover:underline">seppo.teelasmuu@serveri.ry</a>
+         <div class="member-desc text-center">
+            <a :href="'mailto:' + content.email + '@serveriry.fi'" class="member-email hover:underline"
+               >{{ content.email }}@serveriry.fi</a
+            >
 
-         <p>Telegram: <a class="member-telegram hover:underline" href="https://telegram.me/seppo" target="_blank">@seppo</a></p>
-      </div>
-
-      <div class="button-container text-center">
-         <div class="role-desc">
-            <p class="role-text p-3 text-left" v-if="isExpanded">
-               Lorem ipsum on 1500-luvulta lähtien olemassa ollut teksti, jota käytetään usein täytetekstinä ulkoasun
-               testaamiseen graafisessa suunnittelussa, kun oikeata tekstisisältöä ei vielä ole. Lorem ipsumia käytetään
-               näyttämään, miltä esimerkiksi kirjasin tai julkaisun tekstin asettelu näyttävät.
+            <p>
+               Telegram:
+               <a
+                  class="member-telegram hover:underline"
+                  :href="'https://telegram.me/' + content.telegram"
+                  target="_blank"
+                  >@{{ content.telegram }}</a
+               >
             </p>
          </div>
 
-         <button v-on:click="isExpanded = !isExpanded" type="button" class="expandable-button">
-            <client-only>
-               <button v-if="isExpanded" class="collapse-button">
-                  <font-awesome-icon :icon="['fas', 'chevron-up']" />
-               </button>
-               <button v-else class="expand-button">
-                  <font-awesome-icon :icon="['fas', 'chevron-down']" />
-               </button>
-            </client-only>
-         </button>
+         <div class="button-container text-center">
+            <div class="role-desc">
+               <p class="role-text p-3 text-left" v-if="isExpanded">
+                  {{ content.desc }}
+               </p>
+            </div>
+
+            <button v-on:click="isExpanded = !isExpanded" type="button" class="expandable-button">
+               <client-only>
+                  <button v-if="isExpanded" class="collapse-button">
+                     <font-awesome-icon :icon="['fas', 'chevron-up']" />
+                  </button>
+                  <button v-else class="expand-button">
+                     <font-awesome-icon :icon="['fas', 'chevron-down']" />
+                  </button>
+               </client-only>
+            </button>
+         </div>
       </div>
    </div>
 </template>
@@ -65,11 +75,36 @@
          default: '/_nuxt/assets/images/jäsenkuva.jpeg',
          required: true,
       },
-
       img2: {
          type: String,
          default: '/_nuxt/assets/images/jäsenkuva2.jpeg',
          required: true,
+      },
+      email: {
+         type: String,
+         default: 'rooli',
+         required: false,
+      },
+      telegram: {
+         type: String,
+         default: 'seppotg',
+         required: false,
+      },
+      name: {
+         type: String,
+         default: 'Seppo Taalasmaa',
+         required: false,
+      },
+      role: {
+         type: String,
+         default: 'Puheenjohtaja',
+         required: false,
+      },
+      desc: {
+         type: String,
+         default:
+            'Puheenjohtajan tehtävänä on pähkinänkuoressa johtaa kokouksia, pitää huoli, että hallitus toimii ja asiat pelittävät, sekä hoitaa erinäisiä edustustehtäviä.',
+         required: false,
       },
    });
 </script>
@@ -81,7 +116,7 @@
       box-shadow: 0 0 26px -5px rgba(0, 0, 0, 0.27);
    }
    .card-container {
-      @apply rounded-2xl w-full h-full cursor-pointer overflow-hidden;
+      @apply rounded-2xl w-full overflow-hidden max-w-sm p-4 justify-self-center;
    }
    .card-container {
       @apply dark:shadow-lg dark:shadow-zinc-600/50;
