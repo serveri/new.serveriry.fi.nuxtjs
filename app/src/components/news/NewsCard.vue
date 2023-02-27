@@ -1,28 +1,20 @@
 <template>
    <a :href="'/news/' + content.url">
-      
       <div class="NewsCard">
-         
-         <div class="">
-
-         <div class="image-div -m-4 rounded-sm">
-         <img class="news-image object-cover h-60" :src="content.img" alt="Cover image for the news card" />
+         <div class="rounded-sm">
+            <img class="news-image object-contain w-full" :src="content.img" alt="Cover image for the news card" />
          </div>
 
-         
-         <div>
-         <h2 class="card-header mt-5 text-2xl font-extrabold">{{ content.header }}</h2>
-         
-         <p class="news-date font-normal uppercase mt-1 text-xs">
-            {{ $t('news_released') }} <span>{{ content.date.toLocaleDateString($i18n.locale, options) }}</span>
-         </p>
+         <div class="px-4">
+            <h2 class="card-header mt-5 text-2xl font-extrabold">{{ content.header }}</h2>
 
-         <p class="card-content mt-1">{{ content.text }}</p>
+            <p class="news-date font-normal uppercase mt-1 text-xs">
+               {{ $t('news_released') }} <span>{{ content.date.toLocaleDateString($i18n.locale, options) }}</span>
+            </p>
+
+            <p class="card-content mt-2">{{ content.text }}</p>
          </div>
-
       </div>
-      </div>
-
    </a>
 </template>
 
@@ -45,7 +37,7 @@
       },
       date: {
          type: Date,
-         default: new Date("01/01/1970"),
+         default: new Date('01/01/1970'),
          required: false,
       },
       text: {
@@ -63,9 +55,9 @@
       width: 100%;
       height: 100%;
       overflow: hidden;
-      box-shadow: 0 0px 5px 0.27px #d3d3d3;
-      -webkit-box-shadow: 0 0px 5px 0.27px #d3d3d3;
-      -moz-box-shadow: 0 0px 5px 0 0.27px #d3d3d3;
-      padding: 1rem;
+      box-shadow: 0 0 5px 0.27px #d3d3d3;
+      -webkit-box-shadow: 0 0 5px 0.27px #d3d3d3;
+      -moz-box-shadow: 0 0 5px 0.27px #d3d3d3;
+      margin: 1rem;
    }
 </style>
