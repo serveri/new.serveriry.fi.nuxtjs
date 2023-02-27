@@ -1,5 +1,5 @@
 <template>
-   <div class="lg:pt-5 pb-5 px-6 max-w-screen-md md: sm:pt-10 pb-10 px-6">
+   <div class="lg:pt-5 pb-5 max-w-screen-md md: sm:pt-10 pb-10">
       <h1 class="custom-page-title">{{ $t('h1_front-page') }}</h1>
       <p class="mt-6">
          Toimimme linkkinä yliopiston ja opiskelijoiden välillä mm. keräämällä ja välittämällä opiskelijapalautetta
