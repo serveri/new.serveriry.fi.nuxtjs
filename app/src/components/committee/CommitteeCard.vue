@@ -28,9 +28,9 @@
       </div>
 
       <div class="member-desc text-center">
-         <a href="mailto:seppo.teelasmuu@serveri.ry" class="member-email">seppo.teelasmuu@serveri.ry</a>
+         <a href="mailto:seppo.teelasmuu@serveri.ry" class="member-email hover:underline">seppo.teelasmuu@serveri.ry</a>
 
-         <p>Telegram: <a class="member-telegram" href="https://telegram.me/seppo" target="_blank">@seppo</a></p>
+         <p>Telegram: <a class="member-telegram hover:underline" href="https://telegram.me/seppo" target="_blank">@seppo</a></p>
       </div>
 
       <div class="button-container text-center">
