@@ -1,15 +1,28 @@
 <template>
    <a :href="'/news/' + content.url">
+      
       <div class="NewsCard">
-         <div class="image-div">
-         <img class="news-image" :src="content.img" alt="Cover image for the news card" />
+         
+         <div class="">
+
+         <div class="image-div -m-4 rounded-sm">
+         <img class="news-image object-cover h-60" :src="content.img" alt="Cover image for the news card" />
          </div>
-         <h2 class="card-header">{{ content.header }}</h2>
-         <p class="news-date">
+
+         
+         <div>
+         <h2 class="card-header mt-5 text-2xl font-extrabold">{{ content.header }}</h2>
+         
+         <p class="news-date font-normal uppercase mt-1 text-xs">
             {{ $t('news_released') }} <span>{{ content.date.toLocaleDateString($i18n.locale, options) }}</span>
          </p>
-         <p class="card-content">{{ content.text }}</p>
+
+         <p class="card-content mt-1">{{ content.text }}</p>
+         </div>
+
       </div>
+      </div>
+
    </a>
 </template>
 
@@ -50,35 +63,9 @@
       width: 100%;
       height: 100%;
       overflow: hidden;
-      box-shadow: 0 0 26px -5px #ccc;
-      -webkit-box-shadow: 0 0 26px -5px #ccc;
-      -moz-box-shadow: 0 0 26px -5px #ccc;
+      box-shadow: 0 0px 5px 0.27px #d3d3d3;
+      -webkit-box-shadow: 0 0px 5px 0.27px #d3d3d3;
+      -moz-box-shadow: 0 0px 5px 0 0.27px #d3d3d3;
       padding: 1rem;
-   }
-   
-   
-   .card-header {
-      font-size: 1.4rem;
-      font-weight: 800;
-      margin-top: 1rem;
-   }
-
-   .news-date {
-      font-weight: 400;
-      text-transform: uppercase;
-   }
-
-   .card-content {
-      margin-top: 0.5rem;
-   }
-   .news-image {
-      object-fit: cover;
-      height: 15rem;
-      
-   }
-   .image-div{
-      margin: -1rem;
-      border-radius: 1em;
-      
    }
 </style>
