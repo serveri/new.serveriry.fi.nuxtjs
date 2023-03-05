@@ -1,5 +1,5 @@
 <template>
-   <div>
+   <div class="p-4">
       <div
          v-for="(locale, index) in $i18n.locales"
          :id="'locale-' + locale.code"
@@ -15,14 +15,14 @@
             <img
                :src="'https://flagicons.lipis.dev/flags/4x3/' + (locale.code === 'fi' ? 'fi' : 'us') + '.svg'"
                :alt="locale.code"
-               class="h-6 hidden"
+               class="h-10 sm:h-6 hidden"
             />
          </nuxt-link>
          <nuxt-link v-else :to="switchLocalePath(locale.code)" :title="$t('change-language')">
             <img
                :src="'https://flagicons.lipis.dev/flags/4x3/' + (locale.code === 'fi' ? 'fi' : 'us') + '.svg'"
                :alt="locale.code"
-               class="h-6"
+               class="h-10 sm:h-6"
             />
          </nuxt-link>
       </div>

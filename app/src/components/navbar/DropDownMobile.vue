@@ -32,7 +32,7 @@
                   :to="localePath(subMenu.href)"
                   :class="[
                      active ? 'bg-neutral-100' : '',
-                     'block px-4 py-2 text-sm text-left text-black hover:bg-zinc-600 hover:text-white even:bg-zinc-200 odd:bg-zinc-50 dark:text-gray-200 dark:hover:bg-gray-600 dark:hover:text-white dark:even:bg-zinc-800 dark:odd:bg-zinc-700',
+                     'block px-4 py-4 text-md text-left text-black hover:bg-zinc-600 hover:text-white even:bg-zinc-200 odd:bg-zinc-50 dark:text-gray-200 dark:hover:bg-gray-600 dark:hover:text-white dark:even:bg-zinc-800 dark:odd:bg-zinc-700',
                   ]"
                   >{{ $t(subMenu.name) }}</nuxt-link
                >
