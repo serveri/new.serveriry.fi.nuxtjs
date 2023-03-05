@@ -1,7 +1,7 @@
 <template>
    <a :href="SoMe.link" :title="SoMe.name" class="text-gray-500 hover:text-gray-900 dark:hover:text-white">
       <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-         <ClientOnly fallback-tag="span" fallback="icon">
+         <ClientOnly fallback-tag="span" fallback="">
             <font-awesome-icon :icon="SoMe.icon" />
          </ClientOnly>
       </svg>
