@@ -26,14 +26,19 @@
          img: 'https://api.serveriry.fi/uploads/innofactor_365559a4a1.png',
       },
       {
-         name: 'TEK',
-         url: 'https://www.tek.fi/',
-         img: 'https://api.serveriry.fi/uploads/TEK_logo_slogan_CMYK_musta_3431_d41fe002b6.png',
+         name: 'Olvi',
+         url: 'https://www.olvi.fi/',
+         img: 'https://upload.wikimedia.org/wikipedia/fi/thumb/f/f9/Olvin_logo.svg/1200px-Olvin_logo.svg.png',
       },
       {
          name: 'Hurja',
          url: 'https://www.hurja.fi/',
          img: 'https://api.serveriry.fi/uploads/g9_1f987a430f.png',
+      },
+      {
+         name: 'Etteplan',
+         url: 'https://www.etteplan.com/',
+         img: 'https://cdn.discordapp.com/attachments/492188265487532032/1082006440102871131/logo.svg',
       },
    ];
 </script>
