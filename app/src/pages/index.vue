@@ -6,9 +6,7 @@ import UutisetHero from '@/components/hero/UutisetHero.vue';
          <Title>{{ $t('title_front-page') }} - Serveri ry</Title>
       </Head>
 
-      <!-- cannot be 100vw, causes x overflow. Cannot be 100%, will be too small... -->
-      <HeroImage style="width: 100vw" />
-
+      <HeroImage class="w-screen" />
       <section class="flex flex-col py-5 lg:flex-row md:flex-col sm:flex-col">
          <HeroSection />
          <HeroUutiset />
@@ -25,13 +23,13 @@ import UutisetHero from '@/components/hero/UutisetHero.vue';
    </div>
 </template>
 
-<style>
-   p {
-      @apply tracking-wide;
-   }
-</style>
 <script setup lang="ts">
    import InstagramFeed from '@/components/langingpage/InstagramFeed.vue';
    import YTHS from '@/components/langingpage/yths.vue';
    import EmbeddedMap from '@/components/langingpage/EmbeddedMap.vue';
 </script>
+<style>
+   p {
+      @apply tracking-wide;
+   }
+</style>
