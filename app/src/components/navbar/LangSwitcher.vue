@@ -7,20 +7,15 @@
    >
       <!-- Fix this weird bug: parent element must be hidden too: causes padding in nav flex-->
       <nuxt-link
-         v-if="locale.code === $i18n.locale"
-         class="text-black dark:text-white uppercase px-3 hidden"
+         class="text-black dark:text-white uppercase px-6"
          :to="switchLocalePath(locale.code)"
          :title="$t('change-language')"
       >
-         {{ locale.code }}
-      </nuxt-link>
-      <nuxt-link
-         v-else
-         class="text-black dark:text-white uppercase px-3"
-         :to="switchLocalePath(locale.code)"
-         :title="$t('change-language')"
-      >
-         {{ locale.code }}
+         <img
+            :src="'https://flagicons.lipis.dev/flags/4x3/' + (locale.code === 'fi' ? 'fi' : 'us') + '.svg'"
+            :alt="locale.code"
+            class="h-6"
+         />
       </nuxt-link>
    </div>
 </template>
