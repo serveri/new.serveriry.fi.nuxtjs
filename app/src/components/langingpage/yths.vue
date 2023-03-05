@@ -12,12 +12,7 @@
          kevätlukukauden 2023 että syyslukukauden 2023 maksun.
       </p>
       <a class="flex flex-col items-center py-8" href="https://kela.fi/">
-         <button
-            class="text-white bg-gradient-to-r from-cyan-400 via-cyan-500 to-cyan-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-cyan-300 dark:focus:ring-cyan-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2"
-            type="button"
-         >
-            Maksa maksu (kela.fi)
-         </button>
+         <button class="gradient-button" type="button">Maksa maksu (kela.fi)</button>
       </a>
    </div>
 </template>
