@@ -9,16 +9,19 @@ import UutisetHero from '@/components/hero/UutisetHero.vue';
       <!-- cannot be 100vw, causes x overflow. Cannot be 100%, will be too small... -->
       <HeroImage style="width: 100vw" />
 
-      <div class="flex flex-col py-5 lg:flex-row md:flex-col sm:flex-col">
+      <section class="flex flex-col py-5 lg:flex-row md:flex-col sm:flex-col">
          <HeroSection />
          <HeroUutiset />
-      </div>
+      </section>
 
       <!-- 2 Col -->
-      <div class="flex flex-col md:flex-row w-full gap-8 py-5">
+      <section class="flex flex-col md:flex-row w-full gap-8 py-5">
          <YTHS />
          <InstagramFeed />
-      </div>
+      </section>
+
+      <!-- Embedded map -->
+      <EmbeddedMap />
    </div>
 </template>
 
@@ -30,4 +33,5 @@ import UutisetHero from '@/components/hero/UutisetHero.vue';
 <script setup lang="ts">
    import InstagramFeed from '@/components/langingpage/InstagramFeed.vue';
    import YTHS from '@/components/langingpage/yths.vue';
+   import EmbeddedMap from '@/components/langingpage/EmbeddedMap.vue';
 </script>
