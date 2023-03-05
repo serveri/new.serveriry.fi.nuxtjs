@@ -1,7 +1,7 @@
 <template>
    <!-- CSS is static, maybe make it more responsive -->
    <div
-      class="flex flex-col items-center sm:grid sm:grid-cols-2 gap-y-2 gap-x-5 md:flex-1 sm:h-[100vw] md:h-[54vw] xl:h-[75vh]"
+      class="flex flex-col items-center sm:grid sm:grid-cols-2 gap-y-2 gap-x-5 md:flex-1 sm:h-[100vw] md:h-[54vw] xl:h-[64vh]"
    >
       <iframe
          class="rounded-lg w-full h-[100vw] sm:h-[100%]"
