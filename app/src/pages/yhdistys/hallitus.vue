@@ -41,6 +41,7 @@
          <CommitteeCard
             v-for="member in members"
             :id="member.name"
+            :key="member.name"
             :img="member.img"
             :img2="member.img2"
             :name="member.name"
