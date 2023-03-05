@@ -100,29 +100,6 @@
    </Disclosure>
 </template>
 
-<style>
-   .nav-link {
-      @apply px-1 py-1 md:px-3 md:py-2 font-medium text-sm lg:text-lg md:font-bold uppercase whitespace-nowrap tracking-wide;
-   }
-   /* underline effect */
-   .nav-link:after {
-      @apply bg-server-blue;
-      content: '';
-      position: absolute;
-      width: 100%;
-      transform: scaleX(0);
-      height: 2px;
-      left: 0;
-      bottom: 0;
-      transform-origin: bottom right;
-      transition: transform 0.4s ease-out;
-   }
-   .nav-link:hover:after {
-      transform: scaleX(1);
-      transform-origin: bottom left;
-   }
-</style>
-
 <script setup>
    import { Disclosure, DisclosureButton, DisclosurePanel } from '@headlessui/vue';
    import { Bars3Icon, XMarkIcon } from '@heroicons/vue/24/outline';
@@ -187,3 +164,26 @@
       },
    };
 </script>
+
+<style>
+   .nav-link {
+      @apply px-1 py-1 md:px-3 md:py-2 font-medium text-sm lg:text-lg md:font-bold uppercase whitespace-nowrap tracking-wide;
+   }
+   /* underline effect */
+   .nav-link:after {
+      @apply bg-server-blue;
+      content: '';
+      position: absolute;
+      width: 100%;
+      transform: scaleX(0);
+      height: 2px;
+      left: 0;
+      bottom: 0;
+      transform-origin: bottom right;
+      transition: transform 0.4s ease-out;
+   }
+   .nav-link:hover:after {
+      transform: scaleX(1);
+      transform-origin: bottom left;
+   }
+</style>

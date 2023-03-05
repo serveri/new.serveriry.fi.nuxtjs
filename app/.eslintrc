@@ -5,11 +5,19 @@
       "es2021": true,
       "node": true
    },
-   "extends": ["plugin:vue/vue3-recommended", "eslint:recommended", "@vue/typescript/recommended", "@vue/prettier"],
+   "extends": [
+      "plugin:vue/vue3-recommended",
+      "eslint:recommended",
+      "@vue/typescript/recommended",
+      "@vue/prettier",
+      "plugin:security/recommended",
+      "plugin:jsx-a11y/recommended"
+   ],
    "parserOptions": {
-      "ecmaVersion": 2021
+      "ecmaVersion": 2021,
+      "project": "./tsconfig.json"
    },
-   "plugins": [],
+   "plugins": ["security", "jsx-a11y"],
    "rules": {},
    "overrides": [
       {

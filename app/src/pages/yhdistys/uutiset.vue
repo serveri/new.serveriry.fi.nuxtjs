@@ -11,6 +11,7 @@
          <NewsCard
             v-for="item in news"
             :id="item.id"
+            :key="item.id"
             :img="item.img"
             :url="item.url"
             :header="item.header"
