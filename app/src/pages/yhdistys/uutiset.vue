@@ -8,17 +8,17 @@
 
       <div class="news p-8">
          <div class="grid grid-cols-1 gap-8 md:grid-cols-2 md:gap-8 lg:grid-cols-3 lg:gap-7">
-         <NewsCard
-            v-for="item in news"
-            :id="item.id"
-            :key="item.id"
-            :img="item.img"
-            :url="item.url"
-            :header="item.header"
-            :date="item.date"
-            :text="item.text"
-         />
-      </div>
+            <NewsCard
+               v-for="item in news"
+               :id="item.id"
+               :key="item.id"
+               :img="item.img"
+               :url="item.url"
+               :header="item.header"
+               :date="item.date"
+               :text="item.text"
+            />
+         </div>
       </div>
    </div>
 </template>
@@ -53,4 +53,3 @@
       },
    ];
 </script>
-
