@@ -13,5 +13,25 @@ import UutisetHero from '@/components/hero/UutisetHero.vue';
          <HeroSection />
          <HeroUutiset />
       </div>
+
+      <div class="grid grid-cols-4">
+
+        <iframe class="rounded-2xl" src="//instagram.com/p/CpKgJHQhzER/embed/" width="300" height="353" scrolling="no" allowtransparency="true"></iframe>
+        <iframe class="rounded-2xl" src="//instagram.com/p/CpM-KyjBNsR/embed/" width="300" height="353" scrolling="no" allowtransparency="true"></iframe>
+        <iframe class="rounded-2xl" src="//instagram.com/p/CpKCyiOhZn3/embed/" width="300" height="353" scrolling="no" allowtransparency="true"></iframe>
+        <iframe class="rounded-2xl" src="//instagram.com/p/CotodDxB34V/embed/" scrolling="no" allowtransparency="true"></iframe>
+        <iframe class="rounded-2xl" src="//instagram.com/p/CpKgJHQhzER/embed/" width="300" height="353" scrolling="no" allowtransparency="true"></iframe>
+        <iframe class="rounded-2xl" src="//instagram.com/p/CpM-KyjBNsR/embed/" width="300" height="353" scrolling="no" allowtransparency="true"></iframe>
+        <iframe class="rounded-2xl" src="//instagram.com/p/CpKCyiOhZn3/embed/" width="300" height="353" scrolling="no" allowtransparency="true"></iframe>
+        <iframe class="rounded-2xl" src="//instagram.com/p/CotodDxB34V/embed/" width="300" height="353" scrolling="no" allowtransparency="true"></iframe>
+
+      </div>
    </div>
 </template>
+
+<style>
+iframe {
+  position: relative;
+  top: -100px;
+}
+</style>
