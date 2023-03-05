@@ -4,16 +4,16 @@
          <div class="member-info flex flex-wrap justify-center px-4">
             <div class="w-9/12 sm:w-11/12" @mouseover="hover = true" @mouseleave="hover = false">
                <img
-                  class="member-image"
                   v-if="hover"
+                  class="member-image"
                   :src="content.img2"
                   alt="Toinen kuva hallituksen jäsenestä"
                   role="img"
                   loading="lazy"
                />
                <img
-                  class="member-image"
                   v-else
+                  class="member-image"
                   :src="content.img"
                   alt="Hallituksen jäsenen kuva"
                   role="img"
@@ -46,12 +46,12 @@
 
          <div class="button-container text-center">
             <div class="role-desc">
-               <p class="role-text p-3 text-left" v-if="isExpanded">
+               <p v-if="isExpanded" class="role-text p-3 text-left">
                   {{ content.desc }}
                </p>
             </div>
 
-            <button v-on:click="isExpanded = !isExpanded" type="button" class="expandable-button">
+            <button type="button" class="expandable-button" @click="isExpanded = !isExpanded">
                <client-only>
                   <button v-if="isExpanded" class="collapse-button">
                      <font-awesome-icon :icon="['fas', 'chevron-up']" />
@@ -72,12 +72,12 @@
    const content = defineProps({
       img: {
          type: String,
-         default: '/_nuxt/assets/images/jäsenkuva.jpeg',
+         default: '/images/member.jpeg',
          required: true,
       },
       img2: {
          type: String,
-         default: '/_nuxt/assets/images/jäsenkuva2.jpeg',
+         default: '/images/member2.jpeg',
          required: true,
       },
       email: {
@@ -109,6 +109,18 @@
    });
 </script>
 
+<script lang="ts">
+   export default {
+      name: 'CommitteeCard',
+      data() {
+         return {
+            hover: false,
+            isExpanded: false,
+         };
+      },
+   };
+</script>
+
 <style scoped>
    .card-container {
       -webkit-box-shadow: 0 0 26px -5px rgba(0, 0, 0, 0.27);
@@ -126,15 +138,3 @@
       @apply shadow rounded-full max-w-full h-auto align-middle border-none;
    }
 </style>
-
-<script lang="ts">
-   export default {
-      name: 'CommitteeCard',
-      data() {
-         return {
-            hover: false,
-            isExpanded: false,
-         };
-      },
-   };
-</script>

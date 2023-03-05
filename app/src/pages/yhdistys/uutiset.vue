@@ -27,29 +27,29 @@
    // This hard coded data will be replaced with data from directus
    const news = [
       {
-         img: '/_nuxt/assets/images/placeholder.jpg',
+         img: '/images/placeholder.jpg',
          id: '1',
          header: 'Serveri ry:n 35-vuotis vuosijuhlat',
          date: new Date('09/25/2022'),
          text: 'Toivotamme Teidät mitä lämpimimmin tervetulleeksi viettämään Serveri ry:n 35-vuotis vuosijuhlaa pitkän odotuksen jälkeen!',
       },
       {
-         img: '/_nuxt/assets/images/placeholder.jpg',
+         img: '/images/placeholder.jpg',
          id: '2',
          header: 'Serveri ry:n 35-vuotis vuosijuhlat',
          date: new Date(),
          text: 'Toivotamme Teidät mitä lämpimimmin tervetulleeksi viettämään Serveri ry:n 35-vuotis vuosijuhlaa pitkän odotuksen jälkeen!',
       },
       {
-         img: '/_nuxt/assets/images/placeholder.jpg',
+         img: '/images/placeholder.jpg',
          header: 'THIS IS NEWS HEADER',
          id: '2',
       },
       {
-         img: '/_nuxt/assets/images/placeholder.jpg',
+         img: '/images/placeholder.jpg',
       },
       {
-         img: '/_nuxt/assets/images/placeholder.jpg',
+         img: '/images/placeholder.jpg',
       },
    ];
 </script>

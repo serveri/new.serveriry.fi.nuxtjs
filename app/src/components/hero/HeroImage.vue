@@ -1,5 +1,5 @@
 <template>
-   <div class="py-20 bg-cover bg-no-repeat bg-fixed bg-[url('~/assets/images/serveritoverit.png')] bg-cover h-[400px]">
+   <div class="py-20 bg-cover bg-no-repeat bg-fixed bg-[url('/images/serveritoverit.png')] bg-cover h-[400px]">
       <div class="container m-auto text-center px-6 opacity-100">
          <h1 class="text text-3xl font-extrabold text-gray-900 dark:text-gray-900 md:text-5xl lg:text-6xl pb-2">
             <span class="text-transparent bg-clip-text bg-gradient-to-r to-emerald-600 from-sky-400">Sereri ry</span>
