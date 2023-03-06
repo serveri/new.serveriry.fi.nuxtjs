@@ -4,16 +4,16 @@
          <div class="member-info flex flex-wrap justify-center px-4">
             <div class="w-9/12 sm:w-11/12" @mouseover="hover = true" @mouseleave="hover = false">
                <img
-                  v-if="hover"
                   class="member-image"
+                  v-if="hover"
                   :src="content.img2"
                   alt="Toinen kuva hallituksen jäsenestä"
                   role="img"
                   loading="lazy"
                />
                <img
-                  v-else
                   class="member-image"
+                  v-else
                   :src="content.img"
                   alt="Hallituksen jäsenen kuva"
                   role="img"
@@ -22,7 +22,7 @@
             </div>
          </div>
 
-         <div class="member-header text-center p-2">
+         <div class="member-header text-center pt-2">
             <h2 class="member-role font-extrabold text-2xl">{{ content.role }}</h2>
 
             <h2 class="member-name font-extrabold text-2xl">{{ content.name }}</h2>
@@ -46,18 +46,18 @@
 
          <div class="button-container text-center">
             <div class="role-desc">
-               <p v-if="isExpanded" class="role-text p-3 text-left">
+               <p class="role-text p-3 text-left" v-if="isExpanded">
                   {{ content.desc }}
                </p>
             </div>
 
-            <button type="button" class="expandable-button" @click="isExpanded = !isExpanded">
+            <button v-on:click="isExpanded = !isExpanded" type="button" class="expandable-button pt-2">
                <client-only>
                   <button v-if="isExpanded" class="collapse-button">
-                     <font-awesome-icon :icon="['fas', 'chevron-up']" />
+                     <font-awesome-icon class="fa-xl" :icon="['fas', 'chevron-up',]" />
                   </button>
                   <button v-else class="expand-button">
-                     <font-awesome-icon :icon="['fas', 'chevron-down']" />
+                     <font-awesome-icon class="fa-xl" :icon="['fas', 'chevron-down']" />
                   </button>
                </client-only>
             </button>
@@ -72,12 +72,12 @@
    const content = defineProps({
       img: {
          type: String,
-         default: '/images/member.jpeg',
+         default: '/_nuxt/assets/images/jäsenkuva.jpeg',
          required: true,
       },
       img2: {
          type: String,
-         default: '/images/member2.jpeg',
+         default: '/_nuxt/assets/images/jäsenkuva2.jpeg',
          required: true,
       },
       email: {
@@ -109,18 +109,6 @@
    });
 </script>
 
-<script lang="ts">
-   export default {
-      name: 'CommitteeCard',
-      data() {
-         return {
-            hover: false,
-            isExpanded: false,
-         };
-      },
-   };
-</script>
-
 <style scoped>
    .card-container {
       -webkit-box-shadow: 0 0 26px -5px rgba(0, 0, 0, 0.27);
@@ -138,3 +126,15 @@
       @apply shadow rounded-full max-w-full h-auto align-middle border-none;
    }
 </style>
+
+<script lang="ts">
+   export default {
+      name: 'CommitteeCard',
+      data() {
+         return {
+            hover: false,
+            isExpanded: false,
+         };
+      },
+   };
+</script>
