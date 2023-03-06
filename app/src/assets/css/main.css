@@ -3,6 +3,7 @@
 @tailwind utilities;
 
 @layer components {
+  a,
   p,
   h1,
   h2,
