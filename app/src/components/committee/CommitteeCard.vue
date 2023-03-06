@@ -22,7 +22,7 @@
             </div>
          </div>
 
-         <div class="member-header text-center p-2">
+         <div class="member-header text-center pt-2">
             <h2 class="member-role font-extrabold text-2xl">{{ content.role }}</h2>
 
             <h2 class="member-name font-extrabold text-2xl">{{ content.name }}</h2>
@@ -51,13 +51,13 @@
                </p>
             </div>
 
-            <button v-on:click="isExpanded = !isExpanded" type="button" class="expandable-button">
+            <button v-on:click="isExpanded = !isExpanded" type="button" class="expandable-button pt-2">
                <client-only>
                   <button v-if="isExpanded" class="collapse-button">
-                     <font-awesome-icon :icon="['fas', 'chevron-up']" />
+                     <font-awesome-icon class="fa-xl" :icon="['fas', 'chevron-up',]" />
                   </button>
                   <button v-else class="expand-button">
-                     <font-awesome-icon :icon="['fas', 'chevron-down']" />
+                     <font-awesome-icon class="fa-xl" :icon="['fas', 'chevron-down']" />
                   </button>
                </client-only>
             </button>
