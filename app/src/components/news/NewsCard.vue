@@ -6,13 +6,13 @@
          </div>
 
          <div class="px-4">
-            <h2 class="card-header mt-5 text-2xl font-extrabold">{{ content.header }}</h2>
+            <h2 class="card-header mt-1 text-2xl font-extrabold">{{ content.header }}</h2>
 
             <p class="news-date font-normal uppercase mt-1 text-xs">
                {{ $t('news_released') }} <span>{{ content.date.toLocaleDateString($i18n.locale, options) }}</span>
             </p>
 
-            <p class="card-content mt-2">{{ content.text }}</p>
+            <p class="card-content mt-1">{{ content.text }}</p>
          </div>
       </div>
    </a>
@@ -51,13 +51,14 @@
 
 <style scoped>
    .NewsCard {
-      border-radius: 1em;
-      width: 100%;
-      height: 100%;
-      overflow: hidden;
-      box-shadow: 0 0 5px 0.27px #d3d3d3;
-      -webkit-box-shadow: 0 0 5px 0.27px #d3d3d3;
-      -moz-box-shadow: 0 0 5px 0.27px #d3d3d3;
-      margin: 1rem;
+      -webkit-box-shadow: 0 0 26px -5px rgba(0, 0, 0, 0.27);
+      -moz-box-shadow: 0 0 26px -5px rgba(0, 0, 0, 0.27);
+      box-shadow: 0 0 26px -5px rgba(0, 0, 0, 0.27);
+   }
+   .NewsCard {
+      @apply dark:shadow-lg dark:shadow-zinc-600/50;
+   }
+   .NewsCard{
+      @apply justify-self-center overflow-hidden m-2 rounded-2xl h-full w-full;
    }
 </style>
