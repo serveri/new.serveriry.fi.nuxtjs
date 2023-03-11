@@ -35,7 +35,7 @@
          vapaasti. Tervetuloa mukaan! Liittymislinkki TG-ryhmään.
       </p>
 
-      <h2 class="board-header font-extrabold mt-8 mb-1 text-3xl">Kokoonpano</h2>
+      <h2 class="board-header font-extrabold mt-8 mb-1 text-3xl text-center">Kokoonpano</h2>
 
       <div class="board-members py-8 custom-grid">
          <CommitteeCard
