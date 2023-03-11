@@ -13,6 +13,7 @@ module.exports = {
       extend: {
          colors: {
             'server-blue': '#06919f',
+            'uef-blue': '#00778a',
          },
          backgroundImage: {
             'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
