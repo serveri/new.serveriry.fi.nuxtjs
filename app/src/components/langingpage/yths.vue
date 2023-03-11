@@ -11,9 +11,9 @@
          Terveydenhoitomaksu vahvistetaan kalenterivuodeksi kerrallaan. Keväällä 2023 voit siis maksaa sekä
          kevätlukukauden 2023 että syyslukukauden 2023 maksun.
       </p>
-      <a class="flex flex-col items-center py-8" href="https://kela.fi/">
-         <button class="btn-custom-blue" type="button">Maksa maksu (kela.fi)</button>
-      </a>
+      <div class="flex flex-col items-center my-8">
+         <a href="https://kela.fi/" class="btn-custom-blue" type="button">Maksa maksu (kela.fi)</a>
+      </div>
    </div>
 </template>
 
