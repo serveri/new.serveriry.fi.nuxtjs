@@ -42,8 +42,7 @@
                   >@{{ content.telegram }}</a
                >
             </p>
-         </div>
-
+         </div><h2 class="card-header mt-1 text-2xl font-extrabold">{{ content.header }}</h2>
          <div class="button-container text-center">
             <div class="role-desc">
                <p class="role-text p-3 text-left" v-if="isExpanded">
@@ -51,13 +50,13 @@
                </p>
             </div>
 
-            <button v-on:click="isExpanded = !isExpanded" type="button" class="expandable-button pt-2">
+            <button v-on:click="isExpanded = !isExpanded" type="button" class="expandable-button pt-1">
                <client-only>
-                  <button v-if="isExpanded" class="collapse-button">
-                     <font-awesome-icon class="fa-xl" :icon="['fas', 'chevron-up',]" />
+                  <button v-if="isExpanded">
+                     <font-awesome-icon class="collapse-button fa-xl" :icon="['fas', 'chevron-up',]" />
                   </button>
-                  <button v-else class="expand-button">
-                     <font-awesome-icon class="fa-xl" :icon="['fas', 'chevron-down']" />
+                  <button v-else>
+                     <font-awesome-icon class="collapse-button fa-xl" :icon="['fas', 'chevron-down']" />
                   </button>
                </client-only>
             </button>
@@ -121,6 +120,10 @@
    .card-container {
       @apply dark:shadow-lg dark:shadow-zinc-600/50;
    }
+   .collapse-button {
+      @apply dark:invert;
+   }
+
 
    .member-image {
       @apply shadow rounded-full max-w-full h-auto align-middle border-none;
