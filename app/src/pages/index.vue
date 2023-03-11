@@ -3,21 +3,23 @@
       <Head>
          <Title>{{ $t('title_front-page') }} - Serveri ry</Title>
       </Head>
+      <section>
+         <HeroSection class="w-screen" />
+      </section>
 
-      <HeroSection class="w-screen" />
-      <section class="flex flex-col py-5 lg:flex-row md:flex-col sm:flex-col">
+      <section class="py-5 flex flex-col sm:flex-col lg:flex-row">
          <DescriptionText />
          <TopNews />
       </section>
 
-      <!-- 2 Col -->
-      <section class="flex flex-col md:flex-row w-full gap-8 py-5">
+      <section class="py-5 flex flex-col md:flex-row w-full gap-8">
          <YTHS />
          <InstagramFeed />
       </section>
 
-      <!-- Embedded map -->
-      <EmbeddedMap />
+      <section>
+         <EmbeddedMap />
+      </section>
    </div>
 </template>
 
