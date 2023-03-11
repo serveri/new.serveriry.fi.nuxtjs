@@ -58,7 +58,7 @@
    .NewsCard {
       @apply dark:shadow-lg dark:shadow-zinc-600/50;
    }
-   .NewsCard{
+   .NewsCard {
       @apply justify-self-center overflow-hidden m-2 rounded-2xl h-full w-full;
    }
 </style>
