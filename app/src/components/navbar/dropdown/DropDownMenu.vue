@@ -32,10 +32,9 @@
                   :to="localePath(subMenu.href)"
                   :class="[
                      $route.path === localePath(subMenu.href) ? 'text-server-blue' : 'text-gray-700 dark:text-gray-200',
-                     'nav-dropdown-link',
+                     'nav-link-parent',
                   ]"
-                  tabindex="1"
-                  >{{ $t(subMenu.name) }}</nuxt-link
+                  ><span class="nav-dropdown-link" tabindex="1">{{ $t(subMenu.name) }}</span></nuxt-link
                >
             </MenuItem>
          </MenuItems>
@@ -84,7 +83,7 @@
       letter-spacing: 0.025em;
    }
    /* underline effect */
-   .nav-dropdown-link:hover {
+   .nav-link-parent:hover .nav-dropdown-link {
       @apply border-b-server-blue;
       transition: border-bottom-color 0.5s ease-out;
    }
