@@ -14,7 +14,7 @@
       <div class="w-full content relative py-24">
          <div class="w-full inline-flex justify-end">
             <div class="flex flex-col gap-6 py-10 px-16 bg-white dark:bg-black rounded-lg">
-               <p class="font-bold text-2xl">Ota yhteyttä</p>
+               <p class="font-bold text-2xl uppercase">{{ $t('contact-us') }}</p>
                <div>
                   <p>Microkatu 1</p>
                   <p>PL 1627</p>

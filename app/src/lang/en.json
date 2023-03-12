@@ -77,5 +77,10 @@
    "h1_history": "History",
    "news_released": "Released:",
    "h1_change-language": "Change Language",
-   "h1_companies": "List of all IT companies in Finland"
+   "h1_companies": "List of all IT companies in Finland",
+
+   "coming-events": "Coming events",
+   "what-is-cs-like": "What is computer science like?",
+   "contact-us": "Contact us"
+
 }

@@ -12,7 +12,7 @@
                class="py-4 px-8 text-white bg-custom-blue hover:bg-uef-blue rounded-lg text-center uppercase font-bold md:text-xl tracking-wider"
                role="button"
             >
-               Millaista tietojenkäsittelytiede on?
+               {{ $t('what-is-cs-like') }}
             </span>
          </nuxt-link>
       </div>
