@@ -56,7 +56,7 @@
                      placeholder="Millaista yhteistyöta haluaisitte tehdä?"
                   ></textarea>
                </div>
-               <button type="submit" class="gradient-button">Lähetä viesti</button>
+               <button type="submit" class="btn-custom-blue">Lähetä viesti</button>
             </form>
          </div>
       </section>
