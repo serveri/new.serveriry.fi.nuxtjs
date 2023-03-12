@@ -6,7 +6,7 @@
          <nuxt-link
             :class="[
                $route.path.split('/').slice(-2)[0] === localePath(menu.href).split('/').slice(-1)[0]
-                  ? 'text-server-blue'
+                  ? 'text-server-blue dark:text-server-blue'
                   : 'text-gray-700 dark:text-gray-300',
                'nav-link',
             ]"
@@ -32,10 +32,11 @@
                   :to="localePath(subMenu.href)"
                   :class="[
                      $route.path === localePath(subMenu.href) ? 'text-server-blue' : 'text-gray-700 dark:text-gray-200',
-                     'nav-dropdown-link',
+                     'nav-link-parent',
                   ]"
-                  tabindex="1"
-                  >{{ $t(subMenu.name) }}</nuxt-link
+                  ><span class="nav-dropdown-link" tabindex="1">
+                     {{ $t(subMenu.name) }}
+                  </span></nuxt-link
                >
             </MenuItem>
          </MenuItems>
@@ -45,7 +46,7 @@
 
 <script setup>
    import { Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/vue';
-   import DropDownArrow from '@/components/navbar/DropDownArrow.vue';
+   import DropDownArrow from '@/components/navbar/dropdown/DropDownArrow.vue';
 </script>
 
 <script>
@@ -84,7 +85,7 @@
       letter-spacing: 0.025em;
    }
    /* underline effect */
-   .nav-dropdown-link:hover {
+   .nav-link-parent:hover .nav-dropdown-link {
       @apply border-b-server-blue;
       transition: border-bottom-color 0.5s ease-out;
    }
