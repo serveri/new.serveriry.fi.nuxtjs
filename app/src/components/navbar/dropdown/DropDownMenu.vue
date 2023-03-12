@@ -6,7 +6,7 @@
          <nuxt-link
             :class="[
                $route.path.split('/').slice(-2)[0] === localePath(menu.href).split('/').slice(-1)[0]
-                  ? 'text-server-blue'
+                  ? 'text-server-blue dark:text-server-blue'
                   : 'text-gray-700 dark:text-gray-300',
                'nav-link',
             ]"
@@ -34,7 +34,9 @@
                      $route.path === localePath(subMenu.href) ? 'text-server-blue' : 'text-gray-700 dark:text-gray-200',
                      'nav-link-parent',
                   ]"
-                  ><span class="nav-dropdown-link" tabindex="1">{{ $t(subMenu.name) }}</span></nuxt-link
+                  ><span class="nav-dropdown-link" tabindex="1">
+                     {{ $t(subMenu.name) }}
+                  </span></nuxt-link
                >
             </MenuItem>
          </MenuItems>
