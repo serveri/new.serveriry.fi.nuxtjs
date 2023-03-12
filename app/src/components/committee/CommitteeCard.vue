@@ -22,7 +22,7 @@
             </div>
          </div>
 
-         <div class="member-header text-center pt-2">
+         <div class="member-header text-center py-2">
             <h2 class="member-role font-extrabold text-2xl">{{ content.role }}</h2>
 
             <h2 class="member-name font-extrabold text-2xl">{{ content.name }}</h2>
@@ -42,7 +42,8 @@
                   >@{{ content.telegram }}</a
                >
             </p>
-         </div><h2 class="card-header mt-1 text-2xl font-extrabold">{{ content.header }}</h2>
+         </div>
+         <h2 class="card-header mt-1 text-2xl font-extrabold">{{ content.header }}</h2>
          <div class="button-container text-center">
             <div class="role-desc">
                <p v-if="isExpanded" class="role-text p-3 text-left">
@@ -135,7 +136,6 @@
    .collapse-button {
       @apply dark:invert;
    }
-
 
    .member-image {
       @apply shadow rounded-full max-w-full h-auto align-middle border-none;
