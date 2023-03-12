@@ -1,6 +1,6 @@
 <template>
-   <section class="relative w-screen h-screen sm:h-auto">
-      <div class="absolute w-screen bg-gray-300 dark:bg-gray-600 h-[85vh] mt-[15vh] sm:h-full sm:mt-0">
+   <section class="relative w-screen h-[90vh] sm:h-auto">
+      <div class="absolute w-screen bg-gray-300 dark:bg-gray-600 h-[75vh] mt-[15vh] sm:h-full sm:mt-0">
          <client-only>
             <iframe
                width="100%"
