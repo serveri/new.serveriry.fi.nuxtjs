@@ -1,15 +1,13 @@
 <template>
    <div class="flex flex-col lg:pl-20">
       <!-- Tähän apista uutiset 5kpl - Sillä välin placeholderina staattisia paragraafeja -->
-      <h2 class="custom-page-title">TULEVAT TAPAHTUMAT</h2>
+      <h2 class="custom-page-title uppercase">{{ $t('coming-events') }}</h2>
       <div class="flex flex-col border border-gray-200 rounded-lg shadow dark:border-gray-700">
          <div v-for="event in events" :id="event.link" :key="event.link">
             <ComingEvent :title="event.title" :time="event.time" :link="event.link" />
-            <hr />
          </div>
-
-         <nuxt-link :to="localePath('/yhdistys/tapahtumat')" class="flex flex-col items-center pt-1">
-            <button class="gradient-button" type="button">Näytä kaikki tapahtumat</button>
+         <nuxt-link :to="localePath('/yhdistys/tapahtumat')" class="flex flex-col items-center py-1">
+            <button class="btn-custom-blue" type="button">Näytä kaikki tapahtumat</button>
          </nuxt-link>
       </div>
    </div>
@@ -35,6 +33,11 @@
       },
       {
          title: '24. gradet',
+         time: new Date(),
+         link: '#eventID',
+      },
+      {
+         title: 'Grillikauden avajaiset',
          time: new Date(),
          link: '#eventID',
       },

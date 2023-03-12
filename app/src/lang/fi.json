@@ -38,7 +38,7 @@
    "title_business": "Yritysyhteistyö",
    "title_it-rekry": "IT-rekry",
    "title_partners": "Yhteistyökumppanit",
-   "title_collaboration": "Yhteistyökumppaniksi?",
+   "title_collaboration": "Yhteistyökumppaniksi",
    "title_study": "Opiskelu",
    "title_what-is-cs": "Mitä tietojenkäsittely on?",
    "title_new-student": "Uudelle opiskelijalle",
@@ -77,5 +77,9 @@
    "h1_history": "Historia",
    "news_released": "Julkaistu:",
    "h1_change-language": "Vaihda kieli",
-   "h1_companies": "Lista IT alan yrityksistä"
+   "h1_companies": "Lista IT alan yrityksistä",
+
+   "coming-events": "Tulevat tapahtumat",
+   "what-is-cs-like": "Millaista tietojenkäsittelytiede on?",
+   "contact-us": "Ota yhteyttä"
 }
