@@ -7,17 +7,17 @@
          <HeroSection class="w-screen" />
       </section>
 
-      <section class="py-5 flex flex-col sm:flex-col lg:flex-row">
+      <section class="py-8 flex flex-col lg:flex-row gap-12">
          <DescriptionText />
          <TopNews />
       </section>
 
-      <section class="py-5 flex flex-col md:flex-row w-full gap-8">
+      <section class="py-8 flex flex-col md:flex-row w-full gap-8">
          <YTHS />
          <InstagramFeed />
       </section>
 
-      <section>
+      <section class="pt-8">
          <EmbeddedMap />
       </section>
    </div>

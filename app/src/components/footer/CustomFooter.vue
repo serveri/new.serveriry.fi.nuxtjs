@@ -2,7 +2,7 @@
    <footer class="bg-white dark:bg-zinc-900">
       <div class="p-4 sm:p-6 content">
          <!-- Logo -->
-         <div class="mx-2 sm:mx-0 flex items-stretch justify-between">
+         <div class="mx-2 sm:mx-0 flex flex-col sm:flex-row items-stretch justify-between">
             <!-- Serveri ry-->
             <div class="sm:w-1/3">
                <h2 class="mb-2 text-xl font-bold text-gray-900 dark:text-white">Serveri ry</h2>
@@ -19,8 +19,8 @@
             </div>
             <!-- Links -->
             <div class="sm:w-1/3">
-               <div class="text-right">
-                  <ul class="mb-6 text-md font-medium text-gray-900 dark:text-white">
+               <div class="text-left sm:text-right">
+                  <ul class="mb-6 text-md font-medium text-gray-900 dark:text-white mt-10 sm:mt-0">
                      <li v-for="link in links" :key="link.text" class="mb-2">
                         <nuxt-link
                            v-if="link.href[0] === '/'"
@@ -49,7 +49,7 @@
                </a>
             </div>
             <!-- Copyright -->
-            <div class="text-sm text-gray-600 text-center dark:text-gray-400 sm:w-1/3 mt-2 sm:mt-0">
+            <div class="text-sm text-gray-600 text-center dark:text-gray-400 sm:w-1/3 mt-4 sm:mt-0">
                © {{ date }}
                <a href="https://serveriry.fi/" class="hover:underline">Serveri ry</a>
             </div>
