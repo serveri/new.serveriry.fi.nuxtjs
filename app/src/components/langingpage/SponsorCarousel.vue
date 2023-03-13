@@ -2,8 +2,8 @@
    <Carousel
       class="w-full"
       :wrap-around="true"
-      :autoplay="1500"
-      :transition="500"
+      :autoplay="3000"
+      :transition="1000"
       :settings="settings"
       :breakpoints="breakpoints"
    >
@@ -46,7 +46,7 @@
             snapAlign: 'center',
          },
          // breakpoints are mobile first
-         // any settings not specified will fallback to the carousel settings
+         // any settings not specified will fall back to the carousel settings
          breakpoints: {
             // 700px and up
             700: {
@@ -58,7 +58,7 @@
                itemsToShow: 4,
                snapAlign: 'center',
             },
-            // 1024 and up
+            // 1440 and up
             1440: {
                itemsToShow: 6,
                snapAlign: 'center',
@@ -70,7 +70,8 @@
 
 <style scoped>
    .carousel__slide {
-      padding: 1em;
+      @apply px-3 py-8;
+      height: 200px;
    }
 
    .carousel__viewport {
@@ -107,6 +108,7 @@
    .carousel__slide--active {
       opacity: 1;
       transform: rotateY(0) scale(1.1);
+      @apply sm:ml-3;
    }
    .carousel__item {
       min-height: 200px;
