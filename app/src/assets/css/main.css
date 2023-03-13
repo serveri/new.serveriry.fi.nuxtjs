@@ -35,7 +35,7 @@
   }
 
   .btn-custom-blue {
-    @apply inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white rounded-lg;
+    @apply inline-flex items-center px-3 py-2 text-sm font-bold text-center text-white rounded-lg;
     @apply bg-custom-blue hover:bg-uef-blue dark:hover:bg-uef-blue;
   }
 }
