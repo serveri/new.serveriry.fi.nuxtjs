@@ -1,5 +1,5 @@
 <template>
-   <div class="max-w-sm px-3 py-2">
+   <div class="max-w-sm py-2">
       <nuxt-link :to="event.link" class="hover:underline">
          <h3 class="text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{{ event.title }}</h3>
       </nuxt-link>
