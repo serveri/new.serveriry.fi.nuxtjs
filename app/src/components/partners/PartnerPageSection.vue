@@ -13,34 +13,7 @@
 
 <script setup lang="ts">
    import PartnerCard from '@/components/partners/PartnerCard.vue';
-
-   const sponsors = [
-      {
-         name: 'Efecte',
-         url: 'https://www.efecte.com/',
-         img: 'https://api.serveriry.fi/uploads/efecte_logo_eaa50a1bf4.png',
-      },
-      {
-         name: 'Innofactor',
-         url: 'https://www.innofactor.com/',
-         img: 'https://api.serveriry.fi/uploads/innofactor_365559a4a1.png',
-      },
-      {
-         name: 'Olvi',
-         url: 'https://www.olvi.fi/',
-         img: 'https://upload.wikimedia.org/wikipedia/fi/thumb/f/f9/Olvin_logo.svg/1200px-Olvin_logo.svg.png',
-      },
-      {
-         name: 'Hurja',
-         url: 'https://www.hurja.fi/',
-         img: 'https://api.serveriry.fi/uploads/g9_1f987a430f.png',
-      },
-      {
-         name: 'Etteplan',
-         url: 'https://www.etteplan.com/',
-         img: 'https://cdn.discordapp.com/attachments/492188265487532032/1082006440102871131/logo.svg',
-      },
-   ];
+   import sponsors from '@/pages/yrityksille/sponsors.json';
 </script>
 
 <style>
