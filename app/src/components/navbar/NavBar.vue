@@ -147,8 +147,8 @@
 </script>
 
 <script>
-   import DropDownMenu from '@/components/navbar/DropDownMenu.vue';
-   import DropDownMobile from '@/components/navbar/DropDownMobile.vue';
+   import DropDownMenu from '@/components/navbar/dropdown/DropDownMenu.vue';
+   import DropDownMobile from '@/components/navbar/dropdown/DropDownMobile.vue';
    import DarkMode from '@/components/navbar/DarkModeToggle.vue';
 
    export default {

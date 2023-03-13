@@ -38,21 +38,19 @@
    "title_business": "Business",
    "title_it-rekry": "IT-rekry",
    "title_partners": "Partners",
-   "title_collaboration": "Collaborate?",
+   "title_collaboration": "Collaborate",
    "title_study": "Studying",
-   "title_what-is-cs": "What is computer science?",
+   "title_what-is-cs": "What is CS",
    "title_new-student": "for new student",
    "title_study-club": "Study Club",
    "title_feedback": "Feedback",
    "title_gdpr": "Data protection and register",
-   "title_tkt": "School of Computing - UEF",
-   "title_skripti": "Skripti ry - CS students in UEF Joensuu campus",
    "title_links": "Useful links",
    "title_history": "History",
    "title_change-language": "Change Language",
    "title_companies": "Companies",
 
-   "h1_front-page": "Front Page",
+   "h1_front-page": "What we do?",
    "h1_join-us": "Join us",
    "h1_org": "Organization",
    "h1_board": "Board activities",
@@ -71,11 +69,14 @@
    "h1_study-club": "Study Club",
    "h1_feedback": "Feedback",
    "h1_gdpr": "Data protection and register",
-   "h1_tkt": "School of Computing - UEF",
-   "h1_skripti": "Skripti ry - CS students in UEF Joensuu campus",
    "h1_links": "Useful links",
    "h1_history": "History",
    "news_released": "Released:",
    "h1_change-language": "Change Language",
-   "h1_companies": "List of all IT companies in Finland"
+   "h1_companies": "List of all IT companies in Finland",
+
+   "coming-events": "Coming events",
+   "what-is-cs-like": "What is computer science like?",
+   "contact-us": "Contact us"
+
 }

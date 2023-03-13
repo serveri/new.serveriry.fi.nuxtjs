@@ -3,18 +3,43 @@
 @tailwind utilities;
 
 @layer components {
+  a,
+  p,
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply text-black dark:text-white;
+  }
+
   body {
     font-family: "Nunito Sans", sans-serif;
   }
 
   .custom-page-title {
     font-size: 2em;
-    padding: 2rem;
+    padding: 2rem 0;
     text-align: center;
     font-weight: 800;
   }
 
   .content {
-    @apply mx-auto max-w-7xl px-2 sm:px-6 lg:px-8;
+    @apply mx-auto max-w-7xl px-6 lg:px-8;
+  }
+
+  .btn-gradient-blue {
+    @apply px-5 py-2.5 mr-2 mb-2 text-white font-medium rounded-lg text-sm text-center;
+    @apply bg-gradient-to-r from-cyan-400 via-cyan-500 to-cyan-600 hover:bg-gradient-to-br;
+  }
+
+  .btn-custom-blue {
+    @apply inline-flex items-center px-3 py-2 text-sm font-bold text-center text-white rounded-lg;
+    @apply bg-custom-blue hover:bg-uef-blue dark:hover:bg-uef-blue;
+  }
+
+  .paragraph {
+    @apply font-light tracking-wide text-gray-500 dark:text-gray-400 sm:text-xl
   }
 }

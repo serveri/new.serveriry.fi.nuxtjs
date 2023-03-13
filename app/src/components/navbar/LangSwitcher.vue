@@ -1,27 +1,31 @@
 <template>
-   <div
-      v-for="(locale, index) in $i18n.locales"
-      :id="'locale-' + locale.code"
-      :key="index"
-      @click="clicked(locale.code)"
-   >
-      <!-- Fix this weird bug: parent element must be hidden too: causes padding in nav flex-->
-      <nuxt-link
-         v-if="locale.code === $i18n.locale"
-         class="text-black dark:text-white uppercase px-3 hidden"
-         :to="switchLocalePath(locale.code)"
-         :title="$t('change-language')"
+   <div class="p-4">
+      <div
+         v-for="(locale, index) in $i18n.locales"
+         :id="'locale-' + locale.code"
+         :key="index"
+         @click="clicked(locale.code)"
       >
-         {{ locale.code }}
-      </nuxt-link>
-      <nuxt-link
-         v-else
-         class="text-black dark:text-white uppercase px-3"
-         :to="switchLocalePath(locale.code)"
-         :title="$t('change-language')"
-      >
-         {{ locale.code }}
-      </nuxt-link>
+         <!-- Fix this weird bug: parent element must be hidden too: causes padding in nav flex-->
+         <nuxt-link
+            v-if="$i18n.locale === locale.code"
+            :to="switchLocalePath(locale.code)"
+            :title="$t('change-language')"
+         >
+            <img
+               :src="'https://flagicons.lipis.dev/flags/4x3/' + (locale.code === 'fi' ? 'fi' : 'gb') + '.svg'"
+               :alt="locale.code"
+               class="h-10 sm:h-6 hidden"
+            />
+         </nuxt-link>
+         <nuxt-link v-else :to="switchLocalePath(locale.code)" :title="$t('change-language')">
+            <img
+               :src="'https://flagicons.lipis.dev/flags/4x3/' + (locale.code === 'fi' ? 'fi' : 'gb') + '.svg'"
+               :alt="locale.code"
+               class="h-10 sm:h-6"
+            />
+         </nuxt-link>
+      </div>
    </div>
 </template>
 

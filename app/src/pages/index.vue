@@ -1,17 +1,45 @@
-import UutisetHero from '@/components/hero/UutisetHero.vue';
-
 <template>
    <div class="flex flex-col justify-center items-center">
       <Head>
          <Title>{{ $t('title_front-page') }} - Serveri ry</Title>
       </Head>
+      <section>
+         <HeroSection class="w-screen" />
+      </section>
 
-      <!-- cannot be 100vw, causes x overflow. Cannot be 100%, will be too small... -->
-      <HeroImage style="width: 100vw" />
+      <section class="py-8 flex flex-col lg:flex-row gap-12">
+         <DescriptionText />
+         <TopNews />
+      </section>
 
-      <div class="flex flex-col py-5 lg:flex-row md:flex-col sm:flex-col">
-         <HeroSection />
-         <HeroUutiset />
-      </div>
+      <section class="py-8 flex flex-col md:flex-row w-full gap-8">
+         <YTHS />
+         <InstagramFeed />
+      </section>
+
+      <section class="pt-8">
+         <EmbeddedMap />
+      </section>
+
+      <section class="py-8 w-screen">
+         <div class="flex self-center justify-center">
+            <SponsorCarousel />
+         </div>
+      </section>
    </div>
 </template>
+
+<script setup lang="ts">
+   import InstagramFeed from '@/components/langingpage/InstagramFeed.vue';
+   import YTHS from '@/components/langingpage/yths.vue';
+   import EmbeddedMap from '@/components/langingpage/EmbeddedMap.vue';
+   import HeroSection from '@/components/langingpage/HeroSection.vue';
+   import DescriptionText from '@/components/langingpage/DescriptionText.vue';
+   import TopNews from '@/components/langingpage/TopNews.vue';
+   import SponsorCarousel from '@/components/langingpage/SponsorCarousel.vue';
+</script>
+<style>
+   p {
+      @apply tracking-wide;
+   }
+</style>
