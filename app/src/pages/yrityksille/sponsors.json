@@ -5,6 +5,11 @@
       "img": "https://api.serveriry.fi/uploads/efecte_logo_eaa50a1bf4.png"
    },
    {
+      "name": "Applirent",
+      "url": "https://www.applirent.com/",
+      "img": "https://api.serveriry.fi/uploads/applirent_7ea79f238d.png"
+   },
+   {
       "name": "Innofactor",
       "url": "https://www.innofactor.com/",
       "img": "https://api.serveriry.fi/uploads/innofactor_365559a4a1.png"
@@ -28,6 +33,11 @@
       "name": "UEF Avoin Yliopisto",
       "url": "https://api.serveriry.fi/uploads/uefjatkuva_5bbe818e67.png",
       "img": "https://www.uef.fi/sites/default/files/2022-02/Jatkuva_oppiminen_logo_yhdistelma_2.png"
+   },
+   {
+      "name": "Calacucco",
+      "url": "https://npg.fi/ravintolat/calacucco/",
+      "img": "https://cdn.discordapp.com/attachments/492188265487532032/1084905505119535244/kalacucco-removebg-preview.png"
    },
    {
       "name": "Tek",
