@@ -6,7 +6,7 @@
 
       <h1 class="custom-page-title">{{ $t('h1_partners') }}</h1>
 
-      <p class="mb-8 lg:mb-16 font-light text-center text-gray-500 dark:text-gray-400 sm:text-xl">
+      <p class="mb-8 lg:mb-16 text-center paragraph">
          Serveri tekee yritysyhteistyötä useiden IT alan yritysten ja muiden opiskelijoille hyödyllisten tahojen kanssa.
          Tässä on viimeaikaiset tahot jotka ovat olleet esillä jossain tapahtumassamme tai haalareissamme:
       </p>
