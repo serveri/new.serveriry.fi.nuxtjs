@@ -20,6 +20,12 @@
       <section class="pt-8">
          <EmbeddedMap />
       </section>
+
+      <section class="py-8 w-screen">
+         <div class="flex self-center justify-center">
+            <SponsorCarousel />
+         </div>
+      </section>
    </div>
 </template>
 
@@ -30,6 +36,7 @@
    import HeroSection from '@/components/langingpage/HeroSection.vue';
    import DescriptionText from '@/components/langingpage/DescriptionText.vue';
    import TopNews from '@/components/langingpage/TopNews.vue';
+   import SponsorCarousel from '@/components/langingpage/SponsorCarousel.vue';
 </script>
 <style>
    p {

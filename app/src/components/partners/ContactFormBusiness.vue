@@ -1,7 +1,7 @@
 <template>
    <div class="p-4 pb-16 mx-auto max-w-screen-md">
       <h2 class="custom-page-title">{{ $t('contact-us') }}</h2>
-      <p class="mb-8 lg:mb-16 font-light text-center text-gray-500 dark:text-gray-400 sm:text-xl">
+      <p class="mb-8 lg:mb-16 text-center paragraph">
          Haluaisitko sinä tai yriyksesi tukea serverin toimintaa ja saada näkyvyyttä opiskelijoiden keskuudessa
          esimerkiksi tapahtumissa ja somessa?
       </p>
