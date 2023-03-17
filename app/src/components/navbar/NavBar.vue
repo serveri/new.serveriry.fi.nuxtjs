@@ -1,5 +1,5 @@
 <template>
-   <Disclosure v-slot="{ open }" as="nav" class="bg-zinc-50 dark:bg-zinc-900">
+   <Disclosure v-slot="{ open }" as="nav" class="bg-zinc-50 dark:bg-zinc-900 fixed w-full z-10">
       <div class="px-6 lg:px-16 xl:px-32">
          <div class="relative flex items-center justify-between">
             <!-- Mobile menu button-->
