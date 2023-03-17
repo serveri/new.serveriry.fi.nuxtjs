@@ -42,14 +42,38 @@
       },
       {
          img: '/images/placeholder.jpg',
-         header: 'THIS IS NEWS HEADER',
          id: '2',
+         header: 'Serveri ry:n 35-vuotis vuosijuhlat',
+         date: new Date(),
+         text: 'Toivotamme Teidät mitä lämpimimmin tervetulleeksi viettämään Serveri ry:n 35-vuotis vuosijuhlaa pitkän odotuksen jälkeen!',
       },
       {
          img: '/images/placeholder.jpg',
+         id: '2',
+         header: 'Serveri ry:n 35-vuotis vuosijuhlat',
+         date: new Date(),
+         text: 'Toivotamme Teidät mitä lämpimimmin tervetulleeksi viettämään Serveri ry:n 35-vuotis vuosijuhlaa pitkän odotuksen jälkeen!',
       },
       {
          img: '/images/placeholder.jpg',
+         id: '2',
+         header: 'Serveri ry:n 35-vuotis vuosijuhlat',
+         date: new Date(),
+         text: 'Toivotamme Teidät mitä lämpimimmin tervetulleeksi viettämään Serveri ry:n 35-vuotis vuosijuhlaa pitkän odotuksen jälkeen!',
+      },
+      {
+         img: '/images/placeholder.jpg',
+         id: '2',
+         header: 'Serveri ry:n 35-vuotis vuosijuhlat',
+         date: new Date(),
+         text: 'Toivotamme Teidät mitä lämpimimmin tervetulleeksi viettämään Serveri ry:n 35-vuotis vuosijuhlaa pitkän odotuksen jälkeen!',
+      },
+      {
+         img: '/images/placeholder.jpg',
+         id: '2',
+         header: 'Serveri ry:n 35-vuotis vuosijuhlat',
+         date: new Date(),
+         text: 'Toivotamme Teidät mitä lämpimimmin tervetulleeksi viettämään Serveri ry:n 35-vuotis vuosijuhlaa pitkän odotuksen jälkeen!',
       },
    ];
 </script>
