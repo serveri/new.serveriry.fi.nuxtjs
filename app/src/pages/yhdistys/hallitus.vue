@@ -28,8 +28,8 @@
          henkilökohtainen sähköpostiosoite muodossa etunimi.sukunimi[ät]serveriry.fi.
       </p>
 
-      <h2 class="opposition-header font-extrabold text-2xl mt-3.5 mb-3.5">Serverin Oppositio</h2>
-      <p class="opposition-textmt-3.5 mb-3.5">
+      <h2 class="font-extrabold text-2xl my-3.5">Serverin Oppositio</h2>
+      <p>
          Kiinnostaako ainejärjestötoiminta? Serverin Oppositio on ryhmä Telegramissa, jossa pääsee seuraamaan
          ainejärjestötoimintaa hieman lähempää. Ryhmään liittyminen ei sido mihinkään ja voit liittyä/poistua täysin
          vapaasti. Tervetuloa mukaan! Liittymislinkki TG-ryhmään.
