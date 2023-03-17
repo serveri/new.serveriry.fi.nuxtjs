@@ -3,6 +3,18 @@
 @tailwind utilities;
 
 @layer components {
+  @font-face {
+    src: url("/app/src/public/fonts/Exo-Thin.ttf");
+    src: url("/app/src/public/fonts/Exo-ExtraLight.ttf");
+    src: url("/app/src/public/fonts/Exo-Light.ttf");
+    src: url("/app/src/public/fonts/Exo-Medium.ttf");
+    src: url("/app/src/public/fonts/Exo-Regular.ttf");
+    src: url("/app/src/public/fonts/Exo-SemiBold.ttf");
+    src: url("/app/src/public/fonts/Exo-Bold.ttf");
+    src: url("/app/src/public/fonts/Exo-ExtraBold.ttf");
+    src: url("/app/src/public/fonts/Exo-Black.ttf");
+  }
+
   a,
   p,
   h1,
@@ -12,10 +24,8 @@
   h5,
   h6 {
     @apply text-black dark:text-white;
-  }
 
-  body {
-    font-family: "Nunito Sans", sans-serif;
+    font-family: Exo, sans-serif;
   }
 
   .custom-page-title {
@@ -35,7 +45,7 @@
   }
 
   .btn-custom-blue {
-    @apply inline-flex items-center px-3 py-2 text-sm font-bold text-center text-white rounded-lg;
+    @apply inline-flex items-center px-3 py-2 text-sm font-bold text-center text-white rounded;
     @apply bg-custom-blue hover:bg-uef-blue dark:hover:bg-uef-blue;
   }
 
