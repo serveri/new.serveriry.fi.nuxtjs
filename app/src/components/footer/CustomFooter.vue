@@ -1,5 +1,5 @@
 <template>
-   <footer class="bg-white dark:bg-zinc-900">
+   <footer class="bg-zinc-50 dark:bg-zinc-900">
       <div class="p-4 sm:p-6 content">
          <!-- Logo -->
          <div class="mx-2 sm:mx-0 flex flex-col sm:flex-row items-stretch justify-between">
