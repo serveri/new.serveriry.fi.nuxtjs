@@ -1,3 +1,4 @@
+<!--suppress HtmlDeprecatedAttribute -->
 <template>
    <!-- CSS is static, maybe make it more responsive -->
    <div class="flex flex-col items-center sm:grid sm:grid-cols-2 gap-2 md:flex-1 sm:h-[100vw] md:h-[52vw] xl:h-[42rem]">
