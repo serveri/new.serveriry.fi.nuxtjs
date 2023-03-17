@@ -4,31 +4,31 @@
       <h2 class="custom-page-title sm:hidden">Instagram Feed</h2>
       <iframe
          class="rounded-lg w-full h-[97vw] sm:h-[100%]"
+         src="//instagram.com/p/CpzqO4Ah9HC/embed/"
+         height="100%"
+         scrolling="no"
+         allowtransparency="true"
+         tabindex="-1"
+      ></iframe>
+      <iframe
+         class="rounded-lg w-full h-[97vw] sm:h-[100%]"
+         src="//instagram.com/p/CpwwyNWhi9W/embed/"
+         height="100%"
+         scrolling="no"
+         allowtransparency="true"
+         tabindex="-1"
+      ></iframe>
+      <iframe
+         class="rounded-lg w-full h-[97vw] sm:h-[100%]"
+         src="//instagram.com/p/CphwTQLBho9/embed/"
+         height="100%"
+         scrolling="no"
+         allowtransparency="true"
+         tabindex="-1"
+      ></iframe>
+      <iframe
+         class="rounded-lg w-full h-[97vw] sm:h-[100%]"
          src="//instagram.com/p/CpKgJHQhzER/embed/"
-         height="100%"
-         scrolling="no"
-         allowtransparency="true"
-         tabindex="-1"
-      ></iframe>
-      <iframe
-         class="rounded-lg w-full h-[97vw] sm:h-[100%]"
-         src="//instagram.com/p/CpM-KyjBNsR/embed/"
-         height="100%"
-         scrolling="no"
-         allowtransparency="true"
-         tabindex="-1"
-      ></iframe>
-      <iframe
-         class="rounded-lg w-full h-[97vw] sm:h-[100%]"
-         src="//instagram.com/p/CpKCyiOhZn3/embed/"
-         height="100%"
-         scrolling="no"
-         allowtransparency="true"
-         tabindex="-1"
-      ></iframe>
-      <iframe
-         class="rounded-lg w-full h-[97vw] sm:h-[100%]"
-         src="//instagram.com/p/CotodDxB34V/embed/"
          height="100%"
          scrolling="no"
          allowtransparency="true"
