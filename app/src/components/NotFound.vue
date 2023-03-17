@@ -30,7 +30,7 @@
          required: true,
       },
       handleError: {
-         type: Object,
+         type: Function,
          required: true,
       },
    });
