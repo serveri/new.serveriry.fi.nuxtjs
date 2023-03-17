@@ -38,15 +38,14 @@
 
 <style scoped>
    a {
-      -webkit-box-shadow: 0 0 26px -5px rgba(0, 0, 0, 0.27);
-      -moz-box-shadow: 0 0 26px -5px rgba(0, 0, 0, 0.27);
       box-shadow: 0 0 26px -5px rgba(0, 0, 0, 0.27);
       display: flex;
       justify-content: center;
       align-items: center;
    }
+
    a {
-      @apply rounded-2xl w-full h-full cursor-pointer dark:bg-zinc-900 dark:shadow-lg dark:shadow-zinc-600/50;
+      @apply rounded-lg w-full h-full cursor-pointer dark:shadow-none dark:bg-zinc-900;
    }
 
    img {
