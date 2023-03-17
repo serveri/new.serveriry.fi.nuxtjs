@@ -8,7 +8,7 @@
                menu.current
                   ? 'bg-gray-900 text-white'
                   : 'text-gray-700 dark:text-gray-300 hover:bg-gray-700 hover:text-white',
-               'flex items-center justify-start block px-3 py-2 rounded-md text-base font-medium uppercase whitespace-nowrap w-full',
+               'flex items-center justify-start block px-3 py-2 rounded-md text-base font-bold uppercase whitespace-nowrap w-full',
             ]"
             :aria-current="menu.current ? 'page' : undefined"
          >
@@ -32,7 +32,7 @@
                   :to="localePath(subMenu.href)"
                   :class="[
                      active ? 'bg-neutral-100' : '',
-                     'block px-4 py-4 text-md text-left text-black hover:bg-zinc-600 hover:text-white even:bg-zinc-200 odd:bg-zinc-50 dark:text-gray-200 dark:hover:bg-gray-600 dark:hover:text-white dark:even:bg-zinc-800 dark:odd:bg-zinc-700',
+                     'block px-4 py-4 text-lg text-left text-black hover:bg-zinc-600 hover:text-white even:bg-zinc-200 odd:bg-zinc-50 dark:text-gray-200 dark:hover:bg-gray-600 dark:hover:text-white dark:even:bg-zinc-800 dark:odd:bg-zinc-700',
                   ]"
                   >{{ $t(subMenu.name) }}</nuxt-link
                >
