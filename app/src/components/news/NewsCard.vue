@@ -1,5 +1,5 @@
 <template>
-   <a :href="'/news/' + content.url">
+   <a :href="'/news#' + content.url">
       <div class="NewsCard">
          <div class="rounded-sm">
             <img class="news-image object-contain w-full" :src="content.img" alt="Cover image for the news card" />

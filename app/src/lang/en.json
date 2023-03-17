@@ -77,6 +77,10 @@
 
    "coming-events": "Coming events",
    "what-is-cs-like": "What is computer science like?",
-   "contact-us": "Contact us"
+   "contact-us": "Contact us",
+   "404_oops": "Whoopsie!",
+   "404_msg": "Page cannot be found",
+   "404_msg_long": "The page you are looking for may have been removed. Did you write the address correctly?",
+   "404_btn": "Back to home"
 
 }
