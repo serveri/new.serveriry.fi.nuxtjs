@@ -42,7 +42,7 @@
                               <button
                                  :class="[
                                     $route.path === localePath(item.href)
-                                       ? 'text-server-blue'
+                                       ? 'text-custom-blue'
                                        : 'text-gray-700 dark:text-gray-300',
                                     'nav-link',
                                  ]"
@@ -83,7 +83,7 @@
                      tabindex="0"
                      :class="[
                         $route.path === localePath(item.href)
-                           ? 'text-server-blue'
+                           ? 'text-custom-blue'
                            : 'text-gray-700 dark:text-gray-300 hover:bg-gray-700 hover:text-white',
                         'flex items-center justify-start block px-3 py-2 rounded-md text-base font-medium uppercase whitespace-nowrap cursor-pointer select-none',
                      ]"
@@ -171,7 +171,7 @@
    }
    /* underline effect */
    .nav-link:after {
-      @apply bg-server-blue;
+      @apply bg-custom-blue;
       content: '';
       position: absolute;
       width: 100%;

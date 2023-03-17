@@ -6,7 +6,7 @@
          <nuxt-link
             :class="[
                $route.path.split('/').slice(-2)[0] === localePath(menu.href).split('/').slice(-1)[0]
-                  ? 'text-server-blue dark:text-server-blue'
+                  ? 'text-custom-blue dark:text-custom-blue'
                   : 'text-gray-700 dark:text-gray-300',
                'nav-link',
             ]"
@@ -31,7 +31,7 @@
                <nuxt-link
                   :to="localePath(subMenu.href)"
                   :class="[
-                     $route.path === localePath(subMenu.href) ? 'text-server-blue' : 'text-gray-700 dark:text-gray-200',
+                     $route.path === localePath(subMenu.href) ? 'text-custom-blue' : 'text-gray-700 dark:text-gray-200',
                      'nav-link-parent',
                   ]"
                   ><span class="nav-dropdown-link" tabindex="1">
@@ -65,7 +65,7 @@
    }
    /* underline effect */
    .nav-link:after {
-      @apply bg-server-blue;
+      @apply bg-custom-blue;
       content: '';
       position: absolute;
       width: 100%;
@@ -86,7 +86,7 @@
    }
    /* underline effect */
    .nav-link-parent:hover .nav-dropdown-link {
-      @apply border-b-server-blue;
+      @apply border-b-custom-blue;
       transition: border-bottom-color 0.5s ease-out;
    }
 </style>
