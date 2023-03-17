@@ -2,21 +2,21 @@
    <div class="flex items-center justify-center w-screen sm:h-[80vh]">
       <div class="px-40 py-20 bg-white rounded-md sm:shadow-xl bg-zinc-50 dark:bg-zinc-900">
          <div class="flex flex-col items-center">
-            <h1 class="font-bold text-blue-600 dark:text-blue-600 text-9xl">{{ error.error.statusCode }}</h1>
+            <h1 class="font-bold text-custom-blue dark:text-custom-blue text-9xl">{{ error.error.statusCode }}</h1>
 
             <h6 class="mb-2 text-2xl font-bold text-center text-gray-800 md:text-3xl">
-               <span class="text-red-500">Hupsista!</span> Sivua ei löytynyt.
+               <span class="text-custom-blue">{{ $t('404_oops') }}</span> {{ $t('404_msg') }}
             </h6>
 
             <p class="mb-8 text-center text-gray-500 md:text-lg">
-               Etsimäsi sivu saattaa olla poistettu. Kirjoititko osoitteen oikein?
+               {{ $t('404_msg_long') }}
             </p>
 
             <button
-               class="px-6 py-2 text-sm font-semibold text-blue-800 dark:text-blue-100 bg-blue-200 dark:bg-blue-800"
+               class="px-6 py-2 text-sm font-semibold text-purple-800 dark:text-purple-100 bg-purple-200 dark:bg-custom-blue"
                @click="handleError"
             >
-               Etusivulle
+               {{ $t('404_btn') }}
             </button>
          </div>
       </div>
