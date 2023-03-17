@@ -19,28 +19,28 @@
 
    const events = [
       {
-         title: 'Serverin lajikokeilu: Padel',
-         time: new Date(),
-         link: '#eventID',
-      },
-      {
          title: 'Disney Sitsit 2',
-         time: new Date(),
+         time: new Date('03/14/2023'),
          link: '#eventID',
       },
       {
-         title: 'Laitossaunat',
-         time: new Date(),
+         title: 'Serverin lajikokeilu: Padel',
+         time: new Date('03/20/2023'),
          link: '#eventID',
       },
       {
          title: '24. gradet',
-         time: new Date(),
+         time: new Date('03/28/2023'),
          link: '#eventID',
       },
       {
-         title: 'Grillikauden avajaiset',
-         time: new Date(),
+         title: 'Laitossaunat',
+         time: new Date('03/30/2023'),
+         link: '#eventID',
+      },
+      {
+         title: 'Haluatko IT-Miljonääriksi',
+         time: new Date('04/04/2023'),
          link: '#eventID',
       },
    ];
