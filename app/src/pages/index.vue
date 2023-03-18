@@ -7,12 +7,12 @@
          <HeroSection class="w-screen" />
       </section>
 
-      <section class="py-8 flex flex-col lg:flex-row gap-12">
+      <section class="sm:my-[-3rem] xl:sm:my-[-6rem] 2xl:sm:my-[-8rem] flex flex-col lg:flex-row">
          <DescriptionText />
          <TopNews />
       </section>
 
-      <section class="py-8 flex flex-col md:flex-row w-full gap-8">
+      <section class="py-8 sm:mt-12 xl:mt-28 2xl:mt-32 flex flex-col md:flex-row w-full gap-8">
          <YTHS />
          <InstagramFeed />
       </section>
@@ -38,6 +38,7 @@
    import TopNews from '@/components/langingpage/TopNews.vue';
    import SponsorCarousel from '@/components/langingpage/SponsorCarousel.vue';
 </script>
+
 <style>
    p {
       @apply tracking-wide;
