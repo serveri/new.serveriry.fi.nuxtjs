@@ -17,7 +17,7 @@
       </div>
 
       <div>
-         <h4 class="text-lg font-bold">Jos mietit kannattaisiko alaa alkaa opiskelemaan niin olet oikealla sivulla</h4>
+         <h4 class="text-xl font-bold mt-2">Jos mietit kannattaisiko alaa alkaa opiskelemaan niin olet oikealla sivulla</h4>
          <p>
             Tietojenkäsittelytiede on aavistuksen näsäviisaasti ilmaistuna tiedettä tiedon käsittelystä. Nykyään
             tietojenkäsittelytiede hyödyntää vahvasti digitaalisia järjestelmiä. Käytännössä tietojenkäsittelytieteeseen
