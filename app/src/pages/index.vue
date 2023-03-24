@@ -12,6 +12,12 @@
          <TopNews />
       </section>
 
+      <section class="py-8 w-screen">
+         <div class="flex self-center justify-center">
+            <SponsorCarousel />
+         </div>
+      </section>
+
       <section class="py-8 sm:mt-12 xl:mt-28 2xl:mt-32 flex flex-col md:flex-row w-full gap-8">
          <YTHS />
          <InstagramFeed />
@@ -19,12 +25,6 @@
 
       <section class="pt-8">
          <EmbeddedMap />
-      </section>
-
-      <section class="py-8 w-screen">
-         <div class="flex self-center justify-center">
-            <SponsorCarousel />
-         </div>
       </section>
    </div>
 </template>

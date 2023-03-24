@@ -25,16 +25,16 @@
          leave-to-class="transform opacity-0 scale-95"
       >
          <MenuItems
-            class="absolute px-1 py-1 md:px-6 md:py-2 md:pb-4 right-0 z-10 mt-2 min-w-max origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none whitespace-nowrap dark:bg-[#282828]"
-         >
-            <MenuItem v-for="subMenu in menu.subMenu" :key="subMenu.name">
+            class='absolute px-1 py-1 md:px-6 md:py-2 md:pb-4 right-0 z-10 mt-2 min-w-max origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none whitespace-nowrap dark:bg-[#282828]'
+            >
+            <MenuItem v-for="subMenu in menu.subMenu" :key="subMenu.name" v-slot="{close}">
                <nuxt-link
                   :to="localePath(subMenu.href)"
                   :class="[
                      $route.path === localePath(subMenu.href) ? 'text-custom-blue' : 'text-gray-700 dark:text-gray-200',
                      'nav-link-parent',
                   ]"
-                  ><span class="nav-dropdown-link" tabindex="1">
+                  ><span class="nav-dropdown-link" tabindex="1" @click="close">
                      {{ $t(subMenu.name) }}
                   </span></nuxt-link
                >

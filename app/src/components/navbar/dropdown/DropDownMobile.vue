@@ -1,6 +1,6 @@
 <template>
    <!-- Dropdown -->
-   <Menu as="div" class="relative">
+   <Menu as="div" class="relative" v-slot="{close}">
       <MenuButton>
          <!--        :to="localePath(menu.href)"-->
          <nuxt-link
@@ -29,12 +29,15 @@
          >
             <MenuItem v-for="subMenu in menu.subMenu" v-slot="{ active }" :key="subMenu.name">
                <nuxt-link
+                  @click="close"
                   :to="localePath(subMenu.href)"
                   :class="[
                      active ? 'bg-neutral-100' : '',
                      'block px-4 py-4 text-lg text-left text-black hover:bg-zinc-600 hover:text-white even:bg-zinc-200 odd:bg-zinc-50 dark:text-gray-200 dark:hover:bg-gray-600 dark:hover:text-white dark:even:bg-zinc-800 dark:odd:bg-zinc-700',
                   ]"
-                  >{{ $t(subMenu.name) }}</nuxt-link
+                  ><span class="nav-dropdown-link" @click="close">
+                     {{ $t(subMenu.name) }}
+                  </span></nuxt-link
                >
             </MenuItem>
          </MenuItems>
