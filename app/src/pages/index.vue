@@ -12,13 +12,13 @@
          <TopNews />
       </section>
 
-      <section class="py-8 w-screen">
+      <section class="py-8 w-screen sm:mt-12 xl:mt-28 2xl:mt-32">
          <div class="flex self-center justify-center">
             <SponsorCarousel />
          </div>
       </section>
 
-      <section class="py-8 sm:mt-12 xl:mt-28 2xl:mt-32 flex flex-col md:flex-row w-full gap-8">
+      <section class="py-8 flex flex-col md:flex-row w-full gap-8">
          <YTHS />
          <InstagramFeed />
       </section>
