@@ -112,7 +112,7 @@
       @apply text-left break-words py-4 px-2
    }
    .table-data{
-      @apply break-words py-3 px-3
+      @apply break-words py-2 px-3
    }
    .data-row{
       @apply odd:bg-stone-200; 
