@@ -26,6 +26,23 @@
       <section class="pt-8">
          <EmbeddedMap />
       </section>
+      
+      <section>
+         
+         <div class="md:flex-1">
+      <h2 class="custom-page-title">Löydät Serverin myös täältä!</h2>      
+      
+      <div class="grid lg:grid-cols-1 lg:gap-7">
+         <SocialmediaIcon/>
+         <SocialmediaIcon/>
+         <SocialmediaIcon/>
+         <SocialmediaIcon/>
+      </div>
+      
+      </div>
+
+      </section>
+
    </div>
 </template>
 
@@ -37,6 +54,7 @@
    import DescriptionText from '@/components/langingpage/DescriptionText.vue';
    import TopNews from '@/components/langingpage/TopNews.vue';
    import SponsorCarousel from '@/components/langingpage/SponsorCarousel.vue';
+   import SocialmediaIcon from '@/components/langingpage/SocialmediaIcon.vue';
 </script>
 
 <style>
