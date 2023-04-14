@@ -20,14 +20,6 @@
       <section>
          <EmbeddedMap />
       </section>
-      
-      <section>
-         
-         <div class="md:flex-1">
-      <h2 class="custom-page-title">Löydät Serverin myös täältä!</h2>      
-      <SocialmediaIcon/>
-      </div>
-      </section>
    </div>
 </template>
 
@@ -38,7 +30,6 @@
    import HeroSection from '@/components/langingpage/HeroSection.vue';
    import DescriptionText from '@/components/langingpage/DescriptionText.vue';
    import TopNews from '@/components/langingpage/TopNews.vue';
-   import SocialmediaIcon from '@/components/langingpage/SocialmediaIcon.vue';
 </script>
 <style>
    p {
