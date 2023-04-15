@@ -32,9 +32,8 @@
             <a :href="'mailto:' + content.email + '@serveriry.fi'" class="member-email hover:underline"
                >{{ content.email }}@serveriry.fi</a
             >
-
             <p>
-               Telegram:
+               <font-awesome-icon class="fa-2xl mr-1" :icon="['fab', 'telegram']" />
                <a
                   class="member-telegram hover:underline"
                   :href="'https://telegram.me/' + content.telegram"
@@ -131,13 +130,17 @@
       @apply rounded-2xl w-full overflow-hidden max-w-sm p-4 justify-self-center;
    }
    .card-container {
-      @apply dark:shadow-lg dark:shadow-zinc-600/50;
+      @apply dark:shadow-lg dark:shadow-zinc-600/50 dark:bg-zinc-900;
    }
+   
    .collapse-button {
       @apply dark:invert;
    }
 
    .member-image {
-      @apply shadow rounded-full max-w-full h-auto align-middle border-none;
+      @apply rounded-full max-w-full h-auto align-middle border-none;
+   }
+   .member-image{
+      @apply dark:shadow-lg  dark:shadow-zinc-700 dark:bg-zinc-900;
    }
 </style>
