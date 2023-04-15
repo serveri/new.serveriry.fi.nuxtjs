@@ -17,7 +17,9 @@
       </div>
 
       <div>
-         <h4 class="text-xl font-bold mt-2">Jos mietit kannattaisiko alaa alkaa opiskelemaan niin olet oikealla sivulla</h4>
+         <h4 class="text-xl font-bold mt-2 mb-3">
+            Jos mietit kannattaisiko alaa alkaa opiskelemaan niin olet oikealla sivulla
+         </h4>
          <p>
             Tietojenkäsittelytiede on aavistuksen näsäviisaasti ilmaistuna tiedettä tiedon käsittelystä. Nykyään
             tietojenkäsittelytiede hyödyntää vahvasti digitaalisia järjestelmiä. Käytännössä tietojenkäsittelytieteeseen
@@ -32,8 +34,6 @@
       <div>
          <h2 class="mt-8 text-2xl font-extrabold text-center">UEF tietojenkäsittelytieteen opintorakenne</h2>
       </div>
-
-
 
       <div class="table-container">
          <div>
@@ -84,10 +84,6 @@
    </div>
 </template>
 
-
-
-
-
 <style scoped>
    .erkki-video {
       display: flex;
@@ -98,27 +94,26 @@
    th {
       background-color: rgb(0 119 138 / var(--tw-bg-opacity));
    }
-   .table-container{
-      @apply my-6
-   }
-   
-   .table-desc{
-      @apply text-xl font-extrabold
-   }
-   .course-table{
-     @apply mt-4 table-fixed w-full
-   }
-   .table-header{
-      @apply text-left break-words py-4 px-2
-   }
-   .table-data{
-      @apply break-words py-2 px-3
-   }
-   .data-row{
-      @apply odd:bg-stone-200; 
-   }
-   .data-row{
-      @apply dark:odd:bg-neutral-700;
+   .table-container {
+      @apply my-6;
    }
 
+   .table-desc {
+      @apply text-xl font-extrabold;
+   }
+   .course-table {
+      @apply mt-4 table-fixed w-full;
+   }
+   .table-header {
+      @apply text-left break-words py-4 px-2;
+   }
+   .table-data {
+      @apply break-words py-2 px-3;
+   }
+   .data-row {
+      @apply odd:bg-stone-200;
+   }
+   .data-row {
+      @apply dark:odd:bg-neutral-700;
+   }
 </style>
