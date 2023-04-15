@@ -1,0 +1,27 @@
+---
+- hosts: all
+  become: yes
+  tasks:
+    - name: Shut down all docker containers
+      shell: docker compose -f /home/www/docker-compose.prod.yml down
+
+    - name: Remove docker volume
+      shell: docker volume rm www_directus_data_prod
+
+    - name: Start psql container
+      shell: docker compose -f /home/www/docker-compose.prod.yml up -d db
+
+    - name: Copy dump from nuxt project to PSQL docker
+      shell: docker cp /home/www/backup.sql postgresql:/home/backup.sql
+
+    - name: Wait for PostgreSQL to start
+      wait_for:
+        host: 10.10.0.3
+        port: 5432
+        state: started
+
+    - name: Run dump file in psql
+      shell: docker exec postgresql bash -c "psql -U serveri serveri_prod < /home/backup.sql"
+
+    - name: Start rest of docker services
+      shell: docker compose -f /home/www/docker-compose.prod.yml up -d --build

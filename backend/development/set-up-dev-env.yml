@@ -1,0 +1,26 @@
+---
+- import_playbook: install-docker.yml # Install docker
+- hosts: all
+  become: yes
+  tasks:
+    - name: users | adding vagrant user to docker group
+      user:
+        name: vagrant
+        append: yes
+        groups: docker
+      become: true
+
+    - name: Start docker
+      ansible.builtin.shell: |
+        systemctl enable --now docker
+
+    - name: Create .env files
+      ansible.builtin.shell: |
+        cd /home/www
+        cp .env.prod ../.env.prod
+        cp .env.prod.db ../.env.prod.db
+
+    - name: Start docker compose
+      ansible.builtin.shell: |
+        cd /home/www
+        docker compose -f docker-compose.prod.yml up -d --build
