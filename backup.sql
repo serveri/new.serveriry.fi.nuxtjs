@@ -64,6 +64,51 @@ ALTER SEQUENCE public."LandingPage_id_seq" OWNED BY public."LandingPage".id;
 
 
 --
+-- Name: board_members; Type: TABLE; Schema: public; Owner: serveri
+--
+
+CREATE TABLE public.board_members (
+    id integer NOT NULL,
+    status character varying(255) DEFAULT 'draft'::character varying NOT NULL,
+    user_created uuid,
+    date_created timestamp with time zone,
+    user_updated uuid,
+    date_updated timestamp with time zone,
+    name character varying(255) DEFAULT 'Matti Meikäläinen'::character varying NOT NULL,
+    role character varying(255) DEFAULT 'Jäsen'::character varying NOT NULL,
+    email character varying(255) DEFAULT 'matti.meikalainen@serveriry.fi'::character varying NOT NULL,
+    telegram character varying(255) DEFAULT 'mattimeikalainen'::character varying NOT NULL,
+    description text DEFAULT 'Hallituksen jäsen toimii hallituksessa.'::text,
+    hover_img character varying(255) DEFAULT '/images/member2.jpeg'::character varying,
+    img character varying(255) DEFAULT '/images/member.jpeg'::character varying NOT NULL
+);
+
+
+ALTER TABLE public.board_members OWNER TO serveri;
+
+--
+-- Name: board_members_id_seq; Type: SEQUENCE; Schema: public; Owner: serveri
+--
+
+CREATE SEQUENCE public.board_members_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.board_members_id_seq OWNER TO serveri;
+
+--
+-- Name: board_members_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: serveri
+--
+
+ALTER SEQUENCE public.board_members_id_seq OWNED BY public.board_members.id;
+
+
+--
 -- Name: directus_activity; Type: TABLE; Schema: public; Owner: serveri
 --
 
@@ -725,6 +770,13 @@ ALTER TABLE ONLY public."LandingPage" ALTER COLUMN id SET DEFAULT nextval('publi
 
 
 --
+-- Name: board_members id; Type: DEFAULT; Schema: public; Owner: serveri
+--
+
+ALTER TABLE ONLY public.board_members ALTER COLUMN id SET DEFAULT nextval('public.board_members_id_seq'::regclass);
+
+
+--
 -- Name: directus_activity id; Type: DEFAULT; Schema: public; Owner: serveri
 --
 
@@ -792,7 +844,17 @@ ALTER TABLE ONLY public.directus_webhooks ALTER COLUMN id SET DEFAULT nextval('p
 --
 
 COPY public."LandingPage" (id, user_updated, date_updated, fi_title, en_title, fi_description, en_description, fi_button_text, en_button_text, en_button_url, fi_button_url) FROM stdin;
-1	\N	\N	Serveri ry	Serveri ry	Itä-Suomen yliopiston Kuopion kampuksen tietojenkäsittelytieteen opiskelijoiden ainejärjestö 	The computer science students' subject organization of the Kuopio campus of the University of Eastern Finland	Millaista tietojenkäsittelytiede on?	What is computer science like?	/opiskelu/tkt	/opiskelu/tkt
+1	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-04-16 15:40:56.866+00	Serveri ry MOROOOO	Serveri ry	Itä-Suomen yliopiston Kuopion kampuksen tietojenkäsittelytieteen opiskelijoiden ainejärjestö 	The computer science students' subject organization of the Kuopio campus of the University of Eastern Finland	Millaista tietojenkäsittelytiede on?	What is computer science like?	/opiskelu/tkt	/opiskelu/tkt
+\.
+
+
+--
+-- Data for Name: board_members; Type: TABLE DATA; Schema: public; Owner: serveri
+--
+
+COPY public.board_members (id, status, user_created, date_created, user_updated, date_updated, name, role, email, telegram, description, hover_img, img) FROM stdin;
+1	published	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-04-16 16:04:40.405+00	\N	\N	Matti Meikäläinen	Jäsen	matti.meikalainen@serveriry.fi	mattimeikalainen	Hallituksen jäsen toimii hallituksessa.	/images/member2.jpeg	/images/member.jpeg
+2	published	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-04-16 16:05:10.468+00	\N	\N	Maija Meikäläinen	Jäsen	maija.meikalainen@serveriry.fi	maijameikalainen	Hallituksen jäsen toimii hallituksessa.	/images/member2.jpeg	/images/member.jpeg
 \.
 
 
@@ -849,6 +911,91 @@ COPY public.directus_activity (id, action, "user", "timestamp", ip, user_agent, 
 46	update	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-04-16 11:44:28.41+00	10.0.2.2	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	directus_permissions	1	\N	http://localhost:8081
 47	delete	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-04-16 11:49:32.978+00	10.0.2.2	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	directus_permissions	3	\N	http://localhost:8081
 48	delete	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-04-16 11:49:34.638+00	10.0.2.2	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	directus_permissions	2	\N	http://localhost:8081
+49	login	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-04-16 15:12:35.82+00	10.0.2.2	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/111.0	directus_users	0891a0cd-876b-4a0d-a22e-0cce30121382	\N	http://127.0.0.1:8081
+50	update	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-04-16 15:16:26.479+00	10.0.2.2	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/111.0	LandingPage	1	\N	http://127.0.0.1:8081
+51	update	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-04-16 15:19:17.022+00	10.0.2.2	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/111.0	LandingPage	1	\N	http://127.0.0.1:8081
+52	update	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-04-16 15:19:43.808+00	10.0.2.2	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/111.0	LandingPage	1	\N	http://127.0.0.1:8081
+53	update	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-04-16 15:21:01.212+00	10.0.2.2	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/111.0	LandingPage	1	\N	http://127.0.0.1:8081
+54	update	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-04-16 15:21:30.889+00	10.0.2.2	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/111.0	LandingPage	1	\N	http://127.0.0.1:8081
+55	login	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-04-16 15:21:54.228+00	10.0.2.2	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/111.0	directus_users	0891a0cd-876b-4a0d-a22e-0cce30121382	\N	http://localhost:8081
+56	update	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-04-16 15:22:03.133+00	10.0.2.2	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/111.0	LandingPage	1	\N	http://localhost:8081
+57	update	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-04-16 15:25:53.835+00	10.0.2.2	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/111.0	LandingPage	1	\N	http://localhost:8081
+58	update	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-04-16 15:40:45.279+00	10.0.2.2	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/111.0	LandingPage	1	\N	http://localhost:8081
+59	update	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-04-16 15:40:56.872+00	10.0.2.2	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/111.0	LandingPage	1	\N	http://localhost:8081
+60	create	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-04-16 15:48:01.677+00	10.0.2.2	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/111.0	directus_fields	18	\N	http://localhost:8081
+61	create	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-04-16 15:48:01.695+00	10.0.2.2	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/111.0	directus_fields	19	\N	http://localhost:8081
+62	create	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-04-16 15:48:01.709+00	10.0.2.2	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/111.0	directus_fields	20	\N	http://localhost:8081
+63	create	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-04-16 15:48:01.723+00	10.0.2.2	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/111.0	directus_fields	21	\N	http://localhost:8081
+64	create	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-04-16 15:48:01.747+00	10.0.2.2	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/111.0	directus_fields	22	\N	http://localhost:8081
+65	create	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-04-16 15:48:01.768+00	10.0.2.2	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/111.0	directus_fields	23	\N	http://localhost:8081
+66	create	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-04-16 15:48:01.782+00	10.0.2.2	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/111.0	directus_collections	board_members	\N	http://localhost:8081
+67	create	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-04-16 15:53:40.745+00	10.0.2.2	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/111.0	directus_fields	24	\N	http://localhost:8081
+68	create	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-04-16 15:53:51.295+00	10.0.2.2	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/111.0	directus_fields	25	\N	http://localhost:8081
+69	create	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-04-16 15:53:58.555+00	10.0.2.2	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/111.0	directus_fields	26	\N	http://localhost:8081
+70	create	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-04-16 15:54:46.054+00	10.0.2.2	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/111.0	directus_fields	27	\N	http://localhost:8081
+71	create	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-04-16 15:55:02.943+00	10.0.2.2	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/111.0	directus_fields	28	\N	http://localhost:8081
+72	create	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-04-16 15:55:39.308+00	10.0.2.2	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/111.0	directus_fields	29	\N	http://localhost:8081
+73	create	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-04-16 15:56:46.686+00	10.0.2.2	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/111.0	directus_fields	30	\N	http://localhost:8081
+74	create	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-04-16 15:57:12.076+00	10.0.2.2	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/111.0	directus_fields	31	\N	http://localhost:8081
+75	update	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-04-16 15:57:16.308+00	10.0.2.2	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/111.0	directus_fields	18	\N	http://localhost:8081
+76	update	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-04-16 15:57:16.359+00	10.0.2.2	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/111.0	directus_fields	19	\N	http://localhost:8081
+77	update	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-04-16 15:57:16.409+00	10.0.2.2	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/111.0	directus_fields	20	\N	http://localhost:8081
+78	update	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-04-16 15:57:16.459+00	10.0.2.2	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/111.0	directus_fields	21	\N	http://localhost:8081
+79	update	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-04-16 15:57:16.545+00	10.0.2.2	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/111.0	directus_fields	22	\N	http://localhost:8081
+80	update	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-04-16 15:57:16.612+00	10.0.2.2	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/111.0	directus_fields	23	\N	http://localhost:8081
+81	update	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-04-16 15:57:16.668+00	10.0.2.2	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/111.0	directus_fields	30	\N	http://localhost:8081
+82	update	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-04-16 15:57:16.713+00	10.0.2.2	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/111.0	directus_fields	24	\N	http://localhost:8081
+83	update	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-04-16 15:57:16.763+00	10.0.2.2	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/111.0	directus_fields	25	\N	http://localhost:8081
+84	update	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-04-16 15:57:16.81+00	10.0.2.2	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/111.0	directus_fields	26	\N	http://localhost:8081
+85	update	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-04-16 15:57:16.858+00	10.0.2.2	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/111.0	directus_fields	28	\N	http://localhost:8081
+86	update	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-04-16 15:57:16.947+00	10.0.2.2	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/111.0	directus_fields	29	\N	http://localhost:8081
+87	update	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-04-16 15:57:16.987+00	10.0.2.2	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/111.0	directus_fields	31	\N	http://localhost:8081
+101	update	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-04-16 15:57:33.371+00	10.0.2.2	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/111.0	directus_fields	24	\N	http://localhost:8081
+102	update	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-04-16 15:57:46.659+00	10.0.2.2	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/111.0	directus_fields	25	\N	http://localhost:8081
+103	update	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-04-16 15:58:07.375+00	10.0.2.2	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/111.0	directus_fields	26	\N	http://localhost:8081
+105	update	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-04-16 15:58:23.972+00	10.0.2.2	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/111.0	directus_fields	29	\N	http://localhost:8081
+108	update	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-04-16 15:58:32.261+00	10.0.2.2	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/111.0	directus_fields	25	\N	http://localhost:8081
+110	update	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-04-16 15:58:36.523+00	10.0.2.2	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/111.0	directus_fields	31	\N	http://localhost:8081
+88	update	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-04-16 15:57:18.251+00	10.0.2.2	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/111.0	directus_fields	18	\N	http://localhost:8081
+89	update	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-04-16 15:57:18.304+00	10.0.2.2	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/111.0	directus_fields	19	\N	http://localhost:8081
+90	update	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-04-16 15:57:18.353+00	10.0.2.2	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/111.0	directus_fields	20	\N	http://localhost:8081
+91	update	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-04-16 15:57:18.405+00	10.0.2.2	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/111.0	directus_fields	21	\N	http://localhost:8081
+92	update	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-04-16 15:57:18.458+00	10.0.2.2	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/111.0	directus_fields	22	\N	http://localhost:8081
+93	update	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-04-16 15:57:18.505+00	10.0.2.2	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/111.0	directus_fields	23	\N	http://localhost:8081
+94	update	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-04-16 15:57:18.548+00	10.0.2.2	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/111.0	directus_fields	30	\N	http://localhost:8081
+95	update	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-04-16 15:57:18.598+00	10.0.2.2	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/111.0	directus_fields	31	\N	http://localhost:8081
+96	update	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-04-16 15:57:18.642+00	10.0.2.2	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/111.0	directus_fields	24	\N	http://localhost:8081
+97	update	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-04-16 15:57:18.684+00	10.0.2.2	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/111.0	directus_fields	25	\N	http://localhost:8081
+98	update	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-04-16 15:57:18.736+00	10.0.2.2	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/111.0	directus_fields	26	\N	http://localhost:8081
+99	update	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-04-16 15:57:18.79+00	10.0.2.2	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/111.0	directus_fields	28	\N	http://localhost:8081
+100	update	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-04-16 15:57:18.852+00	10.0.2.2	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/111.0	directus_fields	29	\N	http://localhost:8081
+104	update	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-04-16 15:58:18.536+00	10.0.2.2	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/111.0	directus_fields	28	\N	http://localhost:8081
+106	update	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-04-16 15:58:26.86+00	10.0.2.2	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/111.0	directus_fields	28	\N	http://localhost:8081
+107	update	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-04-16 15:58:29.438+00	10.0.2.2	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/111.0	directus_fields	26	\N	http://localhost:8081
+109	update	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-04-16 15:58:34.46+00	10.0.2.2	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/111.0	directus_fields	24	\N	http://localhost:8081
+111	update	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-04-16 15:58:39.032+00	10.0.2.2	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/111.0	directus_fields	30	\N	http://localhost:8081
+112	update	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-04-16 15:59:13.184+00	10.0.2.2	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/111.0	directus_fields	29	\N	http://localhost:8081
+113	update	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-04-16 15:59:24.803+00	10.0.2.2	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/111.0	directus_collections	board_members	\N	http://localhost:8081
+114	create	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-04-16 16:04:05.8+00	10.0.2.2	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/111.0	directus_fields	32	\N	http://localhost:8081
+115	update	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-04-16 16:04:08.198+00	10.0.2.2	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/111.0	directus_fields	18	\N	http://localhost:8081
+116	update	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-04-16 16:04:08.261+00	10.0.2.2	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/111.0	directus_fields	19	\N	http://localhost:8081
+117	update	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-04-16 16:04:08.309+00	10.0.2.2	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/111.0	directus_fields	20	\N	http://localhost:8081
+118	update	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-04-16 16:04:08.365+00	10.0.2.2	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/111.0	directus_fields	21	\N	http://localhost:8081
+119	update	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-04-16 16:04:08.416+00	10.0.2.2	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/111.0	directus_fields	22	\N	http://localhost:8081
+120	update	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-04-16 16:04:08.471+00	10.0.2.2	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/111.0	directus_fields	23	\N	http://localhost:8081
+121	update	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-04-16 16:04:08.535+00	10.0.2.2	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/111.0	directus_fields	32	\N	http://localhost:8081
+122	update	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-04-16 16:04:08.6+00	10.0.2.2	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/111.0	directus_fields	31	\N	http://localhost:8081
+123	update	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-04-16 16:04:08.649+00	10.0.2.2	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/111.0	directus_fields	24	\N	http://localhost:8081
+124	update	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-04-16 16:04:08.694+00	10.0.2.2	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/111.0	directus_fields	25	\N	http://localhost:8081
+125	update	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-04-16 16:04:08.745+00	10.0.2.2	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/111.0	directus_fields	26	\N	http://localhost:8081
+126	update	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-04-16 16:04:08.846+00	10.0.2.2	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/111.0	directus_fields	28	\N	http://localhost:8081
+127	update	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-04-16 16:04:08.913+00	10.0.2.2	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/111.0	directus_fields	29	\N	http://localhost:8081
+128	update	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-04-16 16:04:22.146+00	10.0.2.2	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/111.0	directus_fields	32	\N	http://localhost:8081
+129	update	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-04-16 16:04:30.263+00	10.0.2.2	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/111.0	directus_fields	31	\N	http://localhost:8081
+130	create	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-04-16 16:04:40.409+00	10.0.2.2	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/111.0	board_members	1	\N	http://localhost:8081
+131	create	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-04-16 16:05:10.471+00	10.0.2.2	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/111.0	board_members	2	\N	http://localhost:8081
+132	create	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-04-16 16:05:39.856+00	10.0.2.2	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/111.0	directus_permissions	5	\N	http://localhost:8081
+133	update	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-04-16 16:06:15.098+00	10.0.2.2	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/111.0	directus_permissions	5	\N	http://localhost:8081
 \.
 
 
@@ -858,6 +1005,7 @@ COPY public.directus_activity (id, action, "user", "timestamp", ip, user_agent, 
 
 COPY public.directus_collections (collection, icon, note, display_template, hidden, singleton, translations, archive_field, archive_app_filter, archive_value, unarchive_value, sort_field, accountability, color, item_duplication_fields, sort, "group", collapse) FROM stdin;
 LandingPage	\N	\N	\N	f	t	\N	\N	t	\N	\N	\N	all	\N	\N	\N	\N	open
+board_members	account_circle	Collection of board members.	\N	f	f	\N	status	t	archived	draft	\N	all	\N	\N	\N	\N	open
 \.
 
 
@@ -885,6 +1033,19 @@ COPY public.directus_fields (id, collection, field, special, interface, options,
 15	LandingPage	en_button_text	\N	input-multiline	\N	\N	\N	f	f	9	full	\N	\N	\N	f	\N	\N	\N
 17	LandingPage	fi_button_url	\N	input-multiline	\N	\N	\N	f	f	10	full	\N	\N	\N	f	\N	\N	\N
 16	LandingPage	en_button_url	\N	input-multiline	\N	\N	\N	f	f	11	full	\N	\N	\N	f	\N	\N	\N
+18	board_members	id	\N	input	\N	\N	\N	t	t	1	full	\N	\N	\N	f	\N	\N	\N
+19	board_members	status	\N	select-dropdown	{"choices":[{"text":"$t:published","value":"published"},{"text":"$t:draft","value":"draft"},{"text":"$t:archived","value":"archived"}]}	labels	{"showAsDot":true,"choices":[{"text":"$t:published","value":"published","foreground":"#FFFFFF","background":"var(--primary)"},{"text":"$t:draft","value":"draft","foreground":"#18222F","background":"#D3DAE4"},{"text":"$t:archived","value":"archived","foreground":"#FFFFFF","background":"var(--warning)"}]}	f	f	2	full	\N	\N	\N	f	\N	\N	\N
+20	board_members	user_created	user-created	select-dropdown-m2o	{"template":"{{avatar.$thumbnail}} {{first_name}} {{last_name}}"}	user	\N	t	t	3	half	\N	\N	\N	f	\N	\N	\N
+21	board_members	date_created	date-created	datetime	\N	datetime	{"relative":true}	t	t	4	half	\N	\N	\N	f	\N	\N	\N
+22	board_members	user_updated	user-updated	select-dropdown-m2o	{"template":"{{avatar.$thumbnail}} {{first_name}} {{last_name}}"}	user	\N	t	t	5	half	\N	\N	\N	f	\N	\N	\N
+23	board_members	date_updated	date-updated	datetime	\N	datetime	{"relative":true}	t	t	6	half	\N	\N	\N	f	\N	\N	\N
+24	board_members	name	\N	input	{"url":null}	\N	\N	f	f	9	full	\N	\N	\N	f	\N	\N	\N
+25	board_members	role	\N	input	\N	\N	\N	f	f	10	full	\N	\N	\N	f	\N	\N	\N
+26	board_members	email	\N	input	\N	\N	\N	f	f	11	full	\N	\N	\N	f	\N	\N	\N
+28	board_members	telegram	\N	input	\N	\N	\N	f	f	12	full	\N	\N	\N	f	\N	\N	\N
+29	board_members	description	\N	input-multiline	\N	\N	\N	f	f	13	full	\N	\N	\N	f	\N	\N	\N
+32	board_members	img	\N	input	\N	\N	\N	f	f	7	full	\N	\N	\N	f	\N	\N	\N
+31	board_members	hover_img	\N	input	\N	\N	\N	f	f	8	full	\N	\N	\N	f	\N	\N	\N
 \.
 
 
@@ -1014,6 +1175,7 @@ COPY public.directus_panels (id, dashboard, name, icon, color, show_header, note
 COPY public.directus_permissions (id, role, collection, action, permissions, validation, presets, fields) FROM stdin;
 4	\N	directus_users	read	{}	{}	\N	*
 1	\N	LandingPage	read	\N	{}	\N	fi_title,en_title,fi_description,en_description,fi_button_text,en_button_text,fi_button_url,en_button_url
+5	\N	board_members	read	\N	\N	\N	img,hover_img,role,email,telegram,name,description
 \.
 
 
@@ -1022,6 +1184,7 @@ COPY public.directus_permissions (id, role, collection, action, permissions, val
 --
 
 COPY public.directus_presets (id, bookmark, "user", role, collection, search, layout, layout_query, layout_options, refresh_interval, filter, icon, color) FROM stdin;
+1	\N	0891a0cd-876b-4a0d-a22e-0cce30121382	\N	directus_users	\N	cards	{"cards":{"sort":["email"],"page":1}}	{"cards":{"icon":"account_circle","title":"{{ first_name }} {{ last_name }}","subtitle":"{{ email }}","size":4}}	\N	\N	bookmark	\N
 \.
 
 
@@ -1031,6 +1194,8 @@ COPY public.directus_presets (id, bookmark, "user", role, collection, search, la
 
 COPY public.directus_relations (id, many_collection, many_field, one_collection, one_field, one_collection_field, one_allowed_collections, junction_field, sort_field, one_deselect_action) FROM stdin;
 1	LandingPage	user_updated	directus_users	\N	\N	\N	\N	\N	nullify
+2	board_members	user_created	directus_users	\N	\N	\N	\N	\N	nullify
+3	board_members	user_updated	directus_users	\N	\N	\N	\N	\N	nullify
 \.
 
 
@@ -1084,6 +1249,89 @@ COPY public.directus_revisions (id, activity, collection, item, data, delta, par
 43	44	directus_permissions	1	{"id":1,"role":null,"collection":"LandingPage","action":"read","permissions":null,"validation":{},"presets":null,"fields":["fi_title","en_title","fi_description","en_description","fi_button_text","en_button_text","fi_button_url","en_button_url"]}	{"role":null,"collection":"LandingPage","action":"read","permissions":null,"validation":{},"presets":null,"fields":["fi_title","en_title","fi_description","en_description","fi_button_text","en_button_text","fi_button_url","en_button_url"]}	\N
 44	45	directus_permissions	1	{"id":1,"role":null,"collection":"LandingPage","action":"read","permissions":null,"validation":{},"presets":null,"fields":["fi_title","en_title","fi_description","en_description","fi_button_text","en_button_text","fi_button_url","en_button_url"]}	{"role":null,"collection":"LandingPage","action":"read","permissions":null,"validation":{},"presets":null,"fields":["fi_title","en_title","fi_description","en_description","fi_button_text","en_button_text","fi_button_url","en_button_url"]}	\N
 45	46	directus_permissions	1	{"id":1,"role":null,"collection":"LandingPage","action":"read","permissions":null,"validation":{},"presets":null,"fields":["fi_title","en_title","fi_description","en_description","fi_button_text","en_button_text","fi_button_url","en_button_url"]}	{"role":null,"collection":"LandingPage","action":"read","permissions":null,"validation":{},"presets":null,"fields":["fi_title","en_title","fi_description","en_description","fi_button_text","en_button_text","fi_button_url","en_button_url"]}	\N
+46	50	LandingPage	1	{"id":1,"user_updated":"0891a0cd-876b-4a0d-a22e-0cce30121382","date_updated":"2023-04-16T15:16:26.473Z","fi_title":"Serveri ry MUOKKAUS","en_title":"Serveri ry","fi_description":"Itä-Suomen yliopiston Kuopion kampuksen tietojenkäsittelytieteen opiskelijoiden ainejärjestö ","en_description":"The computer science students' subject organization of the Kuopio campus of the University of Eastern Finland","fi_button_text":"Millaista tietojenkäsittelytiede on?","en_button_text":"What is computer science like?","en_button_url":"/opiskelu/tkt","fi_button_url":"/opiskelu/tkt"}	{"fi_title":"Serveri ry MUOKKAUS","user_updated":"0891a0cd-876b-4a0d-a22e-0cce30121382","date_updated":"2023-04-16T15:16:26.473Z"}	\N
+47	51	LandingPage	1	{"id":1,"user_updated":"0891a0cd-876b-4a0d-a22e-0cce30121382","date_updated":"2023-04-16T15:19:17.017Z","fi_title":"Serveri ry MUOKKA","en_title":"Serveri ry","fi_description":"Itä-Suomen yliopiston Kuopion kampuksen tietojenkäsittelytieteen opiskelijoiden ainejärjestö ","en_description":"The computer science students' subject organization of the Kuopio campus of the University of Eastern Finland","fi_button_text":"Millaista tietojenkäsittelytiede on?","en_button_text":"What is computer science like?","en_button_url":"/opiskelu/tkt","fi_button_url":"/opiskelu/tkt"}	{"fi_title":"Serveri ry MUOKKA","user_updated":"0891a0cd-876b-4a0d-a22e-0cce30121382","date_updated":"2023-04-16T15:19:17.017Z"}	\N
+48	52	LandingPage	1	{"id":1,"user_updated":"0891a0cd-876b-4a0d-a22e-0cce30121382","date_updated":"2023-04-16T15:19:43.805Z","fi_title":"Serveri ry","en_title":"Serveri ry","fi_description":"Itä-Suomen yliopiston Kuopion kampuksen tietojenkäsittelytieteen opiskelijoiden ainejärjestö ","en_description":"The computer science students' subject organization of the Kuopio campus of the University of Eastern Finland","fi_button_text":"Millaista tietojenkäsittelytiede on?","en_button_text":"What is computer science like?","en_button_url":"/opiskelu/tkt","fi_button_url":"/opiskelu/tkt"}	{"fi_title":"Serveri ry","user_updated":"0891a0cd-876b-4a0d-a22e-0cce30121382","date_updated":"2023-04-16T15:19:43.805Z"}	\N
+49	53	LandingPage	1	{"id":1,"user_updated":"0891a0cd-876b-4a0d-a22e-0cce30121382","date_updated":"2023-04-16T15:21:01.208Z","fi_title":"Serveri ry ASD","en_title":"Serveri ry","fi_description":"Itä-Suomen yliopiston Kuopion kampuksen tietojenkäsittelytieteen opiskelijoiden ainejärjestö ","en_description":"The computer science students' subject organization of the Kuopio campus of the University of Eastern Finland","fi_button_text":"Millaista tietojenkäsittelytiede on?","en_button_text":"What is computer science like?","en_button_url":"/opiskelu/tkt","fi_button_url":"/opiskelu/tkt"}	{"fi_title":"Serveri ry ASD","user_updated":"0891a0cd-876b-4a0d-a22e-0cce30121382","date_updated":"2023-04-16T15:21:01.208Z"}	\N
+50	54	LandingPage	1	{"id":1,"user_updated":"0891a0cd-876b-4a0d-a22e-0cce30121382","date_updated":"2023-04-16T15:21:30.886Z","fi_title":"Serveri ry","en_title":"Serveri ry","fi_description":"Itä-Suomen yliopiston Kuopion kampuksen tietojenkäsittelytieteen opiskelijoiden ainejärjestö ","en_description":"The computer science students' subject organization of the Kuopio campus of the University of Eastern Finland","fi_button_text":"Millaista tietojenkäsittelytiede on?","en_button_text":"What is computer science like?","en_button_url":"/opiskelu/tkt","fi_button_url":"/opiskelu/tkt"}	{"fi_title":"Serveri ry","user_updated":"0891a0cd-876b-4a0d-a22e-0cce30121382","date_updated":"2023-04-16T15:21:30.886Z"}	\N
+51	56	LandingPage	1	{"id":1,"user_updated":"0891a0cd-876b-4a0d-a22e-0cce30121382","date_updated":"2023-04-16T15:22:03.131Z","fi_title":"Serveri ry Muokkaus","en_title":"Serveri ry","fi_description":"Itä-Suomen yliopiston Kuopion kampuksen tietojenkäsittelytieteen opiskelijoiden ainejärjestö ","en_description":"The computer science students' subject organization of the Kuopio campus of the University of Eastern Finland","fi_button_text":"Millaista tietojenkäsittelytiede on?","en_button_text":"What is computer science like?","en_button_url":"/opiskelu/tkt","fi_button_url":"/opiskelu/tkt"}	{"fi_title":"Serveri ry Muokkaus","user_updated":"0891a0cd-876b-4a0d-a22e-0cce30121382","date_updated":"2023-04-16T15:22:03.131Z"}	\N
+52	57	LandingPage	1	{"id":1,"user_updated":"0891a0cd-876b-4a0d-a22e-0cce30121382","date_updated":"2023-04-16T15:25:53.828Z","fi_title":"Serveri ry Moro","en_title":"Serveri ry","fi_description":"Itä-Suomen yliopiston Kuopion kampuksen tietojenkäsittelytieteen opiskelijoiden ainejärjestö ","en_description":"The computer science students' subject organization of the Kuopio campus of the University of Eastern Finland","fi_button_text":"Millaista tietojenkäsittelytiede on?","en_button_text":"What is computer science like?","en_button_url":"/opiskelu/tkt","fi_button_url":"/opiskelu/tkt"}	{"fi_title":"Serveri ry Moro","user_updated":"0891a0cd-876b-4a0d-a22e-0cce30121382","date_updated":"2023-04-16T15:25:53.828Z"}	\N
+53	58	LandingPage	1	{"id":1,"user_updated":"0891a0cd-876b-4a0d-a22e-0cce30121382","date_updated":"2023-04-16T15:40:45.270Z","fi_title":"Serveri ry ASDASDASDASDASD","en_title":"Serveri ry","fi_description":"Itä-Suomen yliopiston Kuopion kampuksen tietojenkäsittelytieteen opiskelijoiden ainejärjestö ","en_description":"The computer science students' subject organization of the Kuopio campus of the University of Eastern Finland","fi_button_text":"Millaista tietojenkäsittelytiede on?","en_button_text":"What is computer science like?","en_button_url":"/opiskelu/tkt","fi_button_url":"/opiskelu/tkt"}	{"fi_title":"Serveri ry ASDASDASDASDASD","user_updated":"0891a0cd-876b-4a0d-a22e-0cce30121382","date_updated":"2023-04-16T15:40:45.270Z"}	\N
+54	59	LandingPage	1	{"id":1,"user_updated":"0891a0cd-876b-4a0d-a22e-0cce30121382","date_updated":"2023-04-16T15:40:56.866Z","fi_title":"Serveri ry MOROOOO","en_title":"Serveri ry","fi_description":"Itä-Suomen yliopiston Kuopion kampuksen tietojenkäsittelytieteen opiskelijoiden ainejärjestö ","en_description":"The computer science students' subject organization of the Kuopio campus of the University of Eastern Finland","fi_button_text":"Millaista tietojenkäsittelytiede on?","en_button_text":"What is computer science like?","en_button_url":"/opiskelu/tkt","fi_button_url":"/opiskelu/tkt"}	{"fi_title":"Serveri ry MOROOOO","user_updated":"0891a0cd-876b-4a0d-a22e-0cce30121382","date_updated":"2023-04-16T15:40:56.866Z"}	\N
+55	60	directus_fields	18	{"hidden":true,"interface":"input","readonly":true,"field":"id","collection":"board_members"}	{"hidden":true,"interface":"input","readonly":true,"field":"id","collection":"board_members"}	\N
+56	61	directus_fields	19	{"width":"full","options":{"choices":[{"text":"$t:published","value":"published"},{"text":"$t:draft","value":"draft"},{"text":"$t:archived","value":"archived"}]},"interface":"select-dropdown","display":"labels","display_options":{"showAsDot":true,"choices":[{"text":"$t:published","value":"published","foreground":"#FFFFFF","background":"var(--primary)"},{"text":"$t:draft","value":"draft","foreground":"#18222F","background":"#D3DAE4"},{"text":"$t:archived","value":"archived","foreground":"#FFFFFF","background":"var(--warning)"}]},"field":"status","collection":"board_members"}	{"width":"full","options":{"choices":[{"text":"$t:published","value":"published"},{"text":"$t:draft","value":"draft"},{"text":"$t:archived","value":"archived"}]},"interface":"select-dropdown","display":"labels","display_options":{"showAsDot":true,"choices":[{"text":"$t:published","value":"published","foreground":"#FFFFFF","background":"var(--primary)"},{"text":"$t:draft","value":"draft","foreground":"#18222F","background":"#D3DAE4"},{"text":"$t:archived","value":"archived","foreground":"#FFFFFF","background":"var(--warning)"}]},"field":"status","collection":"board_members"}	\N
+57	62	directus_fields	20	{"special":["user-created"],"interface":"select-dropdown-m2o","options":{"template":"{{avatar.$thumbnail}} {{first_name}} {{last_name}}"},"display":"user","readonly":true,"hidden":true,"width":"half","field":"user_created","collection":"board_members"}	{"special":["user-created"],"interface":"select-dropdown-m2o","options":{"template":"{{avatar.$thumbnail}} {{first_name}} {{last_name}}"},"display":"user","readonly":true,"hidden":true,"width":"half","field":"user_created","collection":"board_members"}	\N
+58	63	directus_fields	21	{"special":["date-created"],"interface":"datetime","readonly":true,"hidden":true,"width":"half","display":"datetime","display_options":{"relative":true},"field":"date_created","collection":"board_members"}	{"special":["date-created"],"interface":"datetime","readonly":true,"hidden":true,"width":"half","display":"datetime","display_options":{"relative":true},"field":"date_created","collection":"board_members"}	\N
+59	64	directus_fields	22	{"special":["user-updated"],"interface":"select-dropdown-m2o","options":{"template":"{{avatar.$thumbnail}} {{first_name}} {{last_name}}"},"display":"user","readonly":true,"hidden":true,"width":"half","field":"user_updated","collection":"board_members"}	{"special":["user-updated"],"interface":"select-dropdown-m2o","options":{"template":"{{avatar.$thumbnail}} {{first_name}} {{last_name}}"},"display":"user","readonly":true,"hidden":true,"width":"half","field":"user_updated","collection":"board_members"}	\N
+60	65	directus_fields	23	{"special":["date-updated"],"interface":"datetime","readonly":true,"hidden":true,"width":"half","display":"datetime","display_options":{"relative":true},"field":"date_updated","collection":"board_members"}	{"special":["date-updated"],"interface":"datetime","readonly":true,"hidden":true,"width":"half","display":"datetime","display_options":{"relative":true},"field":"date_updated","collection":"board_members"}	\N
+61	66	directus_collections	board_members	{"archive_field":"status","archive_value":"archived","unarchive_value":"draft","singleton":false,"collection":"board_members"}	{"archive_field":"status","archive_value":"archived","unarchive_value":"draft","singleton":false,"collection":"board_members"}	\N
+62	67	directus_fields	24	{"interface":"input","special":null,"options":{"url":null},"collection":"board_members","field":"name"}	{"interface":"input","special":null,"options":{"url":null},"collection":"board_members","field":"name"}	\N
+63	68	directus_fields	25	{"interface":"input","special":null,"collection":"board_members","field":"role"}	{"interface":"input","special":null,"collection":"board_members","field":"role"}	\N
+64	69	directus_fields	26	{"interface":"input","special":null,"collection":"board_members","field":"email"}	{"interface":"input","special":null,"collection":"board_members","field":"email"}	\N
+65	70	directus_fields	27	{"interface":"input","special":null,"collection":"board_members","field":"telegram_nickname"}	{"interface":"input","special":null,"collection":"board_members","field":"telegram_nickname"}	\N
+66	71	directus_fields	28	{"interface":"input","special":null,"collection":"board_members","field":"telegram"}	{"interface":"input","special":null,"collection":"board_members","field":"telegram"}	\N
+67	72	directus_fields	29	{"interface":"input-multiline","special":null,"collection":"board_members","field":"description"}	{"interface":"input-multiline","special":null,"collection":"board_members","field":"description"}	\N
+68	73	directus_fields	30	{"interface":"input","special":["file"],"collection":"board_members","field":"img"}	{"interface":"input","special":["file"],"collection":"board_members","field":"img"}	\N
+69	74	directus_fields	31	{"interface":"input","special":null,"collection":"board_members","field":"hover_img"}	{"interface":"input","special":null,"collection":"board_members","field":"hover_img"}	\N
+70	75	directus_fields	18	{"id":18,"collection":"board_members","field":"id","special":null,"interface":"input","options":null,"display":null,"display_options":null,"readonly":true,"hidden":true,"sort":1,"width":"full","translations":null,"note":null,"conditions":null,"required":false,"group":null,"validation":null,"validation_message":null}	{"collection":"board_members","field":"id","sort":1,"group":null}	\N
+71	76	directus_fields	19	{"id":19,"collection":"board_members","field":"status","special":null,"interface":"select-dropdown","options":{"choices":[{"text":"$t:published","value":"published"},{"text":"$t:draft","value":"draft"},{"text":"$t:archived","value":"archived"}]},"display":"labels","display_options":{"showAsDot":true,"choices":[{"text":"$t:published","value":"published","foreground":"#FFFFFF","background":"var(--primary)"},{"text":"$t:draft","value":"draft","foreground":"#18222F","background":"#D3DAE4"},{"text":"$t:archived","value":"archived","foreground":"#FFFFFF","background":"var(--warning)"}]},"readonly":false,"hidden":false,"sort":2,"width":"full","translations":null,"note":null,"conditions":null,"required":false,"group":null,"validation":null,"validation_message":null}	{"collection":"board_members","field":"status","sort":2,"group":null}	\N
+72	77	directus_fields	20	{"id":20,"collection":"board_members","field":"user_created","special":["user-created"],"interface":"select-dropdown-m2o","options":{"template":"{{avatar.$thumbnail}} {{first_name}} {{last_name}}"},"display":"user","display_options":null,"readonly":true,"hidden":true,"sort":3,"width":"half","translations":null,"note":null,"conditions":null,"required":false,"group":null,"validation":null,"validation_message":null}	{"collection":"board_members","field":"user_created","sort":3,"group":null}	\N
+73	78	directus_fields	21	{"id":21,"collection":"board_members","field":"date_created","special":["date-created"],"interface":"datetime","options":null,"display":"datetime","display_options":{"relative":true},"readonly":true,"hidden":true,"sort":4,"width":"half","translations":null,"note":null,"conditions":null,"required":false,"group":null,"validation":null,"validation_message":null}	{"collection":"board_members","field":"date_created","sort":4,"group":null}	\N
+74	79	directus_fields	22	{"id":22,"collection":"board_members","field":"user_updated","special":["user-updated"],"interface":"select-dropdown-m2o","options":{"template":"{{avatar.$thumbnail}} {{first_name}} {{last_name}}"},"display":"user","display_options":null,"readonly":true,"hidden":true,"sort":5,"width":"half","translations":null,"note":null,"conditions":null,"required":false,"group":null,"validation":null,"validation_message":null}	{"collection":"board_members","field":"user_updated","sort":5,"group":null}	\N
+75	80	directus_fields	23	{"id":23,"collection":"board_members","field":"date_updated","special":["date-updated"],"interface":"datetime","options":null,"display":"datetime","display_options":{"relative":true},"readonly":true,"hidden":true,"sort":6,"width":"half","translations":null,"note":null,"conditions":null,"required":false,"group":null,"validation":null,"validation_message":null}	{"collection":"board_members","field":"date_updated","sort":6,"group":null}	\N
+76	81	directus_fields	30	{"id":30,"collection":"board_members","field":"img","special":["file"],"interface":"input","options":null,"display":null,"display_options":null,"readonly":false,"hidden":false,"sort":7,"width":"full","translations":null,"note":null,"conditions":null,"required":false,"group":null,"validation":null,"validation_message":null}	{"collection":"board_members","field":"img","sort":7,"group":null}	\N
+77	82	directus_fields	24	{"id":24,"collection":"board_members","field":"name","special":null,"interface":"input","options":{"url":null},"display":null,"display_options":null,"readonly":false,"hidden":false,"sort":8,"width":"full","translations":null,"note":null,"conditions":null,"required":false,"group":null,"validation":null,"validation_message":null}	{"collection":"board_members","field":"name","sort":8,"group":null}	\N
+78	83	directus_fields	25	{"id":25,"collection":"board_members","field":"role","special":null,"interface":"input","options":null,"display":null,"display_options":null,"readonly":false,"hidden":false,"sort":9,"width":"full","translations":null,"note":null,"conditions":null,"required":false,"group":null,"validation":null,"validation_message":null}	{"collection":"board_members","field":"role","sort":9,"group":null}	\N
+79	84	directus_fields	26	{"id":26,"collection":"board_members","field":"email","special":null,"interface":"input","options":null,"display":null,"display_options":null,"readonly":false,"hidden":false,"sort":10,"width":"full","translations":null,"note":null,"conditions":null,"required":false,"group":null,"validation":null,"validation_message":null}	{"collection":"board_members","field":"email","sort":10,"group":null}	\N
+80	85	directus_fields	28	{"id":28,"collection":"board_members","field":"telegram","special":null,"interface":"input","options":null,"display":null,"display_options":null,"readonly":false,"hidden":false,"sort":11,"width":"full","translations":null,"note":null,"conditions":null,"required":false,"group":null,"validation":null,"validation_message":null}	{"collection":"board_members","field":"telegram","sort":11,"group":null}	\N
+81	86	directus_fields	29	{"id":29,"collection":"board_members","field":"description","special":null,"interface":"input-multiline","options":null,"display":null,"display_options":null,"readonly":false,"hidden":false,"sort":12,"width":"full","translations":null,"note":null,"conditions":null,"required":false,"group":null,"validation":null,"validation_message":null}	{"collection":"board_members","field":"description","sort":12,"group":null}	\N
+82	87	directus_fields	31	{"id":31,"collection":"board_members","field":"hover_img","special":null,"interface":"input","options":null,"display":null,"display_options":null,"readonly":false,"hidden":false,"sort":13,"width":"full","translations":null,"note":null,"conditions":null,"required":false,"group":null,"validation":null,"validation_message":null}	{"collection":"board_members","field":"hover_img","sort":13,"group":null}	\N
+96	101	directus_fields	24	{"id":24,"collection":"board_members","field":"name","special":null,"interface":"input","options":{"url":null},"display":null,"display_options":null,"readonly":false,"hidden":false,"sort":9,"width":"full","translations":null,"note":null,"conditions":null,"required":false,"group":null,"validation":null,"validation_message":null}	{"collection":"board_members","field":"name","special":null,"interface":"input","options":{"url":null},"display":null,"display_options":null,"readonly":false,"hidden":false,"sort":9,"width":"full","translations":null,"note":null,"conditions":null,"required":false,"group":null,"validation":null,"validation_message":null}	\N
+97	102	directus_fields	25	{"id":25,"collection":"board_members","field":"role","special":null,"interface":"input","options":null,"display":null,"display_options":null,"readonly":false,"hidden":false,"sort":10,"width":"full","translations":null,"note":null,"conditions":null,"required":false,"group":null,"validation":null,"validation_message":null}	{"collection":"board_members","field":"role","special":null,"interface":"input","options":null,"display":null,"display_options":null,"readonly":false,"hidden":false,"sort":10,"width":"full","translations":null,"note":null,"conditions":null,"required":false,"group":null,"validation":null,"validation_message":null}	\N
+83	88	directus_fields	18	{"id":18,"collection":"board_members","field":"id","special":null,"interface":"input","options":null,"display":null,"display_options":null,"readonly":true,"hidden":true,"sort":1,"width":"full","translations":null,"note":null,"conditions":null,"required":false,"group":null,"validation":null,"validation_message":null}	{"collection":"board_members","field":"id","sort":1,"group":null}	\N
+84	89	directus_fields	19	{"id":19,"collection":"board_members","field":"status","special":null,"interface":"select-dropdown","options":{"choices":[{"text":"$t:published","value":"published"},{"text":"$t:draft","value":"draft"},{"text":"$t:archived","value":"archived"}]},"display":"labels","display_options":{"showAsDot":true,"choices":[{"text":"$t:published","value":"published","foreground":"#FFFFFF","background":"var(--primary)"},{"text":"$t:draft","value":"draft","foreground":"#18222F","background":"#D3DAE4"},{"text":"$t:archived","value":"archived","foreground":"#FFFFFF","background":"var(--warning)"}]},"readonly":false,"hidden":false,"sort":2,"width":"full","translations":null,"note":null,"conditions":null,"required":false,"group":null,"validation":null,"validation_message":null}	{"collection":"board_members","field":"status","sort":2,"group":null}	\N
+85	90	directus_fields	20	{"id":20,"collection":"board_members","field":"user_created","special":["user-created"],"interface":"select-dropdown-m2o","options":{"template":"{{avatar.$thumbnail}} {{first_name}} {{last_name}}"},"display":"user","display_options":null,"readonly":true,"hidden":true,"sort":3,"width":"half","translations":null,"note":null,"conditions":null,"required":false,"group":null,"validation":null,"validation_message":null}	{"collection":"board_members","field":"user_created","sort":3,"group":null}	\N
+86	91	directus_fields	21	{"id":21,"collection":"board_members","field":"date_created","special":["date-created"],"interface":"datetime","options":null,"display":"datetime","display_options":{"relative":true},"readonly":true,"hidden":true,"sort":4,"width":"half","translations":null,"note":null,"conditions":null,"required":false,"group":null,"validation":null,"validation_message":null}	{"collection":"board_members","field":"date_created","sort":4,"group":null}	\N
+87	92	directus_fields	22	{"id":22,"collection":"board_members","field":"user_updated","special":["user-updated"],"interface":"select-dropdown-m2o","options":{"template":"{{avatar.$thumbnail}} {{first_name}} {{last_name}}"},"display":"user","display_options":null,"readonly":true,"hidden":true,"sort":5,"width":"half","translations":null,"note":null,"conditions":null,"required":false,"group":null,"validation":null,"validation_message":null}	{"collection":"board_members","field":"user_updated","sort":5,"group":null}	\N
+88	93	directus_fields	23	{"id":23,"collection":"board_members","field":"date_updated","special":["date-updated"],"interface":"datetime","options":null,"display":"datetime","display_options":{"relative":true},"readonly":true,"hidden":true,"sort":6,"width":"half","translations":null,"note":null,"conditions":null,"required":false,"group":null,"validation":null,"validation_message":null}	{"collection":"board_members","field":"date_updated","sort":6,"group":null}	\N
+89	94	directus_fields	30	{"id":30,"collection":"board_members","field":"img","special":["file"],"interface":"input","options":null,"display":null,"display_options":null,"readonly":false,"hidden":false,"sort":7,"width":"full","translations":null,"note":null,"conditions":null,"required":false,"group":null,"validation":null,"validation_message":null}	{"collection":"board_members","field":"img","sort":7,"group":null}	\N
+90	95	directus_fields	31	{"id":31,"collection":"board_members","field":"hover_img","special":null,"interface":"input","options":null,"display":null,"display_options":null,"readonly":false,"hidden":false,"sort":8,"width":"full","translations":null,"note":null,"conditions":null,"required":false,"group":null,"validation":null,"validation_message":null}	{"collection":"board_members","field":"hover_img","sort":8,"group":null}	\N
+91	96	directus_fields	24	{"id":24,"collection":"board_members","field":"name","special":null,"interface":"input","options":{"url":null},"display":null,"display_options":null,"readonly":false,"hidden":false,"sort":9,"width":"full","translations":null,"note":null,"conditions":null,"required":false,"group":null,"validation":null,"validation_message":null}	{"collection":"board_members","field":"name","sort":9,"group":null}	\N
+92	97	directus_fields	25	{"id":25,"collection":"board_members","field":"role","special":null,"interface":"input","options":null,"display":null,"display_options":null,"readonly":false,"hidden":false,"sort":10,"width":"full","translations":null,"note":null,"conditions":null,"required":false,"group":null,"validation":null,"validation_message":null}	{"collection":"board_members","field":"role","sort":10,"group":null}	\N
+93	98	directus_fields	26	{"id":26,"collection":"board_members","field":"email","special":null,"interface":"input","options":null,"display":null,"display_options":null,"readonly":false,"hidden":false,"sort":11,"width":"full","translations":null,"note":null,"conditions":null,"required":false,"group":null,"validation":null,"validation_message":null}	{"collection":"board_members","field":"email","sort":11,"group":null}	\N
+94	99	directus_fields	28	{"id":28,"collection":"board_members","field":"telegram","special":null,"interface":"input","options":null,"display":null,"display_options":null,"readonly":false,"hidden":false,"sort":12,"width":"full","translations":null,"note":null,"conditions":null,"required":false,"group":null,"validation":null,"validation_message":null}	{"collection":"board_members","field":"telegram","sort":12,"group":null}	\N
+95	100	directus_fields	29	{"id":29,"collection":"board_members","field":"description","special":null,"interface":"input-multiline","options":null,"display":null,"display_options":null,"readonly":false,"hidden":false,"sort":13,"width":"full","translations":null,"note":null,"conditions":null,"required":false,"group":null,"validation":null,"validation_message":null}	{"collection":"board_members","field":"description","sort":13,"group":null}	\N
+99	104	directus_fields	28	{"id":28,"collection":"board_members","field":"telegram","special":null,"interface":"input","options":null,"display":null,"display_options":null,"readonly":false,"hidden":false,"sort":12,"width":"full","translations":null,"note":null,"conditions":null,"required":false,"group":null,"validation":null,"validation_message":null}	{"collection":"board_members","field":"telegram","special":null,"interface":"input","options":null,"display":null,"display_options":null,"readonly":false,"hidden":false,"sort":12,"width":"full","translations":null,"note":null,"conditions":null,"required":false,"group":null,"validation":null,"validation_message":null}	\N
+101	106	directus_fields	28	{"id":28,"collection":"board_members","field":"telegram","special":null,"interface":"input","options":null,"display":null,"display_options":null,"readonly":false,"hidden":false,"sort":12,"width":"full","translations":null,"note":null,"conditions":null,"required":false,"group":null,"validation":null,"validation_message":null}	{"collection":"board_members","field":"telegram","special":null,"interface":"input","options":null,"display":null,"display_options":null,"readonly":false,"hidden":false,"sort":12,"width":"full","translations":null,"note":null,"conditions":null,"required":false,"group":null,"validation":null,"validation_message":null}	\N
+98	103	directus_fields	26	{"id":26,"collection":"board_members","field":"email","special":null,"interface":"input","options":null,"display":null,"display_options":null,"readonly":false,"hidden":false,"sort":11,"width":"full","translations":null,"note":null,"conditions":null,"required":false,"group":null,"validation":null,"validation_message":null}	{"collection":"board_members","field":"email","special":null,"interface":"input","options":null,"display":null,"display_options":null,"readonly":false,"hidden":false,"sort":11,"width":"full","translations":null,"note":null,"conditions":null,"required":false,"group":null,"validation":null,"validation_message":null}	\N
+100	105	directus_fields	29	{"id":29,"collection":"board_members","field":"description","special":null,"interface":"input-multiline","options":null,"display":null,"display_options":null,"readonly":false,"hidden":false,"sort":13,"width":"full","translations":null,"note":null,"conditions":null,"required":false,"group":null,"validation":null,"validation_message":null}	{"collection":"board_members","field":"description","special":null,"interface":"input-multiline","options":null,"display":null,"display_options":null,"readonly":false,"hidden":false,"sort":13,"width":"full","translations":null,"note":null,"conditions":null,"required":false,"group":null,"validation":null,"validation_message":null}	\N
+103	108	directus_fields	25	{"id":25,"collection":"board_members","field":"role","special":null,"interface":"input","options":null,"display":null,"display_options":null,"readonly":false,"hidden":false,"sort":10,"width":"full","translations":null,"note":null,"conditions":null,"required":false,"group":null,"validation":null,"validation_message":null}	{"collection":"board_members","field":"role","special":null,"interface":"input","options":null,"display":null,"display_options":null,"readonly":false,"hidden":false,"sort":10,"width":"full","translations":null,"note":null,"conditions":null,"required":false,"group":null,"validation":null,"validation_message":null}	\N
+105	110	directus_fields	31	{"id":31,"collection":"board_members","field":"hover_img","special":null,"interface":"input","options":null,"display":null,"display_options":null,"readonly":false,"hidden":false,"sort":8,"width":"full","translations":null,"note":null,"conditions":null,"required":false,"group":null,"validation":null,"validation_message":null}	{"collection":"board_members","field":"hover_img","special":null,"interface":"input","options":null,"display":null,"display_options":null,"readonly":false,"hidden":false,"sort":8,"width":"full","translations":null,"note":null,"conditions":null,"required":false,"group":null,"validation":null,"validation_message":null}	\N
+102	107	directus_fields	26	{"id":26,"collection":"board_members","field":"email","special":null,"interface":"input","options":null,"display":null,"display_options":null,"readonly":false,"hidden":false,"sort":11,"width":"full","translations":null,"note":null,"conditions":null,"required":false,"group":null,"validation":null,"validation_message":null}	{"collection":"board_members","field":"email","special":null,"interface":"input","options":null,"display":null,"display_options":null,"readonly":false,"hidden":false,"sort":11,"width":"full","translations":null,"note":null,"conditions":null,"required":false,"group":null,"validation":null,"validation_message":null}	\N
+104	109	directus_fields	24	{"id":24,"collection":"board_members","field":"name","special":null,"interface":"input","options":{"url":null},"display":null,"display_options":null,"readonly":false,"hidden":false,"sort":9,"width":"full","translations":null,"note":null,"conditions":null,"required":false,"group":null,"validation":null,"validation_message":null}	{"collection":"board_members","field":"name","special":null,"interface":"input","options":{"url":null},"display":null,"display_options":null,"readonly":false,"hidden":false,"sort":9,"width":"full","translations":null,"note":null,"conditions":null,"required":false,"group":null,"validation":null,"validation_message":null}	\N
+106	111	directus_fields	30	{"id":30,"collection":"board_members","field":"img","special":["file"],"interface":"input","options":null,"display":null,"display_options":null,"readonly":false,"hidden":false,"sort":7,"width":"full","translations":null,"note":null,"conditions":null,"required":false,"group":null,"validation":null,"validation_message":null}	{"collection":"board_members","field":"img","special":["file"],"interface":"input","options":null,"display":null,"display_options":null,"readonly":false,"hidden":false,"sort":7,"width":"full","translations":null,"note":null,"conditions":null,"required":false,"group":null,"validation":null,"validation_message":null}	\N
+107	112	directus_fields	29	{"id":29,"collection":"board_members","field":"description","special":null,"interface":"input-multiline","options":null,"display":null,"display_options":null,"readonly":false,"hidden":false,"sort":13,"width":"full","translations":null,"note":null,"conditions":null,"required":false,"group":null,"validation":null,"validation_message":null}	{"collection":"board_members","field":"description","special":null,"interface":"input-multiline","options":null,"display":null,"display_options":null,"readonly":false,"hidden":false,"sort":13,"width":"full","translations":null,"note":null,"conditions":null,"required":false,"group":null,"validation":null,"validation_message":null}	\N
+108	113	directus_collections	board_members	{"collection":"board_members","icon":"account_circle","note":"Collection of board members.","display_template":null,"hidden":false,"singleton":false,"translations":null,"archive_field":"status","archive_app_filter":true,"archive_value":"archived","unarchive_value":"draft","sort_field":null,"accountability":"all","color":null,"item_duplication_fields":null,"sort":null,"group":null,"collapse":"open"}	{"icon":"account_circle","note":"Collection of board members."}	\N
+109	114	directus_fields	32	{"interface":"input","special":null,"collection":"board_members","field":"img"}	{"interface":"input","special":null,"collection":"board_members","field":"img"}	\N
+110	115	directus_fields	18	{"id":18,"collection":"board_members","field":"id","special":null,"interface":"input","options":null,"display":null,"display_options":null,"readonly":true,"hidden":true,"sort":1,"width":"full","translations":null,"note":null,"conditions":null,"required":false,"group":null,"validation":null,"validation_message":null}	{"collection":"board_members","field":"id","sort":1,"group":null}	\N
+111	116	directus_fields	19	{"id":19,"collection":"board_members","field":"status","special":null,"interface":"select-dropdown","options":{"choices":[{"text":"$t:published","value":"published"},{"text":"$t:draft","value":"draft"},{"text":"$t:archived","value":"archived"}]},"display":"labels","display_options":{"showAsDot":true,"choices":[{"text":"$t:published","value":"published","foreground":"#FFFFFF","background":"var(--primary)"},{"text":"$t:draft","value":"draft","foreground":"#18222F","background":"#D3DAE4"},{"text":"$t:archived","value":"archived","foreground":"#FFFFFF","background":"var(--warning)"}]},"readonly":false,"hidden":false,"sort":2,"width":"full","translations":null,"note":null,"conditions":null,"required":false,"group":null,"validation":null,"validation_message":null}	{"collection":"board_members","field":"status","sort":2,"group":null}	\N
+112	117	directus_fields	20	{"id":20,"collection":"board_members","field":"user_created","special":["user-created"],"interface":"select-dropdown-m2o","options":{"template":"{{avatar.$thumbnail}} {{first_name}} {{last_name}}"},"display":"user","display_options":null,"readonly":true,"hidden":true,"sort":3,"width":"half","translations":null,"note":null,"conditions":null,"required":false,"group":null,"validation":null,"validation_message":null}	{"collection":"board_members","field":"user_created","sort":3,"group":null}	\N
+113	118	directus_fields	21	{"id":21,"collection":"board_members","field":"date_created","special":["date-created"],"interface":"datetime","options":null,"display":"datetime","display_options":{"relative":true},"readonly":true,"hidden":true,"sort":4,"width":"half","translations":null,"note":null,"conditions":null,"required":false,"group":null,"validation":null,"validation_message":null}	{"collection":"board_members","field":"date_created","sort":4,"group":null}	\N
+114	119	directus_fields	22	{"id":22,"collection":"board_members","field":"user_updated","special":["user-updated"],"interface":"select-dropdown-m2o","options":{"template":"{{avatar.$thumbnail}} {{first_name}} {{last_name}}"},"display":"user","display_options":null,"readonly":true,"hidden":true,"sort":5,"width":"half","translations":null,"note":null,"conditions":null,"required":false,"group":null,"validation":null,"validation_message":null}	{"collection":"board_members","field":"user_updated","sort":5,"group":null}	\N
+115	120	directus_fields	23	{"id":23,"collection":"board_members","field":"date_updated","special":["date-updated"],"interface":"datetime","options":null,"display":"datetime","display_options":{"relative":true},"readonly":true,"hidden":true,"sort":6,"width":"half","translations":null,"note":null,"conditions":null,"required":false,"group":null,"validation":null,"validation_message":null}	{"collection":"board_members","field":"date_updated","sort":6,"group":null}	\N
+116	121	directus_fields	32	{"id":32,"collection":"board_members","field":"img","special":null,"interface":"input","options":null,"display":null,"display_options":null,"readonly":false,"hidden":false,"sort":7,"width":"full","translations":null,"note":null,"conditions":null,"required":false,"group":null,"validation":null,"validation_message":null}	{"collection":"board_members","field":"img","sort":7,"group":null}	\N
+117	122	directus_fields	31	{"id":31,"collection":"board_members","field":"hover_img","special":null,"interface":"input","options":null,"display":null,"display_options":null,"readonly":false,"hidden":false,"sort":8,"width":"full","translations":null,"note":null,"conditions":null,"required":false,"group":null,"validation":null,"validation_message":null}	{"collection":"board_members","field":"hover_img","sort":8,"group":null}	\N
+118	123	directus_fields	24	{"id":24,"collection":"board_members","field":"name","special":null,"interface":"input","options":{"url":null},"display":null,"display_options":null,"readonly":false,"hidden":false,"sort":9,"width":"full","translations":null,"note":null,"conditions":null,"required":false,"group":null,"validation":null,"validation_message":null}	{"collection":"board_members","field":"name","sort":9,"group":null}	\N
+119	124	directus_fields	25	{"id":25,"collection":"board_members","field":"role","special":null,"interface":"input","options":null,"display":null,"display_options":null,"readonly":false,"hidden":false,"sort":10,"width":"full","translations":null,"note":null,"conditions":null,"required":false,"group":null,"validation":null,"validation_message":null}	{"collection":"board_members","field":"role","sort":10,"group":null}	\N
+120	125	directus_fields	26	{"id":26,"collection":"board_members","field":"email","special":null,"interface":"input","options":null,"display":null,"display_options":null,"readonly":false,"hidden":false,"sort":11,"width":"full","translations":null,"note":null,"conditions":null,"required":false,"group":null,"validation":null,"validation_message":null}	{"collection":"board_members","field":"email","sort":11,"group":null}	\N
+121	126	directus_fields	28	{"id":28,"collection":"board_members","field":"telegram","special":null,"interface":"input","options":null,"display":null,"display_options":null,"readonly":false,"hidden":false,"sort":12,"width":"full","translations":null,"note":null,"conditions":null,"required":false,"group":null,"validation":null,"validation_message":null}	{"collection":"board_members","field":"telegram","sort":12,"group":null}	\N
+122	127	directus_fields	29	{"id":29,"collection":"board_members","field":"description","special":null,"interface":"input-multiline","options":null,"display":null,"display_options":null,"readonly":false,"hidden":false,"sort":13,"width":"full","translations":null,"note":null,"conditions":null,"required":false,"group":null,"validation":null,"validation_message":null}	{"collection":"board_members","field":"description","sort":13,"group":null}	\N
+123	128	directus_fields	32	{"id":32,"collection":"board_members","field":"img","special":null,"interface":"input","options":null,"display":null,"display_options":null,"readonly":false,"hidden":false,"sort":7,"width":"full","translations":null,"note":null,"conditions":null,"required":false,"group":null,"validation":null,"validation_message":null}	{"collection":"board_members","field":"img","special":null,"interface":"input","options":null,"display":null,"display_options":null,"readonly":false,"hidden":false,"sort":7,"width":"full","translations":null,"note":null,"conditions":null,"required":false,"group":null,"validation":null,"validation_message":null}	\N
+124	129	directus_fields	31	{"id":31,"collection":"board_members","field":"hover_img","special":null,"interface":"input","options":null,"display":null,"display_options":null,"readonly":false,"hidden":false,"sort":8,"width":"full","translations":null,"note":null,"conditions":null,"required":false,"group":null,"validation":null,"validation_message":null}	{"collection":"board_members","field":"hover_img","special":null,"interface":"input","options":null,"display":null,"display_options":null,"readonly":false,"hidden":false,"sort":8,"width":"full","translations":null,"note":null,"conditions":null,"required":false,"group":null,"validation":null,"validation_message":null}	\N
+125	130	board_members	1	{"status":"published"}	{"status":"published"}	\N
+126	131	board_members	2	{"status":"published","name":"Maija Meikäläinen","email":"maija.meikalainen@serveriry.fi","telegram":"maijameikalainen"}	{"status":"published","name":"Maija Meikäläinen","email":"maija.meikalainen@serveriry.fi","telegram":"maijameikalainen"}	\N
+127	132	directus_permissions	5	{"role":null,"collection":"board_members","action":"read"}	{"role":null,"collection":"board_members","action":"read"}	\N
+128	133	directus_permissions	5	{"id":5,"role":null,"collection":"board_members","action":"read","permissions":null,"validation":null,"presets":null,"fields":["img","hover_img","role","email","telegram","name","description"]}	{"role":null,"collection":"board_members","action":"read","permissions":null,"validation":null,"presets":null,"fields":["img","hover_img","role","email","telegram","name","description"]}	\N
 \.
 
 
@@ -1102,6 +1350,8 @@ COPY public.directus_roles (id, name, icon, description, ip_access, enforce_tfa,
 
 COPY public.directus_sessions (token, "user", expires, ip, user_agent, share, origin) FROM stdin;
 oX01L2tUAAZESn9NIlFFHlv7B49a-zo1o_yzC47ecGucz849B81C7b0TdQhUICYy	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-04-23 11:48:36.707+00	10.0.2.2	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	\N	http://localhost:8081
+IOKx8wi9O8DYOCFbVZ3QAfwivdv5TO54Uymv_lSOLrUtLwirIUGXKv4XA-m9Jxw_	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-04-23 15:15:28.516+00	10.0.2.2	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/111.0	\N	http://127.0.0.1:8081
+2e_wR1cDLYHjG-CC8nK_cHXuNBJyVaqA2h5YcW9qnXh5bps-Gv_GXJJ115nqM5vV	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-04-23 16:26:13.217+00	10.0.2.2	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/111.0	\N	http://localhost:8081
 \.
 
 
@@ -1127,7 +1377,7 @@ COPY public.directus_shares (id, name, collection, item, role, password, user_cr
 --
 
 COPY public.directus_users (id, first_name, last_name, email, password, location, title, description, tags, avatar, language, theme, tfa_secret, status, role, token, last_access, last_page, provider, external_identifier, auth_data, email_notifications) FROM stdin;
-0891a0cd-876b-4a0d-a22e-0cce30121382	Admin	User	dev@serveriry.fi	$argon2id$v=19$m=65536,t=3,p=4$hVskI8M5iDcSrNlBjYgpqQ$VOD9EUHOMkKmWrElydlVl/7ysElrGr+dZcdOU34Ugm0	\N	\N	\N	\N	\N	\N	auto	\N	active	7bd45b9d-d719-4ab1-b7ec-2c68f2eefc76	\N	2023-04-16 11:48:36.708+00	/settings/roles/	default	\N	\N	t
+0891a0cd-876b-4a0d-a22e-0cce30121382	Admin	User	dev@serveriry.fi	$argon2id$v=19$m=65536,t=3,p=4$hVskI8M5iDcSrNlBjYgpqQ$VOD9EUHOMkKmWrElydlVl/7ysElrGr+dZcdOU34Ugm0	\N	\N	\N	\N	\N	\N	auto	\N	active	7bd45b9d-d719-4ab1-b7ec-2c68f2eefc76	\N	2023-04-16 16:26:13.219+00	/settings/roles/public	default	\N	\N	t
 \.
 
 
@@ -1147,17 +1397,24 @@ SELECT pg_catalog.setval('public."LandingPage_id_seq"', 1, true);
 
 
 --
+-- Name: board_members_id_seq; Type: SEQUENCE SET; Schema: public; Owner: serveri
+--
+
+SELECT pg_catalog.setval('public.board_members_id_seq', 2, true);
+
+
+--
 -- Name: directus_activity_id_seq; Type: SEQUENCE SET; Schema: public; Owner: serveri
 --
 
-SELECT pg_catalog.setval('public.directus_activity_id_seq', 48, true);
+SELECT pg_catalog.setval('public.directus_activity_id_seq', 133, true);
 
 
 --
 -- Name: directus_fields_id_seq; Type: SEQUENCE SET; Schema: public; Owner: serveri
 --
 
-SELECT pg_catalog.setval('public.directus_fields_id_seq', 17, true);
+SELECT pg_catalog.setval('public.directus_fields_id_seq', 32, true);
 
 
 --
@@ -1171,28 +1428,28 @@ SELECT pg_catalog.setval('public.directus_notifications_id_seq', 1, false);
 -- Name: directus_permissions_id_seq; Type: SEQUENCE SET; Schema: public; Owner: serveri
 --
 
-SELECT pg_catalog.setval('public.directus_permissions_id_seq', 4, true);
+SELECT pg_catalog.setval('public.directus_permissions_id_seq', 5, true);
 
 
 --
 -- Name: directus_presets_id_seq; Type: SEQUENCE SET; Schema: public; Owner: serveri
 --
 
-SELECT pg_catalog.setval('public.directus_presets_id_seq', 1, false);
+SELECT pg_catalog.setval('public.directus_presets_id_seq', 1, true);
 
 
 --
 -- Name: directus_relations_id_seq; Type: SEQUENCE SET; Schema: public; Owner: serveri
 --
 
-SELECT pg_catalog.setval('public.directus_relations_id_seq', 1, true);
+SELECT pg_catalog.setval('public.directus_relations_id_seq', 3, true);
 
 
 --
 -- Name: directus_revisions_id_seq; Type: SEQUENCE SET; Schema: public; Owner: serveri
 --
 
-SELECT pg_catalog.setval('public.directus_revisions_id_seq', 45, true);
+SELECT pg_catalog.setval('public.directus_revisions_id_seq', 128, true);
 
 
 --
@@ -1215,6 +1472,14 @@ SELECT pg_catalog.setval('public.directus_webhooks_id_seq', 1, false);
 
 ALTER TABLE ONLY public."LandingPage"
     ADD CONSTRAINT "LandingPage_pkey" PRIMARY KEY (id);
+
+
+--
+-- Name: board_members board_members_pkey; Type: CONSTRAINT; Schema: public; Owner: serveri
+--
+
+ALTER TABLE ONLY public.board_members
+    ADD CONSTRAINT board_members_pkey PRIMARY KEY (id);
 
 
 --
@@ -1431,6 +1696,22 @@ ALTER TABLE ONLY public.directus_users
 
 ALTER TABLE ONLY public.directus_webhooks
     ADD CONSTRAINT directus_webhooks_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: board_members board_members_user_created_foreign; Type: FK CONSTRAINT; Schema: public; Owner: serveri
+--
+
+ALTER TABLE ONLY public.board_members
+    ADD CONSTRAINT board_members_user_created_foreign FOREIGN KEY (user_created) REFERENCES public.directus_users(id);
+
+
+--
+-- Name: board_members board_members_user_updated_foreign; Type: FK CONSTRAINT; Schema: public; Owner: serveri
+--
+
+ALTER TABLE ONLY public.board_members
+    ADD CONSTRAINT board_members_user_updated_foreign FOREIGN KEY (user_updated) REFERENCES public.directus_users(id);
 
 
 --
