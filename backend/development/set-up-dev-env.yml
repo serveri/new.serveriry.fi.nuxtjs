@@ -20,7 +20,7 @@
         cp .env.prod ../.env.prod
         cp .env.prod.db ../.env.prod.db
 
-    - name: Start docker compose
+    - name: Start services with docker compose
       ansible.builtin.shell: |
         cd /home/www
         docker compose -f docker-compose.prod.yml up -d --build

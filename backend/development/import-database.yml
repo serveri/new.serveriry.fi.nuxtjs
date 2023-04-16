@@ -21,7 +21,7 @@
         state: started
 
     - name: Run dump file in psql
-      shell: docker exec postgresql bash -c "psql -U serveri serveri_prod < /home/backup.sql"
+      shell: docker exec postgresql bash -c "psql -U serveri directus_prod < /home/backup.sql"
 
     - name: Start rest of docker services
       shell: docker compose -f /home/www/docker-compose.prod.yml up -d --build
