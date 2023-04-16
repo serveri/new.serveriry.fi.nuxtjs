@@ -21,6 +21,49 @@ SET default_tablespace = '';
 SET default_table_access_method = heap;
 
 --
+-- Name: LandingPage; Type: TABLE; Schema: public; Owner: serveri
+--
+
+CREATE TABLE public."LandingPage" (
+    id integer NOT NULL,
+    user_updated uuid,
+    date_updated timestamp with time zone,
+    fi_title text,
+    en_title text,
+    fi_description text,
+    en_description text,
+    fi_button_text text,
+    en_button_text text,
+    en_button_url text,
+    fi_button_url text
+);
+
+
+ALTER TABLE public."LandingPage" OWNER TO serveri;
+
+--
+-- Name: LandingPage_id_seq; Type: SEQUENCE; Schema: public; Owner: serveri
+--
+
+CREATE SEQUENCE public."LandingPage_id_seq"
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public."LandingPage_id_seq" OWNER TO serveri;
+
+--
+-- Name: LandingPage_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: serveri
+--
+
+ALTER SEQUENCE public."LandingPage_id_seq" OWNED BY public."LandingPage".id;
+
+
+--
 -- Name: directus_activity; Type: TABLE; Schema: public; Owner: serveri
 --
 
@@ -675,6 +718,13 @@ ALTER SEQUENCE public.directus_webhooks_id_seq OWNED BY public.directus_webhooks
 
 
 --
+-- Name: LandingPage id; Type: DEFAULT; Schema: public; Owner: serveri
+--
+
+ALTER TABLE ONLY public."LandingPage" ALTER COLUMN id SET DEFAULT nextval('public."LandingPage_id_seq"'::regclass);
+
+
+--
 -- Name: directus_activity id; Type: DEFAULT; Schema: public; Owner: serveri
 --
 
@@ -738,11 +788,67 @@ ALTER TABLE ONLY public.directus_webhooks ALTER COLUMN id SET DEFAULT nextval('p
 
 
 --
+-- Data for Name: LandingPage; Type: TABLE DATA; Schema: public; Owner: serveri
+--
+
+COPY public."LandingPage" (id, user_updated, date_updated, fi_title, en_title, fi_description, en_description, fi_button_text, en_button_text, en_button_url, fi_button_url) FROM stdin;
+1	\N	\N	Serveri ry	Serveri ry	Itä-Suomen yliopiston Kuopion kampuksen tietojenkäsittelytieteen opiskelijoiden ainejärjestö 	The computer science students' subject organization of the Kuopio campus of the University of Eastern Finland	Millaista tietojenkäsittelytiede on?	What is computer science like?	/opiskelu/tkt	/opiskelu/tkt
+\.
+
+
+--
 -- Data for Name: directus_activity; Type: TABLE DATA; Schema: public; Owner: serveri
 --
 
 COPY public.directus_activity (id, action, "user", "timestamp", ip, user_agent, collection, item, comment, origin) FROM stdin;
 1	login	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-04-16 10:55:14.183+00	10.0.2.2	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	directus_users	0891a0cd-876b-4a0d-a22e-0cce30121382	\N	http://localhost:8081
+2	create	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-04-16 11:02:40.383+00	10.0.2.2	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	directus_fields	1	\N	http://localhost:8081
+3	create	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-04-16 11:02:40.392+00	10.0.2.2	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	directus_fields	2	\N	http://localhost:8081
+4	create	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-04-16 11:02:40.398+00	10.0.2.2	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	directus_fields	3	\N	http://localhost:8081
+5	create	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-04-16 11:02:40.406+00	10.0.2.2	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	directus_collections	LandingPage	\N	http://localhost:8081
+6	create	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-04-16 11:04:13.436+00	10.0.2.2	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	directus_fields	4	\N	http://localhost:8081
+7	create	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-04-16 11:04:48.805+00	10.0.2.2	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	directus_fields	5	\N	http://localhost:8081
+8	create	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-04-16 11:06:58.202+00	10.0.2.2	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	directus_fields	6	\N	http://localhost:8081
+9	create	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-04-16 11:07:10.585+00	10.0.2.2	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	directus_fields	7	\N	http://localhost:8081
+10	create	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-04-16 11:07:20.647+00	10.0.2.2	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	directus_fields	8	\N	http://localhost:8081
+11	create	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-04-16 11:07:30.776+00	10.0.2.2	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	directus_fields	9	\N	http://localhost:8081
+12	update	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-04-16 11:07:42.331+00	10.0.2.2	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	directus_fields	7	\N	http://localhost:8081
+13	update	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-04-16 11:07:46.538+00	10.0.2.2	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	directus_fields	9	\N	http://localhost:8081
+14	create	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-04-16 11:08:49.735+00	10.0.2.2	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	directus_fields	10	\N	http://localhost:8081
+15	create	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-04-16 11:08:55.748+00	10.0.2.2	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	directus_fields	11	\N	http://localhost:8081
+16	create	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-04-16 11:09:18.332+00	10.0.2.2	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	directus_fields	12	\N	http://localhost:8081
+17	create	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-04-16 11:09:31.231+00	10.0.2.2	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	directus_fields	13	\N	http://localhost:8081
+18	create	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-04-16 11:09:44.479+00	10.0.2.2	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	directus_fields	14	\N	http://localhost:8081
+19	create	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-04-16 11:09:52.131+00	10.0.2.2	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	directus_fields	15	\N	http://localhost:8081
+20	create	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-04-16 11:09:59.44+00	10.0.2.2	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	directus_fields	16	\N	http://localhost:8081
+21	create	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-04-16 11:10:07.545+00	10.0.2.2	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	directus_fields	17	\N	http://localhost:8081
+22	update	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-04-16 11:10:09.74+00	10.0.2.2	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	directus_fields	1	\N	http://localhost:8081
+23	update	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-04-16 11:10:09.774+00	10.0.2.2	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	directus_fields	2	\N	http://localhost:8081
+24	update	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-04-16 11:10:09.812+00	10.0.2.2	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	directus_fields	3	\N	http://localhost:8081
+25	update	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-04-16 11:10:09.851+00	10.0.2.2	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	directus_fields	10	\N	http://localhost:8081
+26	update	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-04-16 11:10:09.889+00	10.0.2.2	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	directus_fields	11	\N	http://localhost:8081
+27	update	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-04-16 11:10:09.949+00	10.0.2.2	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	directus_fields	12	\N	http://localhost:8081
+28	update	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-04-16 11:10:09.993+00	10.0.2.2	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	directus_fields	13	\N	http://localhost:8081
+29	update	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-04-16 11:10:10.034+00	10.0.2.2	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	directus_fields	14	\N	http://localhost:8081
+30	update	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-04-16 11:10:10.057+00	10.0.2.2	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	directus_fields	15	\N	http://localhost:8081
+31	update	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-04-16 11:10:10.093+00	10.0.2.2	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	directus_fields	17	\N	http://localhost:8081
+32	update	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-04-16 11:10:10.121+00	10.0.2.2	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	directus_fields	16	\N	http://localhost:8081
+33	create	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-04-16 11:11:54.68+00	10.0.2.2	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	LandingPage	1	\N	http://localhost:8081
+34	create	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-04-16 11:12:46.837+00	10.0.2.2	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	directus_settings	1	\N	http://localhost:8081
+35	update	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-04-16 11:12:52.744+00	10.0.2.2	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	directus_settings	1	\N	http://localhost:8081
+36	update	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-04-16 11:13:13.953+00	10.0.2.2	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	directus_settings	1	\N	http://localhost:8081
+37	update	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-04-16 11:13:30.185+00	10.0.2.2	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	directus_settings	1	\N	http://localhost:8081
+38	create	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-04-16 11:14:15.77+00	10.0.2.2	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	directus_permissions	1	\N	http://localhost:8081
+39	update	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-04-16 11:14:29.314+00	10.0.2.2	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	directus_permissions	1	\N	http://localhost:8081
+40	create	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-04-16 11:28:13.382+00	10.0.2.2	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	directus_permissions	2	\N	http://localhost:8081
+41	create	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-04-16 11:28:21.934+00	10.0.2.2	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	directus_permissions	3	\N	http://localhost:8081
+42	update	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-04-16 11:28:38.358+00	10.0.2.2	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	directus_permissions	1	\N	http://localhost:8081
+43	create	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-04-16 11:28:45.792+00	10.0.2.2	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	directus_permissions	4	\N	http://localhost:8081
+44	update	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-04-16 11:43:41.392+00	10.0.2.2	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	directus_permissions	1	\N	http://localhost:8081
+45	update	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-04-16 11:44:00.475+00	10.0.2.2	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	directus_permissions	1	\N	http://localhost:8081
+46	update	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-04-16 11:44:28.41+00	10.0.2.2	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	directus_permissions	1	\N	http://localhost:8081
+47	delete	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-04-16 11:49:32.978+00	10.0.2.2	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	directus_permissions	3	\N	http://localhost:8081
+48	delete	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-04-16 11:49:34.638+00	10.0.2.2	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	directus_permissions	2	\N	http://localhost:8081
 \.
 
 
@@ -751,6 +857,7 @@ COPY public.directus_activity (id, action, "user", "timestamp", ip, user_agent, 
 --
 
 COPY public.directus_collections (collection, icon, note, display_template, hidden, singleton, translations, archive_field, archive_app_filter, archive_value, unarchive_value, sort_field, accountability, color, item_duplication_fields, sort, "group", collapse) FROM stdin;
+LandingPage	\N	\N	\N	f	t	\N	\N	t	\N	\N	\N	all	\N	\N	\N	\N	open
 \.
 
 
@@ -767,6 +874,17 @@ COPY public.directus_dashboards (id, name, icon, note, date_created, user_create
 --
 
 COPY public.directus_fields (id, collection, field, special, interface, options, display, display_options, readonly, hidden, sort, width, translations, note, conditions, required, "group", validation, validation_message) FROM stdin;
+1	LandingPage	id	\N	input	\N	\N	\N	t	t	1	full	\N	\N	\N	f	\N	\N	\N
+2	LandingPage	user_updated	user-updated	select-dropdown-m2o	{"template":"{{avatar.$thumbnail}} {{first_name}} {{last_name}}"}	user	\N	t	t	2	half	\N	\N	\N	f	\N	\N	\N
+3	LandingPage	date_updated	date-updated	datetime	\N	datetime	{"relative":true}	t	t	3	half	\N	\N	\N	f	\N	\N	\N
+10	LandingPage	fi_title	\N	input-multiline	\N	\N	\N	f	f	4	full	\N	\N	\N	f	\N	\N	\N
+11	LandingPage	en_title	\N	input-multiline	\N	\N	\N	f	f	5	full	\N	\N	\N	f	\N	\N	\N
+12	LandingPage	fi_description	\N	input-multiline	\N	\N	\N	f	f	6	full	\N	\N	\N	f	\N	\N	\N
+13	LandingPage	en_description	\N	input-multiline	\N	\N	\N	f	f	7	full	\N	\N	\N	f	\N	\N	\N
+14	LandingPage	fi_button_text	\N	input-multiline	\N	\N	\N	f	f	8	full	\N	\N	\N	f	\N	\N	\N
+15	LandingPage	en_button_text	\N	input-multiline	\N	\N	\N	f	f	9	full	\N	\N	\N	f	\N	\N	\N
+17	LandingPage	fi_button_url	\N	input-multiline	\N	\N	\N	f	f	10	full	\N	\N	\N	f	\N	\N	\N
+16	LandingPage	en_button_url	\N	input-multiline	\N	\N	\N	f	f	11	full	\N	\N	\N	f	\N	\N	\N
 \.
 
 
@@ -894,6 +1012,8 @@ COPY public.directus_panels (id, dashboard, name, icon, color, show_header, note
 --
 
 COPY public.directus_permissions (id, role, collection, action, permissions, validation, presets, fields) FROM stdin;
+4	\N	directus_users	read	{}	{}	\N	*
+1	\N	LandingPage	read	\N	{}	\N	fi_title,en_title,fi_description,en_description,fi_button_text,en_button_text,fi_button_url,en_button_url
 \.
 
 
@@ -910,6 +1030,7 @@ COPY public.directus_presets (id, bookmark, "user", role, collection, search, la
 --
 
 COPY public.directus_relations (id, many_collection, many_field, one_collection, one_field, one_collection_field, one_allowed_collections, junction_field, sort_field, one_deselect_action) FROM stdin;
+1	LandingPage	user_updated	directus_users	\N	\N	\N	\N	\N	nullify
 \.
 
 
@@ -918,6 +1039,51 @@ COPY public.directus_relations (id, many_collection, many_field, one_collection,
 --
 
 COPY public.directus_revisions (id, activity, collection, item, data, delta, parent) FROM stdin;
+1	2	directus_fields	1	{"hidden":true,"interface":"input","readonly":true,"field":"id","collection":"LandingPage"}	{"hidden":true,"interface":"input","readonly":true,"field":"id","collection":"LandingPage"}	\N
+2	3	directus_fields	2	{"special":["user-updated"],"interface":"select-dropdown-m2o","options":{"template":"{{avatar.$thumbnail}} {{first_name}} {{last_name}}"},"display":"user","readonly":true,"hidden":true,"width":"half","field":"user_updated","collection":"LandingPage"}	{"special":["user-updated"],"interface":"select-dropdown-m2o","options":{"template":"{{avatar.$thumbnail}} {{first_name}} {{last_name}}"},"display":"user","readonly":true,"hidden":true,"width":"half","field":"user_updated","collection":"LandingPage"}	\N
+3	4	directus_fields	3	{"special":["date-updated"],"interface":"datetime","readonly":true,"hidden":true,"width":"half","display":"datetime","display_options":{"relative":true},"field":"date_updated","collection":"LandingPage"}	{"special":["date-updated"],"interface":"datetime","readonly":true,"hidden":true,"width":"half","display":"datetime","display_options":{"relative":true},"field":"date_updated","collection":"LandingPage"}	\N
+4	5	directus_collections	LandingPage	{"singleton":true,"collection":"LandingPage"}	{"singleton":true,"collection":"LandingPage"}	\N
+5	6	directus_fields	4	{"interface":"input-multiline","special":null,"options":{"placeholder":"The big text on landing page"},"required":false,"collection":"LandingPage","field":"title"}	{"interface":"input-multiline","special":null,"options":{"placeholder":"The big text on landing page"},"required":false,"collection":"LandingPage","field":"title"}	\N
+6	7	directus_fields	5	{"interface":"input-multiline","special":null,"options":{"placeholder":"Description of serveri ry"},"collection":"LandingPage","field":"description"}	{"interface":"input-multiline","special":null,"options":{"placeholder":"Description of serveri ry"},"collection":"LandingPage","field":"description"}	\N
+7	8	directus_fields	6	{"interface":"input-multiline","special":null,"options":{"placeholder":null},"collection":"LandingPage","field":"fi_button_text"}	{"interface":"input-multiline","special":null,"options":{"placeholder":null},"collection":"LandingPage","field":"fi_button_text"}	\N
+8	9	directus_fields	7	{"interface":"input-multiline","special":null,"collection":"LandingPage","field":"fi_button_link"}	{"interface":"input-multiline","special":null,"collection":"LandingPage","field":"fi_button_link"}	\N
+9	10	directus_fields	8	{"interface":"input-multiline","special":null,"collection":"LandingPage","field":"en_button_text"}	{"interface":"input-multiline","special":null,"collection":"LandingPage","field":"en_button_text"}	\N
+10	11	directus_fields	9	{"interface":"input-multiline","special":null,"collection":"LandingPage","field":"en_button_url"}	{"interface":"input-multiline","special":null,"collection":"LandingPage","field":"en_button_url"}	\N
+11	12	directus_fields	7	{"id":7,"collection":"LandingPage","field":"fi_button_link","special":null,"interface":"input-multiline","options":null,"display":null,"display_options":null,"readonly":false,"hidden":false,"sort":null,"width":"full","translations":null,"note":null,"conditions":null,"required":false,"group":null,"validation":null,"validation_message":null}	{"collection":"LandingPage","field":"fi_button_link","special":null,"interface":"input-multiline","options":null,"display":null,"display_options":null,"readonly":false,"hidden":false,"sort":null,"width":"full","translations":null,"note":null,"conditions":null,"required":false,"group":null,"validation":null,"validation_message":null}	\N
+12	13	directus_fields	9	{"id":9,"collection":"LandingPage","field":"en_button_url","special":null,"interface":"input-multiline","options":null,"display":null,"display_options":null,"readonly":false,"hidden":false,"sort":null,"width":"full","translations":null,"note":null,"conditions":null,"required":false,"group":null,"validation":null,"validation_message":null}	{"collection":"LandingPage","field":"en_button_url","special":null,"interface":"input-multiline","options":null,"display":null,"display_options":null,"readonly":false,"hidden":false,"sort":null,"width":"full","translations":null,"note":null,"conditions":null,"required":false,"group":null,"validation":null,"validation_message":null}	\N
+13	14	directus_fields	10	{"interface":"input-multiline","special":null,"collection":"LandingPage","field":"fi_title"}	{"interface":"input-multiline","special":null,"collection":"LandingPage","field":"fi_title"}	\N
+14	15	directus_fields	11	{"interface":"input-multiline","special":null,"collection":"LandingPage","field":"en_title"}	{"interface":"input-multiline","special":null,"collection":"LandingPage","field":"en_title"}	\N
+15	16	directus_fields	12	{"interface":"input-multiline","special":null,"collection":"LandingPage","field":"fi_description"}	{"interface":"input-multiline","special":null,"collection":"LandingPage","field":"fi_description"}	\N
+16	17	directus_fields	13	{"interface":"input-multiline","special":null,"collection":"LandingPage","field":"en_description"}	{"interface":"input-multiline","special":null,"collection":"LandingPage","field":"en_description"}	\N
+17	18	directus_fields	14	{"interface":"input-multiline","special":null,"collection":"LandingPage","field":"fi_button_text"}	{"interface":"input-multiline","special":null,"collection":"LandingPage","field":"fi_button_text"}	\N
+18	19	directus_fields	15	{"interface":"input-multiline","special":null,"collection":"LandingPage","field":"en_button_text"}	{"interface":"input-multiline","special":null,"collection":"LandingPage","field":"en_button_text"}	\N
+19	20	directus_fields	16	{"interface":"input-multiline","special":null,"collection":"LandingPage","field":"en_button_url"}	{"interface":"input-multiline","special":null,"collection":"LandingPage","field":"en_button_url"}	\N
+20	21	directus_fields	17	{"interface":"input-multiline","special":null,"collection":"LandingPage","field":"fi_button_url"}	{"interface":"input-multiline","special":null,"collection":"LandingPage","field":"fi_button_url"}	\N
+21	22	directus_fields	1	{"id":1,"collection":"LandingPage","field":"id","special":null,"interface":"input","options":null,"display":null,"display_options":null,"readonly":true,"hidden":true,"sort":1,"width":"full","translations":null,"note":null,"conditions":null,"required":false,"group":null,"validation":null,"validation_message":null}	{"collection":"LandingPage","field":"id","sort":1,"group":null}	\N
+22	23	directus_fields	2	{"id":2,"collection":"LandingPage","field":"user_updated","special":["user-updated"],"interface":"select-dropdown-m2o","options":{"template":"{{avatar.$thumbnail}} {{first_name}} {{last_name}}"},"display":"user","display_options":null,"readonly":true,"hidden":true,"sort":2,"width":"half","translations":null,"note":null,"conditions":null,"required":false,"group":null,"validation":null,"validation_message":null}	{"collection":"LandingPage","field":"user_updated","sort":2,"group":null}	\N
+23	24	directus_fields	3	{"id":3,"collection":"LandingPage","field":"date_updated","special":["date-updated"],"interface":"datetime","options":null,"display":"datetime","display_options":{"relative":true},"readonly":true,"hidden":true,"sort":3,"width":"half","translations":null,"note":null,"conditions":null,"required":false,"group":null,"validation":null,"validation_message":null}	{"collection":"LandingPage","field":"date_updated","sort":3,"group":null}	\N
+24	25	directus_fields	10	{"id":10,"collection":"LandingPage","field":"fi_title","special":null,"interface":"input-multiline","options":null,"display":null,"display_options":null,"readonly":false,"hidden":false,"sort":4,"width":"full","translations":null,"note":null,"conditions":null,"required":false,"group":null,"validation":null,"validation_message":null}	{"collection":"LandingPage","field":"fi_title","sort":4,"group":null}	\N
+25	26	directus_fields	11	{"id":11,"collection":"LandingPage","field":"en_title","special":null,"interface":"input-multiline","options":null,"display":null,"display_options":null,"readonly":false,"hidden":false,"sort":5,"width":"full","translations":null,"note":null,"conditions":null,"required":false,"group":null,"validation":null,"validation_message":null}	{"collection":"LandingPage","field":"en_title","sort":5,"group":null}	\N
+26	27	directus_fields	12	{"id":12,"collection":"LandingPage","field":"fi_description","special":null,"interface":"input-multiline","options":null,"display":null,"display_options":null,"readonly":false,"hidden":false,"sort":6,"width":"full","translations":null,"note":null,"conditions":null,"required":false,"group":null,"validation":null,"validation_message":null}	{"collection":"LandingPage","field":"fi_description","sort":6,"group":null}	\N
+27	28	directus_fields	13	{"id":13,"collection":"LandingPage","field":"en_description","special":null,"interface":"input-multiline","options":null,"display":null,"display_options":null,"readonly":false,"hidden":false,"sort":7,"width":"full","translations":null,"note":null,"conditions":null,"required":false,"group":null,"validation":null,"validation_message":null}	{"collection":"LandingPage","field":"en_description","sort":7,"group":null}	\N
+28	29	directus_fields	14	{"id":14,"collection":"LandingPage","field":"fi_button_text","special":null,"interface":"input-multiline","options":null,"display":null,"display_options":null,"readonly":false,"hidden":false,"sort":8,"width":"full","translations":null,"note":null,"conditions":null,"required":false,"group":null,"validation":null,"validation_message":null}	{"collection":"LandingPage","field":"fi_button_text","sort":8,"group":null}	\N
+29	30	directus_fields	15	{"id":15,"collection":"LandingPage","field":"en_button_text","special":null,"interface":"input-multiline","options":null,"display":null,"display_options":null,"readonly":false,"hidden":false,"sort":9,"width":"full","translations":null,"note":null,"conditions":null,"required":false,"group":null,"validation":null,"validation_message":null}	{"collection":"LandingPage","field":"en_button_text","sort":9,"group":null}	\N
+30	31	directus_fields	17	{"id":17,"collection":"LandingPage","field":"fi_button_url","special":null,"interface":"input-multiline","options":null,"display":null,"display_options":null,"readonly":false,"hidden":false,"sort":10,"width":"full","translations":null,"note":null,"conditions":null,"required":false,"group":null,"validation":null,"validation_message":null}	{"collection":"LandingPage","field":"fi_button_url","sort":10,"group":null}	\N
+31	32	directus_fields	16	{"id":16,"collection":"LandingPage","field":"en_button_url","special":null,"interface":"input-multiline","options":null,"display":null,"display_options":null,"readonly":false,"hidden":false,"sort":11,"width":"full","translations":null,"note":null,"conditions":null,"required":false,"group":null,"validation":null,"validation_message":null}	{"collection":"LandingPage","field":"en_button_url","sort":11,"group":null}	\N
+32	33	LandingPage	1	{"fi_title":"Serveri ry","en_title":"Serveri ry","fi_description":"Itä-Suomen yliopiston Kuopion kampuksen tietojenkäsittelytieteen opiskelijoiden ainejärjestö ","en_description":"The computer science students' subject organization of the Kuopio campus of the University of Eastern Finland","fi_button_text":"Millaista tietojenkäsittelytiede on?","en_button_text":"What is computer science like?","fi_button_url":"/opiskelu/tkt","en_button_url":"/opiskelu/tkt"}	{"fi_title":"Serveri ry","en_title":"Serveri ry","fi_description":"Itä-Suomen yliopiston Kuopion kampuksen tietojenkäsittelytieteen opiskelijoiden ainejärjestö ","en_description":"The computer science students' subject organization of the Kuopio campus of the University of Eastern Finland","fi_button_text":"Millaista tietojenkäsittelytiede on?","en_button_text":"What is computer science like?","fi_button_url":"/opiskelu/tkt","en_button_url":"/opiskelu/tkt"}	\N
+33	34	directus_settings	1	{"project_name":"Serveri ry web","project_url":"https://serveriry.fi"}	{"project_name":"Serveri ry web","project_url":"https://serveriry.fi"}	\N
+34	35	directus_settings	1	{"id":1,"project_name":"Serveri ry nuxt","project_url":"https://serveriry.fi","project_color":null,"project_logo":null,"public_foreground":null,"public_background":null,"public_note":null,"auth_login_attempts":25,"auth_password_policy":null,"storage_asset_transform":"all","storage_asset_presets":null,"custom_css":null,"storage_default_folder":null,"basemaps":null,"mapbox_key":null,"module_bar":null,"project_descriptor":null,"translation_strings":null,"default_language":"en-US","custom_aspect_ratios":null}	{"project_name":"Serveri ry nuxt"}	\N
+35	36	directus_settings	1	{"id":1,"project_name":"Serveri ry nuxt","project_url":"https://serveriry.fi","project_color":null,"project_logo":null,"public_foreground":null,"public_background":null,"public_note":null,"auth_login_attempts":25,"auth_password_policy":null,"storage_asset_transform":"all","storage_asset_presets":null,"custom_css":null,"storage_default_folder":null,"basemaps":null,"mapbox_key":null,"module_bar":null,"project_descriptor":"Serveri ry web page content api written with nuxt","translation_strings":null,"default_language":"en-US","custom_aspect_ratios":null}	{"project_descriptor":"Serveri ry web page content api written with nuxt"}	\N
+36	37	directus_settings	1	{"id":1,"project_name":"Serveri ry nuxt","project_url":"https://serveriry.fi","project_color":null,"project_logo":null,"public_foreground":null,"public_background":null,"public_note":null,"auth_login_attempts":25,"auth_password_policy":null,"storage_asset_transform":"all","storage_asset_presets":null,"custom_css":null,"storage_default_folder":null,"basemaps":null,"mapbox_key":null,"module_bar":null,"project_descriptor":"Serveri ry web page content api for nuxt frontend","translation_strings":null,"default_language":"en-US","custom_aspect_ratios":null}	{"project_descriptor":"Serveri ry web page content api for nuxt frontend"}	\N
+37	38	directus_permissions	1	{"role":null,"collection":"LandingPage","action":"read","fields":["*"],"permissions":{},"validation":{}}	{"role":null,"collection":"LandingPage","action":"read","fields":["*"],"permissions":{},"validation":{}}	\N
+38	39	directus_permissions	1	{"id":1,"role":null,"collection":"LandingPage","action":"read","permissions":{},"validation":{},"presets":null,"fields":["fi_title","en_title","fi_description","en_description","fi_button_text","en_button_text","fi_button_url","en_button_url"]}	{"role":null,"collection":"LandingPage","action":"read","permissions":{},"validation":{},"presets":null,"fields":["fi_title","en_title","fi_description","en_description","fi_button_text","en_button_text","fi_button_url","en_button_url"]}	\N
+39	40	directus_permissions	2	{"role":null,"collection":"directus_fields","action":"read","fields":["*"],"permissions":{},"validation":{}}	{"role":null,"collection":"directus_fields","action":"read","fields":["*"],"permissions":{},"validation":{}}	\N
+40	41	directus_permissions	3	{"role":null,"collection":"directus_collections","action":"read","fields":["*"],"permissions":{},"validation":{}}	{"role":null,"collection":"directus_collections","action":"read","fields":["*"],"permissions":{},"validation":{}}	\N
+41	42	directus_permissions	1	{"id":1,"role":null,"collection":"LandingPage","action":"read","permissions":{},"validation":{},"presets":null,"fields":["*"]}	{"permissions":{},"validation":{},"fields":["*"]}	\N
+42	43	directus_permissions	4	{"role":null,"collection":"directus_users","action":"read","fields":["*"],"permissions":{},"validation":{}}	{"role":null,"collection":"directus_users","action":"read","fields":["*"],"permissions":{},"validation":{}}	\N
+43	44	directus_permissions	1	{"id":1,"role":null,"collection":"LandingPage","action":"read","permissions":null,"validation":{},"presets":null,"fields":["fi_title","en_title","fi_description","en_description","fi_button_text","en_button_text","fi_button_url","en_button_url"]}	{"role":null,"collection":"LandingPage","action":"read","permissions":null,"validation":{},"presets":null,"fields":["fi_title","en_title","fi_description","en_description","fi_button_text","en_button_text","fi_button_url","en_button_url"]}	\N
+44	45	directus_permissions	1	{"id":1,"role":null,"collection":"LandingPage","action":"read","permissions":null,"validation":{},"presets":null,"fields":["fi_title","en_title","fi_description","en_description","fi_button_text","en_button_text","fi_button_url","en_button_url"]}	{"role":null,"collection":"LandingPage","action":"read","permissions":null,"validation":{},"presets":null,"fields":["fi_title","en_title","fi_description","en_description","fi_button_text","en_button_text","fi_button_url","en_button_url"]}	\N
+45	46	directus_permissions	1	{"id":1,"role":null,"collection":"LandingPage","action":"read","permissions":null,"validation":{},"presets":null,"fields":["fi_title","en_title","fi_description","en_description","fi_button_text","en_button_text","fi_button_url","en_button_url"]}	{"role":null,"collection":"LandingPage","action":"read","permissions":null,"validation":{},"presets":null,"fields":["fi_title","en_title","fi_description","en_description","fi_button_text","en_button_text","fi_button_url","en_button_url"]}	\N
 \.
 
 
@@ -935,7 +1101,7 @@ COPY public.directus_roles (id, name, icon, description, ip_access, enforce_tfa,
 --
 
 COPY public.directus_sessions (token, "user", expires, ip, user_agent, share, origin) FROM stdin;
-b_hGkrHJWDgdC1YMzA79zIUiGfvD1GGqMojY0IfeZVM-5nLp9SKs7ocsT1X00vAE	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-04-23 10:55:14.174+00	10.0.2.2	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	\N	http://localhost:8081
+oX01L2tUAAZESn9NIlFFHlv7B49a-zo1o_yzC47ecGucz849B81C7b0TdQhUICYy	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-04-23 11:48:36.707+00	10.0.2.2	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	\N	http://localhost:8081
 \.
 
 
@@ -944,6 +1110,7 @@ b_hGkrHJWDgdC1YMzA79zIUiGfvD1GGqMojY0IfeZVM-5nLp9SKs7ocsT1X00vAE	0891a0cd-876b-4
 --
 
 COPY public.directus_settings (id, project_name, project_url, project_color, project_logo, public_foreground, public_background, public_note, auth_login_attempts, auth_password_policy, storage_asset_transform, storage_asset_presets, custom_css, storage_default_folder, basemaps, mapbox_key, module_bar, project_descriptor, translation_strings, default_language, custom_aspect_ratios) FROM stdin;
+1	Serveri ry nuxt	https://serveriry.fi	\N	\N	\N	\N	\N	25	\N	all	\N	\N	\N	\N	\N	\N	Serveri ry web page content api for nuxt frontend	\N	en-US	\N
 \.
 
 
@@ -960,7 +1127,7 @@ COPY public.directus_shares (id, name, collection, item, role, password, user_cr
 --
 
 COPY public.directus_users (id, first_name, last_name, email, password, location, title, description, tags, avatar, language, theme, tfa_secret, status, role, token, last_access, last_page, provider, external_identifier, auth_data, email_notifications) FROM stdin;
-0891a0cd-876b-4a0d-a22e-0cce30121382	Admin	User	dev@serveriry.fi	$argon2id$v=19$m=65536,t=3,p=4$hVskI8M5iDcSrNlBjYgpqQ$VOD9EUHOMkKmWrElydlVl/7ysElrGr+dZcdOU34Ugm0	\N	\N	\N	\N	\N	\N	auto	\N	active	7bd45b9d-d719-4ab1-b7ec-2c68f2eefc76	\N	2023-04-16 10:55:14.203+00	/users	default	\N	\N	t
+0891a0cd-876b-4a0d-a22e-0cce30121382	Admin	User	dev@serveriry.fi	$argon2id$v=19$m=65536,t=3,p=4$hVskI8M5iDcSrNlBjYgpqQ$VOD9EUHOMkKmWrElydlVl/7ysElrGr+dZcdOU34Ugm0	\N	\N	\N	\N	\N	\N	auto	\N	active	7bd45b9d-d719-4ab1-b7ec-2c68f2eefc76	\N	2023-04-16 11:48:36.708+00	/settings/roles/	default	\N	\N	t
 \.
 
 
@@ -973,17 +1140,24 @@ COPY public.directus_webhooks (id, name, method, url, status, data, actions, col
 
 
 --
+-- Name: LandingPage_id_seq; Type: SEQUENCE SET; Schema: public; Owner: serveri
+--
+
+SELECT pg_catalog.setval('public."LandingPage_id_seq"', 1, true);
+
+
+--
 -- Name: directus_activity_id_seq; Type: SEQUENCE SET; Schema: public; Owner: serveri
 --
 
-SELECT pg_catalog.setval('public.directus_activity_id_seq', 1, true);
+SELECT pg_catalog.setval('public.directus_activity_id_seq', 48, true);
 
 
 --
 -- Name: directus_fields_id_seq; Type: SEQUENCE SET; Schema: public; Owner: serveri
 --
 
-SELECT pg_catalog.setval('public.directus_fields_id_seq', 1, false);
+SELECT pg_catalog.setval('public.directus_fields_id_seq', 17, true);
 
 
 --
@@ -997,7 +1171,7 @@ SELECT pg_catalog.setval('public.directus_notifications_id_seq', 1, false);
 -- Name: directus_permissions_id_seq; Type: SEQUENCE SET; Schema: public; Owner: serveri
 --
 
-SELECT pg_catalog.setval('public.directus_permissions_id_seq', 1, false);
+SELECT pg_catalog.setval('public.directus_permissions_id_seq', 4, true);
 
 
 --
@@ -1011,21 +1185,21 @@ SELECT pg_catalog.setval('public.directus_presets_id_seq', 1, false);
 -- Name: directus_relations_id_seq; Type: SEQUENCE SET; Schema: public; Owner: serveri
 --
 
-SELECT pg_catalog.setval('public.directus_relations_id_seq', 1, false);
+SELECT pg_catalog.setval('public.directus_relations_id_seq', 1, true);
 
 
 --
 -- Name: directus_revisions_id_seq; Type: SEQUENCE SET; Schema: public; Owner: serveri
 --
 
-SELECT pg_catalog.setval('public.directus_revisions_id_seq', 1, false);
+SELECT pg_catalog.setval('public.directus_revisions_id_seq', 45, true);
 
 
 --
 -- Name: directus_settings_id_seq; Type: SEQUENCE SET; Schema: public; Owner: serveri
 --
 
-SELECT pg_catalog.setval('public.directus_settings_id_seq', 1, false);
+SELECT pg_catalog.setval('public.directus_settings_id_seq', 1, true);
 
 
 --
@@ -1033,6 +1207,14 @@ SELECT pg_catalog.setval('public.directus_settings_id_seq', 1, false);
 --
 
 SELECT pg_catalog.setval('public.directus_webhooks_id_seq', 1, false);
+
+
+--
+-- Name: LandingPage LandingPage_pkey; Type: CONSTRAINT; Schema: public; Owner: serveri
+--
+
+ALTER TABLE ONLY public."LandingPage"
+    ADD CONSTRAINT "LandingPage_pkey" PRIMARY KEY (id);
 
 
 --
@@ -1489,6 +1671,14 @@ ALTER TABLE ONLY public.directus_shares
 
 ALTER TABLE ONLY public.directus_users
     ADD CONSTRAINT directus_users_role_foreign FOREIGN KEY (role) REFERENCES public.directus_roles(id) ON DELETE SET NULL;
+
+
+--
+-- Name: LandingPage landingpage_user_updated_foreign; Type: FK CONSTRAINT; Schema: public; Owner: serveri
+--
+
+ALTER TABLE ONLY public."LandingPage"
+    ADD CONSTRAINT landingpage_user_updated_foreign FOREIGN KEY (user_updated) REFERENCES public.directus_users(id);
 
 
 --

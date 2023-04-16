@@ -20,6 +20,11 @@
         cp .env.prod ../.env.prod
         cp .env.prod.db ../.env.prod.db
 
+    - name: Stop any existing docker services
+      ansible.builtin.shell: |
+        cd /home/www
+        docker compose -f docker-compose.prod.yml down
+
     - name: Start services with docker compose
       ansible.builtin.shell: |
         cd /home/www
