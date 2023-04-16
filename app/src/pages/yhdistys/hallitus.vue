@@ -54,7 +54,7 @@
 </template>
 
 <script setup lang="ts">
-   const response = await useFetch('http://127.0.0.1:8081/items/board_members');
+   const response: Object = await useFetch('http://127.0.0.1:8081/items/board_members');
    const members = response.data.value.data;
    console.log('members', members);
 </script>
