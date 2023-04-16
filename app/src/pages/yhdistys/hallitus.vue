@@ -43,73 +43,20 @@
             :id="member.name"
             :key="member.name"
             :img="member.img"
-            :img2="member.img2"
+            :img_hover="member.img_hover"
             :name="member.name"
             :email="member.email"
             :telegram="member.telegram"
-            :desc="member.desc"
+            :desc="member.description"
          />
       </div>
    </div>
 </template>
 
 <script setup lang="ts">
-   const members = [
-      {
-         img: '/images/member.jpeg',
-         img2: '/images/member2.jpeg',
-         name: 'Seppo Taalasmua',
-         role: 'Puheenjohtaja',
-         email: 'puheenjohtaja',
-         telegram: 'telegram',
-         desc: 'Puheenjohtajan tehtävänä on pähkinänkuoressa johtaa kokouksia, pitää huoli, että hallitus toimii ja asiat pelittävät, sekä hoitaa erinäisiä edustustehtäviä.',
-      },
-      {
-         img: '/images/member.jpeg',
-         img2: '/images/member2.jpeg',
-         name: 'Seppo Taalasmua',
-         role: 'Puheenjohtaja',
-         email: 'pj',
-         telegram: 'tg',
-         desc: 'Puheenjohtajan tehtävänä on pähkinänkuoressa johtaa kokouksia, pitää huoli, että hallitus toimii ja asiat pelittävät, sekä hoitaa erinäisiä edustustehtäviä.',
-      },
-      {
-         img: '/images/member.jpeg',
-         img2: '/images/member2.jpeg',
-         name: 'Seppo Taalasmua',
-         role: 'Puheenjohtaja',
-         email: 'pj',
-         telegram: 'tg',
-         desc: 'Puheenjohtajan tehtävänä on pähkinänkuoressa johtaa kokouksia, pitää huoli, että hallitus toimii ja asiat pelittävät, sekä hoitaa erinäisiä edustustehtäviä.',
-      },
-      {
-         img: '/images/member.jpeg',
-         img2: '/images/member2.jpeg',
-         name: 'Seppo Taalasmua',
-         role: 'Puheenjohtaja',
-         email: 'pj',
-         telegram: 'tg',
-         desc: 'Puheenjohtajan tehtävänä on pähkinänkuoressa johtaa kokouksia, pitää huoli, että hallitus toimii ja asiat pelittävät, sekä hoitaa erinäisiä edustustehtäviä.',
-      },
-      {
-         img: '/images/member.jpeg',
-         img2: '/images/member2.jpeg',
-         name: 'Seppo Taalasmua',
-         role: 'Puheenjohtaja',
-         email: 'pj',
-         telegram: 'tg',
-         desc: 'Puheenjohtajan tehtävänä on pähkinänkuoressa johtaa kokouksia, pitää huoli, että hallitus toimii ja asiat pelittävät, sekä hoitaa erinäisiä edustustehtäviä.',
-      },
-      {
-         img: '/images/member.jpeg',
-         img2: '/images/member2.jpeg',
-         name: 'Seppo Taalasmua',
-         role: 'Puheenjohtaja',
-         email: 'pj',
-         telegram: 'tg',
-         desc: 'Puheenjohtajan tehtävänä on pähkinänkuoressa johtaa kokouksia, pitää huoli, että hallitus toimii ja asiat pelittävät, sekä hoitaa erinäisiä edustustehtäviä.',
-      },
-   ];
+   const response = await useFetch('http://127.0.0.1:8081/items/board_members');
+   const members = response.data.value.data;
+   console.log('members', members);
 </script>
 
 <style>
