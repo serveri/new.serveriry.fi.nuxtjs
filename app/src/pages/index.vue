@@ -29,17 +29,20 @@
       
       <section>
          
-         <div class="md:flex-1">
-      <h2 class="custom-page-title">Löydät Serverin myös täältä!</h2>      
+      <h2 class="custom-page-title my-7">Löydät Serverin myös täältä!</h2>      
       
-      <div class="grid lg:grid-cols-1 lg:gap-7">
-         <SocialmediaIcon/>
-         <SocialmediaIcon/>
-         <SocialmediaIcon/>
-         <SocialmediaIcon/>
-      </div>
-      
-      </div>
+         <div class="grid grid-cols-1 gap-8 md:grid-cols-2 md:gap-8 lg:grid-cols-4 lg:gap-7">
+            
+            <SocialmediaIcon v-for="Socialmedia in Socialmedias"
+            
+            :url="Socialmedia.url"
+            :img="Socialmedia.img"
+            :alt="'Serverin' + Socialmedia.name"
+            :name="Socialmedia.name"
+            
+            />
+
+         </div>
 
       </section>
 
@@ -55,6 +58,7 @@
    import TopNews from '@/components/langingpage/TopNews.vue';
    import SponsorCarousel from '@/components/langingpage/SponsorCarousel.vue';
    import SocialmediaIcon from '@/components/langingpage/SocialmediaIcon.vue';
+   import Socialmedias from '@/components/langingpage/Socialmedias.json';
 </script>
 
 <style>
