@@ -4,7 +4,7 @@ This is development environment for serveri ry infrastructure.
 
 ## Running environment
 
-See [dependencies](/README.md#dependencies) for environment.
+See [dependencies](../README.md#dependencies) for environment.
 
 Run command ``vagrant up`` in the path that contain [Vagrantfile](/development/Vagrantfile)
 

@@ -43,20 +43,20 @@
             :id="member.name"
             :key="member.name"
             :img="member.img"
-            :img_hover="member.img_hover"
+            :hover_img="member.hover_img"
             :name="member.name"
             :email="member.email"
             :telegram="member.telegram"
             :desc="member.description"
+            :role="member.role"
          />
       </div>
    </div>
 </template>
 
 <script setup lang="ts">
-   const response: Object = await useFetch('http://127.0.0.1:8081/items/board_members');
+   const response: Object = await useFetch('http://127.0.0.1:8081/items/board_members__');
    const members = response.data.value.data;
-   console.log('members', members);
 </script>
 
 <style>

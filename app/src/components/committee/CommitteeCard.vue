@@ -5,7 +5,7 @@
             <div class="w-9/12 sm:w-11/12" @mouseover="hover = true" @mouseleave="hover = false">
                <img
                   v-if="hover"
-                  :src="content.img_hover"
+                  :src="content.hover_img"
                   class="member-image"
                   alt="Toinen kuva hallituksen jäsenestä"
                   role="img"
@@ -72,9 +72,10 @@
    const content = defineProps({
       img: {
          type: String,
+         default: '/images/member.jpeg',
          required: true,
       },
-      img_hover: {
+      hover_img: {
          type: String,
          required: true,
       },
