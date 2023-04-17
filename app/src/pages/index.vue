@@ -26,26 +26,20 @@
       <section class="pt-8">
          <EmbeddedMap />
       </section>
-      
+
       <section>
-         
-      <h2 class="custom-page-title my-7">Löydät Serverin myös täältä!</h2>      
-      
+         <h2 class="custom-page-title my-7">Löydät Serverin myös täältä!</h2>
+
          <div class="grid grid-cols-1 gap-8 md:grid-cols-2 md:gap-8 lg:grid-cols-4 lg:gap-7">
-            
-            <SocialmediaIcon v-for="Socialmedia in Socialmedias"
-            
-            :url="Socialmedia.url"
-            :img="Socialmedia.img"
-            :alt="'Serverin' + Socialmedia.name"
-            :name="Socialmedia.name"
-            
+            <SocialmediaIcon
+               v-for="Socialmedia in Socialmedias"
+               :url="Socialmedia.url"
+               :img="Socialmedia.img"
+               :alt="'Serverin' + Socialmedia.name"
+               :name="Socialmedia.name"
             />
-
          </div>
-
       </section>
-
    </div>
 </template>
 

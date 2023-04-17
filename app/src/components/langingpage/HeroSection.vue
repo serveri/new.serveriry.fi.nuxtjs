@@ -37,9 +37,25 @@
    </div>
 </template>
 
-<script setup>
-   const response = await useFetch('http://127.0.0.1:8081/items/LandingPage');
-   const content = response.data.value.data;
+<script setup lang="ts">
+   let content;
+   try {
+      const response = await useFetch('http://127.0.0.1:8081/items/LandingPage');
+      content = response.data.value.data;
+   } catch (e) {
+      content = {
+         fi_title: 'Serveri ry',
+         en_title: 'Serveri ry',
+         fi_description:
+            'Itä-Suomen yliopiston Kuopion kampuksen tietojenkäsittelytieteen opiskelijoiden ainejärjestö ',
+         en_description:
+            "The computer science students' subject organization of the Kuopio campus of the University of Eastern Finland",
+         fi_button_text: 'Millaista tietojenkäsittelytiede on?',
+         en_button_text: 'What is computer science like?',
+         fi_button_url: '/opiskelu/tkt',
+         en_button_url: '/opiskelu/tkt',
+      };
+   }
 </script>
 
 <style scoped>
