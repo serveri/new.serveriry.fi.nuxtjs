@@ -13,7 +13,7 @@
 
    <div>
       <h4 class="text-lg font-bold">Jos mietit kannattaisiko alaa alkaa opiskelemaan niin olet oikealla sivulla</h4>
-      <p>Tietojenkäsittelytiede on aavistuksen näsäviisaasti ilmaistuna tiedettä tiedon käsittelystä. 
+      <p class="paragraph">Tietojenkäsittelytiede on aavistuksen näsäviisaasti ilmaistuna tiedettä tiedon käsittelystä. 
          Nykyään tietojenkäsittelytiede hyödyntää vahvasti digitaalisia järjestelmiä. 
          Käytännössä tietojenkäsittelytieteeseen kuuluu siis tiedon keräämiseen, tallentamiseen, välittämiseen, näyttämiseen, muuntamiseen sekä käsittelyyn liittyviä aihepiirejä.
           Käytännössä parhaan kuvan tietojenkäsittelytieteen tutkinnon rakenteesta Itä-Suomen yliopistossa saat kurssikuvauksista, jotka löydät alta.
