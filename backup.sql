@@ -763,6 +763,46 @@ ALTER SEQUENCE public.directus_webhooks_id_seq OWNED BY public.directus_webhooks
 
 
 --
+-- Name: social_medias; Type: TABLE; Schema: public; Owner: serveri
+--
+
+CREATE TABLE public.social_medias (
+    id integer NOT NULL,
+    user_created uuid,
+    date_created timestamp with time zone,
+    user_updated uuid,
+    date_updated timestamp with time zone,
+    name character varying(255),
+    url character varying(255),
+    icon character varying(255)
+);
+
+
+ALTER TABLE public.social_medias OWNER TO serveri;
+
+--
+-- Name: social_medias_id_seq; Type: SEQUENCE; Schema: public; Owner: serveri
+--
+
+CREATE SEQUENCE public.social_medias_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.social_medias_id_seq OWNER TO serveri;
+
+--
+-- Name: social_medias_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: serveri
+--
+
+ALTER SEQUENCE public.social_medias_id_seq OWNED BY public.social_medias.id;
+
+
+--
 -- Name: LandingPage id; Type: DEFAULT; Schema: public; Owner: serveri
 --
 
@@ -840,11 +880,18 @@ ALTER TABLE ONLY public.directus_webhooks ALTER COLUMN id SET DEFAULT nextval('p
 
 
 --
+-- Name: social_medias id; Type: DEFAULT; Schema: public; Owner: serveri
+--
+
+ALTER TABLE ONLY public.social_medias ALTER COLUMN id SET DEFAULT nextval('public.social_medias_id_seq'::regclass);
+
+
+--
 -- Data for Name: LandingPage; Type: TABLE DATA; Schema: public; Owner: serveri
 --
 
 COPY public."LandingPage" (id, user_updated, date_updated, fi_title, en_title, fi_description, en_description, fi_button_text, en_button_text, en_button_url, fi_button_url) FROM stdin;
-1	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-04-16 15:40:56.866+00	Serveri ry MOROOOO	Serveri ry	Itä-Suomen yliopiston Kuopion kampuksen tietojenkäsittelytieteen opiskelijoiden ainejärjestö 	The computer science students' subject organization of the Kuopio campus of the University of Eastern Finland	Millaista tietojenkäsittelytiede on?	What is computer science like?	/opiskelu/tkt	/opiskelu/tkt
+1	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-04-17 10:30:09.414+00	Servetti ry	Servetti ry	Itä-Suomen yliopiston Kuopion kampuksen tietojenkäsittelytieteen opiskelijoiden ainejärjestö 	The computer science students' subject organization of the Kuopio campus of the University of Eastern Finland	Millaista tietojenkäsittelytiede on?	What is computer science like?	/opiskelu/tkt	/opiskelu/tkt
 \.
 
 
@@ -854,7 +901,8 @@ COPY public."LandingPage" (id, user_updated, date_updated, fi_title, en_title, f
 
 COPY public.board_members (id, status, user_created, date_created, user_updated, date_updated, name, role, email, telegram, description, hover_img, img) FROM stdin;
 1	published	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-04-16 16:04:40.405+00	\N	\N	Matti Meikäläinen	Jäsen	matti.meikalainen@serveriry.fi	mattimeikalainen	Hallituksen jäsen toimii hallituksessa.	/images/member2.jpeg	/images/member.jpeg
-2	published	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-04-16 16:05:10.468+00	\N	\N	Maija Meikäläinen	Jäsen	maija.meikalainen@serveriry.fi	maijameikalainen	Hallituksen jäsen toimii hallituksessa.	/images/member2.jpeg	/images/member.jpeg
+3	published	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-04-17 10:37:48.208+00	\N	\N	Erkki Pesonen	Jäsen	consult@serveriry.fi	epesonen	Hallituksen jäsen toimii hallituksessa.	/images/member2.jpeg	/images/member.jpeg
+2	published	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-04-16 16:05:10.468+00	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-04-17 10:43:51.251+00	Maija Meikäläinen	Jäsen	maija.meikalainen@serveriry.fi	maijameikalainen	Hallituksen jäsen toimii hallituksessa.	https://img.ilcdn.fi/cgh7U4SKQ1ujJ-_uO6uNxT91crU=/full-fit-in/612x0/img-s3.ilcdn.fi/0b222e185bd67c4f1c37ac0461dd816622d9a66a2d31bcd6d0c1243b21f26d3d.jpg	/images/member.jpeg
 \.
 
 
@@ -996,6 +1044,22 @@ COPY public.directus_activity (id, action, "user", "timestamp", ip, user_agent, 
 131	create	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-04-16 16:05:10.471+00	10.0.2.2	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/111.0	board_members	2	\N	http://localhost:8081
 132	create	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-04-16 16:05:39.856+00	10.0.2.2	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/111.0	directus_permissions	5	\N	http://localhost:8081
 133	update	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-04-16 16:06:15.098+00	10.0.2.2	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/111.0	directus_permissions	5	\N	http://localhost:8081
+134	login	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-04-17 10:29:38.86+00	10.0.2.2	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	directus_users	0891a0cd-876b-4a0d-a22e-0cce30121382	\N	http://127.0.0.1:8081
+135	update	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-04-17 10:30:09.436+00	10.0.2.2	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	LandingPage	1	\N	http://127.0.0.1:8081
+136	create	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-04-17 10:37:48.226+00	10.0.2.2	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	board_members	3	\N	http://127.0.0.1:8081
+137	update	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-04-17 10:43:51.3+00	10.0.2.2	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	board_members	2	\N	http://127.0.0.1:8081
+138	create	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-04-17 10:55:16.162+00	10.0.2.2	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	directus_fields	33	\N	http://127.0.0.1:8081
+139	create	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-04-17 10:55:16.211+00	10.0.2.2	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	directus_fields	34	\N	http://127.0.0.1:8081
+140	create	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-04-17 10:55:16.267+00	10.0.2.2	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	directus_fields	35	\N	http://127.0.0.1:8081
+141	create	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-04-17 10:55:16.323+00	10.0.2.2	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	directus_fields	36	\N	http://127.0.0.1:8081
+142	create	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-04-17 10:55:16.4+00	10.0.2.2	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	directus_fields	37	\N	http://127.0.0.1:8081
+143	create	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-04-17 10:55:16.483+00	10.0.2.2	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	directus_collections	social_medias	\N	http://127.0.0.1:8081
+144	create	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-04-17 10:56:29.229+00	10.0.2.2	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	directus_fields	38	\N	http://127.0.0.1:8081
+145	create	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-04-17 10:56:47.29+00	10.0.2.2	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	directus_fields	39	\N	http://127.0.0.1:8081
+146	create	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-04-17 10:57:18.102+00	10.0.2.2	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	directus_fields	40	\N	http://127.0.0.1:8081
+147	create	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-04-17 10:57:43.245+00	10.0.2.2	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	directus_permissions	6	\N	http://127.0.0.1:8081
+148	update	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-04-17 10:57:53.467+00	10.0.2.2	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	directus_permissions	6	\N	http://127.0.0.1:8081
+149	create	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-04-17 10:59:01.27+00	10.0.2.2	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	social_medias	1	\N	http://127.0.0.1:8081
 \.
 
 
@@ -1006,6 +1070,7 @@ COPY public.directus_activity (id, action, "user", "timestamp", ip, user_agent, 
 COPY public.directus_collections (collection, icon, note, display_template, hidden, singleton, translations, archive_field, archive_app_filter, archive_value, unarchive_value, sort_field, accountability, color, item_duplication_fields, sort, "group", collapse) FROM stdin;
 LandingPage	\N	\N	\N	f	t	\N	\N	t	\N	\N	\N	all	\N	\N	\N	\N	open
 board_members	account_circle	Collection of board members.	\N	f	f	\N	status	t	archived	draft	\N	all	\N	\N	\N	\N	open
+social_medias	\N	\N	\N	f	f	\N	\N	t	\N	\N	\N	all	\N	\N	\N	\N	open
 \.
 
 
@@ -1046,6 +1111,14 @@ COPY public.directus_fields (id, collection, field, special, interface, options,
 29	board_members	description	\N	input-multiline	\N	\N	\N	f	f	13	full	\N	\N	\N	f	\N	\N	\N
 32	board_members	img	\N	input	\N	\N	\N	f	f	7	full	\N	\N	\N	f	\N	\N	\N
 31	board_members	hover_img	\N	input	\N	\N	\N	f	f	8	full	\N	\N	\N	f	\N	\N	\N
+33	social_medias	id	\N	input	\N	\N	\N	t	t	\N	full	\N	\N	\N	f	\N	\N	\N
+34	social_medias	user_created	user-created	select-dropdown-m2o	{"template":"{{avatar.$thumbnail}} {{first_name}} {{last_name}}"}	user	\N	t	t	\N	half	\N	\N	\N	f	\N	\N	\N
+35	social_medias	date_created	date-created	datetime	\N	datetime	{"relative":true}	t	t	\N	half	\N	\N	\N	f	\N	\N	\N
+36	social_medias	user_updated	user-updated	select-dropdown-m2o	{"template":"{{avatar.$thumbnail}} {{first_name}} {{last_name}}"}	user	\N	t	t	\N	half	\N	\N	\N	f	\N	\N	\N
+37	social_medias	date_updated	date-updated	datetime	\N	datetime	{"relative":true}	t	t	\N	half	\N	\N	\N	f	\N	\N	\N
+38	social_medias	name	\N	input	\N	\N	\N	f	f	\N	full	\N	\N	\N	f	\N	\N	\N
+39	social_medias	url	\N	input	\N	\N	\N	f	f	\N	full	\N	\N	\N	f	\N	\N	\N
+40	social_medias	icon	\N	input	\N	\N	\N	f	f	\N	full	\N	\N	\N	f	\N	\N	\N
 \.
 
 
@@ -1176,6 +1249,7 @@ COPY public.directus_permissions (id, role, collection, action, permissions, val
 4	\N	directus_users	read	{}	{}	\N	*
 1	\N	LandingPage	read	\N	{}	\N	fi_title,en_title,fi_description,en_description,fi_button_text,en_button_text,fi_button_url,en_button_url
 5	\N	board_members	read	\N	\N	\N	img,hover_img,role,email,telegram,name,description
+6	\N	social_medias	read	\N	\N	\N	url,icon,name
 \.
 
 
@@ -1185,6 +1259,7 @@ COPY public.directus_permissions (id, role, collection, action, permissions, val
 
 COPY public.directus_presets (id, bookmark, "user", role, collection, search, layout, layout_query, layout_options, refresh_interval, filter, icon, color) FROM stdin;
 1	\N	0891a0cd-876b-4a0d-a22e-0cce30121382	\N	directus_users	\N	cards	{"cards":{"sort":["email"],"page":1}}	{"cards":{"icon":"account_circle","title":"{{ first_name }} {{ last_name }}","subtitle":"{{ email }}","size":4}}	\N	\N	bookmark	\N
+2	\N	0891a0cd-876b-4a0d-a22e-0cce30121382	\N	social_medias	\N	\N	{"tabular":{"page":1}}	\N	\N	\N	bookmark	\N
 \.
 
 
@@ -1196,6 +1271,8 @@ COPY public.directus_relations (id, many_collection, many_field, one_collection,
 1	LandingPage	user_updated	directus_users	\N	\N	\N	\N	\N	nullify
 2	board_members	user_created	directus_users	\N	\N	\N	\N	\N	nullify
 3	board_members	user_updated	directus_users	\N	\N	\N	\N	\N	nullify
+4	social_medias	user_created	directus_users	\N	\N	\N	\N	\N	nullify
+5	social_medias	user_updated	directus_users	\N	\N	\N	\N	\N	nullify
 \.
 
 
@@ -1332,6 +1409,21 @@ COPY public.directus_revisions (id, activity, collection, item, data, delta, par
 126	131	board_members	2	{"status":"published","name":"Maija Meikäläinen","email":"maija.meikalainen@serveriry.fi","telegram":"maijameikalainen"}	{"status":"published","name":"Maija Meikäläinen","email":"maija.meikalainen@serveriry.fi","telegram":"maijameikalainen"}	\N
 127	132	directus_permissions	5	{"role":null,"collection":"board_members","action":"read"}	{"role":null,"collection":"board_members","action":"read"}	\N
 128	133	directus_permissions	5	{"id":5,"role":null,"collection":"board_members","action":"read","permissions":null,"validation":null,"presets":null,"fields":["img","hover_img","role","email","telegram","name","description"]}	{"role":null,"collection":"board_members","action":"read","permissions":null,"validation":null,"presets":null,"fields":["img","hover_img","role","email","telegram","name","description"]}	\N
+129	135	LandingPage	1	{"id":1,"user_updated":"0891a0cd-876b-4a0d-a22e-0cce30121382","date_updated":"2023-04-17T10:30:09.414Z","fi_title":"Servetti ry","en_title":"Servetti ry","fi_description":"Itä-Suomen yliopiston Kuopion kampuksen tietojenkäsittelytieteen opiskelijoiden ainejärjestö ","en_description":"The computer science students' subject organization of the Kuopio campus of the University of Eastern Finland","fi_button_text":"Millaista tietojenkäsittelytiede on?","en_button_text":"What is computer science like?","en_button_url":"/opiskelu/tkt","fi_button_url":"/opiskelu/tkt"}	{"fi_title":"Servetti ry","en_title":"Servetti ry","user_updated":"0891a0cd-876b-4a0d-a22e-0cce30121382","date_updated":"2023-04-17T10:30:09.414Z"}	\N
+130	136	board_members	3	{"status":"published","name":"Erkki Pesonen","email":"consult@serveriry.fi","telegram":"epesonen"}	{"status":"published","name":"Erkki Pesonen","email":"consult@serveriry.fi","telegram":"epesonen"}	\N
+131	137	board_members	2	{"id":2,"status":"published","user_created":"0891a0cd-876b-4a0d-a22e-0cce30121382","date_created":"2023-04-16T16:05:10.468Z","user_updated":"0891a0cd-876b-4a0d-a22e-0cce30121382","date_updated":"2023-04-17T10:43:51.251Z","name":"Maija Meikäläinen","role":"Jäsen","email":"maija.meikalainen@serveriry.fi","telegram":"maijameikalainen","description":"Hallituksen jäsen toimii hallituksessa.","hover_img":"https://img.ilcdn.fi/cgh7U4SKQ1ujJ-_uO6uNxT91crU=/full-fit-in/612x0/img-s3.ilcdn.fi/0b222e185bd67c4f1c37ac0461dd816622d9a66a2d31bcd6d0c1243b21f26d3d.jpg","img":"/images/member.jpeg"}	{"hover_img":"https://img.ilcdn.fi/cgh7U4SKQ1ujJ-_uO6uNxT91crU=/full-fit-in/612x0/img-s3.ilcdn.fi/0b222e185bd67c4f1c37ac0461dd816622d9a66a2d31bcd6d0c1243b21f26d3d.jpg","user_updated":"0891a0cd-876b-4a0d-a22e-0cce30121382","date_updated":"2023-04-17T10:43:51.251Z"}	\N
+132	138	directus_fields	33	{"hidden":true,"interface":"input","readonly":true,"field":"id","collection":"social_medias"}	{"hidden":true,"interface":"input","readonly":true,"field":"id","collection":"social_medias"}	\N
+133	139	directus_fields	34	{"special":["user-created"],"interface":"select-dropdown-m2o","options":{"template":"{{avatar.$thumbnail}} {{first_name}} {{last_name}}"},"display":"user","readonly":true,"hidden":true,"width":"half","field":"user_created","collection":"social_medias"}	{"special":["user-created"],"interface":"select-dropdown-m2o","options":{"template":"{{avatar.$thumbnail}} {{first_name}} {{last_name}}"},"display":"user","readonly":true,"hidden":true,"width":"half","field":"user_created","collection":"social_medias"}	\N
+134	140	directus_fields	35	{"special":["date-created"],"interface":"datetime","readonly":true,"hidden":true,"width":"half","display":"datetime","display_options":{"relative":true},"field":"date_created","collection":"social_medias"}	{"special":["date-created"],"interface":"datetime","readonly":true,"hidden":true,"width":"half","display":"datetime","display_options":{"relative":true},"field":"date_created","collection":"social_medias"}	\N
+135	141	directus_fields	36	{"special":["user-updated"],"interface":"select-dropdown-m2o","options":{"template":"{{avatar.$thumbnail}} {{first_name}} {{last_name}}"},"display":"user","readonly":true,"hidden":true,"width":"half","field":"user_updated","collection":"social_medias"}	{"special":["user-updated"],"interface":"select-dropdown-m2o","options":{"template":"{{avatar.$thumbnail}} {{first_name}} {{last_name}}"},"display":"user","readonly":true,"hidden":true,"width":"half","field":"user_updated","collection":"social_medias"}	\N
+136	142	directus_fields	37	{"special":["date-updated"],"interface":"datetime","readonly":true,"hidden":true,"width":"half","display":"datetime","display_options":{"relative":true},"field":"date_updated","collection":"social_medias"}	{"special":["date-updated"],"interface":"datetime","readonly":true,"hidden":true,"width":"half","display":"datetime","display_options":{"relative":true},"field":"date_updated","collection":"social_medias"}	\N
+137	143	directus_collections	social_medias	{"singleton":false,"collection":"social_medias"}	{"singleton":false,"collection":"social_medias"}	\N
+138	144	directus_fields	38	{"interface":"input","special":null,"collection":"social_medias","field":"name"}	{"interface":"input","special":null,"collection":"social_medias","field":"name"}	\N
+139	145	directus_fields	39	{"interface":"input","special":null,"collection":"social_medias","field":"url"}	{"interface":"input","special":null,"collection":"social_medias","field":"url"}	\N
+140	146	directus_fields	40	{"interface":"input","special":null,"collection":"social_medias","field":"icon"}	{"interface":"input","special":null,"collection":"social_medias","field":"icon"}	\N
+141	147	directus_permissions	6	{"role":null,"collection":"social_medias","action":"read"}	{"role":null,"collection":"social_medias","action":"read"}	\N
+142	148	directus_permissions	6	{"id":6,"role":null,"collection":"social_medias","action":"read","permissions":null,"validation":null,"presets":null,"fields":["url","icon","name"]}	{"role":null,"collection":"social_medias","action":"read","permissions":null,"validation":null,"presets":null,"fields":["url","icon","name"]}	\N
+143	149	social_medias	1	{"name":"Discord","url":"www.google.com","icon":"https://assets-global.website-files.com/6257adef93867e50d84d30e2/636e0a6a49cf127bf92de1e2_icon_clyde_blurple_RGB.png"}	{"name":"Discord","url":"www.google.com","icon":"https://assets-global.website-files.com/6257adef93867e50d84d30e2/636e0a6a49cf127bf92de1e2_icon_clyde_blurple_RGB.png"}	\N
 \.
 
 
@@ -1352,6 +1444,7 @@ COPY public.directus_sessions (token, "user", expires, ip, user_agent, share, or
 oX01L2tUAAZESn9NIlFFHlv7B49a-zo1o_yzC47ecGucz849B81C7b0TdQhUICYy	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-04-23 11:48:36.707+00	10.0.2.2	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	\N	http://localhost:8081
 IOKx8wi9O8DYOCFbVZ3QAfwivdv5TO54Uymv_lSOLrUtLwirIUGXKv4XA-m9Jxw_	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-04-23 15:15:28.516+00	10.0.2.2	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/111.0	\N	http://127.0.0.1:8081
 2e_wR1cDLYHjG-CC8nK_cHXuNBJyVaqA2h5YcW9qnXh5bps-Gv_GXJJ115nqM5vV	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-04-23 16:26:13.217+00	10.0.2.2	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/111.0	\N	http://localhost:8081
+VkFW9cLMMtjegRBc7lmgcKfBPfYzM9ZQVRY0AT_OVoHuAmjZS5D9PxTyMJU1L17w	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-04-24 11:23:12.878+00	10.0.2.2	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	\N	http://127.0.0.1:8081
 \.
 
 
@@ -1377,7 +1470,7 @@ COPY public.directus_shares (id, name, collection, item, role, password, user_cr
 --
 
 COPY public.directus_users (id, first_name, last_name, email, password, location, title, description, tags, avatar, language, theme, tfa_secret, status, role, token, last_access, last_page, provider, external_identifier, auth_data, email_notifications) FROM stdin;
-0891a0cd-876b-4a0d-a22e-0cce30121382	Admin	User	dev@serveriry.fi	$argon2id$v=19$m=65536,t=3,p=4$hVskI8M5iDcSrNlBjYgpqQ$VOD9EUHOMkKmWrElydlVl/7ysElrGr+dZcdOU34Ugm0	\N	\N	\N	\N	\N	\N	auto	\N	active	7bd45b9d-d719-4ab1-b7ec-2c68f2eefc76	\N	2023-04-16 16:26:13.219+00	/settings/roles/public	default	\N	\N	t
+0891a0cd-876b-4a0d-a22e-0cce30121382	Admin	User	dev@serveriry.fi	$argon2id$v=19$m=65536,t=3,p=4$hVskI8M5iDcSrNlBjYgpqQ$VOD9EUHOMkKmWrElydlVl/7ysElrGr+dZcdOU34Ugm0	\N	\N	\N	\N	\N	\N	auto	\N	active	7bd45b9d-d719-4ab1-b7ec-2c68f2eefc76	\N	2023-04-17 11:23:12.888+00	/content/social_medias	default	\N	\N	t
 \.
 
 
@@ -1386,6 +1479,15 @@ COPY public.directus_users (id, first_name, last_name, email, password, location
 --
 
 COPY public.directus_webhooks (id, name, method, url, status, data, actions, collections, headers) FROM stdin;
+\.
+
+
+--
+-- Data for Name: social_medias; Type: TABLE DATA; Schema: public; Owner: serveri
+--
+
+COPY public.social_medias (id, user_created, date_created, user_updated, date_updated, name, url, icon) FROM stdin;
+1	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-04-17 10:59:01.244+00	\N	\N	Discord	www.google.com	https://assets-global.website-files.com/6257adef93867e50d84d30e2/636e0a6a49cf127bf92de1e2_icon_clyde_blurple_RGB.png
 \.
 
 
@@ -1400,21 +1502,21 @@ SELECT pg_catalog.setval('public."LandingPage_id_seq"', 1, true);
 -- Name: board_members_id_seq; Type: SEQUENCE SET; Schema: public; Owner: serveri
 --
 
-SELECT pg_catalog.setval('public.board_members_id_seq', 2, true);
+SELECT pg_catalog.setval('public.board_members_id_seq', 3, true);
 
 
 --
 -- Name: directus_activity_id_seq; Type: SEQUENCE SET; Schema: public; Owner: serveri
 --
 
-SELECT pg_catalog.setval('public.directus_activity_id_seq', 133, true);
+SELECT pg_catalog.setval('public.directus_activity_id_seq', 149, true);
 
 
 --
 -- Name: directus_fields_id_seq; Type: SEQUENCE SET; Schema: public; Owner: serveri
 --
 
-SELECT pg_catalog.setval('public.directus_fields_id_seq', 32, true);
+SELECT pg_catalog.setval('public.directus_fields_id_seq', 40, true);
 
 
 --
@@ -1428,28 +1530,28 @@ SELECT pg_catalog.setval('public.directus_notifications_id_seq', 1, false);
 -- Name: directus_permissions_id_seq; Type: SEQUENCE SET; Schema: public; Owner: serveri
 --
 
-SELECT pg_catalog.setval('public.directus_permissions_id_seq', 5, true);
+SELECT pg_catalog.setval('public.directus_permissions_id_seq', 6, true);
 
 
 --
 -- Name: directus_presets_id_seq; Type: SEQUENCE SET; Schema: public; Owner: serveri
 --
 
-SELECT pg_catalog.setval('public.directus_presets_id_seq', 1, true);
+SELECT pg_catalog.setval('public.directus_presets_id_seq', 2, true);
 
 
 --
 -- Name: directus_relations_id_seq; Type: SEQUENCE SET; Schema: public; Owner: serveri
 --
 
-SELECT pg_catalog.setval('public.directus_relations_id_seq', 3, true);
+SELECT pg_catalog.setval('public.directus_relations_id_seq', 5, true);
 
 
 --
 -- Name: directus_revisions_id_seq; Type: SEQUENCE SET; Schema: public; Owner: serveri
 --
 
-SELECT pg_catalog.setval('public.directus_revisions_id_seq', 128, true);
+SELECT pg_catalog.setval('public.directus_revisions_id_seq', 143, true);
 
 
 --
@@ -1464,6 +1566,13 @@ SELECT pg_catalog.setval('public.directus_settings_id_seq', 1, true);
 --
 
 SELECT pg_catalog.setval('public.directus_webhooks_id_seq', 1, false);
+
+
+--
+-- Name: social_medias_id_seq; Type: SEQUENCE SET; Schema: public; Owner: serveri
+--
+
+SELECT pg_catalog.setval('public.social_medias_id_seq', 1, true);
 
 
 --
@@ -1696,6 +1805,14 @@ ALTER TABLE ONLY public.directus_users
 
 ALTER TABLE ONLY public.directus_webhooks
     ADD CONSTRAINT directus_webhooks_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: social_medias social_medias_pkey; Type: CONSTRAINT; Schema: public; Owner: serveri
+--
+
+ALTER TABLE ONLY public.social_medias
+    ADD CONSTRAINT social_medias_pkey PRIMARY KEY (id);
 
 
 --
@@ -1960,6 +2077,22 @@ ALTER TABLE ONLY public.directus_users
 
 ALTER TABLE ONLY public."LandingPage"
     ADD CONSTRAINT landingpage_user_updated_foreign FOREIGN KEY (user_updated) REFERENCES public.directus_users(id);
+
+
+--
+-- Name: social_medias social_medias_user_created_foreign; Type: FK CONSTRAINT; Schema: public; Owner: serveri
+--
+
+ALTER TABLE ONLY public.social_medias
+    ADD CONSTRAINT social_medias_user_created_foreign FOREIGN KEY (user_created) REFERENCES public.directus_users(id);
+
+
+--
+-- Name: social_medias social_medias_user_updated_foreign; Type: FK CONSTRAINT; Schema: public; Owner: serveri
+--
+
+ALTER TABLE ONLY public.social_medias
+    ADD CONSTRAINT social_medias_user_updated_foreign FOREIGN KEY (user_updated) REFERENCES public.directus_users(id);
 
 
 --
