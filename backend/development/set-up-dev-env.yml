@@ -25,7 +25,7 @@
         cd /home/www
         docker compose -f docker-compose.prod.yml down
 
-    - name: Start services with docker compose
+    - name: Start services with docker compose (can take up 15 minutes on slow internet connection)
       ansible.builtin.shell: |
         cd /home/www
         docker compose -f docker-compose.prod.yml up -d --build
