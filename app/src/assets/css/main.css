@@ -52,4 +52,41 @@
   .paragraph {
     @apply font-light tracking-wide text-gray-500 dark:text-gray-400 sm:text-xl;
   }
+
+  /* Rich text directus styles */
+  .rich-text {
+    @apply tracking-wide leading-8;
+  }
+
+  .rich-text h1 {
+    @apply py-4 text-3xl text-center font-bold;
+  }
+
+  .rich-text h2 {
+    @apply py-3 text-xl;
+  }
+
+  .rich-text h3 {
+    @apply py-2 text-lg;
+  }
+
+  .rich-text li {
+    @apply py-1 text-base dark:text-white px-1;
+  }
+
+  .rich-text ul {
+    @apply py-1 text-base list-disc px-8;
+  }
+
+  .rich-text ol {
+    @apply py-1 text-base list-decimal px-8;
+  }
+
+  .rich-text a {
+    @apply text-blue-500 hover:underline;
+  }
+
+  .rich-text p {
+    @apply py-2 text-base;
+  }
 }
