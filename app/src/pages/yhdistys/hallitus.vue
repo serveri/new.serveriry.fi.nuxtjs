@@ -3,37 +3,7 @@
       <Title>{{ $t('title_board') }} - Serveri ry</Title>
    </Head>
    <div>
-      <h1 class="custom-page-title">{{ $t('h1_board') }}</h1>
-
-      <p class="paragraph">
-         Serverin hallitus vastaa ainejärjestötoiminnan käytännön asioiden hoidosta. Asioita tehdään yhdessä, mutta
-         käytännön syistä tehtäviä on jaettu "hallitusrooleihin" jäsenten kiinnostuksen ja osaamisen mukaan. Mikäli
-         haluat olla yhteydessä hallitukseen, tapahtuu se helpoiten sähköpostitse hallitus[ät]serveriry.fi tai Serverin
-         jäsenenä löydät kaikki hallituslaiset myös Oppositiosta.
-      </p>
-      <br />
-      <p class="paragraph">
-         Serverin hallituksen jäsenet vaihtuvat vuosittain ja heidät valitaan kaikille jäsenille avoimessa
-         syyskokouksessa. Ainejärjestötoiminnan sisältö mukautuu aikaan, mutta hallituksen varsinaiset tehtävät
-         muuttuvat harvemmin ja hitaammin. Mikäli ainejärjestötoiminta kiinnostaa, kannattaa harkita hallitustoimintaan
-         mukaan lähtemistä! Syyskokouksessa valitut jäsenet järjestäytyvät hallituskautensa alussa ja valitsevat
-         keskuudestaan vastuuhenkilöt eri osaalueiden hoitamiseen. Vastuuhenkilöiden titteleistä saa jo hyvän kuvan
-         siitä, minkälaista hallitustoiminta on.
-      </p>
-      <br />
-      <p class="paragraph">
-         Serverin hallituksen koko määräytyy syyskokouksessa ja tällä kaudella se koostuu 15:sta varsinaisesta ja 5:stä
-         varajäsenestä. Hallituslaisiin ja heidän rooleihinsa voit tutustua alta, josta löydät myös yhteystiedot.
-         Roolikohtaisten sähköpostiosotteiden lisäksi jokaisella hallituksen varsinaisella- ja varajäsenellä on
-         henkilökohtainen sähköpostiosoite muodossa etunimi.sukunimi[ät]serveriry.fi.
-      </p>
-
-      <h2 class="font-extrabold text-2xl my-3.5">Serverin Oppositio</h2>
-      <p class="paragraph">
-         Kiinnostaako ainejärjestötoiminta? Serverin Oppositio on ryhmä Telegramissa, jossa pääsee seuraamaan
-         ainejärjestötoimintaa hieman lähempää. Ryhmään liittyminen ei sido mihinkään ja voit liittyä/poistua täysin
-         vapaasti. Tervetuloa mukaan! Liittymislinkki TG-ryhmään.
-      </p>
+      <vue-markdown class="rich-text py-2" :source="text[$i18n.locale + '_text']" />
 
       <h2 class="board-header font-extrabold mt-8 mb-1 text-3xl text-center">Kokoonpano</h2>
 
@@ -55,10 +25,14 @@
 </template>
 
 <script setup lang="ts">
+   import VueMarkdown from 'vue-markdown-render';
    let members;
+   let text;
    try {
-      const response = await useFetch('http://127.0.0.1:8081/items/board_members');
+      let response = await useFetch('http://127.0.0.1:8081/items/board_members');
       members = response.data.value.data;
+      response = await useFetch('http://127.0.0.1:8081/items/hallitus_page');
+      text = response.data.value.data;
    } catch (e) {
       members = [
          {
@@ -71,13 +45,21 @@
             description: 'joo joku ongelma vissii serverit tulessa :O',
          },
       ];
+      text = {
+         fi_text: 'API error',
+         en_text: 'API error',
+      };
    }
 </script>
 
-<style>
+<style scoped>
    .custom-grid {
       display: grid;
       gap: 2rem;
       grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+   }
+
+   p {
+      @apply paragraph;
    }
 </style>

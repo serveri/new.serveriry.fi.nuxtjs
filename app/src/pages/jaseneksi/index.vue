@@ -3,19 +3,20 @@
       <Head>
          <Title>{{ $t('title_join-us') }} - Serveri ry</Title>
       </Head>
-      <div
-         class="w-screen h-screen bg-[url(https://images.pexels.com/photos/735911/pexels-photo-735911.jpeg)]"
-         style="background-size: 100%"
-      >
-         <h1 class="custom-page-title">{{ $t('h1_join-us') }}</h1>
-         <p class="text-center p-10 text-3xl">Come code with us :))</p>
-         <p class="text-center p-10 text-3xl">Yeah...</p>
-         <p class="text-center p-10 text-3xl">
-            This image takes 100% of screen height and width, something that WeMo course work is required to do...
-         </p>
-         <p class="text-center p-10 text-3xl">
-            But if you rly wanna join us, send email to <a href="mailto:pk@serveriry.fi">pj@serveriry.fi</a>
-         </p>
-      </div>
+      <vue-markdown class="rich-text py-2" :source="text[$i18n.locale + '_text']" />
    </div>
 </template>
+
+<script setup lang="ts">
+   import VueMarkdown from 'vue-markdown-render';
+   let text;
+   try {
+      const response = await useFetch('http://127.0.0.1:8081/items/liity_serveriin');
+      text = response.data.value.data;
+   } catch (e) {
+      text = {
+         fi_text: 'API error',
+         en_text: 'API error',
+      };
+   }
+</script>
