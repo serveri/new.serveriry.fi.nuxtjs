@@ -765,6 +765,154 @@ ALTER SEQUENCE public.directus_webhooks_id_seq OWNED BY public.directus_webhooks
 
 
 --
+-- Name: for_new_student; Type: TABLE; Schema: public; Owner: serveri
+--
+
+CREATE TABLE public.for_new_student (
+    id integer NOT NULL,
+    user_updated uuid,
+    date_updated timestamp with time zone,
+    fi_text text,
+    en_text text
+);
+
+
+ALTER TABLE public.for_new_student OWNER TO serveri;
+
+--
+-- Name: for_new_student_id_seq; Type: SEQUENCE; Schema: public; Owner: serveri
+--
+
+CREATE SEQUENCE public.for_new_student_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.for_new_student_id_seq OWNER TO serveri;
+
+--
+-- Name: for_new_student_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: serveri
+--
+
+ALTER SEQUENCE public.for_new_student_id_seq OWNED BY public.for_new_student.id;
+
+
+--
+-- Name: gdpr; Type: TABLE; Schema: public; Owner: serveri
+--
+
+CREATE TABLE public.gdpr (
+    id integer NOT NULL,
+    user_updated uuid,
+    date_updated timestamp with time zone,
+    fi_text text,
+    en_text text
+);
+
+
+ALTER TABLE public.gdpr OWNER TO serveri;
+
+--
+-- Name: gdpr_id_seq; Type: SEQUENCE; Schema: public; Owner: serveri
+--
+
+CREATE SEQUENCE public.gdpr_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.gdpr_id_seq OWNER TO serveri;
+
+--
+-- Name: gdpr_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: serveri
+--
+
+ALTER SEQUENCE public.gdpr_id_seq OWNED BY public.gdpr.id;
+
+
+--
+-- Name: hallitus_page; Type: TABLE; Schema: public; Owner: serveri
+--
+
+CREATE TABLE public.hallitus_page (
+    id integer NOT NULL,
+    user_updated uuid,
+    date_updated timestamp with time zone,
+    fi_text text,
+    en_text text
+);
+
+
+ALTER TABLE public.hallitus_page OWNER TO serveri;
+
+--
+-- Name: hallitus_page_id_seq; Type: SEQUENCE; Schema: public; Owner: serveri
+--
+
+CREATE SEQUENCE public.hallitus_page_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.hallitus_page_id_seq OWNER TO serveri;
+
+--
+-- Name: hallitus_page_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: serveri
+--
+
+ALTER SEQUENCE public.hallitus_page_id_seq OWNED BY public.hallitus_page.id;
+
+
+--
+-- Name: liity_serveriin; Type: TABLE; Schema: public; Owner: serveri
+--
+
+CREATE TABLE public.liity_serveriin (
+    id integer NOT NULL,
+    user_updated uuid,
+    date_updated timestamp with time zone,
+    fi_text text,
+    en_text text
+);
+
+
+ALTER TABLE public.liity_serveriin OWNER TO serveri;
+
+--
+-- Name: liity_serveriin_id_seq; Type: SEQUENCE; Schema: public; Owner: serveri
+--
+
+CREATE SEQUENCE public.liity_serveriin_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.liity_serveriin_id_seq OWNER TO serveri;
+
+--
+-- Name: liity_serveriin_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: serveri
+--
+
+ALTER SEQUENCE public.liity_serveriin_id_seq OWNED BY public.liity_serveriin.id;
+
+
+--
 -- Name: lomake_vastaukset; Type: TABLE; Schema: public; Owner: serveri
 --
 
@@ -963,6 +1111,43 @@ ALTER SEQUENCE public.social_medias_id_seq OWNED BY public.social_medias.id;
 
 
 --
+-- Name: study_club; Type: TABLE; Schema: public; Owner: serveri
+--
+
+CREATE TABLE public.study_club (
+    id integer NOT NULL,
+    user_updated uuid,
+    date_updated timestamp with time zone,
+    fi_text text,
+    en_text text
+);
+
+
+ALTER TABLE public.study_club OWNER TO serveri;
+
+--
+-- Name: study_club_id_seq; Type: SEQUENCE; Schema: public; Owner: serveri
+--
+
+CREATE SEQUENCE public.study_club_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.study_club_id_seq OWNER TO serveri;
+
+--
+-- Name: study_club_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: serveri
+--
+
+ALTER SEQUENCE public.study_club_id_seq OWNED BY public.study_club.id;
+
+
+--
 -- Name: turvallinen_tila; Type: TABLE; Schema: public; Owner: serveri
 --
 
@@ -1077,6 +1262,34 @@ ALTER TABLE ONLY public.directus_webhooks ALTER COLUMN id SET DEFAULT nextval('p
 
 
 --
+-- Name: for_new_student id; Type: DEFAULT; Schema: public; Owner: serveri
+--
+
+ALTER TABLE ONLY public.for_new_student ALTER COLUMN id SET DEFAULT nextval('public.for_new_student_id_seq'::regclass);
+
+
+--
+-- Name: gdpr id; Type: DEFAULT; Schema: public; Owner: serveri
+--
+
+ALTER TABLE ONLY public.gdpr ALTER COLUMN id SET DEFAULT nextval('public.gdpr_id_seq'::regclass);
+
+
+--
+-- Name: hallitus_page id; Type: DEFAULT; Schema: public; Owner: serveri
+--
+
+ALTER TABLE ONLY public.hallitus_page ALTER COLUMN id SET DEFAULT nextval('public.hallitus_page_id_seq'::regclass);
+
+
+--
+-- Name: liity_serveriin id; Type: DEFAULT; Schema: public; Owner: serveri
+--
+
+ALTER TABLE ONLY public.liity_serveriin ALTER COLUMN id SET DEFAULT nextval('public.liity_serveriin_id_seq'::regclass);
+
+
+--
 -- Name: lomake_vastaukset id; Type: DEFAULT; Schema: public; Owner: serveri
 --
 
@@ -1109,6 +1322,13 @@ ALTER TABLE ONLY public.serveri_rules ALTER COLUMN id SET DEFAULT nextval('publi
 --
 
 ALTER TABLE ONLY public.social_medias ALTER COLUMN id SET DEFAULT nextval('public.social_medias_id_seq'::regclass);
+
+
+--
+-- Name: study_club id; Type: DEFAULT; Schema: public; Owner: serveri
+--
+
+ALTER TABLE ONLY public.study_club ALTER COLUMN id SET DEFAULT nextval('public.study_club_id_seq'::regclass);
 
 
 --
@@ -1546,6 +1766,7 @@ COPY public.directus_activity (id, action, "user", "timestamp", ip, user_agent, 
 401	delete	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-04-29 18:37:07.537+00	10.0.2.2	Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:109.0) Gecko/20100101 Firefox/112.0	lomake_vastaukset	71	\N	http://10.143.20.7:8081
 402	delete	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-04-29 18:37:07.542+00	10.0.2.2	Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:109.0) Gecko/20100101 Firefox/112.0	lomake_vastaukset	72	\N	http://10.143.20.7:8081
 403	delete	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-04-29 18:37:07.547+00	10.0.2.2	Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:109.0) Gecko/20100101 Firefox/112.0	lomake_vastaukset	73	\N	http://10.143.20.7:8081
+520	create	\N	2023-04-29 20:26:58.166+00	10.0.2.2	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	lomake_vastaukset	112	\N	http://localhost:3000
 404	delete	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-04-29 18:37:07.553+00	10.0.2.2	Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:109.0) Gecko/20100101 Firefox/112.0	lomake_vastaukset	74	\N	http://10.143.20.7:8081
 405	delete	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-04-29 18:37:07.559+00	10.0.2.2	Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:109.0) Gecko/20100101 Firefox/112.0	lomake_vastaukset	75	\N	http://10.143.20.7:8081
 406	update	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-04-29 18:37:27.704+00	10.0.2.2	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	LandingPage	1	\N	http://127.0.0.1:8081
@@ -1607,6 +1828,74 @@ COPY public.directus_activity (id, action, "user", "timestamp", ip, user_agent, 
 462	delete	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-04-29 19:24:11.267+00	10.0.2.2	Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:109.0) Gecko/20100101 Firefox/112.0	lomake_vastaukset	99	\N	http://10.143.20.7:8081
 463	delete	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-04-29 19:24:11.275+00	10.0.2.2	Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:109.0) Gecko/20100101 Firefox/112.0	lomake_vastaukset	100	\N	http://10.143.20.7:8081
 464	delete	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-04-29 19:24:11.282+00	10.0.2.2	Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:109.0) Gecko/20100101 Firefox/112.0	lomake_vastaukset	101	\N	http://10.143.20.7:8081
+465	create	\N	2023-04-29 19:31:20.829+00	10.0.2.2	Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:109.0) Gecko/20100101 Firefox/112.0	lomake_vastaukset	102	\N	http://10.143.20.7:3000
+466	create	\N	2023-04-29 19:32:58.908+00	10.0.2.2	Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:109.0) Gecko/20100101 Firefox/112.0	lomake_vastaukset	103	\N	http://10.143.20.7:3000
+467	create	\N	2023-04-29 19:33:44.152+00	10.0.2.2	Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:109.0) Gecko/20100101 Firefox/112.0	lomake_vastaukset	104	\N	http://10.143.20.7:3000
+468	create	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-04-29 19:36:41.902+00	10.0.2.2	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	directus_fields	87	\N	http://127.0.0.1:8081
+469	create	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-04-29 19:36:41.962+00	10.0.2.2	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	directus_fields	88	\N	http://127.0.0.1:8081
+470	create	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-04-29 19:36:42.009+00	10.0.2.2	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	directus_fields	89	\N	http://127.0.0.1:8081
+471	create	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-04-29 19:36:42.069+00	10.0.2.2	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	directus_collections	hallitus_page	\N	http://127.0.0.1:8081
+472	create	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-04-29 19:37:01.131+00	10.0.2.2	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	directus_fields	90	\N	http://127.0.0.1:8081
+473	create	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-04-29 19:37:13.738+00	10.0.2.2	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	directus_fields	91	\N	http://127.0.0.1:8081
+474	create	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-04-29 19:38:41.352+00	10.0.2.2	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	hallitus_page	1	\N	http://127.0.0.1:8081
+475	create	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-04-29 19:40:46.696+00	10.0.2.2	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	directus_permissions	15	\N	http://127.0.0.1:8081
+476	update	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-04-29 19:40:52.051+00	10.0.2.2	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	directus_permissions	15	\N	http://127.0.0.1:8081
+477	create	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-04-29 20:01:19.863+00	10.0.2.2	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	directus_fields	92	\N	http://127.0.0.1:8081
+478	create	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-04-29 20:01:19.943+00	10.0.2.2	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	directus_fields	93	\N	http://127.0.0.1:8081
+479	create	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-04-29 20:01:19.983+00	10.0.2.2	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	directus_fields	94	\N	http://127.0.0.1:8081
+480	create	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-04-29 20:01:20.029+00	10.0.2.2	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	directus_collections	study_club	\N	http://127.0.0.1:8081
+481	create	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-04-29 20:01:29.966+00	10.0.2.2	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	directus_fields	95	\N	http://127.0.0.1:8081
+482	create	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-04-29 20:01:39.084+00	10.0.2.2	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	directus_fields	96	\N	http://127.0.0.1:8081
+483	create	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-04-29 20:02:04.214+00	10.0.2.2	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	directus_fields	97	\N	http://127.0.0.1:8081
+484	create	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-04-29 20:02:04.258+00	10.0.2.2	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	directus_fields	98	\N	http://127.0.0.1:8081
+485	create	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-04-29 20:02:04.295+00	10.0.2.2	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	directus_fields	99	\N	http://127.0.0.1:8081
+486	create	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-04-29 20:02:04.367+00	10.0.2.2	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	directus_collections	for_new_student	\N	http://127.0.0.1:8081
+487	create	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-04-29 20:02:19.305+00	10.0.2.2	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	directus_fields	100	\N	http://127.0.0.1:8081
+488	create	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-04-29 20:02:29.801+00	10.0.2.2	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	directus_fields	101	\N	http://127.0.0.1:8081
+489	create	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-04-29 20:07:38.198+00	10.0.2.2	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	study_club	1	\N	http://127.0.0.1:8081
+490	update	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-04-29 20:08:45.801+00	10.0.2.2	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	study_club	1	\N	http://127.0.0.1:8081
+491	create	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-04-29 20:09:06.362+00	10.0.2.2	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	for_new_student	1	\N	http://127.0.0.1:8081
+492	update	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-04-29 20:09:12.577+00	10.0.2.2	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	for_new_student	1	\N	http://127.0.0.1:8081
+493	update	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-04-29 20:09:26.914+00	10.0.2.2	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	study_club	1	\N	http://127.0.0.1:8081
+494	update	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-04-29 20:10:58.139+00	10.0.2.2	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	study_club	1	\N	http://127.0.0.1:8081
+495	create	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-04-29 20:11:41.757+00	10.0.2.2	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	directus_fields	102	\N	http://127.0.0.1:8081
+496	create	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-04-29 20:11:41.814+00	10.0.2.2	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	directus_fields	103	\N	http://127.0.0.1:8081
+497	create	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-04-29 20:11:41.886+00	10.0.2.2	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	directus_fields	104	\N	http://127.0.0.1:8081
+498	create	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-04-29 20:11:41.949+00	10.0.2.2	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	directus_collections	liity_serveriin	\N	http://127.0.0.1:8081
+499	create	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-04-29 20:11:51.075+00	10.0.2.2	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	directus_fields	105	\N	http://127.0.0.1:8081
+500	update	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-04-29 20:11:58.974+00	10.0.2.2	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	directus_fields	105	\N	http://127.0.0.1:8081
+501	create	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-04-29 20:13:34.312+00	10.0.2.2	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	liity_serveriin	1	\N	http://127.0.0.1:8081
+502	create	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-04-29 20:13:51.476+00	10.0.2.2	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	directus_fields	106	\N	http://127.0.0.1:8081
+503	create	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-04-29 20:13:59.216+00	10.0.2.2	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	directus_fields	107	\N	http://127.0.0.1:8081
+504	update	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-04-29 20:15:32.523+00	10.0.2.2	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	liity_serveriin	1	\N	http://127.0.0.1:8081
+505	create	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-04-29 20:15:42.837+00	10.0.2.2	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	directus_permissions	16	\N	http://127.0.0.1:8081
+506	update	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-04-29 20:15:48.011+00	10.0.2.2	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	directus_permissions	16	\N	http://127.0.0.1:8081
+507	create	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-04-29 20:15:51.069+00	10.0.2.2	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	directus_permissions	17	\N	http://127.0.0.1:8081
+508	update	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-04-29 20:15:55.287+00	10.0.2.2	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	directus_permissions	17	\N	http://127.0.0.1:8081
+509	create	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-04-29 20:15:58.646+00	10.0.2.2	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	directus_permissions	18	\N	http://127.0.0.1:8081
+510	update	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-04-29 20:16:03.667+00	10.0.2.2	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	directus_permissions	18	\N	http://127.0.0.1:8081
+511	delete	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-04-29 20:20:58.976+00	10.0.2.2	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	directus_permissions	12	\N	http://127.0.0.1:8081
+512	delete	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-04-29 20:21:02.159+00	10.0.2.2	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	directus_permissions	11	\N	http://127.0.0.1:8081
+513	create	\N	2023-04-29 20:24:44.104+00	10.0.2.2	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	lomake_vastaukset	105	\N	http://localhost:3000
+514	create	\N	2023-04-29 20:24:46.468+00	10.0.2.2	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	lomake_vastaukset	106	\N	http://localhost:3000
+515	create	\N	2023-04-29 20:24:46.918+00	10.0.2.2	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	lomake_vastaukset	107	\N	http://localhost:3000
+516	create	\N	2023-04-29 20:24:47.161+00	10.0.2.2	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	lomake_vastaukset	108	\N	http://localhost:3000
+517	create	\N	2023-04-29 20:24:47.349+00	10.0.2.2	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	lomake_vastaukset	109	\N	http://localhost:3000
+518	create	\N	2023-04-29 20:25:17.165+00	10.0.2.2	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	lomake_vastaukset	110	\N	http://localhost:3000
+519	create	\N	2023-04-29 20:25:47.357+00	10.0.2.2	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	lomake_vastaukset	111	\N	http://localhost:3000
+521	create	\N	2023-04-29 20:27:50.991+00	10.0.2.2	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	lomake_vastaukset	113	\N	http://localhost:3000
+522	create	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-04-29 20:30:00.122+00	10.0.2.2	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	directus_fields	108	\N	http://127.0.0.1:8081
+523	create	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-04-29 20:30:00.185+00	10.0.2.2	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	directus_fields	109	\N	http://127.0.0.1:8081
+524	create	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-04-29 20:30:00.24+00	10.0.2.2	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	directus_fields	110	\N	http://127.0.0.1:8081
+525	create	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-04-29 20:30:00.35+00	10.0.2.2	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	directus_collections	gdpr	\N	http://127.0.0.1:8081
+526	create	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-04-29 20:30:10.479+00	10.0.2.2	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	directus_fields	111	\N	http://127.0.0.1:8081
+527	create	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-04-29 20:31:03.538+00	10.0.2.2	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	directus_fields	112	\N	http://127.0.0.1:8081
+528	create	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-04-29 20:31:11.648+00	10.0.2.2	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	directus_fields	113	\N	http://127.0.0.1:8081
+529	create	\N	2023-04-29 20:31:59.996+00	10.0.2.2	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	lomake_vastaukset	114	\N	http://localhost:3000
+530	create	\N	2023-04-29 20:32:00.147+00	10.0.2.2	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	lomake_vastaukset	115	\N	http://localhost:3000
+531	create	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-04-29 20:37:16.432+00	10.0.2.2	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	gdpr	1	\N	http://127.0.0.1:8081
+532	create	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-04-29 20:37:43.389+00	10.0.2.2	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	directus_permissions	19	\N	http://127.0.0.1:8081
+533	update	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-04-29 20:37:47.716+00	10.0.2.2	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	directus_permissions	19	\N	http://127.0.0.1:8081
 \.
 
 
@@ -1623,6 +1912,11 @@ serveri_rules	\N	\N	\N	f	t	\N	\N	t	\N	\N	\N	all	\N	\N	\N	\N	open
 turvallinen_tila	\N	\N	\N	f	t	\N	\N	t	\N	\N	\N	all	\N	\N	\N	\N	open
 lomake_vastaukset	\N	Sisältää kaikki verkkosivun lomakkeiden vastaukset.	\N	f	f	\N	\N	t	\N	\N	\N	all	\N	\N	\N	\N	open
 partners	\N	\N	\N	f	f	\N	status	t	archived	draft	\N	all	\N	\N	\N	\N	open
+hallitus_page	\N	\N	\N	f	t	\N	\N	t	\N	\N	\N	all	\N	\N	\N	\N	open
+study_club	\N	\N	\N	f	t	\N	\N	t	\N	\N	\N	all	\N	\N	\N	\N	open
+for_new_student	\N	\N	\N	f	t	\N	\N	t	\N	\N	\N	all	\N	\N	\N	\N	open
+liity_serveriin	\N	\N	\N	f	t	\N	\N	t	\N	\N	\N	all	\N	\N	\N	\N	open
+gdpr	\N	\N	\N	f	t	\N	\N	t	\N	\N	\N	all	\N	\N	\N	\N	open
 \.
 
 
@@ -1708,6 +2002,31 @@ COPY public.directus_fields (id, collection, field, special, interface, options,
 84	partners	img	\N	input	{"placeholder":"linkki yrityksen logo kuvaan"}	\N	\N	f	f	\N	full	\N	\N	\N	t	\N	\N	\N
 85	LandingPage	fi_long_desc	\N	input-rich-text-md	{"placeholder":null}	\N	\N	f	f	\N	full	\N	\N	\N	f	\N	\N	\N
 86	LandingPage	en_long_desc	\N	input-rich-text-md	\N	\N	\N	f	f	\N	full	\N	\N	\N	f	\N	\N	\N
+87	hallitus_page	id	\N	input	\N	\N	\N	t	t	\N	full	\N	\N	\N	f	\N	\N	\N
+88	hallitus_page	user_updated	user-updated	select-dropdown-m2o	{"template":"{{avatar.$thumbnail}} {{first_name}} {{last_name}}"}	user	\N	t	t	\N	half	\N	\N	\N	f	\N	\N	\N
+89	hallitus_page	date_updated	date-updated	datetime	\N	datetime	{"relative":true}	t	t	\N	half	\N	\N	\N	f	\N	\N	\N
+90	hallitus_page	fi_text	\N	input-rich-text-md	\N	\N	\N	f	f	\N	full	\N	\N	\N	t	\N	\N	\N
+91	hallitus_page	en_text	\N	input-rich-text-md	\N	\N	\N	f	f	\N	full	\N	\N	\N	t	\N	\N	\N
+92	study_club	id	\N	input	\N	\N	\N	t	t	\N	full	\N	\N	\N	f	\N	\N	\N
+93	study_club	user_updated	user-updated	select-dropdown-m2o	{"template":"{{avatar.$thumbnail}} {{first_name}} {{last_name}}"}	user	\N	t	t	\N	half	\N	\N	\N	f	\N	\N	\N
+94	study_club	date_updated	date-updated	datetime	\N	datetime	{"relative":true}	t	t	\N	half	\N	\N	\N	f	\N	\N	\N
+95	study_club	fi_text	\N	input-rich-text-md	\N	\N	\N	f	f	\N	full	\N	\N	\N	f	\N	\N	\N
+96	study_club	en_text	\N	input-rich-text-md	\N	\N	\N	f	f	\N	full	\N	\N	\N	f	\N	\N	\N
+97	for_new_student	id	\N	input	\N	\N	\N	t	t	\N	full	\N	\N	\N	f	\N	\N	\N
+98	for_new_student	user_updated	user-updated	select-dropdown-m2o	{"template":"{{avatar.$thumbnail}} {{first_name}} {{last_name}}"}	user	\N	t	t	\N	half	\N	\N	\N	f	\N	\N	\N
+99	for_new_student	date_updated	date-updated	datetime	\N	datetime	{"relative":true}	t	t	\N	half	\N	\N	\N	f	\N	\N	\N
+100	for_new_student	fi_text	\N	input-rich-text-md	\N	\N	\N	f	f	\N	full	\N	\N	\N	t	\N	\N	\N
+101	for_new_student	en_text	\N	input-rich-text-md	\N	\N	\N	f	f	\N	full	\N	\N	\N	t	\N	\N	\N
+102	liity_serveriin	id	\N	input	\N	\N	\N	t	t	\N	full	\N	\N	\N	f	\N	\N	\N
+103	liity_serveriin	user_updated	user-updated	select-dropdown-m2o	{"template":"{{avatar.$thumbnail}} {{first_name}} {{last_name}}"}	user	\N	t	t	\N	half	\N	\N	\N	f	\N	\N	\N
+104	liity_serveriin	date_updated	date-updated	datetime	\N	datetime	{"relative":true}	t	t	\N	half	\N	\N	\N	f	\N	\N	\N
+106	liity_serveriin	fi_text	\N	input-rich-text-md	\N	\N	\N	f	f	\N	full	\N	\N	\N	t	\N	\N	\N
+107	liity_serveriin	en_text	\N	input-rich-text-md	\N	\N	\N	f	f	\N	full	\N	\N	\N	t	\N	\N	\N
+108	gdpr	id	\N	input	\N	\N	\N	t	t	\N	full	\N	\N	\N	f	\N	\N	\N
+109	gdpr	user_updated	user-updated	select-dropdown-m2o	{"template":"{{avatar.$thumbnail}} {{first_name}} {{last_name}}"}	user	\N	t	t	\N	half	\N	\N	\N	f	\N	\N	\N
+110	gdpr	date_updated	date-updated	datetime	\N	datetime	{"relative":true}	t	t	\N	half	\N	\N	\N	f	\N	\N	\N
+112	gdpr	fi_text	\N	input-rich-text-md	\N	\N	\N	f	f	\N	full	\N	\N	\N	f	\N	\N	\N
+113	gdpr	en_text	\N	input-rich-text-md	\N	\N	\N	f	f	\N	full	\N	\N	\N	f	\N	\N	\N
 \.
 
 
@@ -1841,11 +2160,14 @@ COPY public.directus_permissions (id, role, collection, action, permissions, val
 7	\N	news	read	{}	{}	\N	fi_title,en_title,image,fi_text,en_text,id,sort,status,date_created
 8	\N	serveri_rules	read	{}	{}	\N	date_updated,rules_fi,rules_en
 9	\N	turvallinen_tila	read	{}	{}	\N	date_updated,turvallinen_tila_fi,turvalinen_tila_en
-11	\N	lomake_vastaukset	read	{}	{}	\N	*
-12	\N	lomake_vastaukset	update	{}	{}	\N	*
 13	\N	lomake_vastaukset	create	{}	{}	\N	*
 14	\N	partners	read	{}	{}	\N	name,url,img
 1	\N	LandingPage	read	\N	{}	\N	fi_title,en_title,fi_description,en_description,fi_button_text,en_button_text,fi_button_url,en_button_url,en_long_desc,fi_long_desc
+15	\N	hallitus_page	read	\N	\N	\N	fi_text,en_text,date_updated
+16	\N	liity_serveriin	read	\N	\N	\N	fi_text,en_text,date_updated
+17	\N	study_club	read	\N	\N	\N	fi_text,en_text,date_updated
+18	\N	for_new_student	read	\N	\N	\N	fi_text,en_text,date_updated
+19	\N	gdpr	read	\N	\N	\N	fi_text,en_text,date_updated
 \.
 
 
@@ -1855,9 +2177,9 @@ COPY public.directus_permissions (id, role, collection, action, permissions, val
 
 COPY public.directus_presets (id, bookmark, "user", role, collection, search, layout, layout_query, layout_options, refresh_interval, filter, icon, color) FROM stdin;
 2	\N	0891a0cd-876b-4a0d-a22e-0cce30121382	\N	social_medias	\N	\N	{"tabular":{"page":1}}	\N	\N	\N	bookmark	\N
-3	\N	0891a0cd-876b-4a0d-a22e-0cce30121382	\N	board_members	\N	\N	{"tabular":{"page":1}}	\N	\N	\N	bookmark	\N
 1	\N	0891a0cd-876b-4a0d-a22e-0cce30121382	\N	directus_users	\N	cards	{"cards":{"sort":["email"],"page":1}}	{"cards":{"icon":"account_circle","title":"{{ first_name }} {{ last_name }}","subtitle":"{{ email }}","size":4}}	\N	\N	bookmark	\N
 4	\N	0891a0cd-876b-4a0d-a22e-0cce30121382	\N	lomake_vastaukset	\N	\N	{"tabular":{"page":1,"fields":["firm_contact","firm_message","firm_name"]}}	{"tabular":{"widths":{"firm_message":284}}}	\N	\N	bookmark	\N
+3	\N	0891a0cd-876b-4a0d-a22e-0cce30121382	\N	board_members	\N	\N	{"tabular":{"page":1}}	\N	\N	\N	bookmark	\N
 \.
 
 
@@ -1877,6 +2199,11 @@ COPY public.directus_relations (id, many_collection, many_field, one_collection,
 9	turvallinen_tila	user_updated	directus_users	\N	\N	\N	\N	\N	nullify
 12	partners	user_created	directus_users	\N	\N	\N	\N	\N	nullify
 13	partners	user_updated	directus_users	\N	\N	\N	\N	\N	nullify
+14	hallitus_page	user_updated	directus_users	\N	\N	\N	\N	\N	nullify
+15	study_club	user_updated	directus_users	\N	\N	\N	\N	\N	nullify
+16	for_new_student	user_updated	directus_users	\N	\N	\N	\N	\N	nullify
+17	liity_serveriin	user_updated	directus_users	\N	\N	\N	\N	\N	nullify
+18	gdpr	user_updated	directus_users	\N	\N	\N	\N	\N	nullify
 \.
 
 
@@ -2237,6 +2564,73 @@ COPY public.directus_revisions (id, activity, collection, item, data, delta, par
 350	446	lomake_vastaukset	99	{"firm_message":"Morooo","firm_contact":"savonen.emppu@gmail.com","firm_name":"Efecte"}	{"firm_message":"Morooo","firm_contact":"savonen.emppu@gmail.com","firm_name":"Efecte"}	\N
 351	447	lomake_vastaukset	100	{"firm_message":"Morooo","firm_contact":"savonen.emppu@gmail.com","firm_name":"Efecte"}	{"firm_message":"Morooo","firm_contact":"savonen.emppu@gmail.com","firm_name":"Efecte"}	\N
 352	448	lomake_vastaukset	101	{"firm_message":"Morooo","firm_contact":"savonen.emppu@gmail.com","firm_name":"Efecte"}	{"firm_message":"Morooo","firm_contact":"savonen.emppu@gmail.com","firm_name":"Efecte"}	\N
+353	465	lomake_vastaukset	102	{"firm_message":"asdasdasd","firm_contact":"asdasd@gmail.com","firm_name":"Efecte"}	{"firm_message":"asdasdasd","firm_contact":"asdasd@gmail.com","firm_name":"Efecte"}	\N
+354	466	lomake_vastaukset	103	{"firm_message":"Moro","firm_contact":"matti.meikalainen@gmail.com","firm_name":"Moro"}	{"firm_message":"Moro","firm_contact":"matti.meikalainen@gmail.com","firm_name":"Moro"}	\N
+355	467	lomake_vastaukset	104	{"firm_message":"Moro","firm_contact":"matti.meikalainen@gmail.com","firm_name":"MOro"}	{"firm_message":"Moro","firm_contact":"matti.meikalainen@gmail.com","firm_name":"MOro"}	\N
+356	468	directus_fields	87	{"hidden":true,"interface":"input","readonly":true,"field":"id","collection":"hallitus_page"}	{"hidden":true,"interface":"input","readonly":true,"field":"id","collection":"hallitus_page"}	\N
+357	469	directus_fields	88	{"special":["user-updated"],"interface":"select-dropdown-m2o","options":{"template":"{{avatar.$thumbnail}} {{first_name}} {{last_name}}"},"display":"user","readonly":true,"hidden":true,"width":"half","field":"user_updated","collection":"hallitus_page"}	{"special":["user-updated"],"interface":"select-dropdown-m2o","options":{"template":"{{avatar.$thumbnail}} {{first_name}} {{last_name}}"},"display":"user","readonly":true,"hidden":true,"width":"half","field":"user_updated","collection":"hallitus_page"}	\N
+358	470	directus_fields	89	{"special":["date-updated"],"interface":"datetime","readonly":true,"hidden":true,"width":"half","display":"datetime","display_options":{"relative":true},"field":"date_updated","collection":"hallitus_page"}	{"special":["date-updated"],"interface":"datetime","readonly":true,"hidden":true,"width":"half","display":"datetime","display_options":{"relative":true},"field":"date_updated","collection":"hallitus_page"}	\N
+359	471	directus_collections	hallitus_page	{"singleton":true,"collection":"hallitus_page"}	{"singleton":true,"collection":"hallitus_page"}	\N
+360	472	directus_fields	90	{"interface":"input-rich-text-md","special":null,"required":true,"collection":"hallitus_page","field":"fi_text"}	{"interface":"input-rich-text-md","special":null,"required":true,"collection":"hallitus_page","field":"fi_text"}	\N
+361	473	directus_fields	91	{"interface":"input-rich-text-md","special":null,"required":true,"collection":"hallitus_page","field":"en_text"}	{"interface":"input-rich-text-md","special":null,"required":true,"collection":"hallitus_page","field":"en_text"}	\N
+362	474	hallitus_page	1	{"fi_text":"# Board activities\\n\\nServerin hallitus vastaa ainejärjestötoiminnan käytännön asioiden hoidosta. Asioita tehdään yhdessä, mutta käytännön syistä tehtäviä on jaettu \\"hallitusrooleihin\\" jäsenten kiinnostuksen ja osaamisen mukaan. Mikäli haluat olla yhteydessä hallitukseen, tapahtuu se helpoiten sähköpostitse hallitus[ät]serveriry.fi tai Serverin jäsenenä löydät kaikki hallituslaiset myös Oppositiosta.\\n\\nServerin hallituksen jäsenet vaihtuvat vuosittain ja heidät valitaan kaikille jäsenille avoimessa syyskokouksessa. Ainejärjestötoiminnan sisältö mukautuu aikaan, mutta hallituksen varsinaiset tehtävät muuttuvat harvemmin ja hitaammin. Mikäli ainejärjestötoiminta kiinnostaa, kannattaa harkita hallitustoimintaan mukaan lähtemistä! Syyskokouksessa valitut jäsenet järjestäytyvät hallituskautensa alussa ja valitsevat keskuudestaan vastuuhenkilöt eri osaalueiden hoitamiseen. Vastuuhenkilöiden titteleistä saa jo hyvän kuvan siitä, minkälaista hallitustoiminta on.\\n\\nServerin hallituksen koko määräytyy syyskokouksessa ja tällä kaudella se koostuu 15:sta varsinaisesta ja 5:stä varajäsenestä. Hallituslaisiin ja heidän rooleihinsa voit tutustua alta, josta löydät myös yhteystiedot. Roolikohtaisten sähköpostiosotteiden lisäksi jokaisella hallituksen varsinaisella- ja varajäsenellä on henkilökohtainen sähköpostiosoite muodossa etunimi.sukunimi[ät]serveriry.fi.\\n\\n## Serverin Oppositio\\n\\nKiinnostaako ainejärjestötoiminta? Serverin Oppositio on ryhmä Telegramissa, jossa pääsee seuraamaan ainejärjestötoimintaa hieman lähempää. Ryhmään liittyminen ei sido mihinkään ja voit liittyä/poistua täysin vapaasti. Tervetuloa mukaan! [Liittymislinkki](https://t.me/) TG-ryhmään. ","en_text":"# Board activities\\n\\nThe server's board is responsible for the practical management of the association's activities. Things are done collectively, but for practical reasons, tasks are divided into \\"board roles\\" according to members' interests and skills. If you want to get in touch with the board, the easiest way is to email hallitus[ät]serveriry.fi or, as a Server member, you can also find all board members in the Opposition.\\n\\nServer's board members rotate annually and are elected at an autumn meeting open to all members. The content of the Board's activities adapts over time, but the actual tasks of the Board change less frequently and more slowly. If you are interested, you should consider joining the board! The members elected at the autumn meeting organise themselves at the beginning of their term of office and choose from among themselves the persons responsible for the various areas of activity. The titles of these people give you a good idea of what government is like.\\n\\nThe size of the Server Board is decided at the autumn meeting and this term it consists of 15 full members and 5 alternates. You can find out more about the board members and their roles below, where you can also find their contact details. In addition to the role-specific email addresses, each member and alternate member of the Board has a personal email address in the form of firstname.lastname[at]serveriry.fi.\\n\\n## Serveriry Opposition\\n\\nAre you interested in student union activities? Server's Opposition is a group on Telegram where you can follow the activities of the student union a little closer. Joining the group is not binding and you are free to join/leave. Welcome to join! [Join](https://t.me/) TG group. "}	{"fi_text":"# Board activities\\n\\nServerin hallitus vastaa ainejärjestötoiminnan käytännön asioiden hoidosta. Asioita tehdään yhdessä, mutta käytännön syistä tehtäviä on jaettu \\"hallitusrooleihin\\" jäsenten kiinnostuksen ja osaamisen mukaan. Mikäli haluat olla yhteydessä hallitukseen, tapahtuu se helpoiten sähköpostitse hallitus[ät]serveriry.fi tai Serverin jäsenenä löydät kaikki hallituslaiset myös Oppositiosta.\\n\\nServerin hallituksen jäsenet vaihtuvat vuosittain ja heidät valitaan kaikille jäsenille avoimessa syyskokouksessa. Ainejärjestötoiminnan sisältö mukautuu aikaan, mutta hallituksen varsinaiset tehtävät muuttuvat harvemmin ja hitaammin. Mikäli ainejärjestötoiminta kiinnostaa, kannattaa harkita hallitustoimintaan mukaan lähtemistä! Syyskokouksessa valitut jäsenet järjestäytyvät hallituskautensa alussa ja valitsevat keskuudestaan vastuuhenkilöt eri osaalueiden hoitamiseen. Vastuuhenkilöiden titteleistä saa jo hyvän kuvan siitä, minkälaista hallitustoiminta on.\\n\\nServerin hallituksen koko määräytyy syyskokouksessa ja tällä kaudella se koostuu 15:sta varsinaisesta ja 5:stä varajäsenestä. Hallituslaisiin ja heidän rooleihinsa voit tutustua alta, josta löydät myös yhteystiedot. Roolikohtaisten sähköpostiosotteiden lisäksi jokaisella hallituksen varsinaisella- ja varajäsenellä on henkilökohtainen sähköpostiosoite muodossa etunimi.sukunimi[ät]serveriry.fi.\\n\\n## Serverin Oppositio\\n\\nKiinnostaako ainejärjestötoiminta? Serverin Oppositio on ryhmä Telegramissa, jossa pääsee seuraamaan ainejärjestötoimintaa hieman lähempää. Ryhmään liittyminen ei sido mihinkään ja voit liittyä/poistua täysin vapaasti. Tervetuloa mukaan! [Liittymislinkki](https://t.me/) TG-ryhmään. ","en_text":"# Board activities\\n\\nThe server's board is responsible for the practical management of the association's activities. Things are done collectively, but for practical reasons, tasks are divided into \\"board roles\\" according to members' interests and skills. If you want to get in touch with the board, the easiest way is to email hallitus[ät]serveriry.fi or, as a Server member, you can also find all board members in the Opposition.\\n\\nServer's board members rotate annually and are elected at an autumn meeting open to all members. The content of the Board's activities adapts over time, but the actual tasks of the Board change less frequently and more slowly. If you are interested, you should consider joining the board! The members elected at the autumn meeting organise themselves at the beginning of their term of office and choose from among themselves the persons responsible for the various areas of activity. The titles of these people give you a good idea of what government is like.\\n\\nThe size of the Server Board is decided at the autumn meeting and this term it consists of 15 full members and 5 alternates. You can find out more about the board members and their roles below, where you can also find their contact details. In addition to the role-specific email addresses, each member and alternate member of the Board has a personal email address in the form of firstname.lastname[at]serveriry.fi.\\n\\n## Serveriry Opposition\\n\\nAre you interested in student union activities? Server's Opposition is a group on Telegram where you can follow the activities of the student union a little closer. Joining the group is not binding and you are free to join/leave. Welcome to join! [Join](https://t.me/) TG group. "}	\N
+363	475	directus_permissions	15	{"role":null,"collection":"hallitus_page","action":"read"}	{"role":null,"collection":"hallitus_page","action":"read"}	\N
+364	476	directus_permissions	15	{"id":15,"role":null,"collection":"hallitus_page","action":"read","permissions":null,"validation":null,"presets":null,"fields":["fi_text","en_text","date_updated"]}	{"role":null,"collection":"hallitus_page","action":"read","permissions":null,"validation":null,"presets":null,"fields":["fi_text","en_text","date_updated"]}	\N
+365	477	directus_fields	92	{"hidden":true,"interface":"input","readonly":true,"field":"id","collection":"study_club"}	{"hidden":true,"interface":"input","readonly":true,"field":"id","collection":"study_club"}	\N
+366	478	directus_fields	93	{"special":["user-updated"],"interface":"select-dropdown-m2o","options":{"template":"{{avatar.$thumbnail}} {{first_name}} {{last_name}}"},"display":"user","readonly":true,"hidden":true,"width":"half","field":"user_updated","collection":"study_club"}	{"special":["user-updated"],"interface":"select-dropdown-m2o","options":{"template":"{{avatar.$thumbnail}} {{first_name}} {{last_name}}"},"display":"user","readonly":true,"hidden":true,"width":"half","field":"user_updated","collection":"study_club"}	\N
+367	479	directus_fields	94	{"special":["date-updated"],"interface":"datetime","readonly":true,"hidden":true,"width":"half","display":"datetime","display_options":{"relative":true},"field":"date_updated","collection":"study_club"}	{"special":["date-updated"],"interface":"datetime","readonly":true,"hidden":true,"width":"half","display":"datetime","display_options":{"relative":true},"field":"date_updated","collection":"study_club"}	\N
+368	480	directus_collections	study_club	{"singleton":true,"collection":"study_club"}	{"singleton":true,"collection":"study_club"}	\N
+369	481	directus_fields	95	{"interface":"input-rich-text-md","special":null,"collection":"study_club","field":"fi_text"}	{"interface":"input-rich-text-md","special":null,"collection":"study_club","field":"fi_text"}	\N
+370	482	directus_fields	96	{"interface":"input-rich-text-md","special":null,"collection":"study_club","field":"en_text"}	{"interface":"input-rich-text-md","special":null,"collection":"study_club","field":"en_text"}	\N
+371	483	directus_fields	97	{"hidden":true,"interface":"input","readonly":true,"field":"id","collection":"for_new_student"}	{"hidden":true,"interface":"input","readonly":true,"field":"id","collection":"for_new_student"}	\N
+372	484	directus_fields	98	{"special":["user-updated"],"interface":"select-dropdown-m2o","options":{"template":"{{avatar.$thumbnail}} {{first_name}} {{last_name}}"},"display":"user","readonly":true,"hidden":true,"width":"half","field":"user_updated","collection":"for_new_student"}	{"special":["user-updated"],"interface":"select-dropdown-m2o","options":{"template":"{{avatar.$thumbnail}} {{first_name}} {{last_name}}"},"display":"user","readonly":true,"hidden":true,"width":"half","field":"user_updated","collection":"for_new_student"}	\N
+373	485	directus_fields	99	{"special":["date-updated"],"interface":"datetime","readonly":true,"hidden":true,"width":"half","display":"datetime","display_options":{"relative":true},"field":"date_updated","collection":"for_new_student"}	{"special":["date-updated"],"interface":"datetime","readonly":true,"hidden":true,"width":"half","display":"datetime","display_options":{"relative":true},"field":"date_updated","collection":"for_new_student"}	\N
+374	486	directus_collections	for_new_student	{"singleton":true,"collection":"for_new_student"}	{"singleton":true,"collection":"for_new_student"}	\N
+375	487	directus_fields	100	{"interface":"input-rich-text-md","special":null,"required":true,"collection":"for_new_student","field":"fi_text"}	{"interface":"input-rich-text-md","special":null,"required":true,"collection":"for_new_student","field":"fi_text"}	\N
+376	488	directus_fields	101	{"interface":"input-rich-text-md","special":null,"required":true,"collection":"for_new_student","field":"en_text"}	{"interface":"input-rich-text-md","special":null,"required":true,"collection":"for_new_student","field":"en_text"}	\N
+377	489	study_club	1	{"fi_text":"# Uudelle opiskelijalle\\n\\nTietojenkäsittelytieteen uudet opiskelijat aloittavat syksyllä pitkän ja kivikkoisen, mutta niin kovin antoisan tiensä kohti luonnontieteen kandidaatin ja filosofian maisterin titteleitä.\\nFuksin muistilista\\n\\n- Muista maksaa jäsenmaksut Itä-Suomen yliopiston ylioppilaskunnalle (ISYY) 31.8 mennessä\\n- YTHS maksu on myös pakollinen ja se maksetaan erikseen Kelalle, kannattaa se kurkistella kuntoon\\n- Kannattaa lukea Tietojenkäsittelytieteen laitoksen Smart Start -opas ja kamusta ohjeet uudelle opiskelijalle\\n- Liity Serverin jäseneksi.\\n- Liity Serverin tiedotuskanavalle: https://t.me/serveriry\\n- Tsekkaa syksyn tuutorit täältä\\n- Hanki opiskelijakortti\\n\\n## Opiskelijakortti\\n\\nOpiskelijakortilla todistat opiskelijastatuksesi, jotta voit saada opiskelija-alennuksia. Fyysisiä opiskelijakortteja hankitaan kirjoittamishetkellä (kevät 2021) kautta ja maksaa 25€. Fyysisellä ja sähköisillä korteilla ei ole muuta eroa kuin myöntäjä ja mahdollisesti joitain eroja alennuksissa. Tenttitilaisuuksissa kelpaa sähköinen kortti tai muu henkilöllisyystodistus. Kaikki vaihtoehdot kirjoittamishetkellä (kevät 2021) ilmaisia Kansainväliset kortit hankitaan kautta. Saatavilla sekä fyysinen että sähköinen versio.\\n\\n\\n## Hyvä tietää\\n\\n- Serveri tiedottaa tapahtumistaan ensisijaisesti Telegramissa, mutta myös kotisivuilla ja postilistalla. Uudet jäsenet lisätään postilistalle, kun hallitus on hyväksynyt heidät jäseniksi jäsenmaksun maksamisen jälkeen.\\n- Serverimeininkiä löytyy edellä mainittujen alustojen lisäksi myös Facebookista ja Instagramista\\n\\n## Mahdollisesti hyödyllistä sisältöä\\n\\n- [Sykettä](https://sykettä.fi/kuopio/) eli korkeakoulujen liikuntapalvelut, jos liikunnan harrastaminen kiinnostaa. Ensimmäisillä opiskeluviikoilla palveluita pääsee usein kokeilemaan ilmaiseksi\\n- [ISYY](https://www.isyy.fi/palvelut/uudelle-opiskelijalle.html)n sivut uudelle opiskelijalle"}	{"fi_text":"# Uudelle opiskelijalle\\n\\nTietojenkäsittelytieteen uudet opiskelijat aloittavat syksyllä pitkän ja kivikkoisen, mutta niin kovin antoisan tiensä kohti luonnontieteen kandidaatin ja filosofian maisterin titteleitä.\\nFuksin muistilista\\n\\n- Muista maksaa jäsenmaksut Itä-Suomen yliopiston ylioppilaskunnalle (ISYY) 31.8 mennessä\\n- YTHS maksu on myös pakollinen ja se maksetaan erikseen Kelalle, kannattaa se kurkistella kuntoon\\n- Kannattaa lukea Tietojenkäsittelytieteen laitoksen Smart Start -opas ja kamusta ohjeet uudelle opiskelijalle\\n- Liity Serverin jäseneksi.\\n- Liity Serverin tiedotuskanavalle: https://t.me/serveriry\\n- Tsekkaa syksyn tuutorit täältä\\n- Hanki opiskelijakortti\\n\\n## Opiskelijakortti\\n\\nOpiskelijakortilla todistat opiskelijastatuksesi, jotta voit saada opiskelija-alennuksia. Fyysisiä opiskelijakortteja hankitaan kirjoittamishetkellä (kevät 2021) kautta ja maksaa 25€. Fyysisellä ja sähköisillä korteilla ei ole muuta eroa kuin myöntäjä ja mahdollisesti joitain eroja alennuksissa. Tenttitilaisuuksissa kelpaa sähköinen kortti tai muu henkilöllisyystodistus. Kaikki vaihtoehdot kirjoittamishetkellä (kevät 2021) ilmaisia Kansainväliset kortit hankitaan kautta. Saatavilla sekä fyysinen että sähköinen versio.\\n\\n\\n## Hyvä tietää\\n\\n- Serveri tiedottaa tapahtumistaan ensisijaisesti Telegramissa, mutta myös kotisivuilla ja postilistalla. Uudet jäsenet lisätään postilistalle, kun hallitus on hyväksynyt heidät jäseniksi jäsenmaksun maksamisen jälkeen.\\n- Serverimeininkiä löytyy edellä mainittujen alustojen lisäksi myös Facebookista ja Instagramista\\n\\n## Mahdollisesti hyödyllistä sisältöä\\n\\n- [Sykettä](https://sykettä.fi/kuopio/) eli korkeakoulujen liikuntapalvelut, jos liikunnan harrastaminen kiinnostaa. Ensimmäisillä opiskeluviikoilla palveluita pääsee usein kokeilemaan ilmaiseksi\\n- [ISYY](https://www.isyy.fi/palvelut/uudelle-opiskelijalle.html)n sivut uudelle opiskelijalle"}	\N
+378	490	study_club	1	{"id":1,"user_updated":"0891a0cd-876b-4a0d-a22e-0cce30121382","date_updated":"2023-04-29T20:08:45.775Z","fi_text":"# Uudelle opiskelijalle\\n\\nTietojenkäsittelytieteen uudet opiskelijat aloittavat syksyllä pitkän ja kivikkoisen, mutta niin kovin antoisan tiensä kohti luonnontieteen kandidaatin ja filosofian maisterin titteleitä.\\nFuksin muistilista\\n\\n- Muista maksaa jäsenmaksut Itä-Suomen yliopiston ylioppilaskunnalle (ISYY) 31.8 mennessä\\n- YTHS maksu on myös pakollinen ja se maksetaan erikseen Kelalle, kannattaa se kurkistella kuntoon\\n- Kannattaa lukea Tietojenkäsittelytieteen laitoksen Smart Start -opas ja kamusta ohjeet uudelle opiskelijalle\\n- Liity Serverin jäseneksi.\\n- Liity Serverin tiedotuskanavalle: https://t.me/serveriry\\n- Tsekkaa syksyn tuutorit täältä\\n- Hanki opiskelijakortti\\n\\n## Opiskelijakortti\\n\\nOpiskelijakortilla todistat opiskelijastatuksesi, jotta voit saada opiskelija-alennuksia. Fyysisiä opiskelijakortteja hankitaan kirjoittamishetkellä (kevät 2021) kautta ja maksaa 25€. Fyysisellä ja sähköisillä korteilla ei ole muuta eroa kuin myöntäjä ja mahdollisesti joitain eroja alennuksissa. Tenttitilaisuuksissa kelpaa sähköinen kortti tai muu henkilöllisyystodistus. Kaikki vaihtoehdot kirjoittamishetkellä (kevät 2021) ilmaisia Kansainväliset kortit hankitaan kautta. Saatavilla sekä fyysinen että sähköinen versio.\\n\\n\\n## Hyvä tietää\\n\\n- Serveri tiedottaa tapahtumistaan ensisijaisesti Telegramissa, mutta myös kotisivuilla ja postilistalla. Uudet jäsenet lisätään postilistalle, kun hallitus on hyväksynyt heidät jäseniksi jäsenmaksun maksamisen jälkeen.\\n- Serverimeininkiä löytyy edellä mainittujen alustojen lisäksi myös Facebookista ja Instagramista\\n\\n## Mahdollisesti hyödyllistä sisältöä\\n\\n- [Sykettä](https://sykettä.fi/kuopio/) eli korkeakoulujen liikuntapalvelut, jos liikunnan harrastaminen kiinnostaa. Ensimmäisillä opiskeluviikoilla palveluita pääsee usein kokeilemaan ilmaiseksi\\n- [ISYY](https://www.isyy.fi/palvelut/uudelle-opiskelijalle.html)n sivut uudelle opiskelijalle","en_text":"# For a new student\\n\\nThis autumn, new students in Computer Science will begin the long and rocky, but so very rewarding journey towards their Bachelor of Science and Master of Philosophy degrees.\\nFreshman checklist\\n\\n- Remember to pay your membership fees to the Student Union of the University of Eastern Finland (ISYY) by 31 August\\n- The YTHS fee is also compulsory and is paid separately to Kela, it's worth checking it out\\n- You should read the Smart Start guide of the Department of Computer Science and the instructions for new students\\n- Join the Server.\\n- Join the Server information channel: https://t.me/serveriry\\n- Check out the autumn tutors here\\n- Get your student card\\n\\n## Student card\\n\\nThe student card is your proof of student status to qualify for student discounts. Physical student cards are available at the time of writing (Spring 2021) and cost €25. There is no difference between physical and electronic cards other than the issuer and possibly some differences in discounts. For exams, an electronic card or other form of ID will be accepted. All options at time of writing (spring 2021) free International cards are purchased via. Both physical and electronic versions are available.\\n\\n\\n## Good to know\\n\\n- The server informs about its events primarily on Telegram, but also on its website and mailing list. New members are added to the mailing list after being accepted as members by the board of directors after payment of the membership fee.\\n- In addition to the platforms mentioned above, Serverimeinink can also be found on Facebook and Instagram\\n\\n## Potentially useful content\\n\\n- [Sykettä](https://sykettä.fi/kuopio/), the sports services of universities, if you are interested in sports. You can often try out the services for free during the first weeks of your studies\\n- [ISYY](https://www.isyy.fi/palvelut/uudelle-opiskelijalle.html) website for new students"}	{"en_text":"# For a new student\\n\\nThis autumn, new students in Computer Science will begin the long and rocky, but so very rewarding journey towards their Bachelor of Science and Master of Philosophy degrees.\\nFreshman checklist\\n\\n- Remember to pay your membership fees to the Student Union of the University of Eastern Finland (ISYY) by 31 August\\n- The YTHS fee is also compulsory and is paid separately to Kela, it's worth checking it out\\n- You should read the Smart Start guide of the Department of Computer Science and the instructions for new students\\n- Join the Server.\\n- Join the Server information channel: https://t.me/serveriry\\n- Check out the autumn tutors here\\n- Get your student card\\n\\n## Student card\\n\\nThe student card is your proof of student status to qualify for student discounts. Physical student cards are available at the time of writing (Spring 2021) and cost €25. There is no difference between physical and electronic cards other than the issuer and possibly some differences in discounts. For exams, an electronic card or other form of ID will be accepted. All options at time of writing (spring 2021) free International cards are purchased via. Both physical and electronic versions are available.\\n\\n\\n## Good to know\\n\\n- The server informs about its events primarily on Telegram, but also on its website and mailing list. New members are added to the mailing list after being accepted as members by the board of directors after payment of the membership fee.\\n- In addition to the platforms mentioned above, Serverimeinink can also be found on Facebook and Instagram\\n\\n## Potentially useful content\\n\\n- [Sykettä](https://sykettä.fi/kuopio/), the sports services of universities, if you are interested in sports. You can often try out the services for free during the first weeks of your studies\\n- [ISYY](https://www.isyy.fi/palvelut/uudelle-opiskelijalle.html) website for new students","user_updated":"0891a0cd-876b-4a0d-a22e-0cce30121382","date_updated":"2023-04-29T20:08:45.775Z"}	\N
+379	491	for_new_student	1	{"fi_text":"# For a new student\\n\\nThis autumn, new students in Computer Science will begin the long and rocky, but so very rewarding journey towards their Bachelor of Science and Master of Philosophy degrees.\\nFreshman checklist\\n\\n- Remember to pay your membership fees to the Student Union of the University of Eastern Finland (ISYY) by 31 August\\n- The YTHS fee is also compulsory and is paid separately to Kela, it's worth checking it out\\n- You should read the Smart Start guide of the Department of Computer Science and the instructions for new students\\n- Join the Server.\\n- Join the Server information channel: https://t.me/serveriry\\n- Check out the autumn tutors here\\n- Get your student card\\n\\n## Student card\\n\\nThe student card is your proof of student status to qualify for student discounts. Physical student cards are available at the time of writing (Spring 2021) and cost €25. There is no difference between physical and electronic cards other than the issuer and possibly some differences in discounts. For exams, an electronic card or other form of ID will be accepted. All options at time of writing (spring 2021) free International cards are purchased via. Both physical and electronic versions are available.\\n\\n\\n## Good to know\\n\\n- The server informs about its events primarily on Telegram, but also on its website and mailing list. New members are added to the mailing list after being accepted as members by the board of directors after payment of the membership fee.\\n- In addition to the platforms mentioned above, Serverimeinink can also be found on Facebook and Instagram\\n\\n## Potentially useful content\\n\\n- [Sykettä](https://sykettä.fi/kuopio/), the sports services of universities, if you are interested in sports. You can often try out the services for free during the first weeks of your studies\\n- [ISYY](https://www.isyy.fi/palvelut/uudelle-opiskelijalle.html) website for new students","en_text":"# For a new student\\n\\nThis autumn, new students in Computer Science will begin the long and rocky, but so very rewarding journey towards their Bachelor of Science and Master of Philosophy degrees.\\nFreshman checklist\\n\\n- Remember to pay your membership fees to the Student Union of the University of Eastern Finland (ISYY) by 31 August\\n- The YTHS fee is also compulsory and is paid separately to Kela, it's worth checking it out\\n- You should read the Smart Start guide of the Department of Computer Science and the instructions for new students\\n- Join the Server.\\n- Join the Server information channel: https://t.me/serveriry\\n- Check out the autumn tutors here\\n- Get your student card\\n\\n## Student card\\n\\nThe student card is your proof of student status to qualify for student discounts. Physical student cards are available at the time of writing (Spring 2021) and cost €25. There is no difference between physical and electronic cards other than the issuer and possibly some differences in discounts. For exams, an electronic card or other form of ID will be accepted. All options at time of writing (spring 2021) free International cards are purchased via. Both physical and electronic versions are available.\\n\\n\\n## Good to know\\n\\n- The server informs about its events primarily on Telegram, but also on its website and mailing list. New members are added to the mailing list after being accepted as members by the board of directors after payment of the membership fee.\\n- In addition to the platforms mentioned above, Serverimeinink can also be found on Facebook and Instagram\\n\\n## Potentially useful content\\n\\n- [Sykettä](https://sykettä.fi/kuopio/), the sports services of universities, if you are interested in sports. You can often try out the services for free during the first weeks of your studies\\n- [ISYY](https://www.isyy.fi/palvelut/uudelle-opiskelijalle.html) website for new students"}	{"fi_text":"# For a new student\\n\\nThis autumn, new students in Computer Science will begin the long and rocky, but so very rewarding journey towards their Bachelor of Science and Master of Philosophy degrees.\\nFreshman checklist\\n\\n- Remember to pay your membership fees to the Student Union of the University of Eastern Finland (ISYY) by 31 August\\n- The YTHS fee is also compulsory and is paid separately to Kela, it's worth checking it out\\n- You should read the Smart Start guide of the Department of Computer Science and the instructions for new students\\n- Join the Server.\\n- Join the Server information channel: https://t.me/serveriry\\n- Check out the autumn tutors here\\n- Get your student card\\n\\n## Student card\\n\\nThe student card is your proof of student status to qualify for student discounts. Physical student cards are available at the time of writing (Spring 2021) and cost €25. There is no difference between physical and electronic cards other than the issuer and possibly some differences in discounts. For exams, an electronic card or other form of ID will be accepted. All options at time of writing (spring 2021) free International cards are purchased via. Both physical and electronic versions are available.\\n\\n\\n## Good to know\\n\\n- The server informs about its events primarily on Telegram, but also on its website and mailing list. New members are added to the mailing list after being accepted as members by the board of directors after payment of the membership fee.\\n- In addition to the platforms mentioned above, Serverimeinink can also be found on Facebook and Instagram\\n\\n## Potentially useful content\\n\\n- [Sykettä](https://sykettä.fi/kuopio/), the sports services of universities, if you are interested in sports. You can often try out the services for free during the first weeks of your studies\\n- [ISYY](https://www.isyy.fi/palvelut/uudelle-opiskelijalle.html) website for new students","en_text":"# For a new student\\n\\nThis autumn, new students in Computer Science will begin the long and rocky, but so very rewarding journey towards their Bachelor of Science and Master of Philosophy degrees.\\nFreshman checklist\\n\\n- Remember to pay your membership fees to the Student Union of the University of Eastern Finland (ISYY) by 31 August\\n- The YTHS fee is also compulsory and is paid separately to Kela, it's worth checking it out\\n- You should read the Smart Start guide of the Department of Computer Science and the instructions for new students\\n- Join the Server.\\n- Join the Server information channel: https://t.me/serveriry\\n- Check out the autumn tutors here\\n- Get your student card\\n\\n## Student card\\n\\nThe student card is your proof of student status to qualify for student discounts. Physical student cards are available at the time of writing (Spring 2021) and cost €25. There is no difference between physical and electronic cards other than the issuer and possibly some differences in discounts. For exams, an electronic card or other form of ID will be accepted. All options at time of writing (spring 2021) free International cards are purchased via. Both physical and electronic versions are available.\\n\\n\\n## Good to know\\n\\n- The server informs about its events primarily on Telegram, but also on its website and mailing list. New members are added to the mailing list after being accepted as members by the board of directors after payment of the membership fee.\\n- In addition to the platforms mentioned above, Serverimeinink can also be found on Facebook and Instagram\\n\\n## Potentially useful content\\n\\n- [Sykettä](https://sykettä.fi/kuopio/), the sports services of universities, if you are interested in sports. You can often try out the services for free during the first weeks of your studies\\n- [ISYY](https://www.isyy.fi/palvelut/uudelle-opiskelijalle.html) website for new students"}	\N
+419	533	directus_permissions	19	{"id":19,"role":null,"collection":"gdpr","action":"read","permissions":null,"validation":null,"presets":null,"fields":["fi_text","en_text","date_updated"]}	{"role":null,"collection":"gdpr","action":"read","permissions":null,"validation":null,"presets":null,"fields":["fi_text","en_text","date_updated"]}	\N
+380	492	for_new_student	1	{"id":1,"user_updated":"0891a0cd-876b-4a0d-a22e-0cce30121382","date_updated":"2023-04-29T20:09:12.545Z","fi_text":"# Uudelle opiskelijalle\\n\\nTietojenkäsittelytieteen uudet opiskelijat aloittavat syksyllä pitkän ja kivikkoisen, mutta niin kovin antoisan tiensä kohti luonnontieteen kandidaatin ja filosofian maisterin titteleitä.\\nFuksin muistilista\\n\\n- Muista maksaa jäsenmaksut Itä-Suomen yliopiston ylioppilaskunnalle (ISYY) 31.8 mennessä\\n- YTHS maksu on myös pakollinen ja se maksetaan erikseen Kelalle, kannattaa se kurkistella kuntoon\\n- Kannattaa lukea Tietojenkäsittelytieteen laitoksen Smart Start -opas ja kamusta ohjeet uudelle opiskelijalle\\n- Liity Serverin jäseneksi.\\n- Liity Serverin tiedotuskanavalle: https://t.me/serveriry\\n- Tsekkaa syksyn tuutorit täältä\\n- Hanki opiskelijakortti\\n\\n## Opiskelijakortti\\n\\nOpiskelijakortilla todistat opiskelijastatuksesi, jotta voit saada opiskelija-alennuksia. Fyysisiä opiskelijakortteja hankitaan kirjoittamishetkellä (kevät 2021) kautta ja maksaa 25€. Fyysisellä ja sähköisillä korteilla ei ole muuta eroa kuin myöntäjä ja mahdollisesti joitain eroja alennuksissa. Tenttitilaisuuksissa kelpaa sähköinen kortti tai muu henkilöllisyystodistus. Kaikki vaihtoehdot kirjoittamishetkellä (kevät 2021) ilmaisia Kansainväliset kortit hankitaan kautta. Saatavilla sekä fyysinen että sähköinen versio.\\n\\n\\n## Hyvä tietää\\n\\n- Serveri tiedottaa tapahtumistaan ensisijaisesti Telegramissa, mutta myös kotisivuilla ja postilistalla. Uudet jäsenet lisätään postilistalle, kun hallitus on hyväksynyt heidät jäseniksi jäsenmaksun maksamisen jälkeen.\\n- Serverimeininkiä löytyy edellä mainittujen alustojen lisäksi myös Facebookista ja Instagramista\\n\\n## Mahdollisesti hyödyllistä sisältöä\\n\\n- [Sykettä](https://sykettä.fi/kuopio/) eli korkeakoulujen liikuntapalvelut, jos liikunnan harrastaminen kiinnostaa. Ensimmäisillä opiskeluviikoilla palveluita pääsee usein kokeilemaan ilmaiseksi\\n- [ISYY](https://www.isyy.fi/palvelut/uudelle-opiskelijalle.html)n sivut uudelle opiskelijalle","en_text":"# For a new student\\n\\nThis autumn, new students in Computer Science will begin the long and rocky, but so very rewarding journey towards their Bachelor of Science and Master of Philosophy degrees.\\nFreshman checklist\\n\\n- Remember to pay your membership fees to the Student Union of the University of Eastern Finland (ISYY) by 31 August\\n- The YTHS fee is also compulsory and is paid separately to Kela, it's worth checking it out\\n- You should read the Smart Start guide of the Department of Computer Science and the instructions for new students\\n- Join the Server.\\n- Join the Server information channel: https://t.me/serveriry\\n- Check out the autumn tutors here\\n- Get your student card\\n\\n## Student card\\n\\nThe student card is your proof of student status to qualify for student discounts. Physical student cards are available at the time of writing (Spring 2021) and cost €25. There is no difference between physical and electronic cards other than the issuer and possibly some differences in discounts. For exams, an electronic card or other form of ID will be accepted. All options at time of writing (spring 2021) free International cards are purchased via. Both physical and electronic versions are available.\\n\\n\\n## Good to know\\n\\n- The server informs about its events primarily on Telegram, but also on its website and mailing list. New members are added to the mailing list after being accepted as members by the board of directors after payment of the membership fee.\\n- In addition to the platforms mentioned above, Serverimeinink can also be found on Facebook and Instagram\\n\\n## Potentially useful content\\n\\n- [Sykettä](https://sykettä.fi/kuopio/), the sports services of universities, if you are interested in sports. You can often try out the services for free during the first weeks of your studies\\n- [ISYY](https://www.isyy.fi/palvelut/uudelle-opiskelijalle.html) website for new students"}	{"fi_text":"# Uudelle opiskelijalle\\n\\nTietojenkäsittelytieteen uudet opiskelijat aloittavat syksyllä pitkän ja kivikkoisen, mutta niin kovin antoisan tiensä kohti luonnontieteen kandidaatin ja filosofian maisterin titteleitä.\\nFuksin muistilista\\n\\n- Muista maksaa jäsenmaksut Itä-Suomen yliopiston ylioppilaskunnalle (ISYY) 31.8 mennessä\\n- YTHS maksu on myös pakollinen ja se maksetaan erikseen Kelalle, kannattaa se kurkistella kuntoon\\n- Kannattaa lukea Tietojenkäsittelytieteen laitoksen Smart Start -opas ja kamusta ohjeet uudelle opiskelijalle\\n- Liity Serverin jäseneksi.\\n- Liity Serverin tiedotuskanavalle: https://t.me/serveriry\\n- Tsekkaa syksyn tuutorit täältä\\n- Hanki opiskelijakortti\\n\\n## Opiskelijakortti\\n\\nOpiskelijakortilla todistat opiskelijastatuksesi, jotta voit saada opiskelija-alennuksia. Fyysisiä opiskelijakortteja hankitaan kirjoittamishetkellä (kevät 2021) kautta ja maksaa 25€. Fyysisellä ja sähköisillä korteilla ei ole muuta eroa kuin myöntäjä ja mahdollisesti joitain eroja alennuksissa. Tenttitilaisuuksissa kelpaa sähköinen kortti tai muu henkilöllisyystodistus. Kaikki vaihtoehdot kirjoittamishetkellä (kevät 2021) ilmaisia Kansainväliset kortit hankitaan kautta. Saatavilla sekä fyysinen että sähköinen versio.\\n\\n\\n## Hyvä tietää\\n\\n- Serveri tiedottaa tapahtumistaan ensisijaisesti Telegramissa, mutta myös kotisivuilla ja postilistalla. Uudet jäsenet lisätään postilistalle, kun hallitus on hyväksynyt heidät jäseniksi jäsenmaksun maksamisen jälkeen.\\n- Serverimeininkiä löytyy edellä mainittujen alustojen lisäksi myös Facebookista ja Instagramista\\n\\n## Mahdollisesti hyödyllistä sisältöä\\n\\n- [Sykettä](https://sykettä.fi/kuopio/) eli korkeakoulujen liikuntapalvelut, jos liikunnan harrastaminen kiinnostaa. Ensimmäisillä opiskeluviikoilla palveluita pääsee usein kokeilemaan ilmaiseksi\\n- [ISYY](https://www.isyy.fi/palvelut/uudelle-opiskelijalle.html)n sivut uudelle opiskelijalle","user_updated":"0891a0cd-876b-4a0d-a22e-0cce30121382","date_updated":"2023-04-29T20:09:12.545Z"}	\N
+381	493	study_club	1	{"id":1,"user_updated":"0891a0cd-876b-4a0d-a22e-0cce30121382","date_updated":"2023-04-29T20:09:26.905Z","fi_text":"# Läksykerho","en_text":"# Study club"}	{"fi_text":"# Läksykerho","en_text":"# Study club","user_updated":"0891a0cd-876b-4a0d-a22e-0cce30121382","date_updated":"2023-04-29T20:09:26.905Z"}	\N
+382	494	study_club	1	{"id":1,"user_updated":"0891a0cd-876b-4a0d-a22e-0cce30121382","date_updated":"2023-04-29T20:10:58.119Z","fi_text":"# Läksykerho\\n\\nLäksykerho on tarkoitettu kaikille TKT:n opiskelijoille ja vuosikursseille. Tulkaa yhdessä miettimään ja ratkomaan kurssien harjoitustehtäviä. Läksykerhon aika on 4 h, mutta se ei tarkoita sitä, että siellä tulee olla koko aikaa. Tulkaa silloin, kun muilta opinnoiltanne kerkiätte.  \\n\\nLäksykerho päivinä laitos tarjoaa kahvit/teet klo 13.45-14.15 laitoksen aulassa. Silloin on mahdollista tavata myös paikalla olevaa laitoksen henkilökuntaa.","en_text":"# Study club\\n\\nThe club is open to all TKT students and year groups. Come together to think about and solve course exercises. The time of the club is 4 hours, but that does not mean that you have to be there all the time. Please come when you can from your other studies.  \\n\\nOn the days of the study club, the department offers coffee/tea from 13.45 to 14.15 in the lobby of the department. It is also possible to meet the staff of the institution on site."}	{"fi_text":"# Läksykerho\\n\\nLäksykerho on tarkoitettu kaikille TKT:n opiskelijoille ja vuosikursseille. Tulkaa yhdessä miettimään ja ratkomaan kurssien harjoitustehtäviä. Läksykerhon aika on 4 h, mutta se ei tarkoita sitä, että siellä tulee olla koko aikaa. Tulkaa silloin, kun muilta opinnoiltanne kerkiätte.  \\n\\nLäksykerho päivinä laitos tarjoaa kahvit/teet klo 13.45-14.15 laitoksen aulassa. Silloin on mahdollista tavata myös paikalla olevaa laitoksen henkilökuntaa.","en_text":"# Study club\\n\\nThe club is open to all TKT students and year groups. Come together to think about and solve course exercises. The time of the club is 4 hours, but that does not mean that you have to be there all the time. Please come when you can from your other studies.  \\n\\nOn the days of the study club, the department offers coffee/tea from 13.45 to 14.15 in the lobby of the department. It is also possible to meet the staff of the institution on site.","user_updated":"0891a0cd-876b-4a0d-a22e-0cce30121382","date_updated":"2023-04-29T20:10:58.119Z"}	\N
+383	495	directus_fields	102	{"hidden":true,"interface":"input","readonly":true,"field":"id","collection":"liity_serveriin"}	{"hidden":true,"interface":"input","readonly":true,"field":"id","collection":"liity_serveriin"}	\N
+384	496	directus_fields	103	{"special":["user-updated"],"interface":"select-dropdown-m2o","options":{"template":"{{avatar.$thumbnail}} {{first_name}} {{last_name}}"},"display":"user","readonly":true,"hidden":true,"width":"half","field":"user_updated","collection":"liity_serveriin"}	{"special":["user-updated"],"interface":"select-dropdown-m2o","options":{"template":"{{avatar.$thumbnail}} {{first_name}} {{last_name}}"},"display":"user","readonly":true,"hidden":true,"width":"half","field":"user_updated","collection":"liity_serveriin"}	\N
+385	497	directus_fields	104	{"special":["date-updated"],"interface":"datetime","readonly":true,"hidden":true,"width":"half","display":"datetime","display_options":{"relative":true},"field":"date_updated","collection":"liity_serveriin"}	{"special":["date-updated"],"interface":"datetime","readonly":true,"hidden":true,"width":"half","display":"datetime","display_options":{"relative":true},"field":"date_updated","collection":"liity_serveriin"}	\N
+386	498	directus_collections	liity_serveriin	{"singleton":true,"collection":"liity_serveriin"}	{"singleton":true,"collection":"liity_serveriin"}	\N
+387	499	directus_fields	105	{"interface":"input-rich-text-md","special":null,"collection":"liity_serveriin","field":"text"}	{"interface":"input-rich-text-md","special":null,"collection":"liity_serveriin","field":"text"}	\N
+388	500	directus_fields	105	{"id":105,"collection":"liity_serveriin","field":"text","special":null,"interface":"input-rich-text-md","options":null,"display":null,"display_options":null,"readonly":false,"hidden":false,"sort":null,"width":"full","translations":null,"note":null,"conditions":null,"required":true,"group":null,"validation":null,"validation_message":null}	{"collection":"liity_serveriin","field":"text","special":null,"interface":"input-rich-text-md","options":null,"display":null,"display_options":null,"readonly":false,"hidden":false,"sort":null,"width":"full","translations":null,"note":null,"conditions":null,"required":true,"group":null,"validation":null,"validation_message":null}	\N
+389	501	liity_serveriin	1	{"text":"# Liity jäseneksi\\n\\nAktiivisen kampusalueella tapahtuvan toiminnan lisäksi Serveri neuvottelee etuja jäsenilleen. Jäsenedut ovat suoraan käytettävissä jäsenmaksun maksaneena, jäsenyys tarkistetaan aina suoraan jäsenrekisteristä.\\n\\n- Haalarit jäsenhintaan\\n\\t- Hinta vaihtelee vuosittain sponsoreiden anteliaisuuden mukaan, mutta voit olla varma että jäsenenä saat merkittävän alennuksen.\\n- Ainejärjestön reissut ja excursiot reilulla alennuksella\\n- Osallistuminen Serverin sitseille myöskin jäsenhintaan\\n- Pääset Serverin sähköpostilistalle\\n- Oikeus lähteä mukaan hallitustoimintaan\\n\\n\\nJäseneksi liittyminen\\nUutta! Jäseneksi voi liittyä nyt hieman elegantimmin\\n\\nAlla oleva nappi vie Stripen lomakkeelle jolla maksu ja tiedot käsitellään. Liittymällä hyväksyt tietosuoja- ja rekisteriehdot\\nRekisteri- ja tietosuojaseloste\\n\\nOngelmatilanteessa ota yhteyttä @jimboolio:on Telegramissa\\nVanha mutta edelleen toimiva tapa liittyä - jos uusi tapa on räjähtänyt:\\n\\nServerin jäseneksi voit liittyä maksamalla kertamaksun 25 euroa Serverin tilille (Nordea FI87 1078 3000 2205 16) Jos olet saanut jäsenmaksullesi maksuviitteen, käytä sitä. Muuten laita maksun viestikenttään nimesi.\\n\\nTämän jälkeen lähetä nimesi ja jäsenrekisteriin kirjattava sähköpostiosoitteesi osoitteeseen hallitus at serveriry.fi Tietosuojaselosteen löydät osoitteesta https://www.serveriry.fi/tietosuojaseloste/ Tämän jälkeen hallitus hyväksyy uudet jäsenet kuukausittaisessa kokouksessa. Hyväksytyille jäsenille ilmoitetaan sähköpostitse."}	{"text":"# Liity jäseneksi\\n\\nAktiivisen kampusalueella tapahtuvan toiminnan lisäksi Serveri neuvottelee etuja jäsenilleen. Jäsenedut ovat suoraan käytettävissä jäsenmaksun maksaneena, jäsenyys tarkistetaan aina suoraan jäsenrekisteristä.\\n\\n- Haalarit jäsenhintaan\\n\\t- Hinta vaihtelee vuosittain sponsoreiden anteliaisuuden mukaan, mutta voit olla varma että jäsenenä saat merkittävän alennuksen.\\n- Ainejärjestön reissut ja excursiot reilulla alennuksella\\n- Osallistuminen Serverin sitseille myöskin jäsenhintaan\\n- Pääset Serverin sähköpostilistalle\\n- Oikeus lähteä mukaan hallitustoimintaan\\n\\n\\nJäseneksi liittyminen\\nUutta! Jäseneksi voi liittyä nyt hieman elegantimmin\\n\\nAlla oleva nappi vie Stripen lomakkeelle jolla maksu ja tiedot käsitellään. Liittymällä hyväksyt tietosuoja- ja rekisteriehdot\\nRekisteri- ja tietosuojaseloste\\n\\nOngelmatilanteessa ota yhteyttä @jimboolio:on Telegramissa\\nVanha mutta edelleen toimiva tapa liittyä - jos uusi tapa on räjähtänyt:\\n\\nServerin jäseneksi voit liittyä maksamalla kertamaksun 25 euroa Serverin tilille (Nordea FI87 1078 3000 2205 16) Jos olet saanut jäsenmaksullesi maksuviitteen, käytä sitä. Muuten laita maksun viestikenttään nimesi.\\n\\nTämän jälkeen lähetä nimesi ja jäsenrekisteriin kirjattava sähköpostiosoitteesi osoitteeseen hallitus at serveriry.fi Tietosuojaselosteen löydät osoitteesta https://www.serveriry.fi/tietosuojaseloste/ Tämän jälkeen hallitus hyväksyy uudet jäsenet kuukausittaisessa kokouksessa. Hyväksytyille jäsenille ilmoitetaan sähköpostitse."}	\N
+390	502	directus_fields	106	{"interface":"input-rich-text-md","special":null,"required":true,"collection":"liity_serveriin","field":"fi_text"}	{"interface":"input-rich-text-md","special":null,"required":true,"collection":"liity_serveriin","field":"fi_text"}	\N
+391	503	directus_fields	107	{"interface":"input-rich-text-md","special":null,"required":true,"collection":"liity_serveriin","field":"en_text"}	{"interface":"input-rich-text-md","special":null,"required":true,"collection":"liity_serveriin","field":"en_text"}	\N
+392	504	liity_serveriin	1	{"id":1,"user_updated":"0891a0cd-876b-4a0d-a22e-0cce30121382","date_updated":"2023-04-29T20:15:32.510Z","fi_text":"# Liity jäseneksi\\n\\nAktiivisen kampusalueella tapahtuvan toiminnan lisäksi Serveri neuvottelee etuja jäsenilleen. Jäsenedut ovat suoraan käytettävissä jäsenmaksun maksaneena, jäsenyys tarkistetaan aina suoraan jäsenrekisteristä.\\n\\n## Jäsenedut\\n\\n- Haalarit jäsenhintaan\\n\\t- Hinta vaihtelee vuosittain sponsoreiden anteliaisuuden mukaan, mutta voit olla varma että jäsenenä saat merkittävän alennuksen.\\n- Ainejärjestön reissut ja excursiot reilulla alennuksella\\n- Osallistuminen Serverin sitseille myöskin jäsenhintaan\\n- Pääset Serverin sähköpostilistalle\\n- Oikeus lähteä mukaan hallitustoimintaan\\n\\n\\n## Jäseneksi liittyminen\\n\\nServerin jäseneksi voit liittyä maksamalla ~~kertamaksun~~ 25 euroa Serverin tilille (Nordea FI87 1078 3000 2205 16) Jos olet saanut jäsenmaksullesi maksuviitteen, käytä sitä. Muuten laita maksun viestikenttään nimesi.\\n\\nTämän jälkeen lähetä nimesi ja jäsenrekisteriin kirjattava sähköpostiosoitteesi osoitteeseen hallitus at serveriry.fi Tietosuojaselosteen löydät osoitteesta https://www.serveriry.fi/tietosuojaseloste/ Tämän jälkeen hallitus hyväksyy uudet jäsenet kuukausittaisessa kokouksessa. Hyväksytyille jäsenille ilmoitetaan sähköpostitse.","en_text":"# Join serveri ry\\n\\nIn addition to active campus activities, the Server negotiates benefits for its members. Member benefits are directly available upon payment of the membership fee, membership is always checked directly in the membership register.\\n\\n## Member benefits\\n\\n- Overalls at member prices\\n\\t- The price varies from year to year depending on the generosity of sponsors, but you can be sure that as a member you will receive a significant discount.\\n- Association trips and excursions at a fair discount\\n- Attendance at Server's meetings also at a member price\\n- Get on the Server email list\\n- The right to get involved in board activities\\n\\n\\n## Become a member\\n\\nYou can become a member of the Server by paying a ~~one-time fee~~ € 25 to the Server's account (Nordea FI87 1078 3000 2205 16) If you have received a payment reference for your membership fee, please use it. Otherwise, please put your name in the message field of the payment.\\n\\nThen send your name and your email address to be entered in the membership register to hallitus at serveriry.fi You can find the privacy policy at https://www.serveriry.fi/tietosuojaseloste/ The board will then approve new members at the monthly meeting. Approved members will be notified by email."}	{"fi_text":"# Liity jäseneksi\\n\\nAktiivisen kampusalueella tapahtuvan toiminnan lisäksi Serveri neuvottelee etuja jäsenilleen. Jäsenedut ovat suoraan käytettävissä jäsenmaksun maksaneena, jäsenyys tarkistetaan aina suoraan jäsenrekisteristä.\\n\\n## Jäsenedut\\n\\n- Haalarit jäsenhintaan\\n\\t- Hinta vaihtelee vuosittain sponsoreiden anteliaisuuden mukaan, mutta voit olla varma että jäsenenä saat merkittävän alennuksen.\\n- Ainejärjestön reissut ja excursiot reilulla alennuksella\\n- Osallistuminen Serverin sitseille myöskin jäsenhintaan\\n- Pääset Serverin sähköpostilistalle\\n- Oikeus lähteä mukaan hallitustoimintaan\\n\\n\\n## Jäseneksi liittyminen\\n\\nServerin jäseneksi voit liittyä maksamalla ~~kertamaksun~~ 25 euroa Serverin tilille (Nordea FI87 1078 3000 2205 16) Jos olet saanut jäsenmaksullesi maksuviitteen, käytä sitä. Muuten laita maksun viestikenttään nimesi.\\n\\nTämän jälkeen lähetä nimesi ja jäsenrekisteriin kirjattava sähköpostiosoitteesi osoitteeseen hallitus at serveriry.fi Tietosuojaselosteen löydät osoitteesta https://www.serveriry.fi/tietosuojaseloste/ Tämän jälkeen hallitus hyväksyy uudet jäsenet kuukausittaisessa kokouksessa. Hyväksytyille jäsenille ilmoitetaan sähköpostitse.","en_text":"# Join serveri ry\\n\\nIn addition to active campus activities, the Server negotiates benefits for its members. Member benefits are directly available upon payment of the membership fee, membership is always checked directly in the membership register.\\n\\n## Member benefits\\n\\n- Overalls at member prices\\n\\t- The price varies from year to year depending on the generosity of sponsors, but you can be sure that as a member you will receive a significant discount.\\n- Association trips and excursions at a fair discount\\n- Attendance at Server's meetings also at a member price\\n- Get on the Server email list\\n- The right to get involved in board activities\\n\\n\\n## Become a member\\n\\nYou can become a member of the Server by paying a ~~one-time fee~~ € 25 to the Server's account (Nordea FI87 1078 3000 2205 16) If you have received a payment reference for your membership fee, please use it. Otherwise, please put your name in the message field of the payment.\\n\\nThen send your name and your email address to be entered in the membership register to hallitus at serveriry.fi You can find the privacy policy at https://www.serveriry.fi/tietosuojaseloste/ The board will then approve new members at the monthly meeting. Approved members will be notified by email.","user_updated":"0891a0cd-876b-4a0d-a22e-0cce30121382","date_updated":"2023-04-29T20:15:32.510Z"}	\N
+393	505	directus_permissions	16	{"role":null,"collection":"liity_serveriin","action":"read"}	{"role":null,"collection":"liity_serveriin","action":"read"}	\N
+394	506	directus_permissions	16	{"id":16,"role":null,"collection":"liity_serveriin","action":"read","permissions":null,"validation":null,"presets":null,"fields":["fi_text","en_text","date_updated"]}	{"role":null,"collection":"liity_serveriin","action":"read","permissions":null,"validation":null,"presets":null,"fields":["fi_text","en_text","date_updated"]}	\N
+395	507	directus_permissions	17	{"role":null,"collection":"study_club","action":"read"}	{"role":null,"collection":"study_club","action":"read"}	\N
+396	508	directus_permissions	17	{"id":17,"role":null,"collection":"study_club","action":"read","permissions":null,"validation":null,"presets":null,"fields":["fi_text","en_text","date_updated"]}	{"role":null,"collection":"study_club","action":"read","permissions":null,"validation":null,"presets":null,"fields":["fi_text","en_text","date_updated"]}	\N
+397	509	directus_permissions	18	{"role":null,"collection":"for_new_student","action":"read"}	{"role":null,"collection":"for_new_student","action":"read"}	\N
+398	510	directus_permissions	18	{"id":18,"role":null,"collection":"for_new_student","action":"read","permissions":null,"validation":null,"presets":null,"fields":["fi_text","en_text","date_updated"]}	{"role":null,"collection":"for_new_student","action":"read","permissions":null,"validation":null,"presets":null,"fields":["fi_text","en_text","date_updated"]}	\N
+399	513	lomake_vastaukset	105	{"firm_message":"moro mite menee","firm_contact":"nimi@email.co","firm_name":"yritys"}	{"firm_message":"moro mite menee","firm_contact":"nimi@email.co","firm_name":"yritys"}	\N
+400	514	lomake_vastaukset	106	{"firm_message":"moro mite menee","firm_contact":"nimi@email.co","firm_name":"yritys"}	{"firm_message":"moro mite menee","firm_contact":"nimi@email.co","firm_name":"yritys"}	\N
+401	515	lomake_vastaukset	107	{"firm_message":"moro mite menee","firm_contact":"nimi@email.co","firm_name":"yritys"}	{"firm_message":"moro mite menee","firm_contact":"nimi@email.co","firm_name":"yritys"}	\N
+402	516	lomake_vastaukset	108	{"firm_message":"moro mite menee","firm_contact":"nimi@email.co","firm_name":"yritys"}	{"firm_message":"moro mite menee","firm_contact":"nimi@email.co","firm_name":"yritys"}	\N
+403	517	lomake_vastaukset	109	{"firm_message":"moro mite menee","firm_contact":"nimi@email.co","firm_name":"yritys"}	{"firm_message":"moro mite menee","firm_contact":"nimi@email.co","firm_name":"yritys"}	\N
+404	518	lomake_vastaukset	110	{"firm_message":"moro... 1","firm_contact":"nimi@email.co","firm_name":"Footer on mobile"}	{"firm_message":"moro... 1","firm_contact":"nimi@email.co","firm_name":"Footer on mobile"}	\N
+405	519	lomake_vastaukset	111	{"firm_message":"moro... 1","firm_contact":"nimi@email.co","firm_name":"Footer on mobile"}	{"firm_message":"moro... 1","firm_contact":"nimi@email.co","firm_name":"Footer on mobile"}	\N
+406	520	lomake_vastaukset	112	\N	\N	\N
+407	521	lomake_vastaukset	113	{"firm_message":"dawdaw","firm_contact":"dawd","firm_name":"fuksipassi"}	{"firm_message":"dawdaw","firm_contact":"dawd","firm_name":"fuksipassi"}	\N
+408	522	directus_fields	108	{"hidden":true,"interface":"input","readonly":true,"field":"id","collection":"gdpr"}	{"hidden":true,"interface":"input","readonly":true,"field":"id","collection":"gdpr"}	\N
+409	523	directus_fields	109	{"special":["user-updated"],"interface":"select-dropdown-m2o","options":{"template":"{{avatar.$thumbnail}} {{first_name}} {{last_name}}"},"display":"user","readonly":true,"hidden":true,"width":"half","field":"user_updated","collection":"gdpr"}	{"special":["user-updated"],"interface":"select-dropdown-m2o","options":{"template":"{{avatar.$thumbnail}} {{first_name}} {{last_name}}"},"display":"user","readonly":true,"hidden":true,"width":"half","field":"user_updated","collection":"gdpr"}	\N
+410	524	directus_fields	110	{"special":["date-updated"],"interface":"datetime","readonly":true,"hidden":true,"width":"half","display":"datetime","display_options":{"relative":true},"field":"date_updated","collection":"gdpr"}	{"special":["date-updated"],"interface":"datetime","readonly":true,"hidden":true,"width":"half","display":"datetime","display_options":{"relative":true},"field":"date_updated","collection":"gdpr"}	\N
+411	525	directus_collections	gdpr	{"singleton":true,"collection":"gdpr"}	{"singleton":true,"collection":"gdpr"}	\N
+412	526	directus_fields	111	{"interface":"input-rich-text-md","special":null,"required":true,"collection":"gdpr","field":"text"}	{"interface":"input-rich-text-md","special":null,"required":true,"collection":"gdpr","field":"text"}	\N
+413	527	directus_fields	112	{"interface":"input-rich-text-md","special":null,"collection":"gdpr","field":"fi_text"}	{"interface":"input-rich-text-md","special":null,"collection":"gdpr","field":"fi_text"}	\N
+414	528	directus_fields	113	{"interface":"input-rich-text-md","special":null,"collection":"gdpr","field":"en_text"}	{"interface":"input-rich-text-md","special":null,"collection":"gdpr","field":"en_text"}	\N
+415	529	lomake_vastaukset	114	\N	\N	\N
+416	530	lomake_vastaukset	115	\N	\N	\N
+417	531	gdpr	1	{"fi_text":"# Rekisteri- ja tietosuojaseloste\\n\\n## Keitä olemme\\n\\nOlemme Itä-Suomen yliopiston tietojenkäsittelytieteen opiskelijoiden ainejärjestö eli Serveri ry.\\n\\nPostiosoitteemme löydät connect sivun alareumasta.\\n\\nLisätietoja järjestöstämme löydät osiosta järjestö. Jäsenrekisteristä vastaa ylläpitovastaava ja sihteeri.\\n\\n## Henkilötiedot\\n\\n### Jäsenrekisterin henkilötiedot\\n\\nMikäli liityt jäseneksi tallennamme jäsenrekisteriin käyttötarkoitusta varten luovuttamasi tiedot. (Emme ikinä tallenna maksukorttisi tietoja.) Jäsenrekisteriimme kuuluu sellaiset Itä-Suomen yliopiston Kuopion kampuksen opiskelijat jotka jäsenmaksun maksamalla ovat ilmaisseet halukkuutensa liittyä jäseneksi.\\n\\n\\nJäsenrekisterin käyttöperusteena on Henkilön itsensä antama suostumus sekä yhdistyslain mukainen vaatimus ylläpitää jäsenrekisteriä. Tietoja käytetään toiminnasta viestimiseen eli lähinnä yhteydenpitoon esimerkiksi sähköpostilistan muodossa. Mahdollisista muutoksista tiedotetaan hallituksen kokouksissa.\\n\\n\\nTietojen lähteenä on käyttäjän itse toimittama tieto.\\n\\n### Evästeet\\n\\nVain tekniset evästeet käytössä. Emme louhi dataa \\"sisällön parantamiseen\\". Jos havaitset teknisiä puutteita tai haluat esittää parannusta, ilmoita ylläpidolle tai hallitukselle.\\n\\n### Analytiikka\\n\\nTallennamme verkkosivustolla vierailuista lokitietoja joihin kuuluu IP osoitteet, kellonajat sekä muuta mahdollista palvelinpään analytiikkaa. Tietoja käytetään tietoturvan monitorointiin sekä mahdollisen haitallisen toiminnan estämiseen. Lokitietoja voidaan jakaa viranomaisille. Lokitietoja poistetaan vanhimmasta alkaen, siten että tallessa on viimeisimmän vuoden tapahtumat.\\n\\n## Kenen kanssa jaamme dataasi\\n\\nSähköpostilistamme taustajärjestelmää ylläpitää Itä-Suomen yliopisto. Jäsenrekisterin tietoja käsittelee hallitus. Emme luovuta tietojasi ulkopuolisille, ellei jokin seuraavista ehdoista täyty:\\n\\n-  Jos itse niin pyydät tai kysyessämme saamme tietojen luovutukseen luvan\\n-  Jos teet oston sivustomme kautta joudumme välittämään maksutapahtuman käsittelyyn vaadittavat tiedot maksutietojen käsittelijälle Stripelle. Halutessasi voit sopia vaihtoehtoisista maksutavoista hallituksemme kanssa. Stripen tietosuojaselosteen löydät osoitteesta: https://stripe.com/en-fi/privacy\\n-  Jos laki niin vaatii\\n-  Keräämämme tietoa käytetään oikeudessa järjestön edun puolustamiseen.\\n\\n## Kuinka kauan säilytämme tietojasi\\n\\nSäilytämme lokitietoja tarpeen mukaan, maksimissaan kaksi vuotta, yleensä vuoden.\\n\\nEmme säilytä jäsenrekisterihistoriaa, eli vanhentuneet tiedot poistetaan muutospyynnön saapuessa ylläpitovastaavalle, sihteerille tai hallitukselle.\\n\\n## Oikeutesi tietojesi suhteen\\n\\nVoit pyytää tietojesi poistoa, päivitystä tai kopiota tiedoistasi ylläpitovastaavalta. Lähtökohtaisesti jäsenrekisterin tietoja säilytetään niin kauan kuin ne ovat ajantasaiset.\\n\\n## Miten tietosi suojataan\\n\\nKäytämme tietojesi suojaukseen tarpeellisia suojauskeinoja. Emme siirrä tietojasi Suomen rajojen ulkopuolelle. Kirjoitushetkellä suurin osa tallennetuista tiedoista sijaitsee kaupallisen palveluntarjoajan palvelimilla Tuusulassa.\\nFyysisestä tietoturvasta vastaa palveluntarjoajamme. Palvelumme on suojattu automaattisilta hyökkäyksiltä siten että tietosuoja on etusijalla tiedon saavutettavuuteen nähden. Pyrimme käyttämään palvelinpäässä laajalti vertaisarvioitua, vapaata ohjelmistoa ja tarkistamaan suojausasetukset mielellään vähintään kahden henkilön toimesta turvalliseksi, joista toinen on ylläpitovastaava.\\n\\n## Muuta\\n\\nEmme käytä automaattista päätöksentekoa\\n\\nLisätietoa saat [ylläpitovastaavalta](https://t.me/vsavonen/)","en_text":"# Register and Privacy Policy\\n\\n## Who we are\\n\\nWe are the Serveri ry, an association of students of computer science at the University of Eastern Finland.\\n\\nYou can find our postal address at the bottom of the connect page.\\n\\nFor more information about our organisation, please see the organisation section. The membership register is managed by a maintenance officer and a secretary.\\n\\n## Personal data\\n\\n### Personal data of the register of members\\n\\nIf you become a member, we will store the information you provide for the purpose of the membership register. (We will never store your payment card details.) Our membership register includes students at the Kuopio campus of the University of Eastern Finland who have expressed their willingness to become a member by paying the membership fee.\\n\\n\\nThe membership register is based on the consent of the person himself/herself and the requirement to maintain a membership register in accordance with the Associations Act. The data is used to communicate activities, mainly for contact purposes, for example in the form of an e-mail list. Any changes will be communicated at board meetings.\\n\\n\\nThe source of the data is the information provided by the user.\\n\\n### Cookies\\n\\nOnly technical cookies are used. We do not mine data to \\"improve content\\". If you find any technical deficiencies or would like to suggest an improvement, please inform the administrator or the board.\\n\\n### Analytics\\n\\nWe record log information about visits to the website including IP addresses, time of day and other possible server-side analytics. This information is used for security monitoring and to prevent potential malicious activity. Log information may be shared with authorities. Logs are deleted starting with the oldest, so that the most recent year's events are stored.\\n\\n## With whom we share your data\\n\\nThe backend system of our email list is maintained by the University of Eastern Finland. The data in the membership register is processed by the Board of Directors. We will not share your data with third parties unless one of the following conditions is met:\\n\\n- If you ask us to do so or if we obtain your permission to disclose your data when you ask us to do so.\\n- If you make a purchase through our website we will need to pass the information required to process the transaction to the payment processor Stripe. If you wish, you can agree alternative payment methods with our Board of Directors. Stripe's Privacy Policy can be found at: https://stripe.com/en-fi/privacy\\n- If required by law\\n- The information we collect will be used in court to defend the interests of the organisation.\\n\\n## How long we keep your data\\n\\nWe keep log information as needed, up to a maximum of two years, usually one year.\\n\\nWe do not keep membership register history, i.e. outdated information is deleted when a request for change is received by the Maintenance Officer, Secretary or Board.\\n\\n## Your rights with regard to your data\\n\\nYou may request deletion, updating or copying of your data from the administrator. As a general rule, information in the membership register will be kept as long as it is up to date.\\n\\n## How your data is protected\\n\\nWe use the necessary security measures to protect your information. We will not transfer your data outside the borders of Finland. At the time of writing, most of the data stored is located on the servers of a commercial service provider in Tuusula.\\nOur service provider is responsible for physical security. Our service is protected against automated attacks so that data protection takes priority over data accessibility. We strive to use widely peer-reviewed, free software at the server end and to check the security settings for security, preferably by at least two people, one of whom is the maintainer.\\n\\n## Other\\n\\nWe do not use automated decision making\\n\\nFor more information, please contact [the maintainer](https://t.me/vsavonen/)"}	{"fi_text":"# Rekisteri- ja tietosuojaseloste\\n\\n## Keitä olemme\\n\\nOlemme Itä-Suomen yliopiston tietojenkäsittelytieteen opiskelijoiden ainejärjestö eli Serveri ry.\\n\\nPostiosoitteemme löydät connect sivun alareumasta.\\n\\nLisätietoja järjestöstämme löydät osiosta järjestö. Jäsenrekisteristä vastaa ylläpitovastaava ja sihteeri.\\n\\n## Henkilötiedot\\n\\n### Jäsenrekisterin henkilötiedot\\n\\nMikäli liityt jäseneksi tallennamme jäsenrekisteriin käyttötarkoitusta varten luovuttamasi tiedot. (Emme ikinä tallenna maksukorttisi tietoja.) Jäsenrekisteriimme kuuluu sellaiset Itä-Suomen yliopiston Kuopion kampuksen opiskelijat jotka jäsenmaksun maksamalla ovat ilmaisseet halukkuutensa liittyä jäseneksi.\\n\\n\\nJäsenrekisterin käyttöperusteena on Henkilön itsensä antama suostumus sekä yhdistyslain mukainen vaatimus ylläpitää jäsenrekisteriä. Tietoja käytetään toiminnasta viestimiseen eli lähinnä yhteydenpitoon esimerkiksi sähköpostilistan muodossa. Mahdollisista muutoksista tiedotetaan hallituksen kokouksissa.\\n\\n\\nTietojen lähteenä on käyttäjän itse toimittama tieto.\\n\\n### Evästeet\\n\\nVain tekniset evästeet käytössä. Emme louhi dataa \\"sisällön parantamiseen\\". Jos havaitset teknisiä puutteita tai haluat esittää parannusta, ilmoita ylläpidolle tai hallitukselle.\\n\\n### Analytiikka\\n\\nTallennamme verkkosivustolla vierailuista lokitietoja joihin kuuluu IP osoitteet, kellonajat sekä muuta mahdollista palvelinpään analytiikkaa. Tietoja käytetään tietoturvan monitorointiin sekä mahdollisen haitallisen toiminnan estämiseen. Lokitietoja voidaan jakaa viranomaisille. Lokitietoja poistetaan vanhimmasta alkaen, siten että tallessa on viimeisimmän vuoden tapahtumat.\\n\\n## Kenen kanssa jaamme dataasi\\n\\nSähköpostilistamme taustajärjestelmää ylläpitää Itä-Suomen yliopisto. Jäsenrekisterin tietoja käsittelee hallitus. Emme luovuta tietojasi ulkopuolisille, ellei jokin seuraavista ehdoista täyty:\\n\\n-  Jos itse niin pyydät tai kysyessämme saamme tietojen luovutukseen luvan\\n-  Jos teet oston sivustomme kautta joudumme välittämään maksutapahtuman käsittelyyn vaadittavat tiedot maksutietojen käsittelijälle Stripelle. Halutessasi voit sopia vaihtoehtoisista maksutavoista hallituksemme kanssa. Stripen tietosuojaselosteen löydät osoitteesta: https://stripe.com/en-fi/privacy\\n-  Jos laki niin vaatii\\n-  Keräämämme tietoa käytetään oikeudessa järjestön edun puolustamiseen.\\n\\n## Kuinka kauan säilytämme tietojasi\\n\\nSäilytämme lokitietoja tarpeen mukaan, maksimissaan kaksi vuotta, yleensä vuoden.\\n\\nEmme säilytä jäsenrekisterihistoriaa, eli vanhentuneet tiedot poistetaan muutospyynnön saapuessa ylläpitovastaavalle, sihteerille tai hallitukselle.\\n\\n## Oikeutesi tietojesi suhteen\\n\\nVoit pyytää tietojesi poistoa, päivitystä tai kopiota tiedoistasi ylläpitovastaavalta. Lähtökohtaisesti jäsenrekisterin tietoja säilytetään niin kauan kuin ne ovat ajantasaiset.\\n\\n## Miten tietosi suojataan\\n\\nKäytämme tietojesi suojaukseen tarpeellisia suojauskeinoja. Emme siirrä tietojasi Suomen rajojen ulkopuolelle. Kirjoitushetkellä suurin osa tallennetuista tiedoista sijaitsee kaupallisen palveluntarjoajan palvelimilla Tuusulassa.\\nFyysisestä tietoturvasta vastaa palveluntarjoajamme. Palvelumme on suojattu automaattisilta hyökkäyksiltä siten että tietosuoja on etusijalla tiedon saavutettavuuteen nähden. Pyrimme käyttämään palvelinpäässä laajalti vertaisarvioitua, vapaata ohjelmistoa ja tarkistamaan suojausasetukset mielellään vähintään kahden henkilön toimesta turvalliseksi, joista toinen on ylläpitovastaava.\\n\\n## Muuta\\n\\nEmme käytä automaattista päätöksentekoa\\n\\nLisätietoa saat [ylläpitovastaavalta](https://t.me/vsavonen/)","en_text":"# Register and Privacy Policy\\n\\n## Who we are\\n\\nWe are the Serveri ry, an association of students of computer science at the University of Eastern Finland.\\n\\nYou can find our postal address at the bottom of the connect page.\\n\\nFor more information about our organisation, please see the organisation section. The membership register is managed by a maintenance officer and a secretary.\\n\\n## Personal data\\n\\n### Personal data of the register of members\\n\\nIf you become a member, we will store the information you provide for the purpose of the membership register. (We will never store your payment card details.) Our membership register includes students at the Kuopio campus of the University of Eastern Finland who have expressed their willingness to become a member by paying the membership fee.\\n\\n\\nThe membership register is based on the consent of the person himself/herself and the requirement to maintain a membership register in accordance with the Associations Act. The data is used to communicate activities, mainly for contact purposes, for example in the form of an e-mail list. Any changes will be communicated at board meetings.\\n\\n\\nThe source of the data is the information provided by the user.\\n\\n### Cookies\\n\\nOnly technical cookies are used. We do not mine data to \\"improve content\\". If you find any technical deficiencies or would like to suggest an improvement, please inform the administrator or the board.\\n\\n### Analytics\\n\\nWe record log information about visits to the website including IP addresses, time of day and other possible server-side analytics. This information is used for security monitoring and to prevent potential malicious activity. Log information may be shared with authorities. Logs are deleted starting with the oldest, so that the most recent year's events are stored.\\n\\n## With whom we share your data\\n\\nThe backend system of our email list is maintained by the University of Eastern Finland. The data in the membership register is processed by the Board of Directors. We will not share your data with third parties unless one of the following conditions is met:\\n\\n- If you ask us to do so or if we obtain your permission to disclose your data when you ask us to do so.\\n- If you make a purchase through our website we will need to pass the information required to process the transaction to the payment processor Stripe. If you wish, you can agree alternative payment methods with our Board of Directors. Stripe's Privacy Policy can be found at: https://stripe.com/en-fi/privacy\\n- If required by law\\n- The information we collect will be used in court to defend the interests of the organisation.\\n\\n## How long we keep your data\\n\\nWe keep log information as needed, up to a maximum of two years, usually one year.\\n\\nWe do not keep membership register history, i.e. outdated information is deleted when a request for change is received by the Maintenance Officer, Secretary or Board.\\n\\n## Your rights with regard to your data\\n\\nYou may request deletion, updating or copying of your data from the administrator. As a general rule, information in the membership register will be kept as long as it is up to date.\\n\\n## How your data is protected\\n\\nWe use the necessary security measures to protect your information. We will not transfer your data outside the borders of Finland. At the time of writing, most of the data stored is located on the servers of a commercial service provider in Tuusula.\\nOur service provider is responsible for physical security. Our service is protected against automated attacks so that data protection takes priority over data accessibility. We strive to use widely peer-reviewed, free software at the server end and to check the security settings for security, preferably by at least two people, one of whom is the maintainer.\\n\\n## Other\\n\\nWe do not use automated decision making\\n\\nFor more information, please contact [the maintainer](https://t.me/vsavonen/)"}	\N
+418	532	directus_permissions	19	{"role":null,"collection":"gdpr","action":"read"}	{"role":null,"collection":"gdpr","action":"read"}	\N
 \.
 
 
@@ -2254,8 +2648,8 @@ COPY public.directus_roles (id, name, icon, description, ip_access, enforce_tfa,
 --
 
 COPY public.directus_sessions (token, "user", expires, ip, user_agent, share, origin) FROM stdin;
-psb15gGolcgY_7NPxwsTSQih3DnIVeNba239yPzcruYGk5-lXF7OizfyKyUghOpq	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-05-06 19:24:04.624+00	10.0.2.2	Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:109.0) Gecko/20100101 Firefox/112.0	\N	http://10.143.20.7:8081
-rq4Z3o4Qr84-5iAslPnShZY3SCIljsjwYgPRPuPhinNFBfx4Hb12YwbQM5o7iDiQ	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-05-06 19:29:54.521+00	10.0.2.2	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	\N	http://127.0.0.1:8081
+gwwvrfo2Zj5dxPjVi891OZjXX-A-kMARoiBk8NsfDen1zzFvzLQnzMSKyl8Yaqjt	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-05-06 20:15:45.698+00	10.0.2.2	Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:109.0) Gecko/20100101 Firefox/112.0	\N	http://10.143.20.7:8081
+p9GrZu96161jO-rGhi_iYMTxDhlRDzk2awUIQVbQ806yYFBOXrNrsAQsAS2U2vQd	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-05-06 20:32:04.979+00	10.0.2.2	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	\N	http://127.0.0.1:8081
 DzQC0N7BhOhQav01s3XGfuyy0atI13_FaqJVawsrKyLQPmvcPjX3vGjx_IOiEzw3	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-05-06 17:53:10.026+00	10.0.2.2	Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:109.0) Gecko/20100101 Firefox/112.0	\N	http://10.143.20.7:8081
 \.
 
@@ -2282,7 +2676,7 @@ COPY public.directus_shares (id, name, collection, item, role, password, user_cr
 --
 
 COPY public.directus_users (id, first_name, last_name, email, password, location, title, description, tags, avatar, language, theme, tfa_secret, status, role, token, last_access, last_page, provider, external_identifier, auth_data, email_notifications) FROM stdin;
-0891a0cd-876b-4a0d-a22e-0cce30121382	Admin	User	dev@serveriry.fi	$argon2id$v=19$m=65536,t=3,p=4$hVskI8M5iDcSrNlBjYgpqQ$VOD9EUHOMkKmWrElydlVl/7ysElrGr+dZcdOU34Ugm0	\N	\N	\N	\N	\N	\N	auto	\N	active	7bd45b9d-d719-4ab1-b7ec-2c68f2eefc76	Of2wfHYZ3N-yP0IoKDuR-REqH1-0eZCV	2023-04-29 19:29:54.537+00	/content/lomake_vastaukset	default	\N	\N	t
+0891a0cd-876b-4a0d-a22e-0cce30121382	Admin	User	dev@serveriry.fi	$argon2id$v=19$m=65536,t=3,p=4$hVskI8M5iDcSrNlBjYgpqQ$VOD9EUHOMkKmWrElydlVl/7ysElrGr+dZcdOU34Ugm0	\N	\N	\N	\N	\N	\N	auto	\N	active	7bd45b9d-d719-4ab1-b7ec-2c68f2eefc76	Of2wfHYZ3N-yP0IoKDuR-REqH1-0eZCV	2023-04-29 20:32:05.006+00	/settings/roles/public	default	\N	\N	t
 \.
 
 
@@ -2295,10 +2689,60 @@ COPY public.directus_webhooks (id, name, method, url, status, data, actions, col
 
 
 --
+-- Data for Name: for_new_student; Type: TABLE DATA; Schema: public; Owner: serveri
+--
+
+COPY public.for_new_student (id, user_updated, date_updated, fi_text, en_text) FROM stdin;
+1	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-04-29 20:09:12.545+00	# Uudelle opiskelijalle\n\nTietojenkäsittelytieteen uudet opiskelijat aloittavat syksyllä pitkän ja kivikkoisen, mutta niin kovin antoisan tiensä kohti luonnontieteen kandidaatin ja filosofian maisterin titteleitä.\nFuksin muistilista\n\n- Muista maksaa jäsenmaksut Itä-Suomen yliopiston ylioppilaskunnalle (ISYY) 31.8 mennessä\n- YTHS maksu on myös pakollinen ja se maksetaan erikseen Kelalle, kannattaa se kurkistella kuntoon\n- Kannattaa lukea Tietojenkäsittelytieteen laitoksen Smart Start -opas ja kamusta ohjeet uudelle opiskelijalle\n- Liity Serverin jäseneksi.\n- Liity Serverin tiedotuskanavalle: https://t.me/serveriry\n- Tsekkaa syksyn tuutorit täältä\n- Hanki opiskelijakortti\n\n## Opiskelijakortti\n\nOpiskelijakortilla todistat opiskelijastatuksesi, jotta voit saada opiskelija-alennuksia. Fyysisiä opiskelijakortteja hankitaan kirjoittamishetkellä (kevät 2021) kautta ja maksaa 25€. Fyysisellä ja sähköisillä korteilla ei ole muuta eroa kuin myöntäjä ja mahdollisesti joitain eroja alennuksissa. Tenttitilaisuuksissa kelpaa sähköinen kortti tai muu henkilöllisyystodistus. Kaikki vaihtoehdot kirjoittamishetkellä (kevät 2021) ilmaisia Kansainväliset kortit hankitaan kautta. Saatavilla sekä fyysinen että sähköinen versio.\n\n\n## Hyvä tietää\n\n- Serveri tiedottaa tapahtumistaan ensisijaisesti Telegramissa, mutta myös kotisivuilla ja postilistalla. Uudet jäsenet lisätään postilistalle, kun hallitus on hyväksynyt heidät jäseniksi jäsenmaksun maksamisen jälkeen.\n- Serverimeininkiä löytyy edellä mainittujen alustojen lisäksi myös Facebookista ja Instagramista\n\n## Mahdollisesti hyödyllistä sisältöä\n\n- [Sykettä](https://sykettä.fi/kuopio/) eli korkeakoulujen liikuntapalvelut, jos liikunnan harrastaminen kiinnostaa. Ensimmäisillä opiskeluviikoilla palveluita pääsee usein kokeilemaan ilmaiseksi\n- [ISYY](https://www.isyy.fi/palvelut/uudelle-opiskelijalle.html)n sivut uudelle opiskelijalle	# For a new student\n\nThis autumn, new students in Computer Science will begin the long and rocky, but so very rewarding journey towards their Bachelor of Science and Master of Philosophy degrees.\nFreshman checklist\n\n- Remember to pay your membership fees to the Student Union of the University of Eastern Finland (ISYY) by 31 August\n- The YTHS fee is also compulsory and is paid separately to Kela, it's worth checking it out\n- You should read the Smart Start guide of the Department of Computer Science and the instructions for new students\n- Join the Server.\n- Join the Server information channel: https://t.me/serveriry\n- Check out the autumn tutors here\n- Get your student card\n\n## Student card\n\nThe student card is your proof of student status to qualify for student discounts. Physical student cards are available at the time of writing (Spring 2021) and cost €25. There is no difference between physical and electronic cards other than the issuer and possibly some differences in discounts. For exams, an electronic card or other form of ID will be accepted. All options at time of writing (spring 2021) free International cards are purchased via. Both physical and electronic versions are available.\n\n\n## Good to know\n\n- The server informs about its events primarily on Telegram, but also on its website and mailing list. New members are added to the mailing list after being accepted as members by the board of directors after payment of the membership fee.\n- In addition to the platforms mentioned above, Serverimeinink can also be found on Facebook and Instagram\n\n## Potentially useful content\n\n- [Sykettä](https://sykettä.fi/kuopio/), the sports services of universities, if you are interested in sports. You can often try out the services for free during the first weeks of your studies\n- [ISYY](https://www.isyy.fi/palvelut/uudelle-opiskelijalle.html) website for new students
+\.
+
+
+--
+-- Data for Name: gdpr; Type: TABLE DATA; Schema: public; Owner: serveri
+--
+
+COPY public.gdpr (id, user_updated, date_updated, fi_text, en_text) FROM stdin;
+1	\N	\N	# Rekisteri- ja tietosuojaseloste\n\n## Keitä olemme\n\nOlemme Itä-Suomen yliopiston tietojenkäsittelytieteen opiskelijoiden ainejärjestö eli Serveri ry.\n\nPostiosoitteemme löydät connect sivun alareumasta.\n\nLisätietoja järjestöstämme löydät osiosta järjestö. Jäsenrekisteristä vastaa ylläpitovastaava ja sihteeri.\n\n## Henkilötiedot\n\n### Jäsenrekisterin henkilötiedot\n\nMikäli liityt jäseneksi tallennamme jäsenrekisteriin käyttötarkoitusta varten luovuttamasi tiedot. (Emme ikinä tallenna maksukorttisi tietoja.) Jäsenrekisteriimme kuuluu sellaiset Itä-Suomen yliopiston Kuopion kampuksen opiskelijat jotka jäsenmaksun maksamalla ovat ilmaisseet halukkuutensa liittyä jäseneksi.\n\n\nJäsenrekisterin käyttöperusteena on Henkilön itsensä antama suostumus sekä yhdistyslain mukainen vaatimus ylläpitää jäsenrekisteriä. Tietoja käytetään toiminnasta viestimiseen eli lähinnä yhteydenpitoon esimerkiksi sähköpostilistan muodossa. Mahdollisista muutoksista tiedotetaan hallituksen kokouksissa.\n\n\nTietojen lähteenä on käyttäjän itse toimittama tieto.\n\n### Evästeet\n\nVain tekniset evästeet käytössä. Emme louhi dataa "sisällön parantamiseen". Jos havaitset teknisiä puutteita tai haluat esittää parannusta, ilmoita ylläpidolle tai hallitukselle.\n\n### Analytiikka\n\nTallennamme verkkosivustolla vierailuista lokitietoja joihin kuuluu IP osoitteet, kellonajat sekä muuta mahdollista palvelinpään analytiikkaa. Tietoja käytetään tietoturvan monitorointiin sekä mahdollisen haitallisen toiminnan estämiseen. Lokitietoja voidaan jakaa viranomaisille. Lokitietoja poistetaan vanhimmasta alkaen, siten että tallessa on viimeisimmän vuoden tapahtumat.\n\n## Kenen kanssa jaamme dataasi\n\nSähköpostilistamme taustajärjestelmää ylläpitää Itä-Suomen yliopisto. Jäsenrekisterin tietoja käsittelee hallitus. Emme luovuta tietojasi ulkopuolisille, ellei jokin seuraavista ehdoista täyty:\n\n-  Jos itse niin pyydät tai kysyessämme saamme tietojen luovutukseen luvan\n-  Jos teet oston sivustomme kautta joudumme välittämään maksutapahtuman käsittelyyn vaadittavat tiedot maksutietojen käsittelijälle Stripelle. Halutessasi voit sopia vaihtoehtoisista maksutavoista hallituksemme kanssa. Stripen tietosuojaselosteen löydät osoitteesta: https://stripe.com/en-fi/privacy\n-  Jos laki niin vaatii\n-  Keräämämme tietoa käytetään oikeudessa järjestön edun puolustamiseen.\n\n## Kuinka kauan säilytämme tietojasi\n\nSäilytämme lokitietoja tarpeen mukaan, maksimissaan kaksi vuotta, yleensä vuoden.\n\nEmme säilytä jäsenrekisterihistoriaa, eli vanhentuneet tiedot poistetaan muutospyynnön saapuessa ylläpitovastaavalle, sihteerille tai hallitukselle.\n\n## Oikeutesi tietojesi suhteen\n\nVoit pyytää tietojesi poistoa, päivitystä tai kopiota tiedoistasi ylläpitovastaavalta. Lähtökohtaisesti jäsenrekisterin tietoja säilytetään niin kauan kuin ne ovat ajantasaiset.\n\n## Miten tietosi suojataan\n\nKäytämme tietojesi suojaukseen tarpeellisia suojauskeinoja. Emme siirrä tietojasi Suomen rajojen ulkopuolelle. Kirjoitushetkellä suurin osa tallennetuista tiedoista sijaitsee kaupallisen palveluntarjoajan palvelimilla Tuusulassa.\nFyysisestä tietoturvasta vastaa palveluntarjoajamme. Palvelumme on suojattu automaattisilta hyökkäyksiltä siten että tietosuoja on etusijalla tiedon saavutettavuuteen nähden. Pyrimme käyttämään palvelinpäässä laajalti vertaisarvioitua, vapaata ohjelmistoa ja tarkistamaan suojausasetukset mielellään vähintään kahden henkilön toimesta turvalliseksi, joista toinen on ylläpitovastaava.\n\n## Muuta\n\nEmme käytä automaattista päätöksentekoa\n\nLisätietoa saat [ylläpitovastaavalta](https://t.me/vsavonen/)	# Register and Privacy Policy\n\n## Who we are\n\nWe are the Serveri ry, an association of students of computer science at the University of Eastern Finland.\n\nYou can find our postal address at the bottom of the connect page.\n\nFor more information about our organisation, please see the organisation section. The membership register is managed by a maintenance officer and a secretary.\n\n## Personal data\n\n### Personal data of the register of members\n\nIf you become a member, we will store the information you provide for the purpose of the membership register. (We will never store your payment card details.) Our membership register includes students at the Kuopio campus of the University of Eastern Finland who have expressed their willingness to become a member by paying the membership fee.\n\n\nThe membership register is based on the consent of the person himself/herself and the requirement to maintain a membership register in accordance with the Associations Act. The data is used to communicate activities, mainly for contact purposes, for example in the form of an e-mail list. Any changes will be communicated at board meetings.\n\n\nThe source of the data is the information provided by the user.\n\n### Cookies\n\nOnly technical cookies are used. We do not mine data to "improve content". If you find any technical deficiencies or would like to suggest an improvement, please inform the administrator or the board.\n\n### Analytics\n\nWe record log information about visits to the website including IP addresses, time of day and other possible server-side analytics. This information is used for security monitoring and to prevent potential malicious activity. Log information may be shared with authorities. Logs are deleted starting with the oldest, so that the most recent year's events are stored.\n\n## With whom we share your data\n\nThe backend system of our email list is maintained by the University of Eastern Finland. The data in the membership register is processed by the Board of Directors. We will not share your data with third parties unless one of the following conditions is met:\n\n- If you ask us to do so or if we obtain your permission to disclose your data when you ask us to do so.\n- If you make a purchase through our website we will need to pass the information required to process the transaction to the payment processor Stripe. If you wish, you can agree alternative payment methods with our Board of Directors. Stripe's Privacy Policy can be found at: https://stripe.com/en-fi/privacy\n- If required by law\n- The information we collect will be used in court to defend the interests of the organisation.\n\n## How long we keep your data\n\nWe keep log information as needed, up to a maximum of two years, usually one year.\n\nWe do not keep membership register history, i.e. outdated information is deleted when a request for change is received by the Maintenance Officer, Secretary or Board.\n\n## Your rights with regard to your data\n\nYou may request deletion, updating or copying of your data from the administrator. As a general rule, information in the membership register will be kept as long as it is up to date.\n\n## How your data is protected\n\nWe use the necessary security measures to protect your information. We will not transfer your data outside the borders of Finland. At the time of writing, most of the data stored is located on the servers of a commercial service provider in Tuusula.\nOur service provider is responsible for physical security. Our service is protected against automated attacks so that data protection takes priority over data accessibility. We strive to use widely peer-reviewed, free software at the server end and to check the security settings for security, preferably by at least two people, one of whom is the maintainer.\n\n## Other\n\nWe do not use automated decision making\n\nFor more information, please contact [the maintainer](https://t.me/vsavonen/)
+\.
+
+
+--
+-- Data for Name: hallitus_page; Type: TABLE DATA; Schema: public; Owner: serveri
+--
+
+COPY public.hallitus_page (id, user_updated, date_updated, fi_text, en_text) FROM stdin;
+1	\N	\N	# Board activities\n\nServerin hallitus vastaa ainejärjestötoiminnan käytännön asioiden hoidosta. Asioita tehdään yhdessä, mutta käytännön syistä tehtäviä on jaettu "hallitusrooleihin" jäsenten kiinnostuksen ja osaamisen mukaan. Mikäli haluat olla yhteydessä hallitukseen, tapahtuu se helpoiten sähköpostitse hallitus[ät]serveriry.fi tai Serverin jäsenenä löydät kaikki hallituslaiset myös Oppositiosta.\n\nServerin hallituksen jäsenet vaihtuvat vuosittain ja heidät valitaan kaikille jäsenille avoimessa syyskokouksessa. Ainejärjestötoiminnan sisältö mukautuu aikaan, mutta hallituksen varsinaiset tehtävät muuttuvat harvemmin ja hitaammin. Mikäli ainejärjestötoiminta kiinnostaa, kannattaa harkita hallitustoimintaan mukaan lähtemistä! Syyskokouksessa valitut jäsenet järjestäytyvät hallituskautensa alussa ja valitsevat keskuudestaan vastuuhenkilöt eri osaalueiden hoitamiseen. Vastuuhenkilöiden titteleistä saa jo hyvän kuvan siitä, minkälaista hallitustoiminta on.\n\nServerin hallituksen koko määräytyy syyskokouksessa ja tällä kaudella se koostuu 15:sta varsinaisesta ja 5:stä varajäsenestä. Hallituslaisiin ja heidän rooleihinsa voit tutustua alta, josta löydät myös yhteystiedot. Roolikohtaisten sähköpostiosotteiden lisäksi jokaisella hallituksen varsinaisella- ja varajäsenellä on henkilökohtainen sähköpostiosoite muodossa etunimi.sukunimi[ät]serveriry.fi.\n\n## Serverin Oppositio\n\nKiinnostaako ainejärjestötoiminta? Serverin Oppositio on ryhmä Telegramissa, jossa pääsee seuraamaan ainejärjestötoimintaa hieman lähempää. Ryhmään liittyminen ei sido mihinkään ja voit liittyä/poistua täysin vapaasti. Tervetuloa mukaan! [Liittymislinkki](https://t.me/) TG-ryhmään. 	# Board activities\n\nThe server's board is responsible for the practical management of the association's activities. Things are done collectively, but for practical reasons, tasks are divided into "board roles" according to members' interests and skills. If you want to get in touch with the board, the easiest way is to email hallitus[ät]serveriry.fi or, as a Server member, you can also find all board members in the Opposition.\n\nServer's board members rotate annually and are elected at an autumn meeting open to all members. The content of the Board's activities adapts over time, but the actual tasks of the Board change less frequently and more slowly. If you are interested, you should consider joining the board! The members elected at the autumn meeting organise themselves at the beginning of their term of office and choose from among themselves the persons responsible for the various areas of activity. The titles of these people give you a good idea of what government is like.\n\nThe size of the Server Board is decided at the autumn meeting and this term it consists of 15 full members and 5 alternates. You can find out more about the board members and their roles below, where you can also find their contact details. In addition to the role-specific email addresses, each member and alternate member of the Board has a personal email address in the form of firstname.lastname[at]serveriry.fi.\n\n## Serveriry Opposition\n\nAre you interested in student union activities? Server's Opposition is a group on Telegram where you can follow the activities of the student union a little closer. Joining the group is not binding and you are free to join/leave. Welcome to join! [Join](https://t.me/) TG group. 
+\.
+
+
+--
+-- Data for Name: liity_serveriin; Type: TABLE DATA; Schema: public; Owner: serveri
+--
+
+COPY public.liity_serveriin (id, user_updated, date_updated, fi_text, en_text) FROM stdin;
+1	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-04-29 20:15:32.51+00	# Liity jäseneksi\n\nAktiivisen kampusalueella tapahtuvan toiminnan lisäksi Serveri neuvottelee etuja jäsenilleen. Jäsenedut ovat suoraan käytettävissä jäsenmaksun maksaneena, jäsenyys tarkistetaan aina suoraan jäsenrekisteristä.\n\n## Jäsenedut\n\n- Haalarit jäsenhintaan\n\t- Hinta vaihtelee vuosittain sponsoreiden anteliaisuuden mukaan, mutta voit olla varma että jäsenenä saat merkittävän alennuksen.\n- Ainejärjestön reissut ja excursiot reilulla alennuksella\n- Osallistuminen Serverin sitseille myöskin jäsenhintaan\n- Pääset Serverin sähköpostilistalle\n- Oikeus lähteä mukaan hallitustoimintaan\n\n\n## Jäseneksi liittyminen\n\nServerin jäseneksi voit liittyä maksamalla ~~kertamaksun~~ 25 euroa Serverin tilille (Nordea FI87 1078 3000 2205 16) Jos olet saanut jäsenmaksullesi maksuviitteen, käytä sitä. Muuten laita maksun viestikenttään nimesi.\n\nTämän jälkeen lähetä nimesi ja jäsenrekisteriin kirjattava sähköpostiosoitteesi osoitteeseen hallitus at serveriry.fi Tietosuojaselosteen löydät osoitteesta https://www.serveriry.fi/tietosuojaseloste/ Tämän jälkeen hallitus hyväksyy uudet jäsenet kuukausittaisessa kokouksessa. Hyväksytyille jäsenille ilmoitetaan sähköpostitse.	# Join serveri ry\n\nIn addition to active campus activities, the Server negotiates benefits for its members. Member benefits are directly available upon payment of the membership fee, membership is always checked directly in the membership register.\n\n## Member benefits\n\n- Overalls at member prices\n\t- The price varies from year to year depending on the generosity of sponsors, but you can be sure that as a member you will receive a significant discount.\n- Association trips and excursions at a fair discount\n- Attendance at Server's meetings also at a member price\n- Get on the Server email list\n- The right to get involved in board activities\n\n\n## Become a member\n\nYou can become a member of the Server by paying a ~~one-time fee~~ € 25 to the Server's account (Nordea FI87 1078 3000 2205 16) If you have received a payment reference for your membership fee, please use it. Otherwise, please put your name in the message field of the payment.\n\nThen send your name and your email address to be entered in the membership register to hallitus at serveriry.fi You can find the privacy policy at https://www.serveriry.fi/tietosuojaseloste/ The board will then approve new members at the monthly meeting. Approved members will be notified by email.
+\.
+
+
+--
 -- Data for Name: lomake_vastaukset; Type: TABLE DATA; Schema: public; Owner: serveri
 --
 
 COPY public.lomake_vastaukset (id, firm_name, firm_contact, firm_message) FROM stdin;
+102	Efecte	asdasd@gmail.com	asdasdasd
+103	Moro	matti.meikalainen@gmail.com	Moro
+104	MOro	matti.meikalainen@gmail.com	Moro
+105	yritys	nimi@email.co	moro mite menee
+106	yritys	nimi@email.co	moro mite menee
+107	yritys	nimi@email.co	moro mite menee
+108	yritys	nimi@email.co	moro mite menee
+109	yritys	nimi@email.co	moro mite menee
+110	Footer on mobile	nimi@email.co	moro... 1
+111	Footer on mobile	nimi@email.co	moro... 1
+112	\N	\N	\N
+113	fuksipassi	dawd	dawdaw
+114	\N	\N	\N
+115	\N	\N	\N
 \.
 
 
@@ -2346,6 +2790,15 @@ COPY public.social_medias (id, user_created, date_created, user_updated, date_up
 
 
 --
+-- Data for Name: study_club; Type: TABLE DATA; Schema: public; Owner: serveri
+--
+
+COPY public.study_club (id, user_updated, date_updated, fi_text, en_text) FROM stdin;
+1	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-04-29 20:10:58.119+00	# Läksykerho\n\nLäksykerho on tarkoitettu kaikille TKT:n opiskelijoille ja vuosikursseille. Tulkaa yhdessä miettimään ja ratkomaan kurssien harjoitustehtäviä. Läksykerhon aika on 4 h, mutta se ei tarkoita sitä, että siellä tulee olla koko aikaa. Tulkaa silloin, kun muilta opinnoiltanne kerkiätte.  \n\nLäksykerho päivinä laitos tarjoaa kahvit/teet klo 13.45-14.15 laitoksen aulassa. Silloin on mahdollista tavata myös paikalla olevaa laitoksen henkilökuntaa.	# Study club\n\nThe club is open to all TKT students and year groups. Come together to think about and solve course exercises. The time of the club is 4 hours, but that does not mean that you have to be there all the time. Please come when you can from your other studies.  \n\nOn the days of the study club, the department offers coffee/tea from 13.45 to 14.15 in the lobby of the department. It is also possible to meet the staff of the institution on site.
+\.
+
+
+--
 -- Data for Name: turvallinen_tila; Type: TABLE DATA; Schema: public; Owner: serveri
 --
 
@@ -2372,14 +2825,14 @@ SELECT pg_catalog.setval('public.board_members_id_seq', 3, true);
 -- Name: directus_activity_id_seq; Type: SEQUENCE SET; Schema: public; Owner: serveri
 --
 
-SELECT pg_catalog.setval('public.directus_activity_id_seq', 464, true);
+SELECT pg_catalog.setval('public.directus_activity_id_seq', 533, true);
 
 
 --
 -- Name: directus_fields_id_seq; Type: SEQUENCE SET; Schema: public; Owner: serveri
 --
 
-SELECT pg_catalog.setval('public.directus_fields_id_seq', 86, true);
+SELECT pg_catalog.setval('public.directus_fields_id_seq', 113, true);
 
 
 --
@@ -2393,7 +2846,7 @@ SELECT pg_catalog.setval('public.directus_notifications_id_seq', 1, false);
 -- Name: directus_permissions_id_seq; Type: SEQUENCE SET; Schema: public; Owner: serveri
 --
 
-SELECT pg_catalog.setval('public.directus_permissions_id_seq', 14, true);
+SELECT pg_catalog.setval('public.directus_permissions_id_seq', 19, true);
 
 
 --
@@ -2407,14 +2860,14 @@ SELECT pg_catalog.setval('public.directus_presets_id_seq', 4, true);
 -- Name: directus_relations_id_seq; Type: SEQUENCE SET; Schema: public; Owner: serveri
 --
 
-SELECT pg_catalog.setval('public.directus_relations_id_seq', 13, true);
+SELECT pg_catalog.setval('public.directus_relations_id_seq', 18, true);
 
 
 --
 -- Name: directus_revisions_id_seq; Type: SEQUENCE SET; Schema: public; Owner: serveri
 --
 
-SELECT pg_catalog.setval('public.directus_revisions_id_seq', 352, true);
+SELECT pg_catalog.setval('public.directus_revisions_id_seq', 419, true);
 
 
 --
@@ -2432,10 +2885,38 @@ SELECT pg_catalog.setval('public.directus_webhooks_id_seq', 1, false);
 
 
 --
+-- Name: for_new_student_id_seq; Type: SEQUENCE SET; Schema: public; Owner: serveri
+--
+
+SELECT pg_catalog.setval('public.for_new_student_id_seq', 1, true);
+
+
+--
+-- Name: gdpr_id_seq; Type: SEQUENCE SET; Schema: public; Owner: serveri
+--
+
+SELECT pg_catalog.setval('public.gdpr_id_seq', 1, true);
+
+
+--
+-- Name: hallitus_page_id_seq; Type: SEQUENCE SET; Schema: public; Owner: serveri
+--
+
+SELECT pg_catalog.setval('public.hallitus_page_id_seq', 1, true);
+
+
+--
+-- Name: liity_serveriin_id_seq; Type: SEQUENCE SET; Schema: public; Owner: serveri
+--
+
+SELECT pg_catalog.setval('public.liity_serveriin_id_seq', 1, true);
+
+
+--
 -- Name: lomake_vastaukset_id_seq; Type: SEQUENCE SET; Schema: public; Owner: serveri
 --
 
-SELECT pg_catalog.setval('public.lomake_vastaukset_id_seq', 101, true);
+SELECT pg_catalog.setval('public.lomake_vastaukset_id_seq', 115, true);
 
 
 --
@@ -2464,6 +2945,13 @@ SELECT pg_catalog.setval('public.serveri_rules_id_seq', 1, true);
 --
 
 SELECT pg_catalog.setval('public.social_medias_id_seq', 1, true);
+
+
+--
+-- Name: study_club_id_seq; Type: SEQUENCE SET; Schema: public; Owner: serveri
+--
+
+SELECT pg_catalog.setval('public.study_club_id_seq', 1, true);
 
 
 --
@@ -2706,6 +3194,38 @@ ALTER TABLE ONLY public.directus_webhooks
 
 
 --
+-- Name: for_new_student for_new_student_pkey; Type: CONSTRAINT; Schema: public; Owner: serveri
+--
+
+ALTER TABLE ONLY public.for_new_student
+    ADD CONSTRAINT for_new_student_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: gdpr gdpr_pkey; Type: CONSTRAINT; Schema: public; Owner: serveri
+--
+
+ALTER TABLE ONLY public.gdpr
+    ADD CONSTRAINT gdpr_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: hallitus_page hallitus_page_pkey; Type: CONSTRAINT; Schema: public; Owner: serveri
+--
+
+ALTER TABLE ONLY public.hallitus_page
+    ADD CONSTRAINT hallitus_page_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: liity_serveriin liity_serveriin_pkey; Type: CONSTRAINT; Schema: public; Owner: serveri
+--
+
+ALTER TABLE ONLY public.liity_serveriin
+    ADD CONSTRAINT liity_serveriin_pkey PRIMARY KEY (id);
+
+
+--
 -- Name: lomake_vastaukset lomake_vastaukset_pkey; Type: CONSTRAINT; Schema: public; Owner: serveri
 --
 
@@ -2743,6 +3263,14 @@ ALTER TABLE ONLY public.serveri_rules
 
 ALTER TABLE ONLY public.social_medias
     ADD CONSTRAINT social_medias_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: study_club study_club_pkey; Type: CONSTRAINT; Schema: public; Owner: serveri
+--
+
+ALTER TABLE ONLY public.study_club
+    ADD CONSTRAINT study_club_pkey PRIMARY KEY (id);
 
 
 --
@@ -3010,11 +3538,43 @@ ALTER TABLE ONLY public.directus_users
 
 
 --
+-- Name: for_new_student for_new_student_user_updated_foreign; Type: FK CONSTRAINT; Schema: public; Owner: serveri
+--
+
+ALTER TABLE ONLY public.for_new_student
+    ADD CONSTRAINT for_new_student_user_updated_foreign FOREIGN KEY (user_updated) REFERENCES public.directus_users(id);
+
+
+--
+-- Name: gdpr gdpr_user_updated_foreign; Type: FK CONSTRAINT; Schema: public; Owner: serveri
+--
+
+ALTER TABLE ONLY public.gdpr
+    ADD CONSTRAINT gdpr_user_updated_foreign FOREIGN KEY (user_updated) REFERENCES public.directus_users(id);
+
+
+--
+-- Name: hallitus_page hallitus_page_user_updated_foreign; Type: FK CONSTRAINT; Schema: public; Owner: serveri
+--
+
+ALTER TABLE ONLY public.hallitus_page
+    ADD CONSTRAINT hallitus_page_user_updated_foreign FOREIGN KEY (user_updated) REFERENCES public.directus_users(id);
+
+
+--
 -- Name: LandingPage landingpage_user_updated_foreign; Type: FK CONSTRAINT; Schema: public; Owner: serveri
 --
 
 ALTER TABLE ONLY public."LandingPage"
     ADD CONSTRAINT landingpage_user_updated_foreign FOREIGN KEY (user_updated) REFERENCES public.directus_users(id);
+
+
+--
+-- Name: liity_serveriin liity_serveriin_user_updated_foreign; Type: FK CONSTRAINT; Schema: public; Owner: serveri
+--
+
+ALTER TABLE ONLY public.liity_serveriin
+    ADD CONSTRAINT liity_serveriin_user_updated_foreign FOREIGN KEY (user_updated) REFERENCES public.directus_users(id);
 
 
 --
@@ -3071,6 +3631,14 @@ ALTER TABLE ONLY public.social_medias
 
 ALTER TABLE ONLY public.social_medias
     ADD CONSTRAINT social_medias_user_updated_foreign FOREIGN KEY (user_updated) REFERENCES public.directus_users(id);
+
+
+--
+-- Name: study_club study_club_user_updated_foreign; Type: FK CONSTRAINT; Schema: public; Owner: serveri
+--
+
+ALTER TABLE ONLY public.study_club
+    ADD CONSTRAINT study_club_user_updated_foreign FOREIGN KEY (user_updated) REFERENCES public.directus_users(id);
 
 
 --
