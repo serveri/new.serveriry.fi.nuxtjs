@@ -78,10 +78,11 @@
    }
 
    .nav-dropdown-link {
-      @apply block px-4 py-2 text-sm tracking-wider;
+      @apply flex items-center px-4 py-2 text-sm tracking-wider;
       border-bottom: 0.2em transparent solid;
       padding: 0.5rem 0 0 0;
-      width: fit-content;
+      width: 100%;
+      height: 3rem;
       letter-spacing: 0.025em;
    }
    /* underline effect */

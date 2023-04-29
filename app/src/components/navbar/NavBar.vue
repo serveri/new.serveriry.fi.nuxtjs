@@ -78,7 +78,7 @@
             >
                <!-- IF -->
                <div v-if="item.subMenu">
-                  <DropDownMobile :menu="item" />
+                  <DropDownMobile :menu="item"/>
                </div>
                <!-- ELSE -->
                <div v-else class="relative">
