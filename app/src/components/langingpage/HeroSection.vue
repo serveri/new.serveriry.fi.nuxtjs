@@ -3,21 +3,24 @@
       class="py-20 bg-cover bg-no-repeat bg-fixed bg-[url('/images/serveritoverit.png')] bg-cover w-screen h-96 md:h-[40rem]"
    >
       <!-- content -->
+
       <div class="flex w-full justify-center text-center absolute">
          <div>
             <h1 class="text text-5xl font-extrabold text-gray-900 dark:text-gray-900 sm:text-6xl lg:text-8xl pb-2">
-               <span class="text-transparent bg-clip-text bg-custom-blue">Serveri ry</span>
+               <span class="text-transparent bg-clip-text bg-custom-blue">
+                  {{ content[$i18n.locale + '_title'] }}
+               </span>
             </h1>
             <h3 class="text-xl md:text-2xl mb-8 md:mb-16 dark:text-black">
-               Itä-Suomen yliopiston Kuopion kampuksen tietojenkäsittelytieteen opiskelijoiden ainejärjestö
+               {{ content[$i18n.locale + '_description'] }}
             </h3>
-            <nuxt-link to="/opiskelu/tkt" class="py-4">
+            <nuxt-link :to="content[$i18n.locale + '_button_url']" class="py-4">
                <div
                   class="p-3 sm:py-4 sm:px-6 text-white bg-custom-blue hover:bg-uef-blue rounded-lg text-center uppercase font-bold md:text-lg tracking-wider mx-auto"
                   role="button"
                   style="width: fit-content"
                >
-                  {{ $t('what-is-cs-like') }}
+                  {{ content[$i18n.locale + '_button_text'] }}
                </div>
             </nuxt-link>
          </div>
@@ -34,7 +37,28 @@
    </div>
 </template>
 
-<style>
+<script setup lang="ts">
+   let content;
+   try {
+      const response = await useFetch('http://127.0.0.1:8081/items/LandingPage');
+      content = response.data.value.data;
+   } catch (e) {
+      content = {
+         fi_title: 'Serveri ry',
+         en_title: 'Serveri ry',
+         fi_description:
+            'Itä-Suomen yliopiston Kuopion kampuksen tietojenkäsittelytieteen opiskelijoiden ainejärjestö ',
+         en_description:
+            "The computer science students' subject organization of the Kuopio campus of the University of Eastern Finland",
+         fi_button_text: 'Millaista tietojenkäsittelytiede on?',
+         en_button_text: 'What is computer science like?',
+         fi_button_url: '/opiskelu/tkt',
+         en_button_url: '/opiskelu/tkt',
+      };
+   }
+</script>
+
+<style scoped>
    svg {
       @apply fill-white dark:fill-zinc-800;
    }
