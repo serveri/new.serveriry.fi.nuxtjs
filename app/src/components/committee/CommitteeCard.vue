@@ -33,7 +33,7 @@
                >{{ content.email }}@serveriry.fi</a
             >
             <p>
-               <font-awesome-icon class="fa-2xl mr-1" :icon="['fab', 'telegram']" />
+               <font-awesome-icon class="fa-xl mr-1" :icon="['fab', 'telegram']" />
                <a
                   class="member-telegram hover:underline"
                   :href="'https://telegram.me/' + content.telegram"
@@ -131,7 +131,7 @@
    .card-container {
       @apply dark:shadow-lg dark:shadow-zinc-600/50 dark:bg-zinc-900;
    }
-   
+
    .collapse-button {
       @apply dark:invert;
    }
@@ -139,7 +139,7 @@
    .member-image {
       @apply rounded-full max-w-full h-auto align-middle border-none;
    }
-   .member-image{
+   .member-image {
       @apply dark:shadow-lg  dark:shadow-zinc-700 dark:bg-zinc-900;
    }
 </style>
