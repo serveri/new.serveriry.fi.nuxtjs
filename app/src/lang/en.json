@@ -81,6 +81,8 @@
    "404_oops": "Whoopsie!",
    "404_msg": "Page cannot be found",
    "404_msg_long": "The page you are looking for may have been removed. Did you write the address correctly?",
-   "404_btn": "Back to home"
+   "404_btn": "Back to home",
+
+   "updated_last_time": "Updated last time: "
 
 }

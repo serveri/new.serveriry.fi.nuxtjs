@@ -85,5 +85,7 @@
    "404_oops": "Hupsista!",
    "404_msg": "Sivua ei löytynyt.",
    "404_msg_long": "Etsimäsi sivu saattaa olla poistettu. Kirjoititko osoitteen oikein?",
-   "404_btn": "Etusivulle"
+   "404_btn": "Etusivulle",
+
+   "updated_last_time": "Päivitetty viimeksi: "
 }
