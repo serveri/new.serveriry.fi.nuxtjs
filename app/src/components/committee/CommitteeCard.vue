@@ -5,7 +5,7 @@
             <div class="w-9/12 sm:w-11/12" @mouseover="hover = true" @mouseleave="hover = false">
                <img
                   v-if="hover"
-                  :src="content.img2"
+                  :src="content.hover_img"
                   class="member-image"
                   alt="Toinen kuva hallituksen jäsenestä"
                   role="img"
@@ -42,7 +42,7 @@
                >
             </p>
          </div>
-         <h2 class="card-header mt-1 text-2xl font-extrabold">{{ content.header }}</h2>
+
          <div class="button-container text-center">
             <div class="role-desc">
                <p v-if="isExpanded" class="role-text p-3 text-left">
@@ -71,12 +71,11 @@
    const content = defineProps({
       img: {
          type: String,
-         default: '/_nuxt/assets/images/jäsenkuva.jpeg',
+         default: '/images/member.jpeg',
          required: true,
       },
-      img2: {
+      hover_img: {
          type: String,
-         default: '/_nuxt/assets/images/jäsenkuva2.jpeg',
          required: true,
       },
       email: {

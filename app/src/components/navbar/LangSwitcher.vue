@@ -15,14 +15,14 @@
             <img
                :src="'https://flagicons.lipis.dev/flags/4x3/' + (locale.code === 'fi' ? 'fi' : 'gb') + '.svg'"
                :alt="locale.code"
-               class="h-10 sm:h-6 hidden"
+               class="h-10 md:h-6 hidden"
             />
          </nuxt-link>
          <nuxt-link v-else :to="switchLocalePath(locale.code)" :title="$t('change-language')">
             <img
                :src="'https://flagicons.lipis.dev/flags/4x3/' + (locale.code === 'fi' ? 'fi' : 'gb') + '.svg'"
                :alt="locale.code"
-               class="h-10 sm:h-6"
+               class="h-10 md:h-6"
             />
          </nuxt-link>
       </div>

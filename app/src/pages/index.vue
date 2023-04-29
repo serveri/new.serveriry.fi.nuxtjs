@@ -7,9 +7,15 @@
          <HeroSection class="w-screen" />
       </section>
 
-      <section class="py-8 flex flex-col lg:flex-row gap-12">
+      <section class="sm:my-[-3rem] xl:sm:my-[-6rem] 2xl:sm:my-[-8rem] flex flex-col lg:flex-row">
          <DescriptionText />
          <TopNews />
+      </section>
+
+      <section class="py-8 w-screen sm:mt-12 xl:mt-28 2xl:mt-32">
+         <div class="flex self-center justify-center">
+            <SponsorCarousel />
+         </div>
       </section>
 
       <section class="py-8 flex flex-col md:flex-row w-full gap-8">
@@ -21,9 +27,17 @@
          <EmbeddedMap />
       </section>
 
-      <section class="py-8 w-screen">
-         <div class="flex self-center justify-center">
-            <SponsorCarousel />
+      <section>
+         <h2 class="custom-page-title my-7">Löydät Serverin myös täältä!</h2>
+
+         <div class="grid grid-cols-1 gap-8 md:grid-cols-2 md:gap-8 lg:grid-cols-4 lg:gap-7">
+            <SocialmediaIcon
+               v-for="Socialmedia in Socialmedias"
+               :url="Socialmedia.url"
+               :img="Socialmedia.img"
+               :alt="'Serverin' + Socialmedia.name"
+               :name="Socialmedia.name"
+            />
          </div>
       </section>
    </div>
@@ -37,7 +51,10 @@
    import DescriptionText from '@/components/langingpage/DescriptionText.vue';
    import TopNews from '@/components/langingpage/TopNews.vue';
    import SponsorCarousel from '@/components/langingpage/SponsorCarousel.vue';
+   import SocialmediaIcon from '@/components/langingpage/SocialmediaIcon.vue';
+   import Socialmedias from '@/components/langingpage/Socialmedias.json';
 </script>
+
 <style>
    p {
       @apply tracking-wide;

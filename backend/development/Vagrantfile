@@ -1,0 +1,28 @@
+Vagrant.configure("2") do |config|
+  config.vm.provider "virtualbox"
+  config.vm.box = "generic/debian11"
+  config.vm.network "forwarded_port", guest: 8000, host: 8080
+  config.vm.network "forwarded_port", guest: 8001, host: 8081
+
+  config.vm.provider "virtualbox" do |vb|
+    vb.name = "servetti dev"
+    vb.memory = "4096"
+    vb.cpus = 4
+  end
+
+  # Creating a synced folder mapping from host directory . --> guest /vagrant
+  config.vm.synced_folder ".", "/vagrant", disabled: false
+
+  # Creating a synced folder for serveriry vue project
+  config.vm.synced_folder "../../.", "/home/www", disabled: false
+
+  config.vm.provision "ansible_local" do |ansible|
+    if ENV['PLAYBOOK'] == "import"
+        ansible.playbook = "import-database.yml"
+    elsif ENV['PLAYBOOK'] == "export"
+        ansible.playbook = "export-database.yml"
+    else
+        ansible.playbook = "set-up-dev-env.yml"
+    end
+  end
+end

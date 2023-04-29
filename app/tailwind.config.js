@@ -12,9 +12,8 @@ module.exports = {
    theme: {
       extend: {
          colors: {
-            'uef-blue': '#00778a',
-            'server-blue': '#06919f',
-            'custom-blue': '#009fb8',
+            'uef-blue': '#700742',
+            'custom-blue': '#982365',
          },
          backgroundImage: {
             'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',

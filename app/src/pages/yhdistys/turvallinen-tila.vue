@@ -79,6 +79,6 @@
    }
 
    li {
-      @apply mb-4;
+      @apply mb-4 dark:text-white ;
    }
 </style>

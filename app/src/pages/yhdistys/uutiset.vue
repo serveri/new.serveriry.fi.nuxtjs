@@ -6,7 +6,7 @@
 
       <h1 class="custom-page-title">{{ $t('h1_news') }}</h1>
 
-      <div class="news p-8">
+      <div class="news p-8 sm:px-0">
          <div class="grid grid-cols-1 gap-8 md:grid-cols-2 md:gap-8 lg:grid-cols-3 lg:gap-7">
             <NewsCard
                v-for="item in news"
@@ -42,14 +42,38 @@
       },
       {
          img: '/images/placeholder.jpg',
-         header: 'THIS IS NEWS HEADER',
          id: '2',
+         header: 'Serveri ry:n 35-vuotis vuosijuhlat',
+         date: new Date(),
+         text: 'Toivotamme Teidät mitä lämpimimmin tervetulleeksi viettämään Serveri ry:n 35-vuotis vuosijuhlaa pitkän odotuksen jälkeen!',
       },
       {
          img: '/images/placeholder.jpg',
+         id: '2',
+         header: 'Serveri ry:n 35-vuotis vuosijuhlat',
+         date: new Date(),
+         text: 'Toivotamme Teidät mitä lämpimimmin tervetulleeksi viettämään Serveri ry:n 35-vuotis vuosijuhlaa pitkän odotuksen jälkeen!',
       },
       {
          img: '/images/placeholder.jpg',
+         id: '2',
+         header: 'Serveri ry:n 35-vuotis vuosijuhlat',
+         date: new Date(),
+         text: 'Toivotamme Teidät mitä lämpimimmin tervetulleeksi viettämään Serveri ry:n 35-vuotis vuosijuhlaa pitkän odotuksen jälkeen!',
+      },
+      {
+         img: '/images/placeholder.jpg',
+         id: '2',
+         header: 'Serveri ry:n 35-vuotis vuosijuhlat',
+         date: new Date(),
+         text: 'Toivotamme Teidät mitä lämpimimmin tervetulleeksi viettämään Serveri ry:n 35-vuotis vuosijuhlaa pitkän odotuksen jälkeen!',
+      },
+      {
+         img: '/images/placeholder.jpg',
+         id: '2',
+         header: 'Serveri ry:n 35-vuotis vuosijuhlat',
+         date: new Date(),
+         text: 'Toivotamme Teidät mitä lämpimimmin tervetulleeksi viettämään Serveri ry:n 35-vuotis vuosijuhlaa pitkän odotuksen jälkeen!',
       },
    ];
 </script>

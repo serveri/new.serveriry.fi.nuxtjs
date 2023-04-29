@@ -1,5 +1,5 @@
 <template>
-   <div class="md:flex-1 md:border-r border-gray-200 dark:border-gray-700">
+   <div class="lg:pr-10 md:pr-5 sm:pr-0 md:flex-1 md:border-r border-gray-200 dark:border-gray-700">
       <h2 class="custom-page-title sm:mr-8">Muista YTHS Maksu!</h2>
       <div class="py-3 sm:mr-8 sm:text-justify">
          <p>

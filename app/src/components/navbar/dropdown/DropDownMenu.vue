@@ -6,7 +6,7 @@
          <nuxt-link
             :class="[
                $route.path.split('/').slice(-2)[0] === localePath(menu.href).split('/').slice(-1)[0]
-                  ? 'text-server-blue dark:text-server-blue'
+                  ? 'text-custom-blue dark:text-custom-blue'
                   : 'text-gray-700 dark:text-gray-300',
                'nav-link',
             ]"
@@ -25,16 +25,16 @@
          leave-to-class="transform opacity-0 scale-95"
       >
          <MenuItems
-            class="absolute px-1 py-1 md:px-6 md:py-2 md:pb-4 right-0 z-10 mt-2 min-w-max origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none whitespace-nowrap dark:bg-[#282828]"
-         >
-            <MenuItem v-for="subMenu in menu.subMenu" :key="subMenu.name">
+            class='absolute px-1 py-1 md:px-6 md:py-2 md:pb-4 right-0 z-10 mt-2 min-w-max origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none whitespace-nowrap dark:bg-[#282828]'
+            >
+            <MenuItem v-for="subMenu in menu.subMenu" :key="subMenu.name" v-slot="{close}">
                <nuxt-link
                   :to="localePath(subMenu.href)"
                   :class="[
-                     $route.path === localePath(subMenu.href) ? 'text-server-blue' : 'text-gray-700 dark:text-gray-200',
+                     $route.path === localePath(subMenu.href) ? 'text-custom-blue' : 'text-gray-700 dark:text-gray-200',
                      'nav-link-parent',
                   ]"
-                  ><span class="nav-dropdown-link" tabindex="1">
+                  ><span class="nav-dropdown-link" tabindex="1" @click="close">
                      {{ $t(subMenu.name) }}
                   </span></nuxt-link
                >
@@ -65,7 +65,7 @@
    }
    /* underline effect */
    .nav-link:after {
-      @apply bg-server-blue;
+      @apply bg-custom-blue;
       content: '';
       position: absolute;
       width: 100%;
@@ -78,15 +78,16 @@
    }
 
    .nav-dropdown-link {
-      @apply block px-4 py-2 text-sm tracking-wider;
+      @apply flex items-center px-4 py-2 text-sm tracking-wider;
       border-bottom: 0.2em transparent solid;
       padding: 0.5rem 0 0 0;
-      width: fit-content;
+      width: 100%;
+      height: 3rem;
       letter-spacing: 0.025em;
    }
    /* underline effect */
    .nav-link-parent:hover .nav-dropdown-link {
-      @apply border-b-server-blue;
+      @apply border-b-custom-blue;
       transition: border-bottom-color 0.5s ease-out;
    }
 </style>

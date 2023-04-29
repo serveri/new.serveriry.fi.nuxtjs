@@ -1,9 +1,9 @@
 <template>
-   <Disclosure v-slot="{ open }" as="nav" class="bg-zinc-50 dark:bg-zinc-900">
-      <div class="content">
-         <div class="relative flex h-20 items-center justify-between">
-            <div class="absolute inset-y-0 left-0 flex items-center sm:hidden">
-               <!-- Mobile menu button-->
+   <Disclosure v-slot="{ open }" as="nav" class="bg-zinc-50 dark:bg-zinc-900 fixed w-full z-10">
+      <div class="px-6 lg:px-16 xl:px-32">
+         <div class="relative flex items-center justify-between">
+            <!-- Mobile menu button-->
+            <div class="absolute inset-y-0 left-0 flex items-center md:hidden">
                <DisclosureButton
                   class="inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white"
                >
@@ -12,15 +12,18 @@
                   <XMarkIcon v-else class="block h-6 w-6" aria-hidden="true" />
                </DisclosureButton>
             </div>
-            <div class="flex sm:items-stretch w-full">
+
+            <div class="flex md:items-stretch w-full">
                <!-- Server Logo -->
-               <div class="flex flex-1 sm:flex-auto items-center justify-center">
-                  <div class="hidden h-16 w-auto sm:block">
+               <div class="flex flex-1 md:flex-auto items-center justify-center">
+                  <!-- Desktop -->
+                  <div class="hidden h-20 my-1 w-auto md:block">
                      <nuxt-link :to="localePath('/')">
                         <ServerLogo />
                      </nuxt-link>
                   </div>
-                  <div class="block h-16 w-auto sm:hidden">
+                  <!-- Mobile -->
+                  <div class="block h-20 my-1 w-auto md:hidden">
                      <nuxt-link :to="localePath('/')">
                         <ServerLogo />
                      </nuxt-link>
@@ -28,8 +31,10 @@
                </div>
 
                <!-- NavBar Links (defined in script) -->
-               <div class="hidden ml-6 lg:ml-24 sm:block w-full">
-                  <div class="flex space-x-0 xl:space-x-8 justify-end items-center h-full">
+               <div class="hidden md:block w-full">
+                  <div class="flex space-x-0 xl:space-x-4 2xl:space-x-8 justify-end items-center h-full">
+                     <!--
+                     -->
                      <div v-for="item in navigation" :key="item.name">
                         <!-- IF -->
                         <div v-if="item.subMenu">
@@ -42,7 +47,7 @@
                               <button
                                  :class="[
                                     $route.path === localePath(item.href)
-                                       ? 'text-server-blue'
+                                       ? 'text-custom-blue'
                                        : 'text-gray-700 dark:text-gray-300',
                                     'nav-link',
                                  ]"
@@ -53,9 +58,7 @@
                            </nuxt-link>
                         </div>
                      </div>
-                     <!-- Languages -->
                      <lang-switcher />
-                     <!-- Ain't rly bug but only one toggle button is updated at time -->
                      <DarkMode id="nav" />
                   </div>
                </div>
@@ -63,7 +66,8 @@
          </div>
       </div>
 
-      <DisclosurePanel class="sm:hidden">
+      <!-- Mobile NavBar-->
+      <DisclosurePanel class="md:hidden">
          <div class="space-y-3 px-2 pt-2 pb-5">
             <DisclosureButton
                v-for="item in navigation"
@@ -74,7 +78,7 @@
             >
                <!-- IF -->
                <div v-if="item.subMenu">
-                  <DropDownMobile :menu="item" />
+                  <DropDownMobile :menu="item"/>
                </div>
                <!-- ELSE -->
                <div v-else class="relative">
@@ -83,9 +87,9 @@
                      tabindex="0"
                      :class="[
                         $route.path === localePath(item.href)
-                           ? 'text-server-blue'
+                           ? 'text-custom-blue'
                            : 'text-gray-700 dark:text-gray-300 hover:bg-gray-700 hover:text-white',
-                        'flex items-center justify-start block px-3 py-2 rounded-md text-base font-medium uppercase whitespace-nowrap cursor-pointer select-none',
+                        'flex items-center justify-start block px-3 py-2 rounded-md text-base font-bold uppercase whitespace-nowrap cursor-pointer select-none',
                      ]"
                   >
                      {{ $t(item.name) }}
@@ -167,11 +171,11 @@
 
 <style>
    .nav-link {
-      @apply px-1 py-1 md:px-3 md:py-2 font-medium text-sm lg:text-lg md:font-bold uppercase whitespace-nowrap tracking-wide;
+      @apply px-1 py-1 md:px-3 md:py-2 text-sm lg:text-lg font-bold uppercase whitespace-nowrap tracking-wide;
    }
    /* underline effect */
    .nav-link:after {
-      @apply bg-server-blue;
+      @apply bg-custom-blue;
       content: '';
       position: absolute;
       width: 100%;
