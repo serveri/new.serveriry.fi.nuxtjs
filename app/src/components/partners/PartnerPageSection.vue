@@ -13,7 +13,20 @@
 
 <script setup lang="ts">
    import PartnerCard from '@/components/partners/PartnerCard.vue';
-   import sponsors from '@/pages/yrityksille/sponsors.json';
+
+   let sponsors;
+   try {
+      const response = await useFetch('http://127.0.0.1:8081/items/partners');
+      sponsors = response.data.value.data;
+   } catch (e) {
+      sponsors = [
+         {
+            name: 'Yrityksen logo puuttuu',
+            url: 'https://serveriry.fi',
+            img: 'https://api.serveriry.fi/uploads/large_computerstuffwithlogo_da6b992e47.jpg',
+         },
+      ];
+   }
 </script>
 
 <style>
