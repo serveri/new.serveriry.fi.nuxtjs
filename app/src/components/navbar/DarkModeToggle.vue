@@ -2,12 +2,12 @@
    <button
       title="Change page theme between light and dark."
       tabindex="0"
-      class="m-6 w-20 h-10 sm:h-6 sm:w-12 rounded-full bg-gray-200 dark:bg-gray-800 flex items-center transition duration-300 focus:outline-none shadow focus:ring-2"
+      class="m-6 w-20 h-10 md:h-6 md:w-12 rounded-full bg-gray-200 dark:bg-gray-800 flex items-center transition duration-300 focus:outline-none shadow focus:ring-2"
       @click="switchTheme()"
    >
       <span
          :id="'switch-toggle-' + id.id"
-         class="flex justify-center items-center w-12 h-12 sm:w-8 sm:h-8 relative rounded-full transition duration-500 transform bg-gray-300 -translate-x-2 p-1 text-white"
+         class="flex justify-center items-center w-12 h-12 md:w-8 md:h-8 relative rounded-full transition duration-500 transform bg-gray-300 -translate-x-2 p-1 text-white"
          ><ClientOnly fallback-tag="span" fallback="">
             <font-awesome-icon :id="'icon-moon-' + id.id" class="hidden" :icon="['fas', 'moon']" />
             <font-awesome-icon

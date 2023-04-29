@@ -21,7 +21,7 @@
    "rules": {},
    "overrides": [
       {
-         "files": ["src/pages/**/*.vue", "src/pages/*.vue"],
+         "files": ["src/pages/**/*.vue", "src/pages/*.vue", "src/*.vue"],
          "rules": {
             "vue/multi-word-component-names": 0
          }

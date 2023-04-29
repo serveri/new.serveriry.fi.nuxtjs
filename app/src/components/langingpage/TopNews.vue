@@ -19,28 +19,28 @@
 
    const events = [
       {
-         title: 'Serverin lajikokeilu: Padel',
-         time: new Date(),
-         link: '#eventID',
-      },
-      {
-         title: 'Disney Sitsit 2',
-         time: new Date(),
+         title: '24. gradet',
+         time: new Date('03/28/2023'),
          link: '#eventID',
       },
       {
          title: 'Laitossaunat',
-         time: new Date(),
+         time: new Date('03/30/2023'),
          link: '#eventID',
       },
       {
-         title: '24. gradet',
-         time: new Date(),
+         title: 'Haluatko IT-Miljonääriksi',
+         time: new Date('04/04/2023'),
          link: '#eventID',
       },
       {
-         title: 'Grillikauden avajaiset',
-         time: new Date(),
+         title: 'Skripti x Serveri Joensuussa',
+         time: new Date('04/14/2023'),
+         link: '#eventID',
+      },
+      {
+         title: 'VappuViinat "Virosta" 2023',
+         time: new Date('04/16/2023'),
          link: '#eventID',
       },
    ];

@@ -81,5 +81,9 @@
 
    "coming-events": "Tulevat tapahtumat",
    "what-is-cs-like": "Millaista tietojenkäsittelytiede on?",
-   "contact-us": "Ota yhteyttä"
+   "contact-us": "Ota yhteyttä",
+   "404_oops": "Hupsista!",
+   "404_msg": "Sivua ei löytynyt.",
+   "404_msg_long": "Etsimäsi sivu saattaa olla poistettu. Kirjoititko osoitteen oikein?",
+   "404_btn": "Etusivulle"
 }

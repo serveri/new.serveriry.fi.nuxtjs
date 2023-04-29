@@ -1,0 +1,47 @@
+---
+- hosts: all
+  become: yes
+  tasks:
+  - name: Update and upgrade apt
+    ansible.builtin.apt:
+      update_cache: yes
+      cache_valid_time: 3600
+      upgrade: yes
+
+  - name: Install dependencies with apt
+    ansible.builtin.apt:
+      pkg:
+        - apt-transport-https
+        - ca-certificates
+        - curl
+        - gnupg2
+        - software-properties-common
+
+  - name: Add GPG key
+    apt_key:
+      url: https://download.docker.com/linux/debian/gpg
+
+  - name: Add repositories
+    apt_repository:
+      repo: deb [arch=amd64] https://download.docker.com/linux/debian {{ ansible_distribution_release }} stable
+
+  - name: Install binaries
+    ansible.builtin.apt:
+      pkg:
+        - docker-ce
+        - docker-ce-cli
+        - containerd.io
+      state: present
+      update_cache: yes
+
+  - name: Enable service
+    ansible.builtin.systemd:
+      state: started
+      enabled: yes
+      name: docker.service
+
+   # sudo groupadd docker
+  - name: Create "docker" group
+    group:
+      name: docker
+      state: present
