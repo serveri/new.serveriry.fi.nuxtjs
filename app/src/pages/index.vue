@@ -4,11 +4,11 @@
          <Title>{{ $t('title_front-page') }} - Serveri ry</Title>
       </Head>
       <section>
-         <HeroSection class="w-screen" />
+         <HeroSection class="w-screen" :content="content" />
       </section>
 
       <section class="sm:my-[-3rem] xl:sm:my-[-6rem] 2xl:sm:my-[-8rem] flex flex-col lg:flex-row">
-         <DescriptionText />
+         <DescriptionText :en_description="content.en_long_desc" :fi_description="content.fi_long_desc"/>
          <TopNews />
       </section>
 
@@ -30,7 +30,7 @@
       <section>
          <h2 class="custom-page-title my-7">Löydät Serverin myös täältä!</h2>
 
-         <div class="grid grid-cols-1 gap-8 md:grid-cols-2 md:gap-8 lg:grid-cols-4 lg:gap-7">
+         <div class="grid grid-cols-1 gap-8 mb-8 md:grid-cols-2 md:gap-8 lg:grid-cols-4 lg:gap-7">
             <SocialmediaIcon
                v-for="Socialmedia in Socialmedias"
                :url="Socialmedia.url"
@@ -53,6 +53,25 @@
    import SponsorCarousel from '@/components/langingpage/SponsorCarousel.vue';
    import SocialmediaIcon from '@/components/langingpage/SocialmediaIcon.vue';
    import Socialmedias from '@/components/langingpage/Socialmedias.json';
+
+   let content;
+   try {
+      const response = await useFetch('http://127.0.0.1:8081/items/LandingPage');
+      content = response.data.value.data;
+   } catch (e) {
+      content = {
+         fi_title: 'Serveri ry',
+         en_title: 'Serveri ry',
+         fi_description:
+            'Itä-Suomen yliopiston Kuopion kampuksen tietojenkäsittelytieteen opiskelijoiden ainejärjestö - error',
+         en_description:
+            "The computer science students' subject organization of the Kuopio campus of the University of Eastern Finland - error",
+         fi_button_text: 'Millaista tietojenkäsittelytiede on?',
+         en_button_text: 'What is computer science like?',
+         fi_button_url: '/opiskelu/tkt',
+         en_button_url: '/opiskelu/tkt',
+      };
+   }
 </script>
 
 <style>

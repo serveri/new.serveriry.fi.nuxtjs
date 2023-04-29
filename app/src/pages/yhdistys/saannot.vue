@@ -3,6 +3,27 @@
       <Head>
          <Title>{{ $t('title_rules') }} - Serveri ry</Title>
       </Head>
-      <h1 class="custom-page-title">{{ $t('h1_rules') }}</h1>
+      <Saannot :rules_fi="rules.rules_fi" :rules_en="rules.rules_en" :updated_at="updated" />
    </div>
 </template>
+
+<script setup lang="ts">
+   import Saannot from '@/components/yhdistys/Saannot.vue';
+
+   let rules;
+   let updated: Date;
+   try {
+      const response = await useFetch('http://127.0.0.1:8081/items/serveri_rules');
+      rules = response.data.value.data;
+      updated = new Date(rules.date_updated);
+   } catch (e) {
+      rules = 'Säännöt ovat kadonneet. Viva la revolucion!';
+      updated = new Date();
+   }
+</script>
+
+<style>
+   p {
+      @apply tracking-wide;
+   }
+</style>

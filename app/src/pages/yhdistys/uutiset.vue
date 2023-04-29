@@ -12,11 +12,13 @@
                v-for="item in news"
                :id="item.id"
                :key="item.id"
-               :img="item.img"
-               :url="item.url"
-               :header="item.header"
-               :date="item.date"
-               :text="item.text"
+               :url="item.id"
+               :img="item.image"
+               :fi_title="item.fi_title"
+               :en_title="item.en_title"
+               :date="new Date(item.date_created)"
+               :fi_text="item.fi_text"
+               :en_text="item.en_text"
             />
          </div>
       </div>
@@ -25,55 +27,20 @@
 
 <script setup>
    // This hard coded data will be replaced with data from directus
-   const news = [
-      {
-         img: '/images/placeholder.jpg',
-         id: '1',
-         header: 'Serveri ry:n 35-vuotis vuosijuhlat',
-         date: new Date('09/25/2022'),
-         text: 'Toivotamme Teidät mitä lämpimimmin tervetulleeksi viettämään Serveri ry:n 35-vuotis vuosijuhlaa pitkän odotuksen jälkeen!',
-      },
-      {
-         img: '/images/placeholder.jpg',
-         id: '2',
-         header: 'Serveri ry:n 35-vuotis vuosijuhlat',
-         date: new Date(),
-         text: 'Toivotamme Teidät mitä lämpimimmin tervetulleeksi viettämään Serveri ry:n 35-vuotis vuosijuhlaa pitkän odotuksen jälkeen!',
-      },
-      {
-         img: '/images/placeholder.jpg',
-         id: '2',
-         header: 'Serveri ry:n 35-vuotis vuosijuhlat',
-         date: new Date(),
-         text: 'Toivotamme Teidät mitä lämpimimmin tervetulleeksi viettämään Serveri ry:n 35-vuotis vuosijuhlaa pitkän odotuksen jälkeen!',
-      },
-      {
-         img: '/images/placeholder.jpg',
-         id: '2',
-         header: 'Serveri ry:n 35-vuotis vuosijuhlat',
-         date: new Date(),
-         text: 'Toivotamme Teidät mitä lämpimimmin tervetulleeksi viettämään Serveri ry:n 35-vuotis vuosijuhlaa pitkän odotuksen jälkeen!',
-      },
-      {
-         img: '/images/placeholder.jpg',
-         id: '2',
-         header: 'Serveri ry:n 35-vuotis vuosijuhlat',
-         date: new Date(),
-         text: 'Toivotamme Teidät mitä lämpimimmin tervetulleeksi viettämään Serveri ry:n 35-vuotis vuosijuhlaa pitkän odotuksen jälkeen!',
-      },
-      {
-         img: '/images/placeholder.jpg',
-         id: '2',
-         header: 'Serveri ry:n 35-vuotis vuosijuhlat',
-         date: new Date(),
-         text: 'Toivotamme Teidät mitä lämpimimmin tervetulleeksi viettämään Serveri ry:n 35-vuotis vuosijuhlaa pitkän odotuksen jälkeen!',
-      },
-      {
-         img: '/images/placeholder.jpg',
-         id: '2',
-         header: 'Serveri ry:n 35-vuotis vuosijuhlat',
-         date: new Date(),
-         text: 'Toivotamme Teidät mitä lämpimimmin tervetulleeksi viettämään Serveri ry:n 35-vuotis vuosijuhlaa pitkän odotuksen jälkeen!',
-      },
-   ];
+   let news;
+   try {
+      const response = await useFetch('http://127.0.0.1:8081/items/news');
+      news = response.data.value.data;
+   } catch (error) {
+      console.log(error);
+      news = [
+         {
+            img: '/images/placeholder.jpg',
+            id: '1',
+            header: 'Serveri ry:n 35-vuotis vuosijuhlat',
+            date: new Date('09/25/2022'),
+            text: 'Toivotamme Teidät mitä lämpimimmin tervetulleeksi viettämään Serveri ry:n 35-vuotis vuosijuhlaa pitkän odotuksen jälkeen!',
+         },
+      ];
+   }
 </script>

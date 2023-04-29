@@ -1,19 +1,22 @@
 <template>
-   <div class="lg:max-w-[60%]">
-      <h1 class="custom-page-title">{{ $t('h1_front-page') }}</h1>
-      <p class="mt-6 sm:text-justify">
-         Toimimme linkkinä yliopiston ja opiskelijoiden välillä mm. keräämällä ja välittämällä opiskelijapalautetta
-         yliopistolle. Tarjoamme opiskelijajäsenillemme ohjausta edunvalvonnallisissa asioissa ja järjestämme opintojen
-         oheen vapaa-ajan toimintaa sekä itsenäisesti että yhdessä muiden ainejärjestöjen kanssa. Järjestämme toimintaa
-         myös työelämään valmistelevalla näkökulmalla ottamalla silloin tällöin vaikutteita suoraan
-         tietojenkäsittelytieteen alan yritysten toiminnasta, jakamalla tietoa valmistumisen jälkeisistä
-         mahdollisuusista ja helpotamme siten tulevien tietojenkäsittelijöiden erikoistuvaa suuntautumista.
-      </p>
-      <p class="mt-6 sm:text-justify">
-         Serverit ovat legendaarisia hauskanpitäjiä - omien hippaloiden lisäksi valkohaalariset tunnetaankin ahkerina
-         kuokkijoina ja keräämme mielellämme kyseenalaista kunniaa opiskelijatapahtumissa ympäri Suomen. Ei siis ihme
-         että Serverin tavaramerkkinä pidetään loistavaa yhteishenkeä ja mahtavaa aktiivisuutta, nörtti-imagosta
-         puhumattakaan!
-      </p>
+   <div class="lg:max-w-[60%] py-6">
+      <vue-markdown class="rich-text py-2" :source="data[$i18n.locale + '_description']" />
    </div>
 </template>
+
+<script setup>
+   import VueMarkdown from 'vue-markdown-render';
+   const data = defineProps({
+      en_description: {
+         type: String,
+         default: 'Why are the servers so hot? Because no one can resist white overalls! BTW API does not respond.',
+         required: true,
+      },
+      fi_description: {
+         type: String,
+         default:
+            'Miksi serverit on niin kuumia? Koska kukaan ei voi vastustaa valkoisia haalareita! API ei muuten vastaa.',
+         required: true,
+      },
+   });
+</script>
