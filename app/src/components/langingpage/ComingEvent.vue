@@ -1,33 +1,48 @@
 <template>
    <div class="max-w-sm py-2">
-      <nuxt-link :to="event.link" class="hover:underline">
-         <h3 class="text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{{ event.title }}</h3>
+      <nuxt-link :to="localePath('/yhdistys/tapahtuma/' + link)" class="hover:underline">
+         <h3 class="text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+            {{ event[$i18n.locale + '_otsikko'] }}
+         </h3>
       </nuxt-link>
       <p class="font-light text-gray-400 dark:text-gray-400">
-         {{ event.time.toLocaleDateString($i18n.locale, DateOptions) }}
+         {{ alku_aika.toLocaleDateString($i18n.locale, DateOptions) }}
       </p>
    </div>
 </template>
 
 <script setup lang="ts">
+   let alku_aika = new Date();
    const event = defineProps({
-      title: {
+      en_otsikko: {
          type: String,
-         default: 'Default Title',
+         default: 'API Error: Title comes here maybee??',
          required: true,
       },
-      time: {
-         type: Date,
-         default: new Date('01/01/1970'),
+      fi_otsikko: {
+         type: String,
+         default: 'API Error: Title comes here maybee??',
+         required: true,
+      },
+      alku_aika: {
+         type: String,
          required: true,
       },
       link: {
-         type: String,
-         default: '#event',
+         type: Number,
+         default: 1,
          required: true,
       },
    });
-   const DateOptions = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+   alku_aika = new Date(event.alku_aika);
+   const DateOptions = {
+      weekday: 'long',
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric',
+      hour: 'numeric',
+      minute: 'numeric',
+   };
 </script>
 
 <script lang="ts">
