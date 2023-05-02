@@ -28,7 +28,7 @@
             <h2 class="member-name font-extrabold text-2xl">{{ content.name }}</h2>
          </div>
 
-         <div class="member-desc text-center">
+         <div class="member-desc text-center pb-2">
             <a :href="'mailto:' + content.email + '@serveriry.fi'" class="member-email hover:underline"
                >{{ content.email }}@serveriry.fi</a
             >
