@@ -5,19 +5,27 @@
          Haluaisitko sinä tai yrityksesi tukea Serveri Ry:n toimintaa ja saada näkyvyyttä opiskelijoiden keskuudessa
          esimerkiksi tapahtumissa ja somessa?
       </p>
-      <form class="space-y-8">
+      <form class="space-y-8" @submit="submitForm">
          <div>
             <label for="subject" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"
                >Yrityksen nimi</label
             >
             <input
                id="subject"
+               v-if="validated"
                v-model="firm_name"
                type="text"
                class="block p-3 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 shadow-sm focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500 dark:shadow-sm-light"
                placeholder="OY yritys AB"
                required
             />
+            <!-- <input
+               v-else
+               v-model="firm_name"
+               type="text"
+               id="username-error"
+               class="bg-red-50 border border-red-500 text-red-900 placeholder-red-700 text-sm rounded-lg focus:ring-red-500 focus:border-red-500 block w-full p-2.5 dark:bg-red-100 dark:border-red-400"
+            /> -->
          </div>
          <div>
             <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"
@@ -44,45 +52,53 @@
                placeholder="Millaista yhteistyöta haluaisitte tehdä?"
             ></textarea>
          </div>
-         <button type="submit" class="btn-custom-primary" @click="submitForm">Lähetä viesti</button>
+         <button type="submit" class="btn-custom-primary">Lähetä viesti</button>
       </form>
    </div>
 </template>
 
-<script>
-   export default {
-      data() {
-         return {
-            firm_name: this.firm_name,
-            firm_contact: this.firm_contact,
-            firm_message: this.firm_message,
-         };
-      },
+<script setup>
+   let validated = true;
+   let firm_name = '';
+   let firm_contact = '';
+   let firm_message = '';
 
-      async submit() {
-         this.user = await this.submitForm();
-      },
+   const router = useRouter();
 
-      methods: {
-         async submitForm(e) {
-            e.preventDefault();
-            await fetch('http://localhost:8081/items/lomake_vastaukset', {
-               headers: {
-                  'Content-Type': 'application/json',
-               },
-               method: 'POST',
-               mode: 'cors',
-               body: JSON.stringify({
-                  firm_message: this.firm_message,
-                  firm_contact: this.firm_contact,
-                  firm_name: this.firm_name,
-               }),
-            });
-            // Redirect to success page
-            this.$router.push('/yrityksille/kiitos');
+   // function validateForm(e) {
+   //    e.preventDefault();
+   //    console.log('data:', firm_contact, firm_name);
+   //    // Validate form
+   //    if (firm_contact === '' || firm_name === '') {
+   //       validated = false;
+   //       console.log('data:', firm_contact, firm_name);
+   //       console.log('Ei validoitu!');
+
+   //       console.log('validated:', validated);
+   //    }
+   // }
+
+   async function submitForm(e) {
+      e.preventDefault();
+      // POST validated form data
+      await fetch('https://api.serveri.jeb4.dev/items/lomake_vastaukset', {
+         headers: {
+            'Content-Type': 'application/json',
          },
-      },
-   };
+         method: 'POST',
+         mode: 'cors',
+         body: JSON.stringify({
+            firm_message: firm_message,
+            firm_contact: firm_contact,
+            firm_name: firm_name,
+         }),
+      });
+      // Redirect to success page
+      router.push('/yrityksille/kiitos');
+
+      // Scroll top of page
+      window.scrollTo(0, 0);
+   }
 </script>
 
 <style scoped></style>
