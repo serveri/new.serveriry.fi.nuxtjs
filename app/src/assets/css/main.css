@@ -4,15 +4,15 @@
 
 @layer components {
   @font-face {
-    src: url("/app/src/public/fonts/Exo-Thin.ttf");
-    src: url("/app/src/public/fonts/Exo-ExtraLight.ttf");
-    src: url("/app/src/public/fonts/Exo-Light.ttf");
-    src: url("/app/src/public/fonts/Exo-Medium.ttf");
-    src: url("/app/src/public/fonts/Exo-Regular.ttf");
-    src: url("/app/src/public/fonts/Exo-SemiBold.ttf");
-    src: url("/app/src/public/fonts/Exo-Bold.ttf");
-    src: url("/app/src/public/fonts/Exo-ExtraBold.ttf");
-    src: url("/app/src/public/fonts/Exo-Black.ttf");
+    src: url("/assets/fonts/Exo-Thin.ttf");
+    src: url("/assets/fonts/Exo-ExtraLight.ttf");
+    src: url("/assets/fonts/Exo-Light.ttf");
+    src: url("/assets/fonts/Exo-Medium.ttf");
+    src: url("/assets/fonts/Exo-Regular.ttf");
+    src: url("/assets/fonts/Exo-SemiBold.ttf");
+    src: url("/assets/fonts/Exo-Bold.ttf");
+    src: url("/assets/fonts/Exo-ExtraBold.ttf");
+    src: url("/assets/fonts/Exo-Black.ttf");
   }
 
   a,
@@ -44,9 +44,9 @@
     @apply bg-gradient-to-r from-cyan-400 via-cyan-500 to-cyan-600 hover:bg-gradient-to-br;
   }
 
-  .btn-custom-blue {
+  .btn-custom-primary {
     @apply inline-flex items-center px-3 py-2 text-sm font-bold text-center text-white rounded;
-    @apply bg-custom-blue hover:bg-uef-blue dark:hover:bg-uef-blue;
+    @apply bg-custom-primary hover:bg-custom-secondary dark:hover:bg-custom-secondary-dark;
   }
 
   .paragraph {
@@ -86,7 +86,7 @@
   }
 
   .rich-text a {
-    @apply text-blue-500 hover:underline;
+    @apply text-blue-500 dark:text-blue-400 hover:underline;
   }
 
   .rich-text p {
