@@ -66,7 +66,7 @@
       methods: {
          async submitForm(e) {
             e.preventDefault();
-            await fetch('http://localhost:8081/items/lomake_vastaukset', {
+            await fetch('https://api.serveri.jeb4.dev/items/lomake_vastaukset', {
                headers: {
                   'Content-Type': 'application/json',
                },
