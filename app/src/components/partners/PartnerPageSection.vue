@@ -16,7 +16,7 @@
 
    let sponsors;
    try {
-      const response = await useFetch('http://api.serveri.jeb4.dev/items/partners');
+      const response = await useFetch('https://api.serveri.jeb4.dev/items/partners');
       sponsors = response.data.value.data;
    } catch (e) {
       sponsors = [

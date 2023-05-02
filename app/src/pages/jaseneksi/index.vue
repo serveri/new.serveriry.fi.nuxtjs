@@ -11,7 +11,7 @@
    import VueMarkdown from 'vue-markdown-render';
    let text;
    try {
-      const response = await useFetch('http://api.serveri.jeb4.dev/items/liity_serveriin');
+      const response = await useFetch('https://api.serveri.jeb4.dev/items/liity_serveriin');
       text = response.data.value.data;
    } catch (e) {
       text = {
