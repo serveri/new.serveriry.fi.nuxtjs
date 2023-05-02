@@ -156,8 +156,8 @@
          </div>
          <div class="table-container">
             <div>
-               <h2 class="table-desc">Yleisopinnot</h2>
-               <p>Yleisopinnot tukevat opiskelua erityisesti ensimmäisenä opiskeluvuotena.</p>
+               <h2 class="table-desc">Valinnaiset aineopinnot</h2>
+               <p>Valinnaisia aineopintoja kuuluu tutkintoon vähintään 5 op. Ne sijoittuvat toiseen ja kolmanteen opiskeluvuoteen. Kurssit käsittelevät tietojenkäsittelyn erilaisia kiinnostavia osa-alueita, jotka tukevat ammatillista osaamista ja antavat osaltaan pohjaa maisteriopinnoille.</p>
             </div>
 
             <table class="course-table">
@@ -172,7 +172,7 @@
                </thead>
                <tbody>
                   <tr
-                     v-for="course in courses.filter((item: { tyyppi: string }) => item.tyyppi == 'yleisopinnot')"
+                     v-for="course in courses.filter((item: { tyyppi: string }) => item.tyyppi == 'valinnaiset')"
                      :key="course.name"
                      class="table-row"
                   >
@@ -193,8 +193,8 @@
          </div>
          <div class="table-container">
             <div>
-               <h2 class="table-desc">Yleisopinnot</h2>
-               <p>Yleisopinnot tukevat opiskelua erityisesti ensimmäisenä opiskeluvuotena.</p>
+               <h2 class="table-desc">Kieli- ja viestintäopinnot</h2>
+               <p>Kieli- ja viestintäopinnot tukevat tietojenkäsittelytieteen opintoja ja antavat perustaidot ruotsin ja englannin kielten akateemiselle osaamiselle.</p>
             </div>
 
             <table class="course-table">
@@ -209,7 +209,7 @@
                </thead>
                <tbody>
                   <tr
-                     v-for="course in courses.filter((item: { tyyppi: string }) => item.tyyppi == 'yleisopinnot')"
+                     v-for="course in courses.filter((item: { tyyppi: string }) => item.tyyppi == 'kieliviesti')"
                      :key="course.name"
                      class="table-row"
                   >
@@ -230,7 +230,7 @@
          </div>
          <div class="table-container">
             <div>
-               <h2 class="table-desc">Yleisopinnot</h2>
+               <h2 class="table-desc">Syventävät opinnot</h2>
                <p>Yleisopinnot tukevat opiskelua erityisesti ensimmäisenä opiskeluvuotena.</p>
             </div>
 
@@ -246,7 +246,45 @@
                </thead>
                <tbody>
                   <tr
-                     v-for="course in courses.filter((item: { tyyppi: string }) => item.tyyppi == 'yleisopinnot')"
+                     v-for="course in courses.filter((item: { tyyppi: string }) => item.tyyppi == 'syventavat')"
+                     :key="course.name"
+                     class="table-row"
+                  >
+                     <td class="table-data">
+                        <p>{{ course.nimi }}</p>
+                     </td>
+
+                     <td class="table-data">
+                        <p>{{ course.kuvaus }}</p>
+                     </td>
+
+                     <td class="table-data">
+                        <p>{{ course.laajuus }}</p>
+                     </td>
+                  </tr>
+               </tbody>
+            </table>
+         </div>
+
+          <div class="table-container">
+            <div>
+               <h2 class="table-desc">Valinnaiset syventävät opinnot</h2>
+               <p>Valinnaiset syventävät opintojaksot vuorottelevat eri vuosina. Valinnaisia syventävien opintojen opintojaksoja sopii tutkintoon 30-40 op tai jopa enemmän, riippuen omasta HOPS:sta. Valinnaiset syventävät opintojaksot kannattaa valinta omaan syventävien opintojen suuntautumiseen eli HOPS:iin sopiviksi sen lisäksi että ne sopivat omiin kiinnostuksen kohteisiin ja työllistymisen tukemiseen.</p>
+            </div>
+
+            <table class="course-table">
+               <thead>
+                  <tr>
+                     <th class="table-header name"><p>Opintojakso</p></th>
+
+                     <th class="table-header desc"><p>Kurssikuvaus</p></th>
+
+                     <th class="table-header credits"><p>Laajuus (opintopisteet)</p></th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr
+                     v-for="course in courses.filter((item: { tyyppi: string }) => item.tyyppi == 'val-syventavat')"
                      :key="course.name"
                      class="table-row"
                   >
