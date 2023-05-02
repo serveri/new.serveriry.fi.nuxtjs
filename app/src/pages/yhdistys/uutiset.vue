@@ -29,7 +29,7 @@
    // This hard coded data will be replaced with data from directus
    let news;
    try {
-      const response = await useFetch('http://127.0.0.1:8081/items/news');
+      const response = await useFetch('http://api.serveri.jeb4.dev/items/news');
       news = response.data.value.data;
    } catch (error) {
       news = [

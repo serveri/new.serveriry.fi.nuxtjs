@@ -43,7 +43,7 @@
    let released_date = new Date();
    try {
       // TODO: FIX THIS BUG
-      const response = await useFetch('http://127.0.0.1:8081/items/news/' + route.params.id);
+      const response = await useFetch('http://api.serveri.jeb4.dev/items/news/' + route.params.id);
       if (response?.data?.value?.data) {
          news = response.data.value.data;
          released_date = new Date(news.date_created);

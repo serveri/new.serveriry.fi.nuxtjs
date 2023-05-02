@@ -13,7 +13,7 @@
    let rules;
    let updated: Date;
    try {
-      const response = await useFetch('http://127.0.0.1:8081/items/turvallinen_tila');
+      const response = await useFetch('http://api.serveri.jeb4.dev/items/turvallinen_tila');
       rules = response.data.value.data;
       updated = new Date(rules.date_updated);
    } catch (e) {

@@ -13,7 +13,7 @@
    let rules;
    let updated: Date;
    try {
-      const response = await useFetch('http://127.0.0.1:8081/items/serveri_rules');
+      const response = await useFetch('http://api.serveri.jeb4.dev/items/serveri_rules');
       rules = response.data.value.data;
       updated = new Date(rules.date_updated);
    } catch (e) {

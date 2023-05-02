@@ -29,9 +29,9 @@
    let members;
    let text;
    try {
-      let response = await useFetch('http://127.0.0.1:8081/items/board_members');
+      let response = await useFetch('http://api.serveri.jeb4.dev/items/board_members');
       members = response.data.value.data;
-      response = await useFetch('http://127.0.0.1:8081/items/hallitus_page');
+      response = await useFetch('http://api.serveri.jeb4.dev/items/hallitus_page');
       text = response.data.value.data;
    } catch (e) {
       members = [

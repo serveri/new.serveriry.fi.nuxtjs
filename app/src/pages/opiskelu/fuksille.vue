@@ -11,7 +11,7 @@
    import VueMarkdown from 'vue-markdown-render';
    let text;
    try {
-      const { data } = await useFetch('http://127.0.0.1:8081/items/for_new_student');
+      const { data } = await useFetch('http://api.serveri.jeb4.dev/items/for_new_student');
       text = data.value.data;
    } catch (e) {
       text = {

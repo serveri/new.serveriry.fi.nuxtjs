@@ -56,7 +56,7 @@
 
    let content;
    try {
-      const response = await useFetch('http://127.0.0.1:8081/items/LandingPage');
+      const response = await useFetch('http://api.serveri.jeb4.dev/items/LandingPage');
       content = response.data.value.data;
    } catch (e) {
       content = {
