@@ -49,6 +49,7 @@
    "title_history": "History",
    "title_change-language": "Change Language",
    "title_companies": "Companies",
+   "title_about_site": "About site",
 
    "h1_front-page": "What we do?",
    "h1_join-us": "Join us",
@@ -76,6 +77,7 @@
    "event_end": "Event ends:",
    "h1_change-language": "Change Language",
    "h1_companies": "List of all IT companies in Finland",
+   "h1_about_site": "About site",
 
    "coming-events": "Coming events",
    "what-is-cs-like": "What is computer science like?",
