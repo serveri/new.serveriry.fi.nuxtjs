@@ -1,5 +1,5 @@
 <template>
-   <nuxt-link :to="localePath('/yhdistys/uutinen/' + content.url)">
+   <a :href="'/yhdistys/uutinen/' + content.url">
       <div class="NewsCard">
          <div class="rounded-sm">
             <img class="news-image object-contain w-full" :src="content.img" alt="Cover image for the news card" />
@@ -15,7 +15,7 @@
             <p class="card-content mt-1 mb-3 line-clamp-3">{{ content[$i18n.locale + '_text'] }}</p>
          </div>
       </div>
-   </nuxt-link>
+   </a>
 </template>
 
 <script setup lang="ts">
