@@ -4,6 +4,19 @@
          <Title>{{ $t('title_new-student') }} - Serveri ry</Title>
       </Head>
       <vue-markdown class="rich-text py-2" :source="text[$i18n.locale + '_text']" />
+      <p class="pb-4 text-center paragraph">Tietojenkäsittelytieteen uudet opiskelijat aloittavat syksyllä pitkän ja kivikkoisen, mutta niin kovin antoisan tiensä kohti luonnontieteen kandidaatin ja filosofian maisterin titteleitä.
+</p>
+
+
+<h2 class="text-2xl font-bold">Fuksin muistilista</h2>
+
+<ul>
+      <li></li>
+</ul>
+
+
+<h2 class="text-2xl font-bold">Opiskelijakortti</h2>
+
    </div>
 </template>
 
