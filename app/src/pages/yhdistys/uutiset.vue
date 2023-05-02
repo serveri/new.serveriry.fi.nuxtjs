@@ -32,7 +32,6 @@
       const response = await useFetch('http://127.0.0.1:8081/items/news');
       news = response.data.value.data;
    } catch (error) {
-      console.log(error);
       news = [
          {
             img: '/images/placeholder.jpg',
