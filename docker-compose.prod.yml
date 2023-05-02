@@ -15,7 +15,7 @@ services:
     restart: unless-stopped
 
   db:
-    container_name: postgresql
+    container_name: postgresql-serveri
     image: postgres:15-alpine
     volumes:
       - directus_data_prod:/var/lib/postgresql/data

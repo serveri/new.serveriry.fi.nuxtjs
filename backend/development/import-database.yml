@@ -12,7 +12,7 @@
       shell: docker compose -f /home/www/docker-compose.prod.yml up -d db
 
     - name: Copy dump from nuxt project to PSQL docker
-      shell: docker cp /home/www/backup.sql postgresql:/home/backup.sql
+      shell: docker cp /home/www/backup.sql postgresql-serveri:/home/backup.sql
 
     - name: Wait for PostgreSQL to start
       wait_for:
@@ -21,7 +21,7 @@
         state: started
 
     - name: Run dump file in psql
-      shell: docker exec postgresql bash -c "psql -U serveri directus_prod < /home/backup.sql"
+      shell: docker exec postgresql-serveri bash -c "psql -U serveri directus_prod < /home/backup.sql"
 
     - name: Start rest of docker services
       shell: docker compose -f /home/www/docker-compose.prod.yml up -d --build

@@ -2,7 +2,7 @@
 - hosts: all
   tasks:
     - name: Dump PostgreSQL database running in Docker container
-      shell: docker exec postgresql bash -c "pg_dump -U serveri -d directus_prod > /home/backup.sql"
+      shell: docker exec postgresql-serveri bash -c "pg_dump -U serveri -d directus_prod > /home/backup.sql"
 
     - name: Copy db dump from Docker container to host machine
-      shell: docker cp postgresql:/home/backup.sql /home/www/backup.sql
+      shell: docker cp postgresql-serveri:/home/backup.sql /home/www/backup.sql
