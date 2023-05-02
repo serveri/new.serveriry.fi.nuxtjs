@@ -38,6 +38,8 @@
                :img="some.img"
                :alt="'Serverin' + some.nimi"
                :name="some.nimi"
+               :fi_desc="some.fi_kuvaus"
+               :en_desc="some.en_kuvaus"
             />
          </div>
       </section>
@@ -83,6 +85,12 @@
          url: 'https://www.efecte.com/',
          img: 'https://api.serveriry.fi/uploads/efecte_logo_eaa50a1bf4.png',
       };
+   }
+   if (!SoMes.fi_kuvaus) {
+      SoMes.fi_kuvaus = null;
+   }
+   if (!SoMes.en_kuvaus) {
+      SoMes.en_kuvaus = null;
    }
 </script>
 
