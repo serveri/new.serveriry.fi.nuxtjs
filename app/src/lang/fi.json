@@ -87,5 +87,8 @@
    "404_msg_long": "Etsimäsi sivu saattaa olla poistettu. Kirjoititko osoitteen oikein?",
    "404_btn": "Etusivulle",
 
-   "updated_last_time": "Päivitetty viimeksi: "
+   "updated_last_time": "Päivitetty viimeksi: ",
+   "thanks-contact": "Kiitos yhteydenotosta!",
+   "we-contact-you-soon": "Otamme teihin yhteyttä mahdollisimman pian",
+   "back-to-frontpage": "Palaa etusivulle"
 }
