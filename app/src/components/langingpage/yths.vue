@@ -14,7 +14,7 @@
          </p>
       </div>
       <div class="flex flex-col items-center mt-8">
-         <a href="https://kela.fi/" class="btn-custom-blue" type="button">Maksa maksu (kela.fi)</a>
+         <a href="https://kela.fi/" class="btn-custom-primary" type="button">Maksa maksu (kela.fi)</a>
       </div>
    </div>
 </template>
