@@ -8,7 +8,7 @@
          <div class="px-4">
             <h2 class="card-header pt-3 text-2xl font-extrabold">{{ content[$i18n.locale + '_title'] }}</h2>
 
-            <p class="news-date font-normal uppercase mt-1 text-xs">
+            <p class="news-date font-normal uppercase mt-1 py-1 text-xs">
                {{ $t('news_released') }} <span>{{ content.date.toLocaleDateString($i18n.locale, options) }}</span>
             </p>
 
@@ -47,7 +47,8 @@
       },
       fi_text: {
          type: String,
-         default: 'Miksi serverit on niin kuumia? Koska kukaan ei voi vastustaa valkoisia haalareita! API ei muuten vastaa.',
+         default:
+            'Miksi serverit on niin kuumia? Koska kukaan ei voi vastustaa valkoisia haalareita! API ei muuten vastaa.',
          required: true,
       },
       en_text: {

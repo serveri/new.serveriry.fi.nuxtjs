@@ -3,93 +3,93 @@
 @tailwind utilities;
 
 @layer components {
-  @font-face {
-    src: url("/assets/fonts/Exo-Thin.ttf");
-    src: url("/assets/fonts/Exo-ExtraLight.ttf");
-    src: url("/assets/fonts/Exo-Light.ttf");
-    src: url("/assets/fonts/Exo-Medium.ttf");
-    src: url("/assets/fonts/Exo-Regular.ttf");
-    src: url("/assets/fonts/Exo-SemiBold.ttf");
-    src: url("/assets/fonts/Exo-Bold.ttf");
-    src: url("/assets/fonts/Exo-ExtraBold.ttf");
-    src: url("/assets/fonts/Exo-Black.ttf");
-  }
+   @font-face {
+      src: url('/assets/fonts/Exo-Thin.ttf');
+      src: url('/assets/fonts/Exo-ExtraLight.ttf');
+      src: url('/assets/fonts/Exo-Light.ttf');
+      src: url('/assets/fonts/Exo-Medium.ttf');
+      src: url('/assets/fonts/Exo-Regular.ttf');
+      src: url('/assets/fonts/Exo-SemiBold.ttf');
+      src: url('/assets/fonts/Exo-Bold.ttf');
+      src: url('/assets/fonts/Exo-ExtraBold.ttf');
+      src: url('/assets/fonts/Exo-Black.ttf');
+   }
 
-  a,
-  p,
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6 {
-    @apply text-black dark:text-white;
+   a,
+   p,
+   h1,
+   h2,
+   h3,
+   h4,
+   h5,
+   h6 {
+      @apply text-black dark:text-white;
 
-    font-family: Exo, sans-serif;
-  }
+      font-family: Exo, sans-serif;
+   }
 
-  .custom-page-title {
-    font-size: 2em;
-    padding: 2rem 0;
-    text-align: center;
-    font-weight: 800;
-  }
+   .custom-page-title {
+      font-size: 2em;
+      padding: 2rem 0;
+      text-align: center;
+      font-weight: 800;
+   }
 
-  .content {
-    @apply mx-auto max-w-7xl px-6 lg:px-8;
-  }
+   .content {
+      @apply mx-auto max-w-7xl pb-10 px-6 lg:px-8;
+   }
 
-  .btn-gradient-blue {
-    @apply px-5 py-2.5 mr-2 mb-2 text-white font-medium rounded-lg text-sm text-center;
-    @apply bg-gradient-to-r from-cyan-400 via-cyan-500 to-cyan-600 hover:bg-gradient-to-br;
-  }
+   .btn-gradient-blue {
+      @apply px-5 py-2.5 mr-2 mb-2 text-white font-medium rounded-lg text-sm text-center;
+      @apply bg-gradient-to-r from-cyan-400 via-cyan-500 to-cyan-600 hover:bg-gradient-to-br;
+   }
 
-  .btn-custom-primary {
-    @apply inline-flex items-center px-3 py-2 text-sm font-bold text-center text-white rounded;
-    @apply bg-custom-primary hover:bg-custom-secondary dark:hover:bg-custom-secondary-dark;
-  }
+   .btn-custom-primary {
+      @apply inline-flex items-center px-3 py-2 text-sm font-bold text-center text-white rounded;
+      @apply bg-custom-primary hover:bg-custom-secondary dark:hover:bg-custom-secondary-dark;
+   }
 
-  .paragraph {
-    @apply font-light tracking-wide text-gray-500 dark:text-gray-400 sm:text-xl;
-  }
+   .paragraph {
+      @apply font-light tracking-wide text-gray-500 dark:text-gray-400 sm:text-xl;
+   }
 
-  /* Rich text directus styles */
-  .rich-text {
-    @apply tracking-wide leading-8;
-  }
+   /* Rich text directus styles */
+   .rich-text {
+      @apply tracking-wide leading-8;
+   }
 
-  .rich-text h1 {
-    font-size: 2em;
-    padding: 2rem 0;
-    text-align: center;
-    font-weight: 800;
-  }
+   .rich-text h1 {
+      font-size: 2em;
+      padding: 2rem 0;
+      text-align: center;
+      font-weight: 800;
+   }
 
-  .rich-text h2 {
-    @apply py-3 text-xl;
-  }
+   .rich-text h2 {
+      @apply py-3 text-xl;
+   }
 
-  .rich-text h3 {
-    @apply py-2 text-lg;
-  }
+   .rich-text h3 {
+      @apply py-2 text-lg;
+   }
 
-  .rich-text li {
-    @apply py-1 text-base dark:text-white px-1;
-  }
+   .rich-text li {
+      @apply py-1 text-base dark:text-white px-1;
+   }
 
-  .rich-text ul {
-    @apply py-1 text-base list-disc px-8;
-  }
+   .rich-text ul {
+      @apply py-1 text-base list-disc px-8;
+   }
 
-  .rich-text ol {
-    @apply py-1 text-base list-decimal px-8;
-  }
+   .rich-text ol {
+      @apply py-1 text-base list-decimal px-8;
+   }
 
-  .rich-text a {
-    @apply text-blue-500 dark:text-blue-400 hover:underline;
-  }
+   .rich-text a {
+      @apply text-blue-500 dark:text-blue-400 hover:underline;
+   }
 
-  .rich-text p {
-    @apply py-2 text-base;
-  }
+   .rich-text p {
+      @apply py-2 text-base;
+   }
 }

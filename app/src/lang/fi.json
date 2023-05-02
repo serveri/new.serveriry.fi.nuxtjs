@@ -51,6 +51,7 @@
    "title_history": "Historia",
    "title_change-language": "Vaihda kieli",
    "title_companies": "Firmat",
+   "title_about_site": "Tietoa sivustosta",
 
    "h1_front-page": "Mitä me teemme?",
    "h1_join-us": "Liity jäseneksi",
@@ -78,6 +79,7 @@
    "news_released": "Julkaistu:",
    "h1_change-language": "Vaihda kieli",
    "h1_companies": "Lista IT alan yrityksistä",
+   "h1_about_site": "Tietoa sivustosta",
 
    "coming-events": "Tulevat tapahtumat",
    "what-is-cs-like": "Millaista tietojenkäsittelytiede on?",
