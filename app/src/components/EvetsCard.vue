@@ -1,5 +1,5 @@
 <template>
-   <a :href="'/yhdistys/uutinen/' + content.url">
+   <a :href="'/yhdistys/tapahtuma/' + content.url">
       <div class="NewsCard">
          <div class="rounded-sm">
             <img class="news-image object-contain w-full" :src="content.img" alt="Cover image for the news card" />
@@ -8,8 +8,8 @@
          <div class="px-4">
             <h2 class="card-header pt-3 text-2xl font-extrabold">{{ content[$i18n.locale + '_title'] }}</h2>
 
-            <p class="news-date font-normal uppercase mt-1 py-1 text-xs">
-               {{ $t('news_released') }} <span>{{ content.date.toLocaleDateString($i18n.locale, options) }}</span>
+            <p class="news-date font-normal uppercase mt-1 text-xs">
+               {{ content.start_time.toLocaleDateString($i18n.locale, options) }}
             </p>
 
             <p class="card-content mt-1 mb-3 line-clamp-3">{{ content[$i18n.locale + '_text'] }}</p>
@@ -40,7 +40,7 @@
          default: "News title wasn't found",
          required: true,
       },
-      date: {
+      start_time: {
          type: Date,
          default: new Date('01/01/1970'),
          required: true,
@@ -57,7 +57,7 @@
          required: true,
       },
    });
-   const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+   const options = { weekday: 'long', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit' };
 </script>
 
 <style scoped>

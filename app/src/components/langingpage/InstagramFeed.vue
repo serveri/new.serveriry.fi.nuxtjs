@@ -6,32 +6,10 @@
    >
       <h2 class="custom-page-title sm:hidden">Instagram Feed</h2>
       <iframe
+         v-for="post in posts.slice(0, 4)"
+         :key="post.postaus_id"
          class="rounded-lg w-full h-[97vw] sm:h-[100%]"
-         src="//instagram.com/p/CqFdw7MBG5N/embed/"
-         height="100%"
-         scrolling="no"
-         allowtransparency="true"
-         tabindex="-1"
-      ></iframe>
-      <iframe
-         class="rounded-lg w-full h-[97vw] sm:h-[100%]"
-         src="//instagram.com/p/CqC49UgBFpR/embed/"
-         height="100%"
-         scrolling="no"
-         allowtransparency="true"
-         tabindex="-1"
-      ></iframe>
-      <iframe
-         class="rounded-lg w-full h-[97vw] sm:h-[100%]"
-         src="//instagram.com/p/CpzqO4Ah9HC/embed/"
-         height="100%"
-         scrolling="no"
-         allowtransparency="true"
-         tabindex="-1"
-      ></iframe>
-      <iframe
-         class="rounded-lg w-full h-[97vw] sm:h-[100%]"
-         src="//instagram.com/p/CphwTQLBho9/embed/"
+         :src="'//instagram.com/p/' + post.postaus_id + '/embed/'"
          height="100%"
          scrolling="no"
          allowtransparency="true"
@@ -40,7 +18,17 @@
    </div>
 </template>
 
-<script>
+<script setup lang="ts">
+   let posts;
+   try {
+      const { data } = await useFetch('https://api.serveri.jeb4.dev/items/instagram');
+      posts = data.value.data;
+   } catch (e) {
+      posts = ['CqFdw7MBG5N', 'CqC49UgBFpR', 'CpzqO4Ah9HC', 'CphwTQLBho9'];
+   }
+</script>
+
+<script lang="ts">
    export default {
       name: 'InstagramFeed',
    };
