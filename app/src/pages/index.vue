@@ -8,7 +8,7 @@
       </section>
 
       <section class="sm:my-[-3rem] xl:sm:my-[-6rem] 2xl:sm:my-[-8rem] flex flex-col lg:flex-row">
-         <DescriptionText :en_description="content.en_long_desc" :fi_description="content.fi_long_desc"/>
+         <DescriptionText :en_description="content.en_long_desc" :fi_description="content.fi_long_desc" />
          <TopNews />
       </section>
 
@@ -32,11 +32,12 @@
 
          <div class="grid grid-cols-1 gap-8 mb-8 md:grid-cols-2 md:gap-8 lg:grid-cols-4 lg:gap-7">
             <SocialmediaIcon
-               v-for="Socialmedia in Socialmedias"
-               :url="Socialmedia.url"
-               :img="Socialmedia.img"
-               :alt="'Serverin' + Socialmedia.name"
-               :name="Socialmedia.name"
+               v-for="some in SoMes"
+               :key="some.nimi"
+               :url="some.url"
+               :img="some.img"
+               :alt="'Serverin' + some.nimi"
+               :name="some.nimi"
             />
          </div>
       </section>
@@ -52,7 +53,6 @@
    import TopNews from '@/components/langingpage/TopNews.vue';
    import SponsorCarousel from '@/components/langingpage/SponsorCarousel.vue';
    import SocialmediaIcon from '@/components/langingpage/SocialmediaIcon.vue';
-   import Socialmedias from '@/components/langingpage/Socialmedias.json';
 
    let content;
    try {
@@ -70,6 +70,18 @@
          en_button_text: 'What is computer science like?',
          fi_button_url: '/opiskelu/tkt',
          en_button_url: '/opiskelu/tkt',
+      };
+   }
+
+   let SoMes;
+   try {
+      const response = await useFetch('https://api.serveri.jeb4.dev/items/sosiaaliset_mediat');
+      SoMes = response.data.value.data;
+   } catch (e) {
+      SoMes = {
+         nimi: 'Telegram',
+         url: 'https://www.efecte.com/',
+         img: 'https://api.serveriry.fi/uploads/efecte_logo_eaa50a1bf4.png',
       };
    }
 </script>
