@@ -24,8 +24,8 @@
    import VueMarkdown from 'vue-markdown-render';
    let text;
    try {
-      const response = await useFetch('http://127.0.0.1:8081/items/for_new_student');
-      text = response.data.value.data;
+      const { data } = await useFetch('http://127.0.0.1:8081/items/for_new_student');
+      text = data.value.data;
    } catch (e) {
       text = {
          fi_text: 'API error',

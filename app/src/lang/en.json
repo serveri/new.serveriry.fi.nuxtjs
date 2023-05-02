@@ -83,6 +83,8 @@
    "404_msg_long": "The page you are looking for may have been removed. Did you write the address correctly?",
    "404_btn": "Back to home",
 
-   "updated_last_time": "Updated last time: "
-
+   "updated_last_time": "Updated last time: ",
+   "thanks-contact": "Thank you for contacting us!",
+   "we-contact-you-soon": "We will contact you as soon as possible",
+   "back-to-frontpage": "Return to front page"
 }

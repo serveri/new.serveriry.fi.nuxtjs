@@ -44,7 +44,7 @@
                placeholder="Millaista yhteistyöta haluaisitte tehdä?"
             ></textarea>
          </div>
-         <button type="submit" class="btn-custom-blue" @click="submitForm">Lähetä viesti</button>
+         <button type="submit" class="btn-custom-primary" @click="submitForm">Lähetä viesti</button>
       </form>
    </div>
 </template>
@@ -66,7 +66,7 @@
       methods: {
          async submitForm(e) {
             e.preventDefault();
-            await fetch('http://10.143.20.7:8081/items/lomake_vastaukset', {
+            await fetch('http://localhost:8081/items/lomake_vastaukset', {
                headers: {
                   'Content-Type': 'application/json',
                },

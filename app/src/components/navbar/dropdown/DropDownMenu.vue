@@ -3,10 +3,10 @@
    <Menu as="div" class="relative">
       <MenuButton>
          <!-- I am sorry for this purkka koodi -->
-         <nuxt-link
+         <div
             :class="[
                $route.path.split('/').slice(-2)[0] === localePath(menu.href).split('/').slice(-1)[0]
-                  ? 'text-custom-blue dark:text-custom-blue'
+                  ? 'text-custom-primary dark:text-custom-secondary-dark'
                   : 'text-gray-700 dark:text-gray-300',
                'nav-link',
             ]"
@@ -14,7 +14,7 @@
          >
             {{ $t(menu.name) }}
             <DropDownArrow />
-         </nuxt-link>
+         </div>
       </MenuButton>
       <transition
          enter-active-class="transition ease-out duration-100"
@@ -25,13 +25,15 @@
          leave-to-class="transform opacity-0 scale-95"
       >
          <MenuItems
-            class='absolute px-1 py-1 md:px-6 md:py-2 md:pb-4 right-0 z-10 mt-2 min-w-max origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none whitespace-nowrap dark:bg-[#282828]'
-            >
-            <MenuItem v-for="subMenu in menu.subMenu" :key="subMenu.name" v-slot="{close}">
+            class="absolute px-1 py-1 md:px-6 md:py-2 md:pb-4 right-0 z-10 mt-2 min-w-max origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none whitespace-nowrap dark:bg-[#282828]"
+         >
+            <MenuItem v-for="subMenu in menu.subMenu" :key="subMenu.name" v-slot="{ close }">
                <nuxt-link
                   :to="localePath(subMenu.href)"
                   :class="[
-                     $route.path === localePath(subMenu.href) ? 'text-custom-blue' : 'text-gray-700 dark:text-gray-200',
+                     $route.path === localePath(subMenu.href)
+                        ? 'text-custom-primary dark:text-custom-secondary-dark'
+                        : 'text-gray-700 dark:text-gray-200',
                      'nav-link-parent',
                   ]"
                   ><span class="nav-dropdown-link" tabindex="1" @click="close">
@@ -65,7 +67,7 @@
    }
    /* underline effect */
    .nav-link:after {
-      @apply bg-custom-blue;
+      @apply bg-custom-primary;
       content: '';
       position: absolute;
       width: 100%;
@@ -87,7 +89,7 @@
    }
    /* underline effect */
    .nav-link-parent:hover .nav-dropdown-link {
-      @apply border-b-custom-blue;
+      @apply border-b-custom-primary;
       transition: border-bottom-color 0.5s ease-out;
    }
 </style>

@@ -33,7 +33,9 @@
                >{{ content.email }}@serveriry.fi</a
             >
             <p>
-               <font-awesome-icon class="fa-xl mr-1" :icon="['fab', 'telegram']" />
+               <client-only>
+                  <font-awesome-icon class="fa-xl mr-1" :icon="['fab', 'telegram']" />
+               </client-only>
                <a
                   class="member-telegram hover:underline"
                   :href="'https://telegram.me/' + content.telegram"
@@ -71,12 +73,13 @@
    const content = defineProps({
       img: {
          type: String,
-         default: '/images/member.jpeg',
+         default: '/images/placeholder-square.jpg',
          required: true,
       },
       hover_img: {
          type: String,
-         required: true,
+         default: '/images/placeholder-square.jpg',
+         required: false,
       },
       email: {
          type: String,
@@ -137,9 +140,9 @@
    }
 
    .member-image {
-      @apply rounded-full max-w-full h-auto align-middle border-none;
+      @apply rounded-full max-w-full align-middle border-none object-cover;
    }
    .member-image {
-      @apply dark:shadow-lg  dark:shadow-zinc-700 dark:bg-zinc-900;
+      @apply dark:shadow-lg dark:shadow-zinc-700 dark:bg-zinc-900;
    }
 </style>

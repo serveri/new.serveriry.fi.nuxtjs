@@ -7,7 +7,7 @@
       <div class="flex w-full justify-center text-center absolute">
          <div>
             <h1 class="text text-5xl font-extrabold text-gray-900 dark:text-gray-900 sm:text-6xl lg:text-8xl pb-2">
-               <span class="text-transparent bg-clip-text bg-custom-blue">
+               <span class="text-transparent bg-clip-text bg-custom-primary">
                   {{ content[$i18n.locale + '_title'] }}
                </span>
             </h1>
@@ -16,7 +16,7 @@
             </h3>
             <nuxt-link :to="content[$i18n.locale + '_button_url']" class="py-4">
                <div
-                  class="p-3 sm:py-4 sm:px-6 text-white bg-custom-blue hover:bg-uef-blue rounded-lg text-center uppercase font-bold md:text-lg tracking-wider mx-auto"
+                  class="p-3 sm:py-4 sm:px-6 text-white bg-custom-primary hover:bg-custom-secondary rounded-lg text-center uppercase font-bold md:text-lg tracking-wider mx-auto"
                   role="button"
                   style="width: fit-content"
                >

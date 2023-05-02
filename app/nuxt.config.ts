@@ -1,4 +1,4 @@
-export default defineNuxtConfig({
+export default {
    ssr: true,
    srcDir: 'src/',
    css: ['~/assets/css/main.css'],
@@ -9,7 +9,7 @@ export default defineNuxtConfig({
       },
    },
    plugins: [{ src: '~/plugins/fontawesome.ts' }],
-   modules: ['@nuxtjs/i18n'],
+   modules: ['@nuxtjs/i18n', 'nuxt-delay-hydration'],
    i18n: {
       vueI18n: {
          fallbackLocale: ['fi', 'en'],
@@ -17,15 +17,22 @@ export default defineNuxtConfig({
       locales: [
          {
             code: 'fi',
+            iso: 'fi-FI',
             file: 'fi.json',
          },
          {
             code: 'en',
+            iso: 'en-US',
             file: 'en.json',
          },
       ],
-      lazy: true,
+      lazy: false,
       langDir: 'lang/',
       defaultLocale: 'fi',
    },
-});
+   delayHydration: {
+      mode: 'init',
+      // enables nuxt-delay-hydration in dev mode for testing
+      debug: process.env.NODE_ENV === 'development',
+   },
+};

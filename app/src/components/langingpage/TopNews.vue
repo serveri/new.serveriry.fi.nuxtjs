@@ -9,7 +9,7 @@
             <ComingEvent :title="event.title" :time="event.time" :link="event.link" />
          </div>
          <nuxt-link :to="localePath('/yhdistys/tapahtumat')" class="flex flex-col items-center pt-3">
-            <button class="btn-custom-blue" type="button">Näytä kaikki tapahtumat</button>
+            <button class="btn-custom-primary" type="button">Näytä kaikki tapahtumat</button>
          </nuxt-link>
       </div>
    </div>
