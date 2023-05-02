@@ -35,69 +35,300 @@
          <h2 class="mt-8 text-2xl font-extrabold text-center">UEF tietojenkäsittelytieteen opintorakenne</h2>
       </div>
 
-      <div class="table-container">
-         <div>
-            <h2 class="table-desc">Yleisopinnot</h2>
-            <p>Yleisopinnot tukevat opiskelua erityisesti ensimmäisenä opiskeluvuotena.</p>
+      <div>
+         <div class="table-container">
+            <div>
+               <h2 class="table-desc">Yleisopinnot</h2>
+               <p>Yleisopinnot tukevat opiskelua erityisesti ensimmäisenä opiskeluvuotena.</p>
+            </div>
+
+            <table class="course-table">
+               <thead>
+                  <tr>
+                     <th class="table-header name"><p>Opintojakso</p></th>
+
+                     <th class="table-header desc"><p>Kurssikuvaus</p></th>
+
+                     <th class="table-header credits"><p>Laajuus (opintopisteet)</p></th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr
+                     v-for="course in courses.filter((item: { tyyppi: string }) => item.tyyppi == 'yleisopinnot')"
+                     :key="course.name"
+                     class="table-row"
+                  >
+                     <td class="table-data">
+                        <p>{{ course.nimi }}</p>
+                     </td>
+
+                     <td class="table-data">
+                        <p>{{ course.kuvaus }}</p>
+                     </td>
+
+                     <td class="table-data">
+                        <p>{{ course.laajuus }}</p>
+                     </td>
+                  </tr>
+               </tbody>
+            </table>
          </div>
+         <div class="table-container">
+            <div>
+               <h2 class="table-desc">Perusopinnot</h2>
+               <p>
+                  Perusopinnot antavat kokonaiskuvan tietojenkäsittelytieteestä ja rakentavat perustan aineopintojen
+                  kursseille.
+               </p>
+            </div>
 
-         <table class="course-table">
-            <tr>
-               <th class="table-header"><p>Opintojakso</p></th>
+            <table class="course-table">
+               <thead>
+                  <tr>
+                     <th class="table-header name"><p>Opintojakso</p></th>
 
-               <th class="table-header"><p>Kurssikuvaus</p></th>
+                     <th class="table-header desc"><p>Kurssikuvaus</p></th>
 
-               <th class="table-header"><p>Laajuus (opintopisteet)</p></th>
-            </tr>
+                     <th class="table-header credits"><p>Laajuus (opintopisteet)</p></th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr
+                     v-for="course in courses.filter((item: { tyyppi: string }) => item.tyyppi == 'perusopinnot')"
+                     :key="course.name"
+                     class="table-row"
+                  >
+                     <td class="table-data">
+                        <p>{{ course.nimi }}</p>
+                     </td>
 
-            <tr class="data-row">
-               <td class="table-data"><p>Hops-tietojenkäsittelytiede</p></td>
+                     <td class="table-data">
+                        <p>{{ course.kuvaus }}</p>
+                     </td>
 
-               <td class="table-data"><p>(Hops = henkilökohtainen opintosuunnitelma)</p></td>
+                     <td class="table-data">
+                        <p>{{ course.laajuus }}</p>
+                     </td>
+                  </tr>
+               </tbody>
+            </table>
+         </div>
+         <div class="table-container">
+            <div>
+               <h2 class="table-desc">Pakolliset Aineopinnot</h2>
+               <p>
+                  Aineopintojen kursseilla opiskellaan tietojenkäsittelytieteen keskeiset perusasiat, jotka antavat
+                  teoreettiset perustiedot ja käytännön osaamista alan tehtäviin. Tämä muodostaa pohjan
+                  maisteriopinnoille.
+               </p>
+            </div>
 
-               <td class="table-data"><p>2</p></td>
-            </tr>
+            <table class="course-table">
+               <thead>
+                  <tr>
+                     <th class="table-header name"><p>Opintojakso</p></th>
 
-            <tr class="data-row">
-               <td class="table-data"><p>Orientaatio yliopisto-opiskeluun</p></td>
+                     <th class="table-header desc"><p>Kurssikuvaus</p></th>
 
-               <td class="table-data">
-                  <p>
-                     Opiskelija tutustuu oppiaine- ja vertaistuutoroinnin, verkkomateriaalin, erilaisten
-                     orientaatiotapahtumien sekä oheismateriaalin avulla yliopistoon opiskeluympäristönä ja
-                     oppimisyhteisönä. Erityisesti tutustutaan oman oppiaineen opiskelukäytäntöihin ja opiskelua
-                     tukeviin palveluihin. Lisäksi saadaan tietoa akateemisen opiskelun edellyttämistä tiedoista ja
-                     taidoista sekä opiskelukyvystä ja sen ylläpitämisestä.
-                  </p>
-               </td>
-               <td class="table-data"><p>1</p></td>
-            </tr>
-            <tr class="data-row">
-               <td class="table-data"><p>Hops-tietojenkäsittelytiede</p></td>
+                     <th class="table-header credits"><p>Laajuus (opintopisteet)</p></th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr
+                     v-for="course in courses.filter((item: { tyyppi: string }) => item.tyyppi == 'pakolliset')"
+                     :key="course.name"
+                     class="table-row"
+                  >
+                     <td class="table-data">
+                        <p>{{ course.nimi }}</p>
+                     </td>
 
-               <td class="table-data"><p>(Hops = henkilökohtainen opintosuunnitelma)</p></td>
+                     <td class="table-data">
+                        <p>{{ course.kuvaus }}</p>
+                     </td>
 
-               <td class="table-data"><p>2</p></td>
-            </tr>
-         </table>
+                     <td class="table-data">
+                        <p>{{ course.laajuus }}</p>
+                     </td>
+                  </tr>
+               </tbody>
+            </table>
+         </div>
+         <div class="table-container">
+            <div>
+               <h2 class="table-desc">Yleisopinnot</h2>
+               <p>Yleisopinnot tukevat opiskelua erityisesti ensimmäisenä opiskeluvuotena.</p>
+            </div>
+
+            <table class="course-table">
+               <thead>
+                  <tr>
+                     <th class="table-header name"><p>Opintojakso</p></th>
+
+                     <th class="table-header desc"><p>Kurssikuvaus</p></th>
+
+                     <th class="table-header credits"><p>Laajuus (opintopisteet)</p></th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr
+                     v-for="course in courses.filter((item: { tyyppi: string }) => item.tyyppi == 'yleisopinnot')"
+                     :key="course.name"
+                     class="table-row"
+                  >
+                     <td class="table-data">
+                        <p>{{ course.nimi }}</p>
+                     </td>
+
+                     <td class="table-data">
+                        <p>{{ course.kuvaus }}</p>
+                     </td>
+
+                     <td class="table-data">
+                        <p>{{ course.laajuus }}</p>
+                     </td>
+                  </tr>
+               </tbody>
+            </table>
+         </div>
+         <div class="table-container">
+            <div>
+               <h2 class="table-desc">Yleisopinnot</h2>
+               <p>Yleisopinnot tukevat opiskelua erityisesti ensimmäisenä opiskeluvuotena.</p>
+            </div>
+
+            <table class="course-table">
+               <thead>
+                  <tr>
+                     <th class="table-header name"><p>Opintojakso</p></th>
+
+                     <th class="table-header desc"><p>Kurssikuvaus</p></th>
+
+                     <th class="table-header credits"><p>Laajuus (opintopisteet)</p></th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr
+                     v-for="course in courses.filter((item: { tyyppi: string }) => item.tyyppi == 'yleisopinnot')"
+                     :key="course.name"
+                     class="table-row"
+                  >
+                     <td class="table-data">
+                        <p>{{ course.nimi }}</p>
+                     </td>
+
+                     <td class="table-data">
+                        <p>{{ course.kuvaus }}</p>
+                     </td>
+
+                     <td class="table-data">
+                        <p>{{ course.laajuus }}</p>
+                     </td>
+                  </tr>
+               </tbody>
+            </table>
+         </div>
+         <div class="table-container">
+            <div>
+               <h2 class="table-desc">Yleisopinnot</h2>
+               <p>Yleisopinnot tukevat opiskelua erityisesti ensimmäisenä opiskeluvuotena.</p>
+            </div>
+
+            <table class="course-table">
+               <thead>
+                  <tr>
+                     <th class="table-header name"><p>Opintojakso</p></th>
+
+                     <th class="table-header desc"><p>Kurssikuvaus</p></th>
+
+                     <th class="table-header credits"><p>Laajuus (opintopisteet)</p></th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr
+                     v-for="course in courses.filter((item: { tyyppi: string }) => item.tyyppi == 'yleisopinnot')"
+                     :key="course.name"
+                     class="table-row"
+                  >
+                     <td class="table-data">
+                        <p>{{ course.nimi }}</p>
+                     </td>
+
+                     <td class="table-data">
+                        <p>{{ course.kuvaus }}</p>
+                     </td>
+
+                     <td class="table-data">
+                        <p>{{ course.laajuus }}</p>
+                     </td>
+                  </tr>
+               </tbody>
+            </table>
+         </div>
       </div>
    </div>
 </template>
 
-<style scoped>
-   .erkki-video {
-      display: flex;
-      justify-content: center;
-      align-items: center;
+<script setup lang="ts">
+   let courses;
+   try {
+      const { data } = await useFetch('https://api.serveri.jeb4.dev/items/tutkinto_rakenne');
+      courses = data.value.data;
+   } catch (e) {
+      courses = [
+         {
+            tyyppi: 'valinnaiset',
+            nimi: 'Api error',
+            laajuus: '4.00',
+            kuvaus:
+               'Ohjelmistovirheet, testauksen vaiheet, testausmenetelmät, regressiotestaus, testauksen automatisointi, testausprosessin kehittäminen ',
+            sort: 1,
+         },
+         { tyyppi: 'sivuaine', nimi: 'Api error', laajuus: '25.00', kuvaus: 'matikkaa voi opiskella :D', sort: 2 },
+         {
+            tyyppi: 'pakolliset',
+            nimi: 'Api error',
+            laajuus: '5.00',
+            kuvaus:
+               'Propositio- ja predikaattilogiikka, joukko-oppi, funktiot ja relaatiot, kombinatoriikka, graafiteoria, matemaattinen induktio',
+            sort: 3,
+         },
+         {
+            tyyppi: 'kieliviesti',
+            nimi: 'Api error',
+            laajuus: '2.00',
+            kuvaus:
+               'opintojen ja työelämän kannalta keskeiset tekstilajit sekä tieteen viestinnän erityispiirteet\noikeakielisyys ja huoliteltu teksti\nargumentoinnin keinot\ntyyli ja tarkoituksenmukainen sävy\nkriittinen lukutapa ja tekstianalyysi\nkirjoitusprosessin hallinta ja erityisesti oman kandidaatintutkielman työstäminen\ntekstien kohdentaminen lukijoille ja yleistajuinen viestintä\nrakentavan palautteen antaminen ja vastaanottaminen ',
+            sort: 4,
+         },
+         {
+            tyyppi: 'yleisopinnot',
+            nimi: 'Api error',
+            laajuus: '1.00',
+            kuvaus:
+               'Opiskelija tutustuu oppiaine- ja vertaistuutoroinnin, verkkomateriaalin, erilaisten orientaatiotapahtumien sekä oheismateriaalin avulla yliopistoon opiskeluympäristönä ja oppimisyhteisönä. Erityisesti tutustutaan oman oppiaineen opiskelukäytäntöihin ja opiskelua tukeviin palveluihin. Lisäksi saadaan tietoa akateemisen opiskelun edellyttämistä tiedoista ja taidoista sekä opiskelukyvystä ja sen ylläpitämisestä. ',
+            sort: 6,
+         },
+         {
+            tyyppi: 'perusopinnot',
+            nimi: 'Api error',
+            laajuus: '5.00',
+            kuvaus:
+               'Informaatio, sen esittäminen ja tallentaminen ja sen käsittelemisen automatisointi. Ohjelmointi, ohjelmointikielet, ja kuinka niillä luodaan ohjelmia ja ohjelmistoja. Tiedon mallintaminen, tietokannat, tietoverkot ja kuinka tietoa hallitaan. Laskennan rajat. Suunnittelu, design ja älykkäät järjestelmät. Tietojenkäsittelyn ja tietojenkäsittelijän tehtävät ja vastuut yhteiskunnassa. ',
+            sort: 9,
+         },
+      ];
    }
+   const pakolliset = courses.filter((item: { tyyppi: string }) => item.tyyppi == 'valinnaiset');
+</script>
 
+<style scoped>
    th {
       background-color: rgb(0 119 138 / var(--tw-bg-opacity));
    }
    .table-container {
       @apply my-6;
    }
-
    .table-desc {
       @apply text-xl font-extrabold;
    }
@@ -110,10 +341,17 @@
    .table-data {
       @apply break-words py-2 px-3;
    }
-   .data-row {
-      @apply odd:bg-stone-200;
+   .table-row {
+      @apply even:bg-stone-100 odd:bg-stone-200 dark:odd:bg-stone-700 dark:even:bg-stone-800;
    }
-   .data-row {
-      @apply dark:odd:bg-neutral-700;
+
+   .credits {
+      @apply w-[22%] sm:w-1/3;
+   }
+   .name {
+      @apply w-[31%] sm:w-1/3;
+   }
+   .desc {
+      @apply w-[47%] sm:w-1/3;
    }
 </style>
