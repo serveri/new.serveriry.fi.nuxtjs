@@ -2,8 +2,8 @@
 -- PostgreSQL database dump
 --
 
--- Dumped from database version 15.2
--- Dumped by pg_dump version 15.2
+-- Dumped from database version 15.1
+-- Dumped by pg_dump version 15.1
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -917,6 +917,46 @@ ALTER SEQUENCE public.hallitus_page_id_seq OWNED BY public.hallitus_page.id;
 
 
 --
+-- Name: instagram; Type: TABLE; Schema: public; Owner: serveri
+--
+
+CREATE TABLE public.instagram (
+    id integer NOT NULL,
+    sort integer,
+    user_created uuid,
+    date_created timestamp with time zone,
+    user_updated uuid,
+    date_updated timestamp with time zone,
+    postaus_id character varying(255),
+    postauksen_kuvaus character varying(255)
+);
+
+
+ALTER TABLE public.instagram OWNER TO serveri;
+
+--
+-- Name: instagram_id_seq; Type: SEQUENCE; Schema: public; Owner: serveri
+--
+
+CREATE SEQUENCE public.instagram_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.instagram_id_seq OWNER TO serveri;
+
+--
+-- Name: instagram_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: serveri
+--
+
+ALTER SEQUENCE public.instagram_id_seq OWNED BY public.instagram.id;
+
+
+--
 -- Name: liity_serveriin; Type: TABLE; Schema: public; Owner: serveri
 --
 
@@ -1112,28 +1152,30 @@ ALTER SEQUENCE public.serveri_rules_id_seq OWNED BY public.serveri_rules.id;
 
 
 --
--- Name: social_medias; Type: TABLE; Schema: public; Owner: serveri
+-- Name: sosiaaliset_mediat; Type: TABLE; Schema: public; Owner: serveri
 --
 
-CREATE TABLE public.social_medias (
+CREATE TABLE public.sosiaaliset_mediat (
     id integer NOT NULL,
+    status character varying(255) DEFAULT 'draft'::character varying NOT NULL,
+    sort integer,
     user_created uuid,
     date_created timestamp with time zone,
     user_updated uuid,
     date_updated timestamp with time zone,
-    name character varying(255),
+    nimi character varying(255),
     url character varying(255),
-    icon character varying(255)
+    img character varying(255)
 );
 
 
-ALTER TABLE public.social_medias OWNER TO serveri;
+ALTER TABLE public.sosiaaliset_mediat OWNER TO serveri;
 
 --
--- Name: social_medias_id_seq; Type: SEQUENCE; Schema: public; Owner: serveri
+-- Name: sosiaaliset_mediat_id_seq; Type: SEQUENCE; Schema: public; Owner: serveri
 --
 
-CREATE SEQUENCE public.social_medias_id_seq
+CREATE SEQUENCE public.sosiaaliset_mediat_id_seq
     AS integer
     START WITH 1
     INCREMENT BY 1
@@ -1142,13 +1184,13 @@ CREATE SEQUENCE public.social_medias_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.social_medias_id_seq OWNER TO serveri;
+ALTER TABLE public.sosiaaliset_mediat_id_seq OWNER TO serveri;
 
 --
--- Name: social_medias_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: serveri
+-- Name: sosiaaliset_mediat_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: serveri
 --
 
-ALTER SEQUENCE public.social_medias_id_seq OWNED BY public.social_medias.id;
+ALTER SEQUENCE public.sosiaaliset_mediat_id_seq OWNED BY public.sosiaaliset_mediat.id;
 
 
 --
@@ -1223,6 +1265,49 @@ ALTER TABLE public.turvallinen_tila_id_seq OWNER TO serveri;
 --
 
 ALTER SEQUENCE public.turvallinen_tila_id_seq OWNED BY public.turvallinen_tila.id;
+
+
+--
+-- Name: tutkinto_rakenne; Type: TABLE; Schema: public; Owner: serveri
+--
+
+CREATE TABLE public.tutkinto_rakenne (
+    id integer NOT NULL,
+    status character varying(255) DEFAULT 'draft'::character varying NOT NULL,
+    sort integer,
+    user_created uuid,
+    date_created timestamp with time zone,
+    user_updated uuid,
+    date_updated timestamp with time zone,
+    tyyppi character varying(255),
+    nimi character varying(255),
+    kuvaus text,
+    laajuus numeric(10,2)
+);
+
+
+ALTER TABLE public.tutkinto_rakenne OWNER TO serveri;
+
+--
+-- Name: tutkinto_rakenne_id_seq; Type: SEQUENCE; Schema: public; Owner: serveri
+--
+
+CREATE SEQUENCE public.tutkinto_rakenne_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.tutkinto_rakenne_id_seq OWNER TO serveri;
+
+--
+-- Name: tutkinto_rakenne_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: serveri
+--
+
+ALTER SEQUENCE public.tutkinto_rakenne_id_seq OWNED BY public.tutkinto_rakenne.id;
 
 
 --
@@ -1331,6 +1416,13 @@ ALTER TABLE ONLY public.hallitus_page ALTER COLUMN id SET DEFAULT nextval('publi
 
 
 --
+-- Name: instagram id; Type: DEFAULT; Schema: public; Owner: serveri
+--
+
+ALTER TABLE ONLY public.instagram ALTER COLUMN id SET DEFAULT nextval('public.instagram_id_seq'::regclass);
+
+
+--
 -- Name: liity_serveriin id; Type: DEFAULT; Schema: public; Owner: serveri
 --
 
@@ -1366,10 +1458,10 @@ ALTER TABLE ONLY public.serveri_rules ALTER COLUMN id SET DEFAULT nextval('publi
 
 
 --
--- Name: social_medias id; Type: DEFAULT; Schema: public; Owner: serveri
+-- Name: sosiaaliset_mediat id; Type: DEFAULT; Schema: public; Owner: serveri
 --
 
-ALTER TABLE ONLY public.social_medias ALTER COLUMN id SET DEFAULT nextval('public.social_medias_id_seq'::regclass);
+ALTER TABLE ONLY public.sosiaaliset_mediat ALTER COLUMN id SET DEFAULT nextval('public.sosiaaliset_mediat_id_seq'::regclass);
 
 
 --
@@ -1384,6 +1476,13 @@ ALTER TABLE ONLY public.study_club ALTER COLUMN id SET DEFAULT nextval('public.s
 --
 
 ALTER TABLE ONLY public.turvallinen_tila ALTER COLUMN id SET DEFAULT nextval('public.turvallinen_tila_id_seq'::regclass);
+
+
+--
+-- Name: tutkinto_rakenne id; Type: DEFAULT; Schema: public; Owner: serveri
+--
+
+ALTER TABLE ONLY public.tutkinto_rakenne ALTER COLUMN id SET DEFAULT nextval('public.tutkinto_rakenne_id_seq'::regclass);
 
 
 --
@@ -1559,7 +1658,6 @@ COPY public.directus_activity (id, action, "user", "timestamp", ip, user_agent, 
 146	create	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-04-17 10:57:18.102+00	10.0.2.2	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	directus_fields	40	\N	http://127.0.0.1:8081
 147	create	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-04-17 10:57:43.245+00	10.0.2.2	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	directus_permissions	6	\N	http://127.0.0.1:8081
 148	update	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-04-17 10:57:53.467+00	10.0.2.2	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	directus_permissions	6	\N	http://127.0.0.1:8081
-149	create	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-04-17 10:59:01.27+00	10.0.2.2	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	social_medias	1	\N	http://127.0.0.1:8081
 150	login	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-04-29 09:41:59.856+00	10.0.2.2	Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:109.0) Gecko/20100101 Firefox/112.0	directus_users	0891a0cd-876b-4a0d-a22e-0cce30121382	\N	http://10.143.20.7:8081
 151	login	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-04-29 11:04:19.081+00	10.0.2.2	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	directus_users	0891a0cd-876b-4a0d-a22e-0cce30121382	\N	http://127.0.0.1:8081
 152	create	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-04-29 11:05:58.393+00	10.0.2.2	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	directus_fields	41	\N	http://127.0.0.1:8081
@@ -2012,6 +2110,321 @@ COPY public.directus_activity (id, action, "user", "timestamp", ip, user_agent, 
 599	create	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-05-02 14:00:19.992+00	10.0.2.2	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	directus_fields	125	\N	http://127.0.0.1:8081
 600	create	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-05-02 14:00:20+00	10.0.2.2	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	directus_fields	126	\N	http://127.0.0.1:8081
 601	create	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-05-02 14:00:20.012+00	10.0.2.2	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	directus_collections	events	\N	http://127.0.0.1:8081
+602	login	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-05-02 15:29:29.019+00	85.202.81.202	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	directus_users	0891a0cd-876b-4a0d-a22e-0cce30121382	\N	http://65.109.179.68:8001
+603	update	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-05-02 15:30:35.891+00	85.202.81.202	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	directus_users	0891a0cd-876b-4a0d-a22e-0cce30121382	\N	http://65.109.179.68:8001
+604	login	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-05-02 15:31:28.718+00	85.202.81.202	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	directus_users	0891a0cd-876b-4a0d-a22e-0cce30121382	\N	http://65.109.179.68:8001
+605	login	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-05-02 15:32:12.581+00	85.23.69.165	Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/112.0.0.0 Safari/537.36	directus_users	0891a0cd-876b-4a0d-a22e-0cce30121382	\N	http://65.109.179.68:8001
+606	login	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-05-02 16:26:16.015+00	10.10.0.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	directus_users	0891a0cd-876b-4a0d-a22e-0cce30121382	\N	https://api.serveri.jeb4.dev
+607	create	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-05-02 16:30:31.861+00	10.10.0.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	directus_files	55882074-5535-47d4-8a1a-eef51fbd5b38	\N	https://api.serveri.jeb4.dev
+608	update	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-05-02 16:30:40.126+00	10.10.0.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	directus_settings	1	\N	https://api.serveri.jeb4.dev
+609	update	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-05-02 16:30:59.198+00	10.10.0.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	directus_settings	1	\N	https://api.serveri.jeb4.dev
+610	login	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-05-02 16:32:05.345+00	10.10.0.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	directus_users	0891a0cd-876b-4a0d-a22e-0cce30121382	\N	https://api.serveri.jeb4.dev
+611	create	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-05-02 16:34:04.315+00	10.10.0.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	directus_files	57de8669-8ae3-480f-8ea5-6924b44796dd	\N	https://api.serveri.jeb4.dev
+612	update	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-05-02 16:34:05.929+00	10.10.0.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	directus_settings	1	\N	https://api.serveri.jeb4.dev
+613	login	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-05-02 16:34:31.929+00	10.10.0.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	directus_users	0891a0cd-876b-4a0d-a22e-0cce30121382	\N	https://api.serveri.jeb4.dev
+614	create	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-05-02 16:35:45.123+00	10.10.0.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	directus_roles	4491158e-dc93-41ee-bb07-4e191785d730	\N	https://api.serveri.jeb4.dev
+615	create	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-05-02 16:35:45.175+00	10.10.0.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	directus_permissions	20	\N	https://api.serveri.jeb4.dev
+616	create	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-05-02 16:35:45.182+00	10.10.0.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	directus_permissions	21	\N	https://api.serveri.jeb4.dev
+617	create	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-05-02 16:35:45.188+00	10.10.0.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	directus_permissions	22	\N	https://api.serveri.jeb4.dev
+618	create	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-05-02 16:35:45.195+00	10.10.0.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	directus_permissions	23	\N	https://api.serveri.jeb4.dev
+619	create	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-05-02 16:35:45.202+00	10.10.0.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	directus_permissions	24	\N	https://api.serveri.jeb4.dev
+620	create	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-05-02 16:35:45.21+00	10.10.0.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	directus_permissions	25	\N	https://api.serveri.jeb4.dev
+621	create	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-05-02 16:35:45.217+00	10.10.0.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	directus_permissions	26	\N	https://api.serveri.jeb4.dev
+622	create	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-05-02 16:35:45.223+00	10.10.0.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	directus_permissions	27	\N	https://api.serveri.jeb4.dev
+623	create	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-05-02 16:35:45.229+00	10.10.0.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	directus_permissions	28	\N	https://api.serveri.jeb4.dev
+624	create	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-05-02 16:35:45.235+00	10.10.0.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	directus_permissions	29	\N	https://api.serveri.jeb4.dev
+625	create	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-05-02 16:35:45.241+00	10.10.0.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	directus_permissions	30	\N	https://api.serveri.jeb4.dev
+626	create	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-05-02 16:35:45.246+00	10.10.0.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	directus_permissions	31	\N	https://api.serveri.jeb4.dev
+627	create	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-05-02 16:35:45.252+00	10.10.0.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	directus_permissions	32	\N	https://api.serveri.jeb4.dev
+628	create	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-05-02 16:35:45.257+00	10.10.0.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	directus_permissions	33	\N	https://api.serveri.jeb4.dev
+629	create	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-05-02 16:35:45.262+00	10.10.0.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	directus_permissions	34	\N	https://api.serveri.jeb4.dev
+630	create	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-05-02 16:35:45.267+00	10.10.0.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	directus_permissions	35	\N	https://api.serveri.jeb4.dev
+631	create	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-05-02 16:35:45.271+00	10.10.0.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	directus_permissions	36	\N	https://api.serveri.jeb4.dev
+632	create	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-05-02 16:35:45.276+00	10.10.0.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	directus_permissions	37	\N	https://api.serveri.jeb4.dev
+633	create	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-05-02 16:35:45.281+00	10.10.0.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	directus_permissions	38	\N	https://api.serveri.jeb4.dev
+634	create	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-05-02 16:35:45.285+00	10.10.0.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	directus_permissions	39	\N	https://api.serveri.jeb4.dev
+635	create	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-05-02 16:35:45.29+00	10.10.0.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	directus_permissions	40	\N	https://api.serveri.jeb4.dev
+636	create	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-05-02 16:35:45.295+00	10.10.0.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	directus_permissions	41	\N	https://api.serveri.jeb4.dev
+637	create	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-05-02 16:35:45.3+00	10.10.0.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	directus_permissions	42	\N	https://api.serveri.jeb4.dev
+638	create	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-05-02 16:35:45.305+00	10.10.0.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	directus_permissions	43	\N	https://api.serveri.jeb4.dev
+639	create	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-05-02 16:36:22.85+00	10.10.0.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	directus_permissions	44	\N	https://api.serveri.jeb4.dev
+640	delete	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-05-02 16:36:37.755+00	10.10.0.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	directus_permissions	44	\N	https://api.serveri.jeb4.dev
+641	create	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-05-02 16:37:55.788+00	10.10.0.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	directus_permissions	45	\N	https://api.serveri.jeb4.dev
+642	create	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-05-02 16:37:56.86+00	10.10.0.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	directus_permissions	46	\N	https://api.serveri.jeb4.dev
+643	create	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-05-02 16:37:58.041+00	10.10.0.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	directus_permissions	47	\N	https://api.serveri.jeb4.dev
+644	create	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-05-02 16:37:59.081+00	10.10.0.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	directus_permissions	48	\N	https://api.serveri.jeb4.dev
+645	create	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-05-02 16:38:00.577+00	10.10.0.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	directus_permissions	49	\N	https://api.serveri.jeb4.dev
+646	create	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-05-02 16:38:03.084+00	10.10.0.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	directus_permissions	50	\N	https://api.serveri.jeb4.dev
+647	create	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-05-02 16:38:04.023+00	10.10.0.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	directus_permissions	51	\N	https://api.serveri.jeb4.dev
+648	create	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-05-02 16:38:04.813+00	10.10.0.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	directus_permissions	52	\N	https://api.serveri.jeb4.dev
+649	create	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-05-02 16:38:05.627+00	10.10.0.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	directus_permissions	53	\N	https://api.serveri.jeb4.dev
+650	create	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-05-02 16:38:06.476+00	10.10.0.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	directus_permissions	54	\N	https://api.serveri.jeb4.dev
+651	create	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-05-02 16:38:07.529+00	10.10.0.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	directus_permissions	55	\N	https://api.serveri.jeb4.dev
+652	create	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-05-02 16:38:08.534+00	10.10.0.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	directus_permissions	56	\N	https://api.serveri.jeb4.dev
+653	create	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-05-02 16:38:09.519+00	10.10.0.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	directus_permissions	57	\N	https://api.serveri.jeb4.dev
+654	create	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-05-02 16:38:11.205+00	10.10.0.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	directus_permissions	58	\N	https://api.serveri.jeb4.dev
+655	create	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-05-02 16:38:11.992+00	10.10.0.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	directus_permissions	59	\N	https://api.serveri.jeb4.dev
+656	create	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-05-02 16:38:12.681+00	10.10.0.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	directus_permissions	60	\N	https://api.serveri.jeb4.dev
+657	create	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-05-02 16:38:13.363+00	10.10.0.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	directus_permissions	61	\N	https://api.serveri.jeb4.dev
+658	create	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-05-02 16:38:15.211+00	10.10.0.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	directus_permissions	62	\N	https://api.serveri.jeb4.dev
+659	create	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-05-02 16:38:16.142+00	10.10.0.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	directus_permissions	63	\N	https://api.serveri.jeb4.dev
+660	create	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-05-02 16:38:16.821+00	10.10.0.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	directus_permissions	64	\N	https://api.serveri.jeb4.dev
+661	create	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-05-02 16:38:17.485+00	10.10.0.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	directus_permissions	65	\N	https://api.serveri.jeb4.dev
+662	create	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-05-02 16:38:18.418+00	10.10.0.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	directus_permissions	66	\N	https://api.serveri.jeb4.dev
+663	create	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-05-02 16:38:19.915+00	10.10.0.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	directus_permissions	67	\N	https://api.serveri.jeb4.dev
+664	create	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-05-02 16:38:21.041+00	10.10.0.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	directus_permissions	68	\N	https://api.serveri.jeb4.dev
+665	create	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-05-02 16:38:22.041+00	10.10.0.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	directus_permissions	69	\N	https://api.serveri.jeb4.dev
+666	create	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-05-02 16:38:23.192+00	10.10.0.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	directus_permissions	70	\N	https://api.serveri.jeb4.dev
+667	create	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-05-02 16:38:23.402+00	10.10.0.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	directus_permissions	71	\N	https://api.serveri.jeb4.dev
+668	create	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-05-02 16:38:23.404+00	10.10.0.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	directus_permissions	72	\N	https://api.serveri.jeb4.dev
+669	create	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-05-02 16:38:23.406+00	10.10.0.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	directus_permissions	73	\N	https://api.serveri.jeb4.dev
+670	create	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-05-02 16:38:23.407+00	10.10.0.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	directus_permissions	74	\N	https://api.serveri.jeb4.dev
+671	create	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-05-02 16:38:24.013+00	10.10.0.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	directus_permissions	76	\N	https://api.serveri.jeb4.dev
+672	create	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-05-02 16:38:24.013+00	10.10.0.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	directus_permissions	75	\N	https://api.serveri.jeb4.dev
+673	create	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-05-02 16:38:24.017+00	10.10.0.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	directus_permissions	78	\N	https://api.serveri.jeb4.dev
+674	create	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-05-02 16:38:24.019+00	10.10.0.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	directus_permissions	77	\N	https://api.serveri.jeb4.dev
+675	create	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-05-02 16:38:24.023+00	10.10.0.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	directus_permissions	79	\N	https://api.serveri.jeb4.dev
+676	create	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-05-02 16:38:24.757+00	10.10.0.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	directus_permissions	80	\N	https://api.serveri.jeb4.dev
+677	create	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-05-02 16:38:24.761+00	10.10.0.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	directus_permissions	82	\N	https://api.serveri.jeb4.dev
+678	create	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-05-02 16:38:24.762+00	10.10.0.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	directus_permissions	81	\N	https://api.serveri.jeb4.dev
+679	create	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-05-02 16:38:24.767+00	10.10.0.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	directus_permissions	84	\N	https://api.serveri.jeb4.dev
+680	create	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-05-02 16:38:24.768+00	10.10.0.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	directus_permissions	83	\N	https://api.serveri.jeb4.dev
+681	create	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-05-02 16:38:26.608+00	10.10.0.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	directus_permissions	86	\N	https://api.serveri.jeb4.dev
+682	create	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-05-02 16:38:26.609+00	10.10.0.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	directus_permissions	85	\N	https://api.serveri.jeb4.dev
+690	create	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-05-02 16:38:28.219+00	10.10.0.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	directus_permissions	94	\N	https://api.serveri.jeb4.dev
+692	create	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-05-02 16:38:28.986+00	10.10.0.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	directus_permissions	95	\N	https://api.serveri.jeb4.dev
+700	create	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-05-02 16:38:29.682+00	10.10.0.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	directus_permissions	104	\N	https://api.serveri.jeb4.dev
+703	create	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-05-02 16:38:30.393+00	10.10.0.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	directus_permissions	108	\N	https://api.serveri.jeb4.dev
+708	create	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-05-02 16:38:31.13+00	10.10.0.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	directus_permissions	113	\N	https://api.serveri.jeb4.dev
+713	update	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-05-02 16:38:58.004+00	10.10.0.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	directus_settings	1	\N	https://api.serveri.jeb4.dev
+714	update	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-05-02 16:39:01.349+00	10.10.0.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	directus_roles	4491158e-dc93-41ee-bb07-4e191785d730	\N	https://api.serveri.jeb4.dev
+683	create	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-05-02 16:38:26.616+00	10.10.0.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	directus_permissions	88	\N	https://api.serveri.jeb4.dev
+689	create	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-05-02 16:38:28.218+00	10.10.0.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	directus_permissions	92	\N	https://api.serveri.jeb4.dev
+695	create	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-05-02 16:38:28.993+00	10.10.0.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	directus_permissions	99	\N	https://api.serveri.jeb4.dev
+697	create	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-05-02 16:38:29.678+00	10.10.0.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	directus_permissions	100	\N	https://api.serveri.jeb4.dev
+701	create	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-05-02 16:38:30.39+00	10.10.0.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	directus_permissions	106	\N	https://api.serveri.jeb4.dev
+710	create	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-05-02 16:38:31.135+00	10.10.0.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	directus_permissions	114	\N	https://api.serveri.jeb4.dev
+712	update	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-05-02 16:38:52.898+00	10.10.0.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	directus_settings	1	\N	https://api.serveri.jeb4.dev
+716	update	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-05-02 16:39:23.48+00	10.10.0.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	directus_settings	1	\N	https://api.serveri.jeb4.dev
+684	create	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-05-02 16:38:26.617+00	10.10.0.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	directus_permissions	87	\N	https://api.serveri.jeb4.dev
+686	create	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-05-02 16:38:28.214+00	10.10.0.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	directus_permissions	90	\N	https://api.serveri.jeb4.dev
+691	create	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-05-02 16:38:28.985+00	10.10.0.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	directus_permissions	96	\N	https://api.serveri.jeb4.dev
+699	create	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-05-02 16:38:29.681+00	10.10.0.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	directus_permissions	102	\N	https://api.serveri.jeb4.dev
+702	create	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-05-02 16:38:30.391+00	10.10.0.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	directus_permissions	105	\N	https://api.serveri.jeb4.dev
+709	create	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-05-02 16:38:31.133+00	10.10.0.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	directus_permissions	112	\N	https://api.serveri.jeb4.dev
+711	update	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-05-02 16:38:39.442+00	10.10.0.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	directus_settings	1	\N	https://api.serveri.jeb4.dev
+685	create	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-05-02 16:38:26.617+00	10.10.0.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	directus_permissions	89	\N	https://api.serveri.jeb4.dev
+688	create	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-05-02 16:38:28.216+00	10.10.0.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	directus_permissions	93	\N	https://api.serveri.jeb4.dev
+694	create	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-05-02 16:38:28.992+00	10.10.0.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	directus_permissions	98	\N	https://api.serveri.jeb4.dev
+696	create	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-05-02 16:38:29.677+00	10.10.0.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	directus_permissions	101	\N	https://api.serveri.jeb4.dev
+705	create	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-05-02 16:38:30.397+00	10.10.0.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	directus_permissions	109	\N	https://api.serveri.jeb4.dev
+707	create	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-05-02 16:38:31.126+00	10.10.0.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	directus_permissions	111	\N	https://api.serveri.jeb4.dev
+715	update	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-05-02 16:39:06.809+00	10.10.0.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	directus_settings	1	\N	https://api.serveri.jeb4.dev
+687	create	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-05-02 16:38:28.215+00	10.10.0.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	directus_permissions	91	\N	https://api.serveri.jeb4.dev
+693	create	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-05-02 16:38:28.989+00	10.10.0.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	directus_permissions	97	\N	https://api.serveri.jeb4.dev
+698	create	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-05-02 16:38:29.68+00	10.10.0.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	directus_permissions	103	\N	https://api.serveri.jeb4.dev
+704	create	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-05-02 16:38:30.395+00	10.10.0.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	directus_permissions	107	\N	https://api.serveri.jeb4.dev
+706	create	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-05-02 16:38:31.125+00	10.10.0.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	directus_permissions	110	\N	https://api.serveri.jeb4.dev
+717	create	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-05-02 16:40:02.568+00	10.10.0.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	directus_files	4c58bdbf-bdb1-4b3f-953a-fb619c26cae3	\N	https://api.serveri.jeb4.dev
+718	create	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-05-02 16:40:19.293+00	10.10.0.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	directus_users	1f3676e5-f46e-44b5-9d25-948d9f1768a8	\N	https://api.serveri.jeb4.dev
+719	login	1f3676e5-f46e-44b5-9d25-948d9f1768a8	2023-05-02 16:40:34.811+00	10.10.0.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	directus_users	1f3676e5-f46e-44b5-9d25-948d9f1768a8	\N	https://api.serveri.jeb4.dev
+720	update	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-05-02 16:41:04.878+00	10.10.0.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	directus_settings	1	\N	https://api.serveri.jeb4.dev
+721	delete	1f3676e5-f46e-44b5-9d25-948d9f1768a8	2023-05-02 16:41:07.823+00	10.10.0.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	lomake_vastaukset	102	\N	https://api.serveri.jeb4.dev
+722	delete	1f3676e5-f46e-44b5-9d25-948d9f1768a8	2023-05-02 16:41:07.825+00	10.10.0.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	lomake_vastaukset	103	\N	https://api.serveri.jeb4.dev
+723	delete	1f3676e5-f46e-44b5-9d25-948d9f1768a8	2023-05-02 16:41:07.827+00	10.10.0.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	lomake_vastaukset	104	\N	https://api.serveri.jeb4.dev
+724	delete	1f3676e5-f46e-44b5-9d25-948d9f1768a8	2023-05-02 16:41:07.828+00	10.10.0.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	lomake_vastaukset	105	\N	https://api.serveri.jeb4.dev
+725	delete	1f3676e5-f46e-44b5-9d25-948d9f1768a8	2023-05-02 16:41:07.829+00	10.10.0.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	lomake_vastaukset	106	\N	https://api.serveri.jeb4.dev
+726	delete	1f3676e5-f46e-44b5-9d25-948d9f1768a8	2023-05-02 16:41:07.831+00	10.10.0.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	lomake_vastaukset	107	\N	https://api.serveri.jeb4.dev
+727	delete	1f3676e5-f46e-44b5-9d25-948d9f1768a8	2023-05-02 16:41:07.832+00	10.10.0.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	lomake_vastaukset	108	\N	https://api.serveri.jeb4.dev
+728	delete	1f3676e5-f46e-44b5-9d25-948d9f1768a8	2023-05-02 16:41:07.833+00	10.10.0.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	lomake_vastaukset	109	\N	https://api.serveri.jeb4.dev
+729	delete	1f3676e5-f46e-44b5-9d25-948d9f1768a8	2023-05-02 16:41:07.834+00	10.10.0.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	lomake_vastaukset	110	\N	https://api.serveri.jeb4.dev
+730	delete	1f3676e5-f46e-44b5-9d25-948d9f1768a8	2023-05-02 16:41:07.835+00	10.10.0.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	lomake_vastaukset	111	\N	https://api.serveri.jeb4.dev
+731	delete	1f3676e5-f46e-44b5-9d25-948d9f1768a8	2023-05-02 16:41:07.837+00	10.10.0.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	lomake_vastaukset	112	\N	https://api.serveri.jeb4.dev
+732	delete	1f3676e5-f46e-44b5-9d25-948d9f1768a8	2023-05-02 16:41:07.838+00	10.10.0.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	lomake_vastaukset	113	\N	https://api.serveri.jeb4.dev
+733	delete	1f3676e5-f46e-44b5-9d25-948d9f1768a8	2023-05-02 16:41:07.839+00	10.10.0.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	lomake_vastaukset	114	\N	https://api.serveri.jeb4.dev
+734	delete	1f3676e5-f46e-44b5-9d25-948d9f1768a8	2023-05-02 16:41:07.841+00	10.10.0.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	lomake_vastaukset	115	\N	https://api.serveri.jeb4.dev
+735	delete	1f3676e5-f46e-44b5-9d25-948d9f1768a8	2023-05-02 16:41:07.842+00	10.10.0.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	lomake_vastaukset	116	\N	https://api.serveri.jeb4.dev
+736	delete	1f3676e5-f46e-44b5-9d25-948d9f1768a8	2023-05-02 16:41:07.843+00	10.10.0.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	lomake_vastaukset	117	\N	https://api.serveri.jeb4.dev
+737	delete	1f3676e5-f46e-44b5-9d25-948d9f1768a8	2023-05-02 16:41:07.844+00	10.10.0.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	lomake_vastaukset	118	\N	https://api.serveri.jeb4.dev
+738	delete	1f3676e5-f46e-44b5-9d25-948d9f1768a8	2023-05-02 16:41:07.845+00	10.10.0.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	lomake_vastaukset	119	\N	https://api.serveri.jeb4.dev
+739	delete	1f3676e5-f46e-44b5-9d25-948d9f1768a8	2023-05-02 16:41:07.846+00	10.10.0.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	lomake_vastaukset	120	\N	https://api.serveri.jeb4.dev
+740	delete	1f3676e5-f46e-44b5-9d25-948d9f1768a8	2023-05-02 16:41:07.847+00	10.10.0.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	lomake_vastaukset	121	\N	https://api.serveri.jeb4.dev
+741	delete	1f3676e5-f46e-44b5-9d25-948d9f1768a8	2023-05-02 16:41:07.848+00	10.10.0.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	lomake_vastaukset	122	\N	https://api.serveri.jeb4.dev
+742	delete	1f3676e5-f46e-44b5-9d25-948d9f1768a8	2023-05-02 16:41:07.849+00	10.10.0.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	lomake_vastaukset	123	\N	https://api.serveri.jeb4.dev
+743	delete	1f3676e5-f46e-44b5-9d25-948d9f1768a8	2023-05-02 16:41:07.85+00	10.10.0.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	lomake_vastaukset	124	\N	https://api.serveri.jeb4.dev
+744	update	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-05-02 16:41:27.994+00	10.10.0.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	directus_settings	1	\N	https://api.serveri.jeb4.dev
+745	login	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-05-02 16:41:34.427+00	10.10.0.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	directus_users	0891a0cd-876b-4a0d-a22e-0cce30121382	\N	https://api.serveri.jeb4.dev
+746	update	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-05-02 16:41:40.644+00	10.10.0.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	directus_settings	1	\N	https://api.serveri.jeb4.dev
+747	update	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-05-02 16:42:12.736+00	10.10.0.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	directus_settings	1	\N	https://api.serveri.jeb4.dev
+748	update	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-05-02 16:42:16.798+00	10.10.0.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	directus_settings	1	\N	https://api.serveri.jeb4.dev
+749	create	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-05-02 16:50:58.657+00	10.10.0.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	directus_files	2b5a773e-02ef-47a1-9dd4-dd27d3d095a9	\N	https://api.serveri.jeb4.dev
+750	create	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-05-02 16:51:51.502+00	10.10.0.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	directus_files	c64196b9-b622-416b-a74e-6572bfbd6978	\N	https://api.serveri.jeb4.dev
+751	create	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-05-02 16:51:58.2+00	10.10.0.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	directus_files	cdf7805f-b4de-4269-9d0a-2c82a740af0e	\N	https://api.serveri.jeb4.dev
+752	create	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-05-02 16:52:14.615+00	10.10.0.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	directus_files	b072ae6a-77b8-4f8f-85f9-ccd9cbfc7e2e	\N	https://api.serveri.jeb4.dev
+753	update	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-05-02 16:52:17.894+00	10.10.0.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	directus_settings	1	\N	https://api.serveri.jeb4.dev
+754	delete	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-05-02 16:52:32.529+00	10.10.0.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	directus_files	cdf7805f-b4de-4269-9d0a-2c82a740af0e	\N	https://api.serveri.jeb4.dev
+755	delete	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-05-02 16:52:36.727+00	10.10.0.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	directus_files	c64196b9-b622-416b-a74e-6572bfbd6978	\N	https://api.serveri.jeb4.dev
+756	update	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-05-02 16:52:50.02+00	10.10.0.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	directus_files	b072ae6a-77b8-4f8f-85f9-ccd9cbfc7e2e	\N	https://api.serveri.jeb4.dev
+757	update	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-05-02 16:53:02.628+00	10.10.0.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	directus_files	2b5a773e-02ef-47a1-9dd4-dd27d3d095a9	\N	https://api.serveri.jeb4.dev
+758	update	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-05-02 16:53:42.056+00	10.10.0.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	directus_settings	1	\N	https://api.serveri.jeb4.dev
+759	create	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-05-02 17:01:35.136+00	10.10.0.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	directus_fields	127	\N	https://api.serveri.jeb4.dev
+760	create	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-05-02 17:01:35.144+00	10.10.0.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	directus_fields	128	\N	https://api.serveri.jeb4.dev
+761	create	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-05-02 17:01:35.151+00	10.10.0.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	directus_fields	129	\N	https://api.serveri.jeb4.dev
+762	create	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-05-02 17:01:35.158+00	10.10.0.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	directus_fields	130	\N	https://api.serveri.jeb4.dev
+763	create	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-05-02 17:01:35.172+00	10.10.0.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	directus_fields	131	\N	https://api.serveri.jeb4.dev
+764	create	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-05-02 17:01:35.186+00	10.10.0.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	directus_fields	132	\N	https://api.serveri.jeb4.dev
+765	create	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-05-02 17:01:35.194+00	10.10.0.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	directus_collections	tutkinto_rakenne	\N	https://api.serveri.jeb4.dev
+766	create	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-05-02 17:04:14.802+00	10.10.0.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	directus_fields	133	\N	https://api.serveri.jeb4.dev
+767	update	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-05-02 17:04:24.252+00	10.10.0.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	directus_collections	tutkinto_rakenne	\N	https://api.serveri.jeb4.dev
+768	create	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-05-02 17:05:42.181+00	10.10.0.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	directus_fields	134	\N	https://api.serveri.jeb4.dev
+769	create	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-05-02 17:05:42.187+00	10.10.0.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	directus_fields	135	\N	https://api.serveri.jeb4.dev
+770	create	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-05-02 17:05:42.194+00	10.10.0.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	directus_fields	136	\N	https://api.serveri.jeb4.dev
+771	create	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-05-02 17:05:42.201+00	10.10.0.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	directus_collections	yleisopinnot	\N	https://api.serveri.jeb4.dev
+772	create	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-05-02 17:05:57.484+00	10.10.0.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	directus_fields	137	\N	https://api.serveri.jeb4.dev
+773	update	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-05-02 17:07:05.229+00	10.10.0.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	directus_fields	137	\N	https://api.serveri.jeb4.dev
+774	create	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-05-02 17:07:24.738+00	10.10.0.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	directus_fields	138	\N	https://api.serveri.jeb4.dev
+775	create	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-05-02 17:07:35.784+00	10.10.0.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	directus_fields	139	\N	https://api.serveri.jeb4.dev
+779	create	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-05-02 17:09:11.379+00	10.10.0.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	directus_permissions	115	\N	https://api.serveri.jeb4.dev
+780	update	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-05-02 17:10:58.058+00	10.10.0.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	directus_fields	137	\N	https://api.serveri.jeb4.dev
+783	delete	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-05-02 17:12:01.529+00	10.10.0.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	directus_collections	yleisopinnot	\N	https://api.serveri.jeb4.dev
+784	create	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-05-02 17:12:15.649+00	10.10.0.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	directus_fields	140	\N	https://api.serveri.jeb4.dev
+785	create	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-05-02 17:12:15.656+00	10.10.0.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	directus_fields	141	\N	https://api.serveri.jeb4.dev
+786	create	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-05-02 17:12:15.662+00	10.10.0.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	directus_fields	142	\N	https://api.serveri.jeb4.dev
+787	create	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-05-02 17:12:15.666+00	10.10.0.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	directus_fields	143	\N	https://api.serveri.jeb4.dev
+788	create	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-05-02 17:12:15.67+00	10.10.0.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	directus_fields	144	\N	https://api.serveri.jeb4.dev
+789	create	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-05-02 17:12:15.675+00	10.10.0.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	directus_fields	145	\N	https://api.serveri.jeb4.dev
+790	create	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-05-02 17:12:15.681+00	10.10.0.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	directus_fields	146	\N	https://api.serveri.jeb4.dev
+791	create	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-05-02 17:12:15.686+00	10.10.0.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	directus_collections	test	\N	https://api.serveri.jeb4.dev
+792	create	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-05-02 17:12:22.611+00	10.10.0.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	directus_fields	147	\N	https://api.serveri.jeb4.dev
+799	delete	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-05-02 17:14:28.544+00	10.10.0.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	directus_collections	test	\N	https://api.serveri.jeb4.dev
+800	delete	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-05-02 17:15:45.235+00	10.10.0.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	directus_collections	tutkinto_rakenne	\N	https://api.serveri.jeb4.dev
+801	create	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-05-02 17:16:02.756+00	10.10.0.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	directus_fields	148	\N	https://api.serveri.jeb4.dev
+802	create	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-05-02 17:16:02.763+00	10.10.0.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	directus_fields	149	\N	https://api.serveri.jeb4.dev
+803	create	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-05-02 17:16:02.769+00	10.10.0.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	directus_fields	150	\N	https://api.serveri.jeb4.dev
+804	create	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-05-02 17:16:02.775+00	10.10.0.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	directus_fields	151	\N	https://api.serveri.jeb4.dev
+805	create	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-05-02 17:16:02.78+00	10.10.0.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	directus_fields	152	\N	https://api.serveri.jeb4.dev
+806	create	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-05-02 17:16:02.786+00	10.10.0.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	directus_fields	153	\N	https://api.serveri.jeb4.dev
+807	create	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-05-02 17:16:02.792+00	10.10.0.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	directus_fields	154	\N	https://api.serveri.jeb4.dev
+808	create	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-05-02 17:16:02.798+00	10.10.0.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	directus_collections	tutkinto_rakenne	\N	https://api.serveri.jeb4.dev
+809	create	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-05-02 17:22:07.248+00	10.10.0.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	directus_fields	155	\N	https://api.serveri.jeb4.dev
+810	create	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-05-02 17:22:32.076+00	10.10.0.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	directus_fields	156	\N	https://api.serveri.jeb4.dev
+811	create	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-05-02 17:22:54.602+00	10.10.0.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	directus_fields	157	\N	https://api.serveri.jeb4.dev
+812	create	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-05-02 17:25:50.918+00	10.10.0.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	directus_fields	158	\N	https://api.serveri.jeb4.dev
+813	create	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-05-02 17:27:13.043+00	10.10.0.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	tutkinto_rakenne	1	\N	https://api.serveri.jeb4.dev
+814	create	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-05-02 17:27:41.705+00	10.10.0.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	tutkinto_rakenne	2	\N	https://api.serveri.jeb4.dev
+815	update	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-05-02 17:27:46.341+00	10.10.0.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	tutkinto_rakenne	2	\N	https://api.serveri.jeb4.dev
+816	create	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-05-02 17:28:12.206+00	10.10.0.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	tutkinto_rakenne	3	\N	https://api.serveri.jeb4.dev
+817	update	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-05-02 17:28:16.573+00	10.10.0.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	tutkinto_rakenne	3	\N	https://api.serveri.jeb4.dev
+818	create	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-05-02 17:28:52.138+00	10.10.0.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	tutkinto_rakenne	4	\N	https://api.serveri.jeb4.dev
+819	create	\N	2023-05-02 17:29:25.185+00	10.10.0.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	lomake_vastaukset	125	\N	http://localhost:3000
+820	create	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-05-02 17:29:36.8+00	10.10.0.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	tutkinto_rakenne	5	\N	https://api.serveri.jeb4.dev
+821	update	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-05-02 17:30:03.025+00	10.10.0.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	tutkinto_rakenne	4	\N	https://api.serveri.jeb4.dev
+822	create	\N	2023-05-02 17:31:34.538+00	10.10.0.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	lomake_vastaukset	126	\N	http://localhost:3000
+823	create	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-05-02 17:31:49.058+00	10.10.0.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	tutkinto_rakenne	6	\N	https://api.serveri.jeb4.dev
+824	create	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-05-02 17:32:27.242+00	10.10.0.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	tutkinto_rakenne	7	\N	https://api.serveri.jeb4.dev
+825	create	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-05-02 17:34:09.883+00	10.10.0.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	tutkinto_rakenne	8	\N	https://api.serveri.jeb4.dev
+826	create	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-05-02 17:35:01.256+00	10.10.0.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	tutkinto_rakenne	9	\N	https://api.serveri.jeb4.dev
+827	update	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-05-02 17:35:06.779+00	10.10.0.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	tutkinto_rakenne	9	\N	https://api.serveri.jeb4.dev
+828	update	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-05-02 17:35:40.559+00	10.10.0.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	directus_collections	tutkinto_rakenne	\N	https://api.serveri.jeb4.dev
+829	update	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-05-02 17:36:06.084+00	10.10.0.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	directus_fields	155	\N	https://api.serveri.jeb4.dev
+830	update	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-05-02 17:36:33.385+00	10.10.0.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	tutkinto_rakenne	7	\N	https://api.serveri.jeb4.dev
+831	create	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-05-02 17:37:20.96+00	10.10.0.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	directus_permissions	116	\N	https://api.serveri.jeb4.dev
+832	update	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-05-02 17:37:34.167+00	10.10.0.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	directus_permissions	116	\N	https://api.serveri.jeb4.dev
+833	create	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-05-02 17:37:41.758+00	10.10.0.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	directus_permissions	117	\N	https://api.serveri.jeb4.dev
+834	delete	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-05-02 17:37:45.881+00	10.10.0.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	directus_permissions	117	\N	https://api.serveri.jeb4.dev
+835	update	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-05-02 17:52:45.289+00	10.10.0.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	directus_fields	158	\N	https://api.serveri.jeb4.dev
+836	create	\N	2023-05-02 18:02:43.798+00	10.10.0.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	lomake_vastaukset	127	\N	http://localhost:3000
+837	create	\N	2023-05-02 18:03:32.563+00	10.10.0.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	lomake_vastaukset	128	\N	http://localhost:3000
+838	create	\N	2023-05-02 18:09:51.438+00	10.10.0.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	lomake_vastaukset	129	\N	http://localhost:3000
+839	create	\N	2023-05-02 18:10:02.702+00	10.10.0.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	lomake_vastaukset	130	\N	http://localhost:3000
+840	create	\N	2023-05-02 18:12:26.353+00	10.10.0.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	lomake_vastaukset	131	\N	http://localhost:3000
+841	create	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-05-02 18:22:52.088+00	10.10.0.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	directus_fields	159	\N	https://api.serveri.jeb4.dev
+842	create	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-05-02 18:22:52.097+00	10.10.0.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	directus_fields	160	\N	https://api.serveri.jeb4.dev
+843	create	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-05-02 18:22:52.104+00	10.10.0.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	directus_fields	161	\N	https://api.serveri.jeb4.dev
+844	create	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-05-02 18:22:52.11+00	10.10.0.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	directus_fields	162	\N	https://api.serveri.jeb4.dev
+845	create	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-05-02 18:22:52.117+00	10.10.0.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	directus_fields	163	\N	https://api.serveri.jeb4.dev
+846	create	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-05-02 18:22:52.125+00	10.10.0.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	directus_fields	164	\N	https://api.serveri.jeb4.dev
+847	create	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-05-02 18:22:52.131+00	10.10.0.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	directus_collections	instagram	\N	https://api.serveri.jeb4.dev
+848	create	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-05-02 18:23:41.851+00	10.10.0.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	directus_fields	165	\N	https://api.serveri.jeb4.dev
+849	create	\N	2023-05-02 18:24:07.792+00	10.10.0.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	lomake_vastaukset	132	\N	http://localhost:3000
+850	update	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-05-02 18:29:02.17+00	10.10.0.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	directus_collections	instagram	\N	https://api.serveri.jeb4.dev
+851	create	\N	2023-05-02 18:29:40.744+00	10.10.0.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	lomake_vastaukset	133	\N	http://localhost:3000
+852	create	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-05-02 18:29:44.135+00	10.10.0.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	directus_fields	166	\N	https://api.serveri.jeb4.dev
+853	create	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-05-02 18:29:53.882+00	10.10.0.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	directus_fields	167	\N	https://api.serveri.jeb4.dev
+854	create	\N	2023-05-02 18:29:58.951+00	10.10.0.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	lomake_vastaukset	134	\N	http://localhost:3000
+855	update	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-05-02 18:31:00.826+00	10.10.0.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	directus_fields	166	\N	https://api.serveri.jeb4.dev
+856	update	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-05-02 18:31:46.4+00	10.10.0.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	directus_fields	167	\N	https://api.serveri.jeb4.dev
+857	create	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-05-02 18:32:32.15+00	10.10.0.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	instagram	1	\N	https://api.serveri.jeb4.dev
+858	create	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-05-02 18:32:47.729+00	10.10.0.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	instagram	2	\N	https://api.serveri.jeb4.dev
+859	create	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-05-02 18:32:57.837+00	10.10.0.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	instagram	3	\N	https://api.serveri.jeb4.dev
+860	create	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-05-02 18:33:24.689+00	10.10.0.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	instagram	4	\N	https://api.serveri.jeb4.dev
+861	create	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-05-02 18:34:56.078+00	10.10.0.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	instagram	5	\N	https://api.serveri.jeb4.dev
+862	create	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-05-02 18:35:10.494+00	10.10.0.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	instagram	6	\N	https://api.serveri.jeb4.dev
+863	create	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-05-02 18:35:37.654+00	10.10.0.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	directus_permissions	118	\N	https://api.serveri.jeb4.dev
+864	update	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-05-02 18:35:41.209+00	10.10.0.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	directus_permissions	118	\N	https://api.serveri.jeb4.dev
+865	update	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-05-02 18:36:49.195+00	10.10.0.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	directus_permissions	13	\N	https://api.serveri.jeb4.dev
+866	create	\N	2023-05-02 18:37:26.371+00	10.10.0.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	lomake_vastaukset	135	\N	http://localhost:3000
+867	create	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-05-02 18:47:14.223+00	10.10.0.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	directus_fields	168	\N	https://api.serveri.jeb4.dev
+868	create	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-05-02 18:47:14.233+00	10.10.0.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	directus_fields	169	\N	https://api.serveri.jeb4.dev
+869	create	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-05-02 18:47:14.24+00	10.10.0.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	directus_fields	170	\N	https://api.serveri.jeb4.dev
+870	create	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-05-02 18:47:14.251+00	10.10.0.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	directus_fields	171	\N	https://api.serveri.jeb4.dev
+871	create	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-05-02 18:47:14.26+00	10.10.0.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	directus_fields	172	\N	https://api.serveri.jeb4.dev
+872	create	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-05-02 18:47:14.269+00	10.10.0.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	directus_fields	173	\N	https://api.serveri.jeb4.dev
+873	create	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-05-02 18:47:14.281+00	10.10.0.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	directus_fields	174	\N	https://api.serveri.jeb4.dev
+874	create	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-05-02 18:47:14.29+00	10.10.0.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	directus_collections	sosiaaliset_mediat	\N	https://api.serveri.jeb4.dev
+875	create	\N	2023-05-02 18:47:16.534+00	10.10.0.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	lomake_vastaukset	136	\N	http://localhost:3000
+876	create	\N	2023-05-02 18:47:22.779+00	10.10.0.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	lomake_vastaukset	137	\N	http://localhost:3000
+877	create	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-05-02 18:47:25.194+00	10.10.0.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	directus_fields	175	\N	https://api.serveri.jeb4.dev
+878	create	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-05-02 18:47:31.71+00	10.10.0.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	directus_fields	176	\N	https://api.serveri.jeb4.dev
+879	create	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-05-02 18:47:38.117+00	10.10.0.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	directus_fields	177	\N	https://api.serveri.jeb4.dev
+880	create	\N	2023-05-02 18:47:48.197+00	10.10.0.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	lomake_vastaukset	138	\N	http://localhost:3000
+881	create	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-05-02 18:50:15.456+00	10.10.0.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	sosiaaliset_mediat	1	\N	https://api.serveri.jeb4.dev
+882	create	\N	2023-05-02 18:52:00.66+00	10.10.0.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	lomake_vastaukset	139	\N	http://localhost:3000
+883	create	\N	2023-05-02 18:52:34.337+00	10.10.0.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	lomake_vastaukset	140	\N	http://localhost:3000
+884	create	\N	2023-05-02 18:52:43.807+00	10.10.0.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	lomake_vastaukset	141	\N	http://localhost:3000
+885	create	\N	2023-05-02 18:53:02.291+00	10.10.0.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	lomake_vastaukset	142	\N	http://localhost:3000
+886	create	\N	2023-05-02 18:53:07.587+00	10.10.0.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	lomake_vastaukset	143	\N	http://localhost:3000
+887	create	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-05-02 18:53:15.621+00	10.10.0.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	sosiaaliset_mediat	2	\N	https://api.serveri.jeb4.dev
+888	update	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-05-02 18:53:20.01+00	10.10.0.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	sosiaaliset_mediat	2	\N	https://api.serveri.jeb4.dev
+889	delete	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-05-02 18:53:49.366+00	10.10.0.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	directus_collections	social_medias	\N	https://api.serveri.jeb4.dev
+890	create	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-05-02 18:53:56.107+00	10.10.0.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	directus_permissions	119	\N	https://api.serveri.jeb4.dev
+891	update	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-05-02 18:54:08.909+00	10.10.0.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	directus_permissions	119	\N	https://api.serveri.jeb4.dev
+892	create	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-05-02 19:07:25.722+00	10.10.0.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	sosiaaliset_mediat	3	\N	https://api.serveri.jeb4.dev
+893	create	\N	2023-05-02 19:08:04.841+00	10.10.0.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	lomake_vastaukset	144	\N	http://localhost:3000
+894	create	\N	2023-05-02 19:08:24.805+00	10.10.0.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	lomake_vastaukset	145	\N	http://localhost:3000
+895	update	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-05-02 19:08:50.913+00	10.10.0.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	sosiaaliset_mediat	3	\N	https://api.serveri.jeb4.dev
+896	create	\N	2023-05-02 19:09:55.492+00	10.10.0.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	lomake_vastaukset	146	\N	http://localhost:3000
+897	update	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-05-02 19:10:01.557+00	10.10.0.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	sosiaaliset_mediat	2	\N	https://api.serveri.jeb4.dev
+898	create	\N	2023-05-02 19:10:07.239+00	10.10.0.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	lomake_vastaukset	147	\N	http://localhost:3000
+899	create	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-05-02 19:13:05.772+00	10.10.0.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	sosiaaliset_mediat	4	\N	https://api.serveri.jeb4.dev
+900	create	\N	2023-05-02 19:14:29.769+00	10.10.0.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	lomake_vastaukset	148	\N	http://localhost:3000
+901	create	\N	2023-05-02 19:14:37.123+00	10.10.0.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	lomake_vastaukset	149	\N	http://localhost:3000
+902	create	\N	2023-05-02 19:14:37.641+00	10.10.0.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	lomake_vastaukset	150	\N	http://localhost:3000
+903	create	\N	2023-05-02 19:15:32.552+00	10.10.0.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	lomake_vastaukset	151	\N	http://localhost:3000
+904	create	\N	2023-05-02 19:15:33.164+00	10.10.0.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	lomake_vastaukset	152	\N	http://localhost:3000
+905	create	\N	2023-05-02 19:15:33.627+00	10.10.0.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	lomake_vastaukset	153	\N	http://localhost:3000
+906	create	\N	2023-05-02 19:15:33.838+00	10.10.0.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	lomake_vastaukset	154	\N	http://localhost:3000
+907	create	\N	2023-05-02 19:15:34.032+00	10.10.0.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	lomake_vastaukset	155	\N	http://localhost:3000
+908	create	\N	2023-05-02 19:15:34.211+00	10.10.0.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	lomake_vastaukset	156	\N	http://localhost:3000
+909	create	\N	2023-05-02 19:15:34.425+00	10.10.0.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	lomake_vastaukset	157	\N	http://localhost:3000
+910	create	\N	2023-05-02 19:15:34.725+00	10.10.0.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	lomake_vastaukset	158	\N	http://localhost:3000
+911	create	\N	2023-05-02 19:15:34.959+00	10.10.0.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	lomake_vastaukset	159	\N	http://localhost:3000
+912	create	\N	2023-05-02 19:15:35.142+00	10.10.0.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	lomake_vastaukset	160	\N	http://localhost:3000
+913	create	\N	2023-05-02 19:15:35.358+00	10.10.0.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	lomake_vastaukset	161	\N	http://localhost:3000
+914	create	\N	2023-05-02 19:15:35.571+00	10.10.0.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	lomake_vastaukset	162	\N	http://localhost:3000
+915	create	\N	2023-05-02 19:15:35.761+00	10.10.0.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	lomake_vastaukset	163	\N	http://localhost:3000
+916	create	\N	2023-05-02 19:15:35.979+00	10.10.0.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	lomake_vastaukset	164	\N	http://localhost:3000
+917	create	\N	2023-05-02 19:15:36.178+00	10.10.0.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	lomake_vastaukset	165	\N	http://localhost:3000
+918	create	\N	2023-05-02 19:15:36.402+00	10.10.0.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	lomake_vastaukset	166	\N	http://localhost:3000
+919	create	\N	2023-05-02 19:15:36.598+00	10.10.0.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	lomake_vastaukset	167	\N	http://localhost:3000
+920	create	\N	2023-05-02 19:15:36.81+00	10.10.0.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	lomake_vastaukset	168	\N	http://localhost:3000
+921	create	\N	2023-05-02 19:15:37.034+00	10.10.0.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	lomake_vastaukset	169	\N	http://localhost:3000
+922	create	\N	2023-05-02 19:15:37.247+00	10.10.0.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	lomake_vastaukset	170	\N	http://localhost:3000
+923	create	\N	2023-05-02 19:15:37.479+00	10.10.0.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	lomake_vastaukset	171	\N	http://localhost:3000
+924	create	\N	2023-05-02 19:15:37.713+00	10.10.0.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	lomake_vastaukset	172	\N	http://localhost:3000
+925	create	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-05-02 19:15:41.65+00	10.10.0.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	sosiaaliset_mediat	5	\N	https://api.serveri.jeb4.dev
+926	update	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-05-02 19:16:15.328+00	10.10.0.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	sosiaaliset_mediat	5	\N	https://api.serveri.jeb4.dev
+927	update	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-05-02 19:17:43.16+00	10.10.0.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	sosiaaliset_mediat	5	\N	https://api.serveri.jeb4.dev
 \.
 
 
@@ -2030,10 +2443,12 @@ turvallinen_tila	balance	\N	\N	f	t	\N	\N	t	\N	\N	\N	all	\N	\N	\N	\N	open
 LandingPage	web	\N	\N	f	t	\N	\N	t	\N	\N	\N	all	\N	\N	\N	\N	open
 for_new_student	fiber_new	\N	\N	f	t	\N	\N	t	\N	\N	\N	all	\N	\N	\N	\N	open
 serveri_rules	balance	\N	\N	f	t	\N	\N	t	\N	\N	\N	all	\N	\N	\N	\N	open
-social_medias	auto_awesome_mosaic	\N	\N	f	f	\N	\N	t	\N	\N	\N	all	\N	\N	\N	\N	open
 study_club	menu_book	\N	\N	f	t	\N	\N	t	\N	\N	\N	all	\N	\N	\N	\N	open
 liity_serveriin	subdirectory_arrow_right	\N	\N	f	t	\N	\N	t	\N	\N	\N	all	\N	\N	\N	\N	open
 events	\N	\N	\N	f	f	\N	status	t	archived	draft	sort	all	\N	\N	\N	\N	open
+tutkinto_rakenne	golf_course	\N	\N	f	f	\N	status	t	archived	draft	sort	all	\N	\N	\N	\N	open
+instagram	image	\N	\N	f	f	\N	\N	t	\N	\N	sort	all	\N	\N	\N	\N	open
+sosiaaliset_mediat	\N	\N	\N	f	f	\N	status	t	archived	draft	sort	all	\N	\N	\N	\N	open
 \.
 
 
@@ -2060,14 +2475,6 @@ COPY public.directus_fields (id, collection, field, special, interface, options,
 21	board_members	date_created	date-created	datetime	\N	datetime	{"relative":true}	t	t	4	half	\N	\N	\N	f	\N	\N	\N
 22	board_members	user_updated	user-updated	select-dropdown-m2o	{"template":"{{avatar.$thumbnail}} {{first_name}} {{last_name}}"}	user	\N	t	t	5	half	\N	\N	\N	f	\N	\N	\N
 23	board_members	date_updated	date-updated	datetime	\N	datetime	{"relative":true}	t	t	6	half	\N	\N	\N	f	\N	\N	\N
-33	social_medias	id	\N	input	\N	\N	\N	t	t	\N	full	\N	\N	\N	f	\N	\N	\N
-34	social_medias	user_created	user-created	select-dropdown-m2o	{"template":"{{avatar.$thumbnail}} {{first_name}} {{last_name}}"}	user	\N	t	t	\N	half	\N	\N	\N	f	\N	\N	\N
-35	social_medias	date_created	date-created	datetime	\N	datetime	{"relative":true}	t	t	\N	half	\N	\N	\N	f	\N	\N	\N
-36	social_medias	user_updated	user-updated	select-dropdown-m2o	{"template":"{{avatar.$thumbnail}} {{first_name}} {{last_name}}"}	user	\N	t	t	\N	half	\N	\N	\N	f	\N	\N	\N
-37	social_medias	date_updated	date-updated	datetime	\N	datetime	{"relative":true}	t	t	\N	half	\N	\N	\N	f	\N	\N	\N
-38	social_medias	name	\N	input	\N	\N	\N	f	f	\N	full	\N	\N	\N	f	\N	\N	\N
-39	social_medias	url	\N	input	\N	\N	\N	f	f	\N	full	\N	\N	\N	f	\N	\N	\N
-40	social_medias	icon	\N	input	\N	\N	\N	f	f	\N	full	\N	\N	\N	f	\N	\N	\N
 41	news	id	\N	input	\N	\N	\N	t	t	\N	full	\N	\N	\N	f	\N	\N	\N
 42	news	status	\N	select-dropdown	{"choices":[{"text":"$t:published","value":"published"},{"text":"$t:draft","value":"draft"},{"text":"$t:archived","value":"archived"}]}	labels	{"showAsDot":true,"choices":[{"text":"$t:published","value":"published","foreground":"#FFFFFF","background":"var(--primary)"},{"text":"$t:draft","value":"draft","foreground":"#18222F","background":"#D3DAE4"},{"text":"$t:archived","value":"archived","foreground":"#FFFFFF","background":"var(--warning)"}]}	f	f	\N	full	\N	\N	\N	f	\N	\N	\N
 43	news	sort	\N	input	\N	\N	\N	f	t	\N	full	\N	\N	\N	f	\N	\N	\N
@@ -2153,6 +2560,35 @@ COPY public.directus_fields (id, collection, field, special, interface, options,
 124	events	date_created	date-created	datetime	\N	datetime	{"relative":true}	t	t	\N	half	\N	\N	\N	f	\N	\N	\N
 125	events	user_updated	user-updated	select-dropdown-m2o	{"template":"{{avatar.$thumbnail}} {{first_name}} {{last_name}}"}	user	\N	t	t	\N	half	\N	\N	\N	f	\N	\N	\N
 126	events	date_updated	date-updated	datetime	\N	datetime	{"relative":true}	t	t	\N	half	\N	\N	\N	f	\N	\N	\N
+148	tutkinto_rakenne	id	\N	input	\N	\N	\N	t	t	\N	full	\N	\N	\N	f	\N	\N	\N
+149	tutkinto_rakenne	status	\N	select-dropdown	{"choices":[{"text":"$t:published","value":"published"},{"text":"$t:draft","value":"draft"},{"text":"$t:archived","value":"archived"}]}	labels	{"showAsDot":true,"choices":[{"text":"$t:published","value":"published","foreground":"#FFFFFF","background":"var(--primary)"},{"text":"$t:draft","value":"draft","foreground":"#18222F","background":"#D3DAE4"},{"text":"$t:archived","value":"archived","foreground":"#FFFFFF","background":"var(--warning)"}]}	f	f	\N	full	\N	\N	\N	f	\N	\N	\N
+150	tutkinto_rakenne	sort	\N	input	\N	\N	\N	f	t	\N	full	\N	\N	\N	f	\N	\N	\N
+151	tutkinto_rakenne	user_created	user-created	select-dropdown-m2o	{"template":"{{avatar.$thumbnail}} {{first_name}} {{last_name}}"}	user	\N	t	t	\N	half	\N	\N	\N	f	\N	\N	\N
+152	tutkinto_rakenne	date_created	date-created	datetime	\N	datetime	{"relative":true}	t	t	\N	half	\N	\N	\N	f	\N	\N	\N
+153	tutkinto_rakenne	user_updated	user-updated	select-dropdown-m2o	{"template":"{{avatar.$thumbnail}} {{first_name}} {{last_name}}"}	user	\N	t	t	\N	half	\N	\N	\N	f	\N	\N	\N
+154	tutkinto_rakenne	date_updated	date-updated	datetime	\N	datetime	{"relative":true}	t	t	\N	half	\N	\N	\N	f	\N	\N	\N
+156	tutkinto_rakenne	nimi	\N	input	{"placeholder":"Opintojakson nimi","iconLeft":"drive_file_rename_outline"}	\N	\N	f	f	\N	full	\N	\N	\N	t	\N	\N	\N
+157	tutkinto_rakenne	kuvaus	\N	input-multiline	{"placeholder":"Opintojakson kuvaus"}	\N	\N	f	f	\N	full	\N	\N	\N	t	\N	\N	\N
+155	tutkinto_rakenne	tyyppi	\N	select-dropdown	{"choices":[{"text":"yleisopinnot","value":"yleisopinnot"},{"text":"Kieli- ja viestintäopinnot","value":"kieliviesti"},{"text":"Perusopinnot","value":"perusopinnot"},{"text":"Valinnaiset aineopinnot","value":"valinnaiset"},{"text":"Pakolliset aineopinnot","value":"pakolliset"},{"text":"Sivuaineet","value":"sivuaine"}]}	\N	\N	f	f	\N	full	\N	\N	\N	t	\N	\N	\N
+158	tutkinto_rakenne	laajuus	\N	input	{"step":0.5,"min":0,"max":30}	\N	\N	f	f	\N	full	\N	\N	\N	t	\N	\N	\N
+159	instagram	id	\N	input	\N	\N	\N	t	t	\N	full	\N	\N	\N	f	\N	\N	\N
+160	instagram	sort	\N	input	\N	\N	\N	f	t	\N	full	\N	\N	\N	f	\N	\N	\N
+161	instagram	user_created	user-created	select-dropdown-m2o	{"template":"{{avatar.$thumbnail}} {{first_name}} {{last_name}}"}	user	\N	t	t	\N	half	\N	\N	\N	f	\N	\N	\N
+162	instagram	date_created	date-created	datetime	\N	datetime	{"relative":true}	t	t	\N	half	\N	\N	\N	f	\N	\N	\N
+163	instagram	user_updated	user-updated	select-dropdown-m2o	{"template":"{{avatar.$thumbnail}} {{first_name}} {{last_name}}"}	user	\N	t	t	\N	half	\N	\N	\N	f	\N	\N	\N
+164	instagram	date_updated	date-updated	datetime	\N	datetime	{"relative":true}	t	t	\N	half	\N	\N	\N	f	\N	\N	\N
+166	instagram	postaus_id	\N	input	{"iconLeft":"grid_3x3"}	\N	\N	f	f	\N	full	\N	Postauksen url osoitteen id osa, esim. CqFdw7MBG5N	\N	t	\N	\N	\N
+167	instagram	postauksen_kuvaus	\N	input	\N	\N	\N	f	f	\N	full	\N	Kuvaus helpottaa sisällön hallinnan käyttäjää ymmärtämään mistä instagram postauksesta on kyse	\N	f	\N	\N	\N
+168	sosiaaliset_mediat	id	\N	input	\N	\N	\N	t	t	\N	full	\N	\N	\N	f	\N	\N	\N
+169	sosiaaliset_mediat	status	\N	select-dropdown	{"choices":[{"text":"$t:published","value":"published"},{"text":"$t:draft","value":"draft"},{"text":"$t:archived","value":"archived"}]}	labels	{"showAsDot":true,"choices":[{"text":"$t:published","value":"published","foreground":"#FFFFFF","background":"var(--primary)"},{"text":"$t:draft","value":"draft","foreground":"#18222F","background":"#D3DAE4"},{"text":"$t:archived","value":"archived","foreground":"#FFFFFF","background":"var(--warning)"}]}	f	f	\N	full	\N	\N	\N	f	\N	\N	\N
+170	sosiaaliset_mediat	sort	\N	input	\N	\N	\N	f	t	\N	full	\N	\N	\N	f	\N	\N	\N
+171	sosiaaliset_mediat	user_created	user-created	select-dropdown-m2o	{"template":"{{avatar.$thumbnail}} {{first_name}} {{last_name}}"}	user	\N	t	t	\N	half	\N	\N	\N	f	\N	\N	\N
+172	sosiaaliset_mediat	date_created	date-created	datetime	\N	datetime	{"relative":true}	t	t	\N	half	\N	\N	\N	f	\N	\N	\N
+173	sosiaaliset_mediat	user_updated	user-updated	select-dropdown-m2o	{"template":"{{avatar.$thumbnail}} {{first_name}} {{last_name}}"}	user	\N	t	t	\N	half	\N	\N	\N	f	\N	\N	\N
+174	sosiaaliset_mediat	date_updated	date-updated	datetime	\N	datetime	{"relative":true}	t	t	\N	half	\N	\N	\N	f	\N	\N	\N
+175	sosiaaliset_mediat	nimi	\N	input	\N	\N	\N	f	f	\N	full	\N	\N	\N	t	\N	\N	\N
+176	sosiaaliset_mediat	url	\N	input	\N	\N	\N	f	f	\N	full	\N	\N	\N	t	\N	\N	\N
+177	sosiaaliset_mediat	img	\N	input	\N	\N	\N	f	f	\N	full	\N	\N	\N	t	\N	\N	\N
 \.
 
 
@@ -2161,6 +2597,11 @@ COPY public.directus_fields (id, collection, field, special, interface, options,
 --
 
 COPY public.directus_files (id, storage, filename_disk, filename_download, title, type, folder, uploaded_by, uploaded_on, modified_by, modified_on, charset, filesize, width, height, duration, embed, description, location, tags, metadata) FROM stdin;
+55882074-5535-47d4-8a1a-eef51fbd5b38	local	55882074-5535-47d4-8a1a-eef51fbd5b38.png	Serveri_logo_musta_valkoinentausta.png	Serveri Logo Musta Valkoinentausta	image/png	\N	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-05-02 16:30:31.853267+00	\N	2023-05-02 16:30:31.881+00	\N	66432	1080	1080	\N	\N	\N	\N	\N	{}
+57de8669-8ae3-480f-8ea5-6924b44796dd	local	57de8669-8ae3-480f-8ea5-6924b44796dd.svg	Serveri_logo_musta_valkoinentausta(3).svg	Serveri Logo Musta Valkoinentausta(3)	image/svg+xml	\N	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-05-02 16:34:04.30943+00	\N	2023-05-02 16:34:04.326+00	\N	9214	\N	\N	\N	\N	\N	\N	\N	\N
+4c58bdbf-bdb1-4b3f-953a-fb619c26cae3	local	4c58bdbf-bdb1-4b3f-953a-fb619c26cae3.webp	bill gates yung.webp	Bill Gates Yung	image/webp	\N	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-05-02 16:40:02.565474+00	\N	2023-05-02 16:40:02.587+00	\N	34804	981	736	\N	\N	\N	\N	\N	{}
+b072ae6a-77b8-4f8f-85f9-ccd9cbfc7e2e	local	b072ae6a-77b8-4f8f-85f9-ccd9cbfc7e2e.jpeg	efKgpjn2aP6szXJ	serveri-coins	image/jpeg	\N	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-05-02 16:52:14.612776+00	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-05-02 16:52:50.018+00	\N	162373	1820	1024	\N	\N	\N	\N	\N	{}
+2b5a773e-02ef-47a1-9dd4-dd27d3d095a9	local	2b5a773e-02ef-47a1-9dd4-dd27d3d095a9.jpg	small_computerstuffwithlogo_da6b992e47.jpg	serveri-placeholder	image/jpeg	\N	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-05-02 16:50:58.650957+00	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-05-02 16:53:02.626+00	\N	12873	500	281	\N	\N	\N	\N	\N	{}
 \.
 
 
@@ -2282,11 +2723,9 @@ COPY public.directus_panels (id, dashboard, name, icon, color, show_header, note
 COPY public.directus_permissions (id, role, collection, action, permissions, validation, presets, fields) FROM stdin;
 4	\N	directus_users	read	{}	{}	\N	*
 5	\N	board_members	read	\N	\N	\N	img,hover_img,role,email,telegram,name,description
-6	\N	social_medias	read	\N	\N	\N	url,icon,name
 7	\N	news	read	{}	{}	\N	fi_title,en_title,image,fi_text,en_text,id,sort,status,date_created
 8	\N	serveri_rules	read	{}	{}	\N	date_updated,rules_fi,rules_en
 9	\N	turvallinen_tila	read	{}	{}	\N	date_updated,turvallinen_tila_fi,turvalinen_tila_en
-13	\N	lomake_vastaukset	create	{}	{}	\N	*
 14	\N	partners	read	{}	{}	\N	name,url,img
 1	\N	LandingPage	read	\N	{}	\N	fi_title,en_title,fi_description,en_description,fi_button_text,en_button_text,fi_button_url,en_button_url,en_long_desc,fi_long_desc
 15	\N	hallitus_page	read	\N	\N	\N	fi_text,en_text,date_updated
@@ -2294,6 +2733,99 @@ COPY public.directus_permissions (id, role, collection, action, permissions, val
 17	\N	study_club	read	\N	\N	\N	fi_text,en_text,date_updated
 18	\N	for_new_student	read	\N	\N	\N	fi_text,en_text,date_updated
 19	\N	gdpr	read	\N	\N	\N	fi_text,en_text,date_updated
+20	4491158e-dc93-41ee-bb07-4e191785d730	directus_files	create	{}	\N	\N	*
+21	4491158e-dc93-41ee-bb07-4e191785d730	directus_files	read	{}	\N	\N	*
+22	4491158e-dc93-41ee-bb07-4e191785d730	directus_files	update	{}	\N	\N	*
+23	4491158e-dc93-41ee-bb07-4e191785d730	directus_files	delete	{}	\N	\N	*
+24	4491158e-dc93-41ee-bb07-4e191785d730	directus_dashboards	create	{}	\N	\N	*
+25	4491158e-dc93-41ee-bb07-4e191785d730	directus_dashboards	read	{}	\N	\N	*
+26	4491158e-dc93-41ee-bb07-4e191785d730	directus_dashboards	update	{}	\N	\N	*
+27	4491158e-dc93-41ee-bb07-4e191785d730	directus_dashboards	delete	{}	\N	\N	*
+28	4491158e-dc93-41ee-bb07-4e191785d730	directus_panels	create	{}	\N	\N	*
+29	4491158e-dc93-41ee-bb07-4e191785d730	directus_panels	read	{}	\N	\N	*
+30	4491158e-dc93-41ee-bb07-4e191785d730	directus_panels	update	{}	\N	\N	*
+31	4491158e-dc93-41ee-bb07-4e191785d730	directus_panels	delete	{}	\N	\N	*
+32	4491158e-dc93-41ee-bb07-4e191785d730	directus_folders	create	{}	\N	\N	*
+33	4491158e-dc93-41ee-bb07-4e191785d730	directus_folders	read	{}	\N	\N	*
+34	4491158e-dc93-41ee-bb07-4e191785d730	directus_folders	update	{}	\N	\N	*
+35	4491158e-dc93-41ee-bb07-4e191785d730	directus_folders	delete	{}	\N	\N	\N
+36	4491158e-dc93-41ee-bb07-4e191785d730	directus_users	read	{}	\N	\N	*
+37	4491158e-dc93-41ee-bb07-4e191785d730	directus_users	update	{"id":{"_eq":"$CURRENT_USER"}}	\N	\N	first_name,last_name,email,password,location,title,description,avatar,language,theme,tfa_secret
+38	4491158e-dc93-41ee-bb07-4e191785d730	directus_roles	read	{}	\N	\N	*
+39	4491158e-dc93-41ee-bb07-4e191785d730	directus_shares	read	{"_or":[{"role":{"_eq":"$CURRENT_ROLE"}},{"role":{"_null":true}}]}	\N	\N	*
+40	4491158e-dc93-41ee-bb07-4e191785d730	directus_shares	create	{}	\N	\N	*
+41	4491158e-dc93-41ee-bb07-4e191785d730	directus_shares	update	{"user_created":{"_eq":"$CURRENT_USER"}}	\N	\N	*
+42	4491158e-dc93-41ee-bb07-4e191785d730	directus_shares	delete	{"user_created":{"_eq":"$CURRENT_USER"}}	\N	\N	*
+43	4491158e-dc93-41ee-bb07-4e191785d730	directus_flows	read	{"trigger":{"_eq":"manual"}}	\N	\N	id,name,icon,color,options,trigger
+45	4491158e-dc93-41ee-bb07-4e191785d730	LandingPage	create	{}	{}	\N	*
+46	4491158e-dc93-41ee-bb07-4e191785d730	board_members	create	{}	{}	\N	*
+47	4491158e-dc93-41ee-bb07-4e191785d730	events	create	{}	{}	\N	*
+48	4491158e-dc93-41ee-bb07-4e191785d730	for_new_student	create	{}	{}	\N	*
+49	4491158e-dc93-41ee-bb07-4e191785d730	gdpr	create	{}	{}	\N	*
+50	4491158e-dc93-41ee-bb07-4e191785d730	LandingPage	read	{}	{}	\N	*
+51	4491158e-dc93-41ee-bb07-4e191785d730	LandingPage	update	{}	{}	\N	*
+52	4491158e-dc93-41ee-bb07-4e191785d730	LandingPage	delete	{}	{}	\N	*
+53	4491158e-dc93-41ee-bb07-4e191785d730	LandingPage	share	{}	{}	\N	*
+54	4491158e-dc93-41ee-bb07-4e191785d730	board_members	share	{}	{}	\N	*
+55	4491158e-dc93-41ee-bb07-4e191785d730	board_members	delete	{}	{}	\N	*
+56	4491158e-dc93-41ee-bb07-4e191785d730	board_members	update	{}	{}	\N	*
+57	4491158e-dc93-41ee-bb07-4e191785d730	board_members	read	{}	{}	\N	*
+58	4491158e-dc93-41ee-bb07-4e191785d730	events	read	{}	{}	\N	*
+59	4491158e-dc93-41ee-bb07-4e191785d730	events	update	{}	{}	\N	*
+60	4491158e-dc93-41ee-bb07-4e191785d730	events	delete	{}	{}	\N	*
+61	4491158e-dc93-41ee-bb07-4e191785d730	events	share	{}	{}	\N	*
+62	4491158e-dc93-41ee-bb07-4e191785d730	for_new_student	read	{}	{}	\N	*
+63	4491158e-dc93-41ee-bb07-4e191785d730	for_new_student	update	{}	{}	\N	*
+64	4491158e-dc93-41ee-bb07-4e191785d730	for_new_student	delete	{}	{}	\N	*
+65	4491158e-dc93-41ee-bb07-4e191785d730	for_new_student	share	{}	{}	\N	*
+66	4491158e-dc93-41ee-bb07-4e191785d730	gdpr	share	{}	{}	\N	*
+67	4491158e-dc93-41ee-bb07-4e191785d730	gdpr	delete	{}	{}	\N	*
+68	4491158e-dc93-41ee-bb07-4e191785d730	gdpr	update	{}	{}	\N	*
+69	4491158e-dc93-41ee-bb07-4e191785d730	gdpr	read	{}	{}	\N	*
+70	4491158e-dc93-41ee-bb07-4e191785d730	hallitus_page	create	{}	{}	\N	*
+71	4491158e-dc93-41ee-bb07-4e191785d730	hallitus_page	share	{}	{}	\N	*
+72	4491158e-dc93-41ee-bb07-4e191785d730	hallitus_page	read	{}	{}	\N	*
+73	4491158e-dc93-41ee-bb07-4e191785d730	hallitus_page	delete	{}	{}	\N	*
+74	4491158e-dc93-41ee-bb07-4e191785d730	hallitus_page	update	{}	{}	\N	*
+75	4491158e-dc93-41ee-bb07-4e191785d730	liity_serveriin	create	{}	{}	\N	*
+76	4491158e-dc93-41ee-bb07-4e191785d730	liity_serveriin	read	{}	{}	\N	*
+77	4491158e-dc93-41ee-bb07-4e191785d730	liity_serveriin	update	{}	{}	\N	*
+78	4491158e-dc93-41ee-bb07-4e191785d730	liity_serveriin	delete	{}	{}	\N	*
+79	4491158e-dc93-41ee-bb07-4e191785d730	liity_serveriin	share	{}	{}	\N	*
+80	4491158e-dc93-41ee-bb07-4e191785d730	lomake_vastaukset	create	{}	{}	\N	*
+81	4491158e-dc93-41ee-bb07-4e191785d730	lomake_vastaukset	read	{}	{}	\N	*
+82	4491158e-dc93-41ee-bb07-4e191785d730	lomake_vastaukset	update	{}	{}	\N	*
+83	4491158e-dc93-41ee-bb07-4e191785d730	lomake_vastaukset	delete	{}	{}	\N	*
+84	4491158e-dc93-41ee-bb07-4e191785d730	lomake_vastaukset	share	{}	{}	\N	*
+85	4491158e-dc93-41ee-bb07-4e191785d730	news	create	{}	{}	\N	*
+86	4491158e-dc93-41ee-bb07-4e191785d730	news	read	{}	{}	\N	*
+87	4491158e-dc93-41ee-bb07-4e191785d730	news	update	{}	{}	\N	*
+88	4491158e-dc93-41ee-bb07-4e191785d730	news	delete	{}	{}	\N	*
+89	4491158e-dc93-41ee-bb07-4e191785d730	news	share	{}	{}	\N	*
+90	4491158e-dc93-41ee-bb07-4e191785d730	partners	create	{}	{}	\N	*
+91	4491158e-dc93-41ee-bb07-4e191785d730	partners	update	{}	{}	\N	*
+92	4491158e-dc93-41ee-bb07-4e191785d730	partners	read	{}	{}	\N	*
+93	4491158e-dc93-41ee-bb07-4e191785d730	partners	delete	{}	{}	\N	*
+94	4491158e-dc93-41ee-bb07-4e191785d730	partners	share	{}	{}	\N	*
+95	4491158e-dc93-41ee-bb07-4e191785d730	serveri_rules	create	{}	{}	\N	*
+96	4491158e-dc93-41ee-bb07-4e191785d730	serveri_rules	read	{}	{}	\N	*
+97	4491158e-dc93-41ee-bb07-4e191785d730	serveri_rules	update	{}	{}	\N	*
+98	4491158e-dc93-41ee-bb07-4e191785d730	serveri_rules	delete	{}	{}	\N	*
+99	4491158e-dc93-41ee-bb07-4e191785d730	serveri_rules	share	{}	{}	\N	*
+108	4491158e-dc93-41ee-bb07-4e191785d730	study_club	delete	{}	{}	\N	*
+113	4491158e-dc93-41ee-bb07-4e191785d730	turvallinen_tila	update	{}	{}	\N	*
+105	4491158e-dc93-41ee-bb07-4e191785d730	study_club	create	{}	{}	\N	*
+112	4491158e-dc93-41ee-bb07-4e191785d730	turvallinen_tila	delete	{}	{}	\N	*
+106	4491158e-dc93-41ee-bb07-4e191785d730	study_club	read	{}	{}	\N	*
+114	4491158e-dc93-41ee-bb07-4e191785d730	turvallinen_tila	share	{}	{}	\N	*
+107	4491158e-dc93-41ee-bb07-4e191785d730	study_club	update	{}	{}	\N	*
+110	4491158e-dc93-41ee-bb07-4e191785d730	turvallinen_tila	create	{}	{}	\N	*
+109	4491158e-dc93-41ee-bb07-4e191785d730	study_club	share	{}	{}	\N	*
+111	4491158e-dc93-41ee-bb07-4e191785d730	turvallinen_tila	read	{}	{}	\N	*
+116	\N	tutkinto_rakenne	read	\N	\N	\N	tyyppi,nimi,laajuus,kuvaus,sort
+118	\N	instagram	read	\N	\N	\N	postaus_id
+13	\N	lomake_vastaukset	create	{}	{"_and":[{"firm_name":{"_nempty":true}},{"firm_contact":{"_nempty":true}},{"firm_message":{"_nempty":true}}]}	\N	firm_name,firm_contact,firm_message
+119	\N	sosiaaliset_mediat	read	{}	{}	\N	url,img,nimi
 \.
 
 
@@ -2302,10 +2834,15 @@ COPY public.directus_permissions (id, role, collection, action, permissions, val
 --
 
 COPY public.directus_presets (id, bookmark, "user", role, collection, search, layout, layout_query, layout_options, refresh_interval, filter, icon, color) FROM stdin;
-2	\N	0891a0cd-876b-4a0d-a22e-0cce30121382	\N	social_medias	\N	\N	{"tabular":{"page":1}}	\N	\N	\N	bookmark	\N
-1	\N	0891a0cd-876b-4a0d-a22e-0cce30121382	\N	directus_users	\N	cards	{"cards":{"sort":["email"],"page":1}}	{"cards":{"icon":"account_circle","title":"{{ first_name }} {{ last_name }}","subtitle":"{{ email }}","size":4}}	\N	\N	bookmark	\N
-4	\N	0891a0cd-876b-4a0d-a22e-0cce30121382	\N	lomake_vastaukset	\N	\N	{"tabular":{"page":1,"fields":["firm_contact","firm_message","firm_name"]}}	{"tabular":{"widths":{"firm_message":284}}}	\N	\N	bookmark	\N
 3	\N	0891a0cd-876b-4a0d-a22e-0cce30121382	\N	board_members	\N	\N	{"tabular":{"page":1}}	\N	\N	\N	bookmark	\N
+4	\N	0891a0cd-876b-4a0d-a22e-0cce30121382	\N	lomake_vastaukset	\N	\N	{"tabular":{"page":1,"fields":["firm_contact","firm_message","firm_name"]}}	{"tabular":{"widths":{"firm_contact":263,"firm_message":284}}}	\N	\N	bookmark	\N
+1	\N	0891a0cd-876b-4a0d-a22e-0cce30121382	\N	directus_users	\N	cards	{"cards":{"sort":["email"],"page":1}}	{"cards":{"icon":"account_circle","title":"{{ first_name }} {{ last_name }}","subtitle":"{{ email }}","size":4}}	\N	\N	bookmark	\N
+5	\N	1f3676e5-f46e-44b5-9d25-948d9f1768a8	\N	directus_users	\N	cards	{"cards":{"sort":["email"],"page":1}}	{"cards":{"icon":"account_circle","title":"{{ first_name }} {{ last_name }}","subtitle":"{{ email }}","size":4}}	\N	\N	bookmark_outline	\N
+6	\N	0891a0cd-876b-4a0d-a22e-0cce30121382	\N	directus_files	\N	cards	{"cards":{"sort":["-uploaded_on"],"page":1}}	{"cards":{"icon":"insert_drive_file","title":"{{ title }}","subtitle":"{{ type }} • {{ filesize }}","size":4,"imageFit":"crop"}}	\N	\N	bookmark_outline	\N
+10	\N	0891a0cd-876b-4a0d-a22e-0cce30121382	\N	tutkinto_rakenne	\N	\N	{"tabular":{"sort":["tyyppi"],"page":1,"fields":["kuvaus","nimi","status","tyyppi","sort"]}}	\N	\N	\N	bookmark_outline	\N
+11	\N	0891a0cd-876b-4a0d-a22e-0cce30121382	\N	instagram	\N	\N	{"tabular":{"page":1}}	\N	\N	\N	bookmark_outline	\N
+7	\N	0891a0cd-876b-4a0d-a22e-0cce30121382	\N	directus_files	\N	cards	{"cards":{"sort":["-uploaded_on"],"page":1}}	{"cards":{"icon":"insert_drive_file","title":"{{ title }}","subtitle":"{{ type }} • {{ filesize }}","size":4,"imageFit":"crop"}}	\N	\N	bookmark_outline	\N
+12	\N	0891a0cd-876b-4a0d-a22e-0cce30121382	\N	sosiaaliset_mediat	\N	\N	{"tabular":{"page":1,"sort":["sort"]}}	\N	\N	\N	bookmark_outline	\N
 \.
 
 
@@ -2317,8 +2854,6 @@ COPY public.directus_relations (id, many_collection, many_field, one_collection,
 1	LandingPage	user_updated	directus_users	\N	\N	\N	\N	\N	nullify
 2	board_members	user_created	directus_users	\N	\N	\N	\N	\N	nullify
 3	board_members	user_updated	directus_users	\N	\N	\N	\N	\N	nullify
-4	social_medias	user_created	directus_users	\N	\N	\N	\N	\N	nullify
-5	social_medias	user_updated	directus_users	\N	\N	\N	\N	\N	nullify
 6	news	user_created	directus_users	\N	\N	\N	\N	\N	nullify
 7	news	user_updated	directus_users	\N	\N	\N	\N	\N	nullify
 8	serveri_rules	user_updated	directus_users	\N	\N	\N	\N	\N	nullify
@@ -2332,6 +2867,12 @@ COPY public.directus_relations (id, many_collection, many_field, one_collection,
 18	gdpr	user_updated	directus_users	\N	\N	\N	\N	\N	nullify
 19	events	user_created	directus_users	\N	\N	\N	\N	\N	nullify
 20	events	user_updated	directus_users	\N	\N	\N	\N	\N	nullify
+26	tutkinto_rakenne	user_created	directus_users	\N	\N	\N	\N	\N	nullify
+27	tutkinto_rakenne	user_updated	directus_users	\N	\N	\N	\N	\N	nullify
+28	instagram	user_created	directus_users	\N	\N	\N	\N	\N	nullify
+29	instagram	user_updated	directus_users	\N	\N	\N	\N	\N	nullify
+30	sosiaaliset_mediat	user_created	directus_users	\N	\N	\N	\N	\N	nullify
+31	sosiaaliset_mediat	user_updated	directus_users	\N	\N	\N	\N	\N	nullify
 \.
 
 
@@ -2495,7 +3036,6 @@ COPY public.directus_revisions (id, activity, collection, item, data, delta, par
 140	146	directus_fields	40	{"interface":"input","special":null,"collection":"social_medias","field":"icon"}	{"interface":"input","special":null,"collection":"social_medias","field":"icon"}	\N
 141	147	directus_permissions	6	{"role":null,"collection":"social_medias","action":"read"}	{"role":null,"collection":"social_medias","action":"read"}	\N
 142	148	directus_permissions	6	{"id":6,"role":null,"collection":"social_medias","action":"read","permissions":null,"validation":null,"presets":null,"fields":["url","icon","name"]}	{"role":null,"collection":"social_medias","action":"read","permissions":null,"validation":null,"presets":null,"fields":["url","icon","name"]}	\N
-143	149	social_medias	1	{"name":"Discord","url":"www.google.com","icon":"https://assets-global.website-files.com/6257adef93867e50d84d30e2/636e0a6a49cf127bf92de1e2_icon_clyde_blurple_RGB.png"}	{"name":"Discord","url":"www.google.com","icon":"https://assets-global.website-files.com/6257adef93867e50d84d30e2/636e0a6a49cf127bf92de1e2_icon_clyde_blurple_RGB.png"}	\N
 144	152	directus_fields	41	{"hidden":true,"interface":"input","readonly":true,"field":"id","collection":"news"}	{"hidden":true,"interface":"input","readonly":true,"field":"id","collection":"news"}	\N
 145	153	directus_fields	42	{"width":"full","options":{"choices":[{"text":"$t:published","value":"published"},{"text":"$t:draft","value":"draft"},{"text":"$t:archived","value":"archived"}]},"interface":"select-dropdown","display":"labels","display_options":{"showAsDot":true,"choices":[{"text":"$t:published","value":"published","foreground":"#FFFFFF","background":"var(--primary)"},{"text":"$t:draft","value":"draft","foreground":"#18222F","background":"#D3DAE4"},{"text":"$t:archived","value":"archived","foreground":"#FFFFFF","background":"var(--warning)"}]},"field":"status","collection":"news"}	{"width":"full","options":{"choices":[{"text":"$t:published","value":"published"},{"text":"$t:draft","value":"draft"},{"text":"$t:archived","value":"archived"}]},"interface":"select-dropdown","display":"labels","display_options":{"showAsDot":true,"choices":[{"text":"$t:published","value":"published","foreground":"#FFFFFF","background":"var(--primary)"},{"text":"$t:draft","value":"draft","foreground":"#18222F","background":"#D3DAE4"},{"text":"$t:archived","value":"archived","foreground":"#FFFFFF","background":"var(--warning)"}]},"field":"status","collection":"news"}	\N
 146	154	directus_fields	43	{"interface":"input","hidden":true,"field":"sort","collection":"news"}	{"interface":"input","hidden":true,"field":"sort","collection":"news"}	\N
@@ -2822,6 +3362,282 @@ COPY public.directus_revisions (id, activity, collection, item, data, delta, par
 480	599	directus_fields	125	{"special":["user-updated"],"interface":"select-dropdown-m2o","options":{"template":"{{avatar.$thumbnail}} {{first_name}} {{last_name}}"},"display":"user","readonly":true,"hidden":true,"width":"half","field":"user_updated","collection":"events"}	{"special":["user-updated"],"interface":"select-dropdown-m2o","options":{"template":"{{avatar.$thumbnail}} {{first_name}} {{last_name}}"},"display":"user","readonly":true,"hidden":true,"width":"half","field":"user_updated","collection":"events"}	\N
 481	600	directus_fields	126	{"special":["date-updated"],"interface":"datetime","readonly":true,"hidden":true,"width":"half","display":"datetime","display_options":{"relative":true},"field":"date_updated","collection":"events"}	{"special":["date-updated"],"interface":"datetime","readonly":true,"hidden":true,"width":"half","display":"datetime","display_options":{"relative":true},"field":"date_updated","collection":"events"}	\N
 482	601	directus_collections	events	{"sort_field":"sort","archive_field":"status","archive_value":"archived","unarchive_value":"draft","singleton":false,"collection":"events"}	{"sort_field":"sort","archive_field":"status","archive_value":"archived","unarchive_value":"draft","singleton":false,"collection":"events"}	\N
+483	603	directus_users	0891a0cd-876b-4a0d-a22e-0cce30121382	{"id":"0891a0cd-876b-4a0d-a22e-0cce30121382","first_name":"Admin","last_name":"User","email":"dev@serveriry.fi","password":"**********","location":null,"title":null,"description":null,"tags":null,"avatar":null,"language":null,"theme":"auto","tfa_secret":null,"status":"active","role":"7bd45b9d-d719-4ab1-b7ec-2c68f2eefc76","token":"**********","last_access":"2023-05-02T15:29:29.024Z","last_page":"/users/0891a0cd-876b-4a0d-a22e-0cce30121382","provider":"default","external_identifier":null,"auth_data":null,"email_notifications":true}	{"password":"**********"}	\N
+484	607	directus_files	55882074-5535-47d4-8a1a-eef51fbd5b38	{"title":"Serveri Logo Musta Valkoinentausta","filename_download":"Serveri_logo_musta_valkoinentausta.png","type":"image/png","storage":"local"}	{"title":"Serveri Logo Musta Valkoinentausta","filename_download":"Serveri_logo_musta_valkoinentausta.png","type":"image/png","storage":"local"}	\N
+485	608	directus_settings	1	{"id":1,"project_name":"Serveri ry Sisällönhallinta","project_url":"https://serveriry.fi","project_color":"#18222F","project_logo":"55882074-5535-47d4-8a1a-eef51fbd5b38","public_foreground":null,"public_background":null,"public_note":null,"auth_login_attempts":25,"auth_password_policy":null,"storage_asset_transform":"all","storage_asset_presets":null,"custom_css":null,"storage_default_folder":null,"basemaps":null,"mapbox_key":null,"module_bar":null,"project_descriptor":"Serveri ry:n sisällönhallintasovellus, josta voi muokata kotisivujamme.","translation_strings":null,"default_language":"en-US","custom_aspect_ratios":null}	{"project_name":"Serveri ry Sisällönhallinta","project_color":"#18222F","project_logo":"55882074-5535-47d4-8a1a-eef51fbd5b38","project_descriptor":"Serveri ry:n sisällönhallintasovellus, josta voi muokata kotisivujamme."}	\N
+486	609	directus_settings	1	{"id":1,"project_name":"Serveri ry Sisällönhallinta","project_url":"https://serveriry.fi","project_color":"#000000","project_logo":"55882074-5535-47d4-8a1a-eef51fbd5b38","public_foreground":null,"public_background":null,"public_note":null,"auth_login_attempts":25,"auth_password_policy":null,"storage_asset_transform":"all","storage_asset_presets":null,"custom_css":null,"storage_default_folder":null,"basemaps":null,"mapbox_key":null,"module_bar":null,"project_descriptor":"Serveri ry:n sisällönhallintasovellus, josta voi muokata kotisivujamme.","translation_strings":null,"default_language":"en-US","custom_aspect_ratios":null}	{"project_color":"#000000"}	\N
+487	611	directus_files	57de8669-8ae3-480f-8ea5-6924b44796dd	{"title":"Serveri Logo Musta Valkoinentausta(3)","filename_download":"Serveri_logo_musta_valkoinentausta(3).svg","type":"image/svg+xml","storage":"local"}	{"title":"Serveri Logo Musta Valkoinentausta(3)","filename_download":"Serveri_logo_musta_valkoinentausta(3).svg","type":"image/svg+xml","storage":"local"}	\N
+510	635	directus_permissions	40	{"collection":"directus_shares","action":"create","permissions":{},"fields":["*"],"role":"4491158e-dc93-41ee-bb07-4e191785d730"}	{"collection":"directus_shares","action":"create","permissions":{},"fields":["*"],"role":"4491158e-dc93-41ee-bb07-4e191785d730"}	\N
+533	659	directus_permissions	63	{"role":"4491158e-dc93-41ee-bb07-4e191785d730","collection":"for_new_student","action":"update","fields":["*"],"permissions":{},"validation":{}}	{"role":"4491158e-dc93-41ee-bb07-4e191785d730","collection":"for_new_student","action":"update","fields":["*"],"permissions":{},"validation":{}}	\N
+488	612	directus_settings	1	{"id":1,"project_name":"Serveri ry Sisällönhallinta","project_url":"https://serveriry.fi","project_color":"#000000","project_logo":"57de8669-8ae3-480f-8ea5-6924b44796dd","public_foreground":null,"public_background":null,"public_note":null,"auth_login_attempts":25,"auth_password_policy":null,"storage_asset_transform":"all","storage_asset_presets":null,"custom_css":null,"storage_default_folder":null,"basemaps":null,"mapbox_key":null,"module_bar":null,"project_descriptor":"Serveri ry:n sisällönhallintasovellus, josta voi muokata kotisivujamme.","translation_strings":null,"default_language":"en-US","custom_aspect_ratios":null}	{"project_logo":"57de8669-8ae3-480f-8ea5-6924b44796dd"}	\N
+489	614	directus_roles	4491158e-dc93-41ee-bb07-4e191785d730	{"name":"Julkaisija","admin_access":false,"app_access":true}	{"name":"Julkaisija","admin_access":false,"app_access":true}	\N
+490	615	directus_permissions	20	{"collection":"directus_files","action":"create","permissions":{},"fields":["*"],"role":"4491158e-dc93-41ee-bb07-4e191785d730"}	{"collection":"directus_files","action":"create","permissions":{},"fields":["*"],"role":"4491158e-dc93-41ee-bb07-4e191785d730"}	\N
+491	616	directus_permissions	21	{"collection":"directus_files","action":"read","permissions":{},"fields":["*"],"role":"4491158e-dc93-41ee-bb07-4e191785d730"}	{"collection":"directus_files","action":"read","permissions":{},"fields":["*"],"role":"4491158e-dc93-41ee-bb07-4e191785d730"}	\N
+492	617	directus_permissions	22	{"collection":"directus_files","action":"update","permissions":{},"fields":["*"],"role":"4491158e-dc93-41ee-bb07-4e191785d730"}	{"collection":"directus_files","action":"update","permissions":{},"fields":["*"],"role":"4491158e-dc93-41ee-bb07-4e191785d730"}	\N
+493	618	directus_permissions	23	{"collection":"directus_files","action":"delete","permissions":{},"fields":["*"],"role":"4491158e-dc93-41ee-bb07-4e191785d730"}	{"collection":"directus_files","action":"delete","permissions":{},"fields":["*"],"role":"4491158e-dc93-41ee-bb07-4e191785d730"}	\N
+494	619	directus_permissions	24	{"collection":"directus_dashboards","action":"create","permissions":{},"fields":["*"],"role":"4491158e-dc93-41ee-bb07-4e191785d730"}	{"collection":"directus_dashboards","action":"create","permissions":{},"fields":["*"],"role":"4491158e-dc93-41ee-bb07-4e191785d730"}	\N
+495	620	directus_permissions	25	{"collection":"directus_dashboards","action":"read","permissions":{},"fields":["*"],"role":"4491158e-dc93-41ee-bb07-4e191785d730"}	{"collection":"directus_dashboards","action":"read","permissions":{},"fields":["*"],"role":"4491158e-dc93-41ee-bb07-4e191785d730"}	\N
+496	621	directus_permissions	26	{"collection":"directus_dashboards","action":"update","permissions":{},"fields":["*"],"role":"4491158e-dc93-41ee-bb07-4e191785d730"}	{"collection":"directus_dashboards","action":"update","permissions":{},"fields":["*"],"role":"4491158e-dc93-41ee-bb07-4e191785d730"}	\N
+497	622	directus_permissions	27	{"collection":"directus_dashboards","action":"delete","permissions":{},"fields":["*"],"role":"4491158e-dc93-41ee-bb07-4e191785d730"}	{"collection":"directus_dashboards","action":"delete","permissions":{},"fields":["*"],"role":"4491158e-dc93-41ee-bb07-4e191785d730"}	\N
+498	623	directus_permissions	28	{"collection":"directus_panels","action":"create","permissions":{},"fields":["*"],"role":"4491158e-dc93-41ee-bb07-4e191785d730"}	{"collection":"directus_panels","action":"create","permissions":{},"fields":["*"],"role":"4491158e-dc93-41ee-bb07-4e191785d730"}	\N
+499	624	directus_permissions	29	{"collection":"directus_panels","action":"read","permissions":{},"fields":["*"],"role":"4491158e-dc93-41ee-bb07-4e191785d730"}	{"collection":"directus_panels","action":"read","permissions":{},"fields":["*"],"role":"4491158e-dc93-41ee-bb07-4e191785d730"}	\N
+500	625	directus_permissions	30	{"collection":"directus_panels","action":"update","permissions":{},"fields":["*"],"role":"4491158e-dc93-41ee-bb07-4e191785d730"}	{"collection":"directus_panels","action":"update","permissions":{},"fields":["*"],"role":"4491158e-dc93-41ee-bb07-4e191785d730"}	\N
+501	626	directus_permissions	31	{"collection":"directus_panels","action":"delete","permissions":{},"fields":["*"],"role":"4491158e-dc93-41ee-bb07-4e191785d730"}	{"collection":"directus_panels","action":"delete","permissions":{},"fields":["*"],"role":"4491158e-dc93-41ee-bb07-4e191785d730"}	\N
+502	627	directus_permissions	32	{"collection":"directus_folders","action":"create","permissions":{},"fields":["*"],"role":"4491158e-dc93-41ee-bb07-4e191785d730"}	{"collection":"directus_folders","action":"create","permissions":{},"fields":["*"],"role":"4491158e-dc93-41ee-bb07-4e191785d730"}	\N
+503	628	directus_permissions	33	{"collection":"directus_folders","action":"read","permissions":{},"fields":["*"],"role":"4491158e-dc93-41ee-bb07-4e191785d730"}	{"collection":"directus_folders","action":"read","permissions":{},"fields":["*"],"role":"4491158e-dc93-41ee-bb07-4e191785d730"}	\N
+504	629	directus_permissions	34	{"collection":"directus_folders","action":"update","permissions":{},"fields":["*"],"role":"4491158e-dc93-41ee-bb07-4e191785d730"}	{"collection":"directus_folders","action":"update","permissions":{},"fields":["*"],"role":"4491158e-dc93-41ee-bb07-4e191785d730"}	\N
+505	630	directus_permissions	35	{"collection":"directus_folders","action":"delete","permissions":{},"role":"4491158e-dc93-41ee-bb07-4e191785d730"}	{"collection":"directus_folders","action":"delete","permissions":{},"role":"4491158e-dc93-41ee-bb07-4e191785d730"}	\N
+506	631	directus_permissions	36	{"collection":"directus_users","action":"read","permissions":{},"fields":["*"],"role":"4491158e-dc93-41ee-bb07-4e191785d730"}	{"collection":"directus_users","action":"read","permissions":{},"fields":["*"],"role":"4491158e-dc93-41ee-bb07-4e191785d730"}	\N
+507	632	directus_permissions	37	{"collection":"directus_users","action":"update","permissions":{"id":{"_eq":"$CURRENT_USER"}},"fields":["first_name","last_name","email","password","location","title","description","avatar","language","theme","tfa_secret"],"role":"4491158e-dc93-41ee-bb07-4e191785d730"}	{"collection":"directus_users","action":"update","permissions":{"id":{"_eq":"$CURRENT_USER"}},"fields":["first_name","last_name","email","password","location","title","description","avatar","language","theme","tfa_secret"],"role":"4491158e-dc93-41ee-bb07-4e191785d730"}	\N
+508	633	directus_permissions	38	{"collection":"directus_roles","action":"read","permissions":{},"fields":["*"],"role":"4491158e-dc93-41ee-bb07-4e191785d730"}	{"collection":"directus_roles","action":"read","permissions":{},"fields":["*"],"role":"4491158e-dc93-41ee-bb07-4e191785d730"}	\N
+509	634	directus_permissions	39	{"collection":"directus_shares","action":"read","permissions":{"_or":[{"role":{"_eq":"$CURRENT_ROLE"}},{"role":{"_null":true}}]},"fields":["*"],"role":"4491158e-dc93-41ee-bb07-4e191785d730"}	{"collection":"directus_shares","action":"read","permissions":{"_or":[{"role":{"_eq":"$CURRENT_ROLE"}},{"role":{"_null":true}}]},"fields":["*"],"role":"4491158e-dc93-41ee-bb07-4e191785d730"}	\N
+511	636	directus_permissions	41	{"collection":"directus_shares","action":"update","permissions":{"user_created":{"_eq":"$CURRENT_USER"}},"fields":["*"],"role":"4491158e-dc93-41ee-bb07-4e191785d730"}	{"collection":"directus_shares","action":"update","permissions":{"user_created":{"_eq":"$CURRENT_USER"}},"fields":["*"],"role":"4491158e-dc93-41ee-bb07-4e191785d730"}	\N
+512	637	directus_permissions	42	{"collection":"directus_shares","action":"delete","permissions":{"user_created":{"_eq":"$CURRENT_USER"}},"fields":["*"],"role":"4491158e-dc93-41ee-bb07-4e191785d730"}	{"collection":"directus_shares","action":"delete","permissions":{"user_created":{"_eq":"$CURRENT_USER"}},"fields":["*"],"role":"4491158e-dc93-41ee-bb07-4e191785d730"}	\N
+513	638	directus_permissions	43	{"collection":"directus_flows","action":"read","permissions":{"trigger":{"_eq":"manual"}},"fields":["id","name","icon","color","options","trigger"],"role":"4491158e-dc93-41ee-bb07-4e191785d730"}	{"collection":"directus_flows","action":"read","permissions":{"trigger":{"_eq":"manual"}},"fields":["id","name","icon","color","options","trigger"],"role":"4491158e-dc93-41ee-bb07-4e191785d730"}	\N
+514	639	directus_permissions	44	{"role":"4491158e-dc93-41ee-bb07-4e191785d730","collection":"LandingPage","action":"read","fields":["*"],"permissions":{},"validation":{}}	{"role":"4491158e-dc93-41ee-bb07-4e191785d730","collection":"LandingPage","action":"read","fields":["*"],"permissions":{},"validation":{}}	\N
+515	641	directus_permissions	45	{"role":"4491158e-dc93-41ee-bb07-4e191785d730","collection":"LandingPage","action":"create","fields":["*"],"permissions":{},"validation":{}}	{"role":"4491158e-dc93-41ee-bb07-4e191785d730","collection":"LandingPage","action":"create","fields":["*"],"permissions":{},"validation":{}}	\N
+516	642	directus_permissions	46	{"role":"4491158e-dc93-41ee-bb07-4e191785d730","collection":"board_members","action":"create","fields":["*"],"permissions":{},"validation":{}}	{"role":"4491158e-dc93-41ee-bb07-4e191785d730","collection":"board_members","action":"create","fields":["*"],"permissions":{},"validation":{}}	\N
+517	643	directus_permissions	47	{"role":"4491158e-dc93-41ee-bb07-4e191785d730","collection":"events","action":"create","fields":["*"],"permissions":{},"validation":{}}	{"role":"4491158e-dc93-41ee-bb07-4e191785d730","collection":"events","action":"create","fields":["*"],"permissions":{},"validation":{}}	\N
+518	644	directus_permissions	48	{"role":"4491158e-dc93-41ee-bb07-4e191785d730","collection":"for_new_student","action":"create","fields":["*"],"permissions":{},"validation":{}}	{"role":"4491158e-dc93-41ee-bb07-4e191785d730","collection":"for_new_student","action":"create","fields":["*"],"permissions":{},"validation":{}}	\N
+519	645	directus_permissions	49	{"role":"4491158e-dc93-41ee-bb07-4e191785d730","collection":"gdpr","action":"create","fields":["*"],"permissions":{},"validation":{}}	{"role":"4491158e-dc93-41ee-bb07-4e191785d730","collection":"gdpr","action":"create","fields":["*"],"permissions":{},"validation":{}}	\N
+520	646	directus_permissions	50	{"role":"4491158e-dc93-41ee-bb07-4e191785d730","collection":"LandingPage","action":"read","fields":["*"],"permissions":{},"validation":{}}	{"role":"4491158e-dc93-41ee-bb07-4e191785d730","collection":"LandingPage","action":"read","fields":["*"],"permissions":{},"validation":{}}	\N
+521	647	directus_permissions	51	{"role":"4491158e-dc93-41ee-bb07-4e191785d730","collection":"LandingPage","action":"update","fields":["*"],"permissions":{},"validation":{}}	{"role":"4491158e-dc93-41ee-bb07-4e191785d730","collection":"LandingPage","action":"update","fields":["*"],"permissions":{},"validation":{}}	\N
+522	648	directus_permissions	52	{"role":"4491158e-dc93-41ee-bb07-4e191785d730","collection":"LandingPage","action":"delete","fields":["*"],"permissions":{},"validation":{}}	{"role":"4491158e-dc93-41ee-bb07-4e191785d730","collection":"LandingPage","action":"delete","fields":["*"],"permissions":{},"validation":{}}	\N
+523	649	directus_permissions	53	{"role":"4491158e-dc93-41ee-bb07-4e191785d730","collection":"LandingPage","action":"share","fields":["*"],"permissions":{},"validation":{}}	{"role":"4491158e-dc93-41ee-bb07-4e191785d730","collection":"LandingPage","action":"share","fields":["*"],"permissions":{},"validation":{}}	\N
+524	650	directus_permissions	54	{"role":"4491158e-dc93-41ee-bb07-4e191785d730","collection":"board_members","action":"share","fields":["*"],"permissions":{},"validation":{}}	{"role":"4491158e-dc93-41ee-bb07-4e191785d730","collection":"board_members","action":"share","fields":["*"],"permissions":{},"validation":{}}	\N
+525	651	directus_permissions	55	{"role":"4491158e-dc93-41ee-bb07-4e191785d730","collection":"board_members","action":"delete","fields":["*"],"permissions":{},"validation":{}}	{"role":"4491158e-dc93-41ee-bb07-4e191785d730","collection":"board_members","action":"delete","fields":["*"],"permissions":{},"validation":{}}	\N
+526	652	directus_permissions	56	{"role":"4491158e-dc93-41ee-bb07-4e191785d730","collection":"board_members","action":"update","fields":["*"],"permissions":{},"validation":{}}	{"role":"4491158e-dc93-41ee-bb07-4e191785d730","collection":"board_members","action":"update","fields":["*"],"permissions":{},"validation":{}}	\N
+527	653	directus_permissions	57	{"role":"4491158e-dc93-41ee-bb07-4e191785d730","collection":"board_members","action":"read","fields":["*"],"permissions":{},"validation":{}}	{"role":"4491158e-dc93-41ee-bb07-4e191785d730","collection":"board_members","action":"read","fields":["*"],"permissions":{},"validation":{}}	\N
+528	654	directus_permissions	58	{"role":"4491158e-dc93-41ee-bb07-4e191785d730","collection":"events","action":"read","fields":["*"],"permissions":{},"validation":{}}	{"role":"4491158e-dc93-41ee-bb07-4e191785d730","collection":"events","action":"read","fields":["*"],"permissions":{},"validation":{}}	\N
+529	655	directus_permissions	59	{"role":"4491158e-dc93-41ee-bb07-4e191785d730","collection":"events","action":"update","fields":["*"],"permissions":{},"validation":{}}	{"role":"4491158e-dc93-41ee-bb07-4e191785d730","collection":"events","action":"update","fields":["*"],"permissions":{},"validation":{}}	\N
+530	656	directus_permissions	60	{"role":"4491158e-dc93-41ee-bb07-4e191785d730","collection":"events","action":"delete","fields":["*"],"permissions":{},"validation":{}}	{"role":"4491158e-dc93-41ee-bb07-4e191785d730","collection":"events","action":"delete","fields":["*"],"permissions":{},"validation":{}}	\N
+531	657	directus_permissions	61	{"role":"4491158e-dc93-41ee-bb07-4e191785d730","collection":"events","action":"share","fields":["*"],"permissions":{},"validation":{}}	{"role":"4491158e-dc93-41ee-bb07-4e191785d730","collection":"events","action":"share","fields":["*"],"permissions":{},"validation":{}}	\N
+532	658	directus_permissions	62	{"role":"4491158e-dc93-41ee-bb07-4e191785d730","collection":"for_new_student","action":"read","fields":["*"],"permissions":{},"validation":{}}	{"role":"4491158e-dc93-41ee-bb07-4e191785d730","collection":"for_new_student","action":"read","fields":["*"],"permissions":{},"validation":{}}	\N
+733	894	lomake_vastaukset	145	{"firm_message":"asd","firm_contact":"ASD@asd.com","firm_name":"asda"}	{"firm_message":"asd","firm_contact":"ASD@asd.com","firm_name":"asda"}	\N
+534	660	directus_permissions	64	{"role":"4491158e-dc93-41ee-bb07-4e191785d730","collection":"for_new_student","action":"delete","fields":["*"],"permissions":{},"validation":{}}	{"role":"4491158e-dc93-41ee-bb07-4e191785d730","collection":"for_new_student","action":"delete","fields":["*"],"permissions":{},"validation":{}}	\N
+535	661	directus_permissions	65	{"role":"4491158e-dc93-41ee-bb07-4e191785d730","collection":"for_new_student","action":"share","fields":["*"],"permissions":{},"validation":{}}	{"role":"4491158e-dc93-41ee-bb07-4e191785d730","collection":"for_new_student","action":"share","fields":["*"],"permissions":{},"validation":{}}	\N
+536	662	directus_permissions	66	{"role":"4491158e-dc93-41ee-bb07-4e191785d730","collection":"gdpr","action":"share","fields":["*"],"permissions":{},"validation":{}}	{"role":"4491158e-dc93-41ee-bb07-4e191785d730","collection":"gdpr","action":"share","fields":["*"],"permissions":{},"validation":{}}	\N
+537	663	directus_permissions	67	{"role":"4491158e-dc93-41ee-bb07-4e191785d730","collection":"gdpr","action":"delete","fields":["*"],"permissions":{},"validation":{}}	{"role":"4491158e-dc93-41ee-bb07-4e191785d730","collection":"gdpr","action":"delete","fields":["*"],"permissions":{},"validation":{}}	\N
+538	664	directus_permissions	68	{"role":"4491158e-dc93-41ee-bb07-4e191785d730","collection":"gdpr","action":"update","fields":["*"],"permissions":{},"validation":{}}	{"role":"4491158e-dc93-41ee-bb07-4e191785d730","collection":"gdpr","action":"update","fields":["*"],"permissions":{},"validation":{}}	\N
+539	665	directus_permissions	69	{"role":"4491158e-dc93-41ee-bb07-4e191785d730","collection":"gdpr","action":"read","fields":["*"],"permissions":{},"validation":{}}	{"role":"4491158e-dc93-41ee-bb07-4e191785d730","collection":"gdpr","action":"read","fields":["*"],"permissions":{},"validation":{}}	\N
+540	666	directus_permissions	70	{"role":"4491158e-dc93-41ee-bb07-4e191785d730","collection":"hallitus_page","action":"create","fields":["*"],"permissions":{},"validation":{}}	{"role":"4491158e-dc93-41ee-bb07-4e191785d730","collection":"hallitus_page","action":"create","fields":["*"],"permissions":{},"validation":{}}	\N
+541	667	directus_permissions	71	{"role":"4491158e-dc93-41ee-bb07-4e191785d730","collection":"hallitus_page","action":"share","fields":["*"],"permissions":{},"validation":{}}	{"role":"4491158e-dc93-41ee-bb07-4e191785d730","collection":"hallitus_page","action":"share","fields":["*"],"permissions":{},"validation":{}}	\N
+542	668	directus_permissions	72	{"role":"4491158e-dc93-41ee-bb07-4e191785d730","collection":"hallitus_page","action":"read","fields":["*"],"permissions":{},"validation":{}}	{"role":"4491158e-dc93-41ee-bb07-4e191785d730","collection":"hallitus_page","action":"read","fields":["*"],"permissions":{},"validation":{}}	\N
+543	670	directus_permissions	74	{"role":"4491158e-dc93-41ee-bb07-4e191785d730","collection":"hallitus_page","action":"update","fields":["*"],"permissions":{},"validation":{}}	{"role":"4491158e-dc93-41ee-bb07-4e191785d730","collection":"hallitus_page","action":"update","fields":["*"],"permissions":{},"validation":{}}	\N
+544	669	directus_permissions	73	{"role":"4491158e-dc93-41ee-bb07-4e191785d730","collection":"hallitus_page","action":"delete","fields":["*"],"permissions":{},"validation":{}}	{"role":"4491158e-dc93-41ee-bb07-4e191785d730","collection":"hallitus_page","action":"delete","fields":["*"],"permissions":{},"validation":{}}	\N
+545	672	directus_permissions	75	{"role":"4491158e-dc93-41ee-bb07-4e191785d730","collection":"liity_serveriin","action":"create","fields":["*"],"permissions":{},"validation":{}}	{"role":"4491158e-dc93-41ee-bb07-4e191785d730","collection":"liity_serveriin","action":"create","fields":["*"],"permissions":{},"validation":{}}	\N
+546	671	directus_permissions	76	{"role":"4491158e-dc93-41ee-bb07-4e191785d730","collection":"liity_serveriin","action":"read","fields":["*"],"permissions":{},"validation":{}}	{"role":"4491158e-dc93-41ee-bb07-4e191785d730","collection":"liity_serveriin","action":"read","fields":["*"],"permissions":{},"validation":{}}	\N
+547	673	directus_permissions	78	{"role":"4491158e-dc93-41ee-bb07-4e191785d730","collection":"liity_serveriin","action":"delete","fields":["*"],"permissions":{},"validation":{}}	{"role":"4491158e-dc93-41ee-bb07-4e191785d730","collection":"liity_serveriin","action":"delete","fields":["*"],"permissions":{},"validation":{}}	\N
+548	674	directus_permissions	77	{"role":"4491158e-dc93-41ee-bb07-4e191785d730","collection":"liity_serveriin","action":"update","fields":["*"],"permissions":{},"validation":{}}	{"role":"4491158e-dc93-41ee-bb07-4e191785d730","collection":"liity_serveriin","action":"update","fields":["*"],"permissions":{},"validation":{}}	\N
+549	675	directus_permissions	79	{"role":"4491158e-dc93-41ee-bb07-4e191785d730","collection":"liity_serveriin","action":"share","fields":["*"],"permissions":{},"validation":{}}	{"role":"4491158e-dc93-41ee-bb07-4e191785d730","collection":"liity_serveriin","action":"share","fields":["*"],"permissions":{},"validation":{}}	\N
+550	676	directus_permissions	80	{"role":"4491158e-dc93-41ee-bb07-4e191785d730","collection":"lomake_vastaukset","action":"create","fields":["*"],"permissions":{},"validation":{}}	{"role":"4491158e-dc93-41ee-bb07-4e191785d730","collection":"lomake_vastaukset","action":"create","fields":["*"],"permissions":{},"validation":{}}	\N
+551	677	directus_permissions	82	{"role":"4491158e-dc93-41ee-bb07-4e191785d730","collection":"lomake_vastaukset","action":"update","fields":["*"],"permissions":{},"validation":{}}	{"role":"4491158e-dc93-41ee-bb07-4e191785d730","collection":"lomake_vastaukset","action":"update","fields":["*"],"permissions":{},"validation":{}}	\N
+552	678	directus_permissions	81	{"role":"4491158e-dc93-41ee-bb07-4e191785d730","collection":"lomake_vastaukset","action":"read","fields":["*"],"permissions":{},"validation":{}}	{"role":"4491158e-dc93-41ee-bb07-4e191785d730","collection":"lomake_vastaukset","action":"read","fields":["*"],"permissions":{},"validation":{}}	\N
+553	679	directus_permissions	84	{"role":"4491158e-dc93-41ee-bb07-4e191785d730","collection":"lomake_vastaukset","action":"share","fields":["*"],"permissions":{},"validation":{}}	{"role":"4491158e-dc93-41ee-bb07-4e191785d730","collection":"lomake_vastaukset","action":"share","fields":["*"],"permissions":{},"validation":{}}	\N
+554	680	directus_permissions	83	{"role":"4491158e-dc93-41ee-bb07-4e191785d730","collection":"lomake_vastaukset","action":"delete","fields":["*"],"permissions":{},"validation":{}}	{"role":"4491158e-dc93-41ee-bb07-4e191785d730","collection":"lomake_vastaukset","action":"delete","fields":["*"],"permissions":{},"validation":{}}	\N
+555	681	directus_permissions	86	{"role":"4491158e-dc93-41ee-bb07-4e191785d730","collection":"news","action":"read","fields":["*"],"permissions":{},"validation":{}}	{"role":"4491158e-dc93-41ee-bb07-4e191785d730","collection":"news","action":"read","fields":["*"],"permissions":{},"validation":{}}	\N
+556	682	directus_permissions	85	{"role":"4491158e-dc93-41ee-bb07-4e191785d730","collection":"news","action":"create","fields":["*"],"permissions":{},"validation":{}}	{"role":"4491158e-dc93-41ee-bb07-4e191785d730","collection":"news","action":"create","fields":["*"],"permissions":{},"validation":{}}	\N
+557	683	directus_permissions	88	{"role":"4491158e-dc93-41ee-bb07-4e191785d730","collection":"news","action":"delete","fields":["*"],"permissions":{},"validation":{}}	{"role":"4491158e-dc93-41ee-bb07-4e191785d730","collection":"news","action":"delete","fields":["*"],"permissions":{},"validation":{}}	\N
+563	689	directus_permissions	92	{"role":"4491158e-dc93-41ee-bb07-4e191785d730","collection":"partners","action":"read","fields":["*"],"permissions":{},"validation":{}}	{"role":"4491158e-dc93-41ee-bb07-4e191785d730","collection":"partners","action":"read","fields":["*"],"permissions":{},"validation":{}}	\N
+569	695	directus_permissions	99	{"role":"4491158e-dc93-41ee-bb07-4e191785d730","collection":"serveri_rules","action":"share","fields":["*"],"permissions":{},"validation":{}}	{"role":"4491158e-dc93-41ee-bb07-4e191785d730","collection":"serveri_rules","action":"share","fields":["*"],"permissions":{},"validation":{}}	\N
+571	697	directus_permissions	100	{"role":"4491158e-dc93-41ee-bb07-4e191785d730","collection":"social_medias","action":"create","fields":["*"],"permissions":{},"validation":{}}	{"role":"4491158e-dc93-41ee-bb07-4e191785d730","collection":"social_medias","action":"create","fields":["*"],"permissions":{},"validation":{}}	\N
+575	701	directus_permissions	106	{"role":"4491158e-dc93-41ee-bb07-4e191785d730","collection":"study_club","action":"read","fields":["*"],"permissions":{},"validation":{}}	{"role":"4491158e-dc93-41ee-bb07-4e191785d730","collection":"study_club","action":"read","fields":["*"],"permissions":{},"validation":{}}	\N
+584	710	directus_permissions	114	{"role":"4491158e-dc93-41ee-bb07-4e191785d730","collection":"turvallinen_tila","action":"share","fields":["*"],"permissions":{},"validation":{}}	{"role":"4491158e-dc93-41ee-bb07-4e191785d730","collection":"turvallinen_tila","action":"share","fields":["*"],"permissions":{},"validation":{}}	\N
+558	685	directus_permissions	89	{"role":"4491158e-dc93-41ee-bb07-4e191785d730","collection":"news","action":"share","fields":["*"],"permissions":{},"validation":{}}	{"role":"4491158e-dc93-41ee-bb07-4e191785d730","collection":"news","action":"share","fields":["*"],"permissions":{},"validation":{}}	\N
+562	688	directus_permissions	93	{"role":"4491158e-dc93-41ee-bb07-4e191785d730","collection":"partners","action":"delete","fields":["*"],"permissions":{},"validation":{}}	{"role":"4491158e-dc93-41ee-bb07-4e191785d730","collection":"partners","action":"delete","fields":["*"],"permissions":{},"validation":{}}	\N
+568	694	directus_permissions	98	{"role":"4491158e-dc93-41ee-bb07-4e191785d730","collection":"serveri_rules","action":"delete","fields":["*"],"permissions":{},"validation":{}}	{"role":"4491158e-dc93-41ee-bb07-4e191785d730","collection":"serveri_rules","action":"delete","fields":["*"],"permissions":{},"validation":{}}	\N
+570	696	directus_permissions	101	{"role":"4491158e-dc93-41ee-bb07-4e191785d730","collection":"social_medias","action":"read","fields":["*"],"permissions":{},"validation":{}}	{"role":"4491158e-dc93-41ee-bb07-4e191785d730","collection":"social_medias","action":"read","fields":["*"],"permissions":{},"validation":{}}	\N
+579	705	directus_permissions	109	{"role":"4491158e-dc93-41ee-bb07-4e191785d730","collection":"study_club","action":"share","fields":["*"],"permissions":{},"validation":{}}	{"role":"4491158e-dc93-41ee-bb07-4e191785d730","collection":"study_club","action":"share","fields":["*"],"permissions":{},"validation":{}}	\N
+581	707	directus_permissions	111	{"role":"4491158e-dc93-41ee-bb07-4e191785d730","collection":"turvallinen_tila","action":"read","fields":["*"],"permissions":{},"validation":{}}	{"role":"4491158e-dc93-41ee-bb07-4e191785d730","collection":"turvallinen_tila","action":"read","fields":["*"],"permissions":{},"validation":{}}	\N
+559	684	directus_permissions	87	{"role":"4491158e-dc93-41ee-bb07-4e191785d730","collection":"news","action":"update","fields":["*"],"permissions":{},"validation":{}}	{"role":"4491158e-dc93-41ee-bb07-4e191785d730","collection":"news","action":"update","fields":["*"],"permissions":{},"validation":{}}	\N
+560	686	directus_permissions	90	{"role":"4491158e-dc93-41ee-bb07-4e191785d730","collection":"partners","action":"create","fields":["*"],"permissions":{},"validation":{}}	{"role":"4491158e-dc93-41ee-bb07-4e191785d730","collection":"partners","action":"create","fields":["*"],"permissions":{},"validation":{}}	\N
+565	691	directus_permissions	96	{"role":"4491158e-dc93-41ee-bb07-4e191785d730","collection":"serveri_rules","action":"read","fields":["*"],"permissions":{},"validation":{}}	{"role":"4491158e-dc93-41ee-bb07-4e191785d730","collection":"serveri_rules","action":"read","fields":["*"],"permissions":{},"validation":{}}	\N
+574	699	directus_permissions	102	{"role":"4491158e-dc93-41ee-bb07-4e191785d730","collection":"social_medias","action":"update","fields":["*"],"permissions":{},"validation":{}}	{"role":"4491158e-dc93-41ee-bb07-4e191785d730","collection":"social_medias","action":"update","fields":["*"],"permissions":{},"validation":{}}	\N
+576	702	directus_permissions	105	{"role":"4491158e-dc93-41ee-bb07-4e191785d730","collection":"study_club","action":"create","fields":["*"],"permissions":{},"validation":{}}	{"role":"4491158e-dc93-41ee-bb07-4e191785d730","collection":"study_club","action":"create","fields":["*"],"permissions":{},"validation":{}}	\N
+583	709	directus_permissions	112	{"role":"4491158e-dc93-41ee-bb07-4e191785d730","collection":"turvallinen_tila","action":"delete","fields":["*"],"permissions":{},"validation":{}}	{"role":"4491158e-dc93-41ee-bb07-4e191785d730","collection":"turvallinen_tila","action":"delete","fields":["*"],"permissions":{},"validation":{}}	\N
+561	687	directus_permissions	91	{"role":"4491158e-dc93-41ee-bb07-4e191785d730","collection":"partners","action":"update","fields":["*"],"permissions":{},"validation":{}}	{"role":"4491158e-dc93-41ee-bb07-4e191785d730","collection":"partners","action":"update","fields":["*"],"permissions":{},"validation":{}}	\N
+567	693	directus_permissions	97	{"role":"4491158e-dc93-41ee-bb07-4e191785d730","collection":"serveri_rules","action":"update","fields":["*"],"permissions":{},"validation":{}}	{"role":"4491158e-dc93-41ee-bb07-4e191785d730","collection":"serveri_rules","action":"update","fields":["*"],"permissions":{},"validation":{}}	\N
+572	698	directus_permissions	103	{"role":"4491158e-dc93-41ee-bb07-4e191785d730","collection":"social_medias","action":"delete","fields":["*"],"permissions":{},"validation":{}}	{"role":"4491158e-dc93-41ee-bb07-4e191785d730","collection":"social_medias","action":"delete","fields":["*"],"permissions":{},"validation":{}}	\N
+578	704	directus_permissions	107	{"role":"4491158e-dc93-41ee-bb07-4e191785d730","collection":"study_club","action":"update","fields":["*"],"permissions":{},"validation":{}}	{"role":"4491158e-dc93-41ee-bb07-4e191785d730","collection":"study_club","action":"update","fields":["*"],"permissions":{},"validation":{}}	\N
+580	706	directus_permissions	110	{"role":"4491158e-dc93-41ee-bb07-4e191785d730","collection":"turvallinen_tila","action":"create","fields":["*"],"permissions":{},"validation":{}}	{"role":"4491158e-dc93-41ee-bb07-4e191785d730","collection":"turvallinen_tila","action":"create","fields":["*"],"permissions":{},"validation":{}}	\N
+564	690	directus_permissions	94	{"role":"4491158e-dc93-41ee-bb07-4e191785d730","collection":"partners","action":"share","fields":["*"],"permissions":{},"validation":{}}	{"role":"4491158e-dc93-41ee-bb07-4e191785d730","collection":"partners","action":"share","fields":["*"],"permissions":{},"validation":{}}	\N
+566	692	directus_permissions	95	{"role":"4491158e-dc93-41ee-bb07-4e191785d730","collection":"serveri_rules","action":"create","fields":["*"],"permissions":{},"validation":{}}	{"role":"4491158e-dc93-41ee-bb07-4e191785d730","collection":"serveri_rules","action":"create","fields":["*"],"permissions":{},"validation":{}}	\N
+573	700	directus_permissions	104	{"role":"4491158e-dc93-41ee-bb07-4e191785d730","collection":"social_medias","action":"share","fields":["*"],"permissions":{},"validation":{}}	{"role":"4491158e-dc93-41ee-bb07-4e191785d730","collection":"social_medias","action":"share","fields":["*"],"permissions":{},"validation":{}}	\N
+577	703	directus_permissions	108	{"role":"4491158e-dc93-41ee-bb07-4e191785d730","collection":"study_club","action":"delete","fields":["*"],"permissions":{},"validation":{}}	{"role":"4491158e-dc93-41ee-bb07-4e191785d730","collection":"study_club","action":"delete","fields":["*"],"permissions":{},"validation":{}}	\N
+582	708	directus_permissions	113	{"role":"4491158e-dc93-41ee-bb07-4e191785d730","collection":"turvallinen_tila","action":"update","fields":["*"],"permissions":{},"validation":{}}	{"role":"4491158e-dc93-41ee-bb07-4e191785d730","collection":"turvallinen_tila","action":"update","fields":["*"],"permissions":{},"validation":{}}	\N
+585	711	directus_settings	1	{"id":1,"project_name":"Serveri ry Sisällönhallinta","project_url":"https://serveriry.fi","project_color":"#000000","project_logo":"57de8669-8ae3-480f-8ea5-6924b44796dd","public_foreground":null,"public_background":null,"public_note":null,"auth_login_attempts":25,"auth_password_policy":null,"storage_asset_transform":"all","storage_asset_presets":null,"custom_css":"body.dark{\\n--primary: #FFF !important;\\n}","storage_default_folder":null,"basemaps":null,"mapbox_key":null,"module_bar":null,"project_descriptor":"Serveri ry:n sisällönhallintasovellus, josta voi muokata kotisivujamme.","translation_strings":null,"default_language":"en-US","custom_aspect_ratios":null}	{"custom_css":"body.dark{\\n--primary: #FFF !important;\\n}"}	\N
+586	712	directus_settings	1	{"id":1,"project_name":"Serveri ry Sisällönhallinta","project_url":"https://serveriry.fi","project_color":"#000000","project_logo":"57de8669-8ae3-480f-8ea5-6924b44796dd","public_foreground":null,"public_background":null,"public_note":null,"auth_login_attempts":25,"auth_password_policy":null,"storage_asset_transform":"all","storage_asset_presets":null,"custom_css":"body.dark{\\n--primary: #F00 !important;\\n}","storage_default_folder":null,"basemaps":null,"mapbox_key":null,"module_bar":null,"project_descriptor":"Serveri ry:n sisällönhallintasovellus, josta voi muokata kotisivujamme.","translation_strings":null,"default_language":"en-US","custom_aspect_ratios":null}	{"custom_css":"body.dark{\\n--primary: #F00 !important;\\n}"}	\N
+587	713	directus_settings	1	{"id":1,"project_name":"Serveri ry Sisällönhallinta","project_url":"https://serveriry.fi","project_color":"#000000","project_logo":"57de8669-8ae3-480f-8ea5-6924b44796dd","public_foreground":null,"public_background":null,"public_note":null,"auth_login_attempts":25,"auth_password_policy":null,"storage_asset_transform":"all","storage_asset_presets":null,"custom_css":"body {\\n--primary: #F00 !important;\\n}","storage_default_folder":null,"basemaps":null,"mapbox_key":null,"module_bar":null,"project_descriptor":"Serveri ry:n sisällönhallintasovellus, josta voi muokata kotisivujamme.","translation_strings":null,"default_language":"en-US","custom_aspect_ratios":null}	{"custom_css":"body {\\n--primary: #F00 !important;\\n}"}	\N
+588	714	directus_roles	4491158e-dc93-41ee-bb07-4e191785d730	{"id":"4491158e-dc93-41ee-bb07-4e191785d730","name":"Julkaisija","icon":"supervised_user_circle","description":"Käyttäjä voi muokata ja luoda sivun sisältöä. ","ip_access":null,"enforce_tfa":false,"admin_access":false,"app_access":true,"users":[]}	{"description":"Käyttäjä voi muokata ja luoda sivun sisältöä. "}	\N
+589	715	directus_settings	1	{"id":1,"project_name":"Serveri ry Sisällönhallinta","project_url":"https://serveriry.fi","project_color":"#000000","project_logo":"57de8669-8ae3-480f-8ea5-6924b44796dd","public_foreground":null,"public_background":null,"public_note":null,"auth_login_attempts":25,"auth_password_policy":null,"storage_asset_transform":"all","storage_asset_presets":null,"custom_css":"body {\\n\\t--primary: #F00 !important;\\n}","storage_default_folder":null,"basemaps":null,"mapbox_key":null,"module_bar":null,"project_descriptor":"Serveri ry:n sisällönhallintasovellus, josta voi muokata kotisivujamme.","translation_strings":null,"default_language":"en-US","custom_aspect_ratios":null}	{"custom_css":"body {\\n\\t--primary: #F00 !important;\\n}"}	\N
+590	716	directus_settings	1	{"id":1,"project_name":"Serveri ry Sisällönhallinta","project_url":"https://serveriry.fi","project_color":"#000000","project_logo":"57de8669-8ae3-480f-8ea5-6924b44796dd","public_foreground":null,"public_background":null,"public_note":null,"auth_login_attempts":25,"auth_password_policy":null,"storage_asset_transform":"all","storage_asset_presets":null,"custom_css":"body {\\n\\t--primary: #009fb8 !important;\\n}","storage_default_folder":null,"basemaps":null,"mapbox_key":null,"module_bar":null,"project_descriptor":"Serveri ry:n sisällönhallintasovellus, josta voi muokata kotisivujamme.","translation_strings":null,"default_language":"en-US","custom_aspect_ratios":null}	{"custom_css":"body {\\n\\t--primary: #009fb8 !important;\\n}"}	\N
+591	717	directus_files	4c58bdbf-bdb1-4b3f-953a-fb619c26cae3	{"title":"Bill Gates Yung","filename_download":"bill gates yung.webp","type":"image/webp","storage":"local"}	{"title":"Bill Gates Yung","filename_download":"bill gates yung.webp","type":"image/webp","storage":"local"}	\N
+592	718	directus_users	1f3676e5-f46e-44b5-9d25-948d9f1768a8	{"role":"4491158e-dc93-41ee-bb07-4e191785d730","first_name":"Valtteri","last_name":"Savonen","email":"vsavonen@uef.fi","password":"**********","avatar":"4c58bdbf-bdb1-4b3f-953a-fb619c26cae3","title":"Ylläpitovastaava"}	{"role":"4491158e-dc93-41ee-bb07-4e191785d730","first_name":"Valtteri","last_name":"Savonen","email":"vsavonen@uef.fi","password":"**********","avatar":"4c58bdbf-bdb1-4b3f-953a-fb619c26cae3","title":"Ylläpitovastaava"}	\N
+593	720	directus_settings	1	{"id":1,"project_name":"Serveri ry Sisällönhallinta","project_url":"https://serveriry.fi","project_color":"#000000","project_logo":"55882074-5535-47d4-8a1a-eef51fbd5b38","public_foreground":null,"public_background":null,"public_note":null,"auth_login_attempts":25,"auth_password_policy":null,"storage_asset_transform":"all","storage_asset_presets":null,"custom_css":"body {\\n\\t--primary: #009fb8 !important;\\n}","storage_default_folder":null,"basemaps":null,"mapbox_key":null,"module_bar":null,"project_descriptor":"Serveri ry:n sisällönhallintasovellus, josta voi muokata kotisivujamme.","translation_strings":null,"default_language":"en-US","custom_aspect_ratios":null}	{"project_logo":"55882074-5535-47d4-8a1a-eef51fbd5b38"}	\N
+594	744	directus_settings	1	{"id":1,"project_name":"Serveri ry Sisällönhallinta","project_url":"https://serveriry.fi","project_color":"#5CC8EB","project_logo":"55882074-5535-47d4-8a1a-eef51fbd5b38","public_foreground":null,"public_background":null,"public_note":null,"auth_login_attempts":25,"auth_password_policy":null,"storage_asset_transform":"all","storage_asset_presets":null,"custom_css":"body {\\n\\t--primary: #009fb8 !important;\\n}","storage_default_folder":null,"basemaps":null,"mapbox_key":null,"module_bar":null,"project_descriptor":"Serveri ry:n sisällönhallintasovellus, josta voi muokata kotisivujamme.","translation_strings":null,"default_language":"en-US","custom_aspect_ratios":null}	{"project_color":"#5CC8EB"}	\N
+595	746	directus_settings	1	{"id":1,"project_name":"Serveri ry Sisällönhallinta","project_url":"https://serveriry.fi","project_color":"#FFFFFF","project_logo":"55882074-5535-47d4-8a1a-eef51fbd5b38","public_foreground":null,"public_background":null,"public_note":null,"auth_login_attempts":25,"auth_password_policy":null,"storage_asset_transform":"all","storage_asset_presets":null,"custom_css":"body {\\n\\t--primary: #009fb8 !important;\\n}","storage_default_folder":null,"basemaps":null,"mapbox_key":null,"module_bar":null,"project_descriptor":"Serveri ry:n sisällönhallintasovellus, josta voi muokata kotisivujamme.","translation_strings":null,"default_language":"en-US","custom_aspect_ratios":null}	{"project_color":"#FFFFFF"}	\N
+596	747	directus_settings	1	{"id":1,"project_name":"Serveri ry Sisällönhallinta","project_url":"https://serveriry.fi","project_color":"#FFFFFF","project_logo":"55882074-5535-47d4-8a1a-eef51fbd5b38","public_foreground":null,"public_background":null,"public_note":null,"auth_login_attempts":25,"auth_password_policy":null,"storage_asset_transform":"all","storage_asset_presets":null,"custom_css":"body {\\n\\t--primary: #009fb8 !important;\\n}","storage_default_folder":null,"basemaps":null,"mapbox_key":null,"module_bar":null,"project_descriptor":"Serveri ry:n sisällönhallintasovellus, josta voi muokata kotisivujamme.","translation_strings":null,"default_language":"fi-FI","custom_aspect_ratios":null}	{"default_language":"fi-FI"}	\N
+597	748	directus_settings	1	{"id":1,"project_name":"Serveri ry Sisällönhallinta","project_url":"https://serveriry.fi","project_color":"#FFFFFF","project_logo":"55882074-5535-47d4-8a1a-eef51fbd5b38","public_foreground":null,"public_background":null,"public_note":null,"auth_login_attempts":25,"auth_password_policy":null,"storage_asset_transform":"all","storage_asset_presets":null,"custom_css":"body {\\n\\t--primary: #009fb8 !important;\\n}","storage_default_folder":null,"basemaps":null,"mapbox_key":null,"module_bar":null,"project_descriptor":"Serveri ry:n sisällönhallintasovellus, josta voi muokata kotisivujamme.","translation_strings":null,"default_language":"fi-FI","custom_aspect_ratios":null}	{"default_language":"fi-FI"}	\N
+598	749	directus_files	2b5a773e-02ef-47a1-9dd4-dd27d3d095a9	{"filename_download":"small_computerstuffwithlogo_da6b992e47.jpg","storage":"local","type":"image/jpeg","title":"Small Computerstuffwithlogo Da6b992e47.jpg"}	{"filename_download":"small_computerstuffwithlogo_da6b992e47.jpg","storage":"local","type":"image/jpeg","title":"Small Computerstuffwithlogo Da6b992e47.jpg"}	\N
+599	750	directus_files	c64196b9-b622-416b-a74e-6572bfbd6978	{"filename_download":"efKgpjn2aP6szXJ","storage":"local","type":"text/html; charset=UTF-8","title":"Ef Kgpjn2a P6sz Xj"}	{"filename_download":"efKgpjn2aP6szXJ","storage":"local","type":"text/html; charset=UTF-8","title":"Ef Kgpjn2a P6sz Xj"}	\N
+600	751	directus_files	cdf7805f-b4de-4269-9d0a-2c82a740af0e	{"filename_download":"efKgpjn2aP6szXJ","storage":"local","type":"text/html; charset=UTF-8","title":"Ef Kgpjn2a P6sz Xj"}	{"filename_download":"efKgpjn2aP6szXJ","storage":"local","type":"text/html; charset=UTF-8","title":"Ef Kgpjn2a P6sz Xj"}	\N
+601	752	directus_files	b072ae6a-77b8-4f8f-85f9-ccd9cbfc7e2e	{"filename_download":"efKgpjn2aP6szXJ","storage":"local","type":"image/jpeg","title":"Ef Kgpjn2a P6sz Xj"}	{"filename_download":"efKgpjn2aP6szXJ","storage":"local","type":"image/jpeg","title":"Ef Kgpjn2a P6sz Xj"}	\N
+602	753	directus_settings	1	{"id":1,"project_name":"Serveri ry Sisällönhallinta","project_url":"https://serveriry.fi","project_color":"#FFFFFF","project_logo":"55882074-5535-47d4-8a1a-eef51fbd5b38","public_foreground":"2b5a773e-02ef-47a1-9dd4-dd27d3d095a9","public_background":"b072ae6a-77b8-4f8f-85f9-ccd9cbfc7e2e","public_note":null,"auth_login_attempts":25,"auth_password_policy":null,"storage_asset_transform":"all","storage_asset_presets":null,"custom_css":"body {\\n\\t--primary: #009fb8 !important;\\n}","storage_default_folder":null,"basemaps":null,"mapbox_key":null,"module_bar":null,"project_descriptor":"Serveri ry:n sisällönhallintasovellus, josta voi muokata kotisivujamme.","translation_strings":null,"default_language":"fi-FI","custom_aspect_ratios":null}	{"public_foreground":"2b5a773e-02ef-47a1-9dd4-dd27d3d095a9","public_background":"b072ae6a-77b8-4f8f-85f9-ccd9cbfc7e2e"}	\N
+603	756	directus_files	b072ae6a-77b8-4f8f-85f9-ccd9cbfc7e2e	{"id":"b072ae6a-77b8-4f8f-85f9-ccd9cbfc7e2e","storage":"local","filename_disk":"b072ae6a-77b8-4f8f-85f9-ccd9cbfc7e2e.jpeg","filename_download":"efKgpjn2aP6szXJ","title":"serveri-coins","type":"image/jpeg","folder":null,"uploaded_by":"0891a0cd-876b-4a0d-a22e-0cce30121382","uploaded_on":"2023-05-02T16:52:14.612Z","modified_by":"0891a0cd-876b-4a0d-a22e-0cce30121382","modified_on":"2023-05-02T16:52:50.018Z","charset":null,"filesize":"162373","width":1820,"height":1024,"duration":null,"embed":null,"description":null,"location":null,"tags":null,"metadata":{}}	{"title":"serveri-coins","modified_by":"0891a0cd-876b-4a0d-a22e-0cce30121382","modified_on":"2023-05-02T16:52:50.018Z"}	\N
+604	757	directus_files	2b5a773e-02ef-47a1-9dd4-dd27d3d095a9	{"id":"2b5a773e-02ef-47a1-9dd4-dd27d3d095a9","storage":"local","filename_disk":"2b5a773e-02ef-47a1-9dd4-dd27d3d095a9.jpg","filename_download":"small_computerstuffwithlogo_da6b992e47.jpg","title":"serveri-placeholder","type":"image/jpeg","folder":null,"uploaded_by":"0891a0cd-876b-4a0d-a22e-0cce30121382","uploaded_on":"2023-05-02T16:50:58.650Z","modified_by":"0891a0cd-876b-4a0d-a22e-0cce30121382","modified_on":"2023-05-02T16:53:02.626Z","charset":null,"filesize":"12873","width":500,"height":281,"duration":null,"embed":null,"description":null,"location":null,"tags":null,"metadata":{}}	{"title":"serveri-placeholder","modified_by":"0891a0cd-876b-4a0d-a22e-0cce30121382","modified_on":"2023-05-02T16:53:02.626Z"}	\N
+605	758	directus_settings	1	{"id":1,"project_name":"Serveri ry Sisällönhallinta","project_url":"https://serveriry.fi","project_color":"#FFFFFF","project_logo":"55882074-5535-47d4-8a1a-eef51fbd5b38","public_foreground":null,"public_background":"b072ae6a-77b8-4f8f-85f9-ccd9cbfc7e2e","public_note":null,"auth_login_attempts":25,"auth_password_policy":null,"storage_asset_transform":"all","storage_asset_presets":null,"custom_css":"body {\\n\\t--primary: #009fb8 !important;\\n}","storage_default_folder":null,"basemaps":null,"mapbox_key":null,"module_bar":null,"project_descriptor":"Serveri ry:n sisällönhallintasovellus, josta voi muokata kotisivujamme.","translation_strings":null,"default_language":"fi-FI","custom_aspect_ratios":null}	{"public_foreground":null}	\N
+606	759	directus_fields	127	{"hidden":true,"interface":"input","readonly":true,"field":"id","collection":"tutkinto_rakenne"}	{"hidden":true,"interface":"input","readonly":true,"field":"id","collection":"tutkinto_rakenne"}	\N
+622	775	directus_fields	139	{"interface":"input","special":null,"options":{"placeholder":"Kurssin kuvaus"},"collection":"tutkinto_rakenne","field":"description"}	{"interface":"input","special":null,"options":{"placeholder":"Kurssin kuvaus"},"collection":"tutkinto_rakenne","field":"description"}	\N
+607	760	directus_fields	128	{"width":"full","options":{"choices":[{"text":"$t:published","value":"published"},{"text":"$t:draft","value":"draft"},{"text":"$t:archived","value":"archived"}]},"interface":"select-dropdown","display":"labels","display_options":{"showAsDot":true,"choices":[{"text":"$t:published","value":"published","foreground":"#FFFFFF","background":"var(--primary)"},{"text":"$t:draft","value":"draft","foreground":"#18222F","background":"#D3DAE4"},{"text":"$t:archived","value":"archived","foreground":"#FFFFFF","background":"var(--warning)"}]},"field":"status","collection":"tutkinto_rakenne"}	{"width":"full","options":{"choices":[{"text":"$t:published","value":"published"},{"text":"$t:draft","value":"draft"},{"text":"$t:archived","value":"archived"}]},"interface":"select-dropdown","display":"labels","display_options":{"showAsDot":true,"choices":[{"text":"$t:published","value":"published","foreground":"#FFFFFF","background":"var(--primary)"},{"text":"$t:draft","value":"draft","foreground":"#18222F","background":"#D3DAE4"},{"text":"$t:archived","value":"archived","foreground":"#FFFFFF","background":"var(--warning)"}]},"field":"status","collection":"tutkinto_rakenne"}	\N
+608	761	directus_fields	129	{"special":["user-created"],"interface":"select-dropdown-m2o","options":{"template":"{{avatar.$thumbnail}} {{first_name}} {{last_name}}"},"display":"user","readonly":true,"hidden":true,"width":"half","field":"user_created","collection":"tutkinto_rakenne"}	{"special":["user-created"],"interface":"select-dropdown-m2o","options":{"template":"{{avatar.$thumbnail}} {{first_name}} {{last_name}}"},"display":"user","readonly":true,"hidden":true,"width":"half","field":"user_created","collection":"tutkinto_rakenne"}	\N
+609	762	directus_fields	130	{"special":["date-created"],"interface":"datetime","readonly":true,"hidden":true,"width":"half","display":"datetime","display_options":{"relative":true},"field":"date_created","collection":"tutkinto_rakenne"}	{"special":["date-created"],"interface":"datetime","readonly":true,"hidden":true,"width":"half","display":"datetime","display_options":{"relative":true},"field":"date_created","collection":"tutkinto_rakenne"}	\N
+610	763	directus_fields	131	{"special":["user-updated"],"interface":"select-dropdown-m2o","options":{"template":"{{avatar.$thumbnail}} {{first_name}} {{last_name}}"},"display":"user","readonly":true,"hidden":true,"width":"half","field":"user_updated","collection":"tutkinto_rakenne"}	{"special":["user-updated"],"interface":"select-dropdown-m2o","options":{"template":"{{avatar.$thumbnail}} {{first_name}} {{last_name}}"},"display":"user","readonly":true,"hidden":true,"width":"half","field":"user_updated","collection":"tutkinto_rakenne"}	\N
+611	764	directus_fields	132	{"special":["date-updated"],"interface":"datetime","readonly":true,"hidden":true,"width":"half","display":"datetime","display_options":{"relative":true},"field":"date_updated","collection":"tutkinto_rakenne"}	{"special":["date-updated"],"interface":"datetime","readonly":true,"hidden":true,"width":"half","display":"datetime","display_options":{"relative":true},"field":"date_updated","collection":"tutkinto_rakenne"}	\N
+612	765	directus_collections	tutkinto_rakenne	{"archive_field":"status","archive_value":"archived","unarchive_value":"draft","singleton":false,"collection":"tutkinto_rakenne"}	{"archive_field":"status","archive_value":"archived","unarchive_value":"draft","singleton":false,"collection":"tutkinto_rakenne"}	\N
+613	766	directus_fields	133	{"interface":"select-multiple-checkbox","special":["cast-json"],"options":{"choices":[{"text":"yleisopinnot","value":"0"},{"text":"syventävät opinnot","value":"0"}]},"collection":"tutkinto_rakenne","field":"tyyppi"}	{"interface":"select-multiple-checkbox","special":["cast-json"],"options":{"choices":[{"text":"yleisopinnot","value":"0"},{"text":"syventävät opinnot","value":"0"}]},"collection":"tutkinto_rakenne","field":"tyyppi"}	\N
+614	767	directus_collections	tutkinto_rakenne	{"collection":"tutkinto_rakenne","icon":"golf_course","note":null,"display_template":null,"hidden":false,"singleton":false,"translations":null,"archive_field":"status","archive_app_filter":true,"archive_value":"archived","unarchive_value":"draft","sort_field":null,"accountability":"all","color":null,"item_duplication_fields":null,"sort":null,"group":null,"collapse":"open"}	{"icon":"golf_course"}	\N
+615	768	directus_fields	134	{"hidden":true,"interface":"input","readonly":true,"field":"id","collection":"yleisopinnot"}	{"hidden":true,"interface":"input","readonly":true,"field":"id","collection":"yleisopinnot"}	\N
+616	769	directus_fields	135	{"special":["user-created"],"interface":"select-dropdown-m2o","options":{"template":"{{avatar.$thumbnail}} {{first_name}} {{last_name}}"},"display":"user","readonly":true,"hidden":true,"width":"half","field":"user_created","collection":"yleisopinnot"}	{"special":["user-created"],"interface":"select-dropdown-m2o","options":{"template":"{{avatar.$thumbnail}} {{first_name}} {{last_name}}"},"display":"user","readonly":true,"hidden":true,"width":"half","field":"user_created","collection":"yleisopinnot"}	\N
+617	770	directus_fields	136	{"special":["date-created"],"interface":"datetime","readonly":true,"hidden":true,"width":"half","display":"datetime","display_options":{"relative":true},"field":"date_created","collection":"yleisopinnot"}	{"special":["date-created"],"interface":"datetime","readonly":true,"hidden":true,"width":"half","display":"datetime","display_options":{"relative":true},"field":"date_created","collection":"yleisopinnot"}	\N
+618	771	directus_collections	yleisopinnot	{"singleton":false,"collection":"yleisopinnot"}	{"singleton":false,"collection":"yleisopinnot"}	\N
+619	772	directus_fields	137	{"interface":"select-dropdown","special":null,"options":{"choices":[{"text":"yleisopinnot","value":"0"},{"text":"aineopinnot","value":"0"}]},"required":true,"collection":"tutkinto_rakenne","field":"tyyppi"}	{"interface":"select-dropdown","special":null,"options":{"choices":[{"text":"yleisopinnot","value":"0"},{"text":"aineopinnot","value":"0"}]},"required":true,"collection":"tutkinto_rakenne","field":"tyyppi"}	\N
+620	773	directus_fields	137	{"id":137,"collection":"tutkinto_rakenne","field":"tyyppi","special":null,"interface":"select-dropdown","options":{"choices":[{"text":"yleisopinnot","value":"0"},{"text":"aineopinnot","value":"0"},{"text":"kieli- ja viestintä opinnot","value":"0"}]},"display":null,"display_options":null,"readonly":false,"hidden":false,"sort":null,"width":"full","translations":null,"note":null,"conditions":null,"required":true,"group":null,"validation":null,"validation_message":null}	{"collection":"tutkinto_rakenne","field":"tyyppi","special":null,"interface":"select-dropdown","options":{"choices":[{"text":"yleisopinnot","value":"0"},{"text":"aineopinnot","value":"0"},{"text":"kieli- ja viestintä opinnot","value":"0"}]},"display":null,"display_options":null,"readonly":false,"hidden":false,"sort":null,"width":"full","translations":null,"note":null,"conditions":null,"required":true,"group":null,"validation":null,"validation_message":null}	\N
+621	774	directus_fields	138	{"interface":"input","special":null,"required":true,"options":{"placeholder":"Kurssin nimi"},"collection":"tutkinto_rakenne","field":"name"}	{"interface":"input","special":null,"required":true,"options":{"placeholder":"Kurssin nimi"},"collection":"tutkinto_rakenne","field":"name"}	\N
+626	779	directus_permissions	115	{"role":null,"collection":"tutkinto_rakenne","action":"read","fields":["*"],"permissions":{},"validation":{}}	{"role":null,"collection":"tutkinto_rakenne","action":"read","fields":["*"],"permissions":{},"validation":{}}	\N
+627	780	directus_fields	137	{"id":137,"collection":"tutkinto_rakenne","field":"tyyppi","special":null,"interface":"select-dropdown","options":{"choices":[{"text":"yleisopinnot","value":"yleis"},{"text":"aineopinnot","value":"aine"},{"text":"kieli- ja viestintä opinnot","value":"kieliviesti"}]},"display":null,"display_options":null,"readonly":false,"hidden":false,"sort":null,"width":"full","translations":null,"note":null,"conditions":null,"required":true,"group":null,"validation":null,"validation_message":null}	{"collection":"tutkinto_rakenne","field":"tyyppi","special":null,"interface":"select-dropdown","options":{"choices":[{"text":"yleisopinnot","value":"yleis"},{"text":"aineopinnot","value":"aine"},{"text":"kieli- ja viestintä opinnot","value":"kieliviesti"}]},"display":null,"display_options":null,"readonly":false,"hidden":false,"sort":null,"width":"full","translations":null,"note":null,"conditions":null,"required":true,"group":null,"validation":null,"validation_message":null}	\N
+630	784	directus_fields	140	{"hidden":true,"interface":"input","readonly":true,"field":"id","collection":"test"}	{"hidden":true,"interface":"input","readonly":true,"field":"id","collection":"test"}	\N
+631	785	directus_fields	141	{"width":"full","options":{"choices":[{"text":"$t:published","value":"published"},{"text":"$t:draft","value":"draft"},{"text":"$t:archived","value":"archived"}]},"interface":"select-dropdown","display":"labels","display_options":{"showAsDot":true,"choices":[{"text":"$t:published","value":"published","foreground":"#FFFFFF","background":"var(--primary)"},{"text":"$t:draft","value":"draft","foreground":"#18222F","background":"#D3DAE4"},{"text":"$t:archived","value":"archived","foreground":"#FFFFFF","background":"var(--warning)"}]},"field":"status","collection":"test"}	{"width":"full","options":{"choices":[{"text":"$t:published","value":"published"},{"text":"$t:draft","value":"draft"},{"text":"$t:archived","value":"archived"}]},"interface":"select-dropdown","display":"labels","display_options":{"showAsDot":true,"choices":[{"text":"$t:published","value":"published","foreground":"#FFFFFF","background":"var(--primary)"},{"text":"$t:draft","value":"draft","foreground":"#18222F","background":"#D3DAE4"},{"text":"$t:archived","value":"archived","foreground":"#FFFFFF","background":"var(--warning)"}]},"field":"status","collection":"test"}	\N
+632	786	directus_fields	142	{"interface":"input","hidden":true,"field":"sort","collection":"test"}	{"interface":"input","hidden":true,"field":"sort","collection":"test"}	\N
+633	787	directus_fields	143	{"special":["user-created"],"interface":"select-dropdown-m2o","options":{"template":"{{avatar.$thumbnail}} {{first_name}} {{last_name}}"},"display":"user","readonly":true,"hidden":true,"width":"half","field":"user_created","collection":"test"}	{"special":["user-created"],"interface":"select-dropdown-m2o","options":{"template":"{{avatar.$thumbnail}} {{first_name}} {{last_name}}"},"display":"user","readonly":true,"hidden":true,"width":"half","field":"user_created","collection":"test"}	\N
+634	788	directus_fields	144	{"special":["date-created"],"interface":"datetime","readonly":true,"hidden":true,"width":"half","display":"datetime","display_options":{"relative":true},"field":"date_created","collection":"test"}	{"special":["date-created"],"interface":"datetime","readonly":true,"hidden":true,"width":"half","display":"datetime","display_options":{"relative":true},"field":"date_created","collection":"test"}	\N
+635	789	directus_fields	145	{"special":["user-updated"],"interface":"select-dropdown-m2o","options":{"template":"{{avatar.$thumbnail}} {{first_name}} {{last_name}}"},"display":"user","readonly":true,"hidden":true,"width":"half","field":"user_updated","collection":"test"}	{"special":["user-updated"],"interface":"select-dropdown-m2o","options":{"template":"{{avatar.$thumbnail}} {{first_name}} {{last_name}}"},"display":"user","readonly":true,"hidden":true,"width":"half","field":"user_updated","collection":"test"}	\N
+636	790	directus_fields	146	{"special":["date-updated"],"interface":"datetime","readonly":true,"hidden":true,"width":"half","display":"datetime","display_options":{"relative":true},"field":"date_updated","collection":"test"}	{"special":["date-updated"],"interface":"datetime","readonly":true,"hidden":true,"width":"half","display":"datetime","display_options":{"relative":true},"field":"date_updated","collection":"test"}	\N
+637	791	directus_collections	test	{"sort_field":"sort","archive_field":"status","archive_value":"archived","unarchive_value":"draft","singleton":false,"collection":"test"}	{"sort_field":"sort","archive_field":"status","archive_value":"archived","unarchive_value":"draft","singleton":false,"collection":"test"}	\N
+638	792	directus_fields	147	{"interface":"input","special":null,"collection":"test","field":"nimi"}	{"interface":"input","special":null,"collection":"test","field":"nimi"}	\N
+642	801	directus_fields	148	{"hidden":true,"interface":"input","readonly":true,"field":"id","collection":"tutkinto_rakenne"}	{"hidden":true,"interface":"input","readonly":true,"field":"id","collection":"tutkinto_rakenne"}	\N
+682	842	directus_fields	160	{"interface":"input","hidden":true,"field":"sort","collection":"instagram"}	{"interface":"input","hidden":true,"field":"sort","collection":"instagram"}	\N
+683	843	directus_fields	161	{"special":["user-created"],"interface":"select-dropdown-m2o","options":{"template":"{{avatar.$thumbnail}} {{first_name}} {{last_name}}"},"display":"user","readonly":true,"hidden":true,"width":"half","field":"user_created","collection":"instagram"}	{"special":["user-created"],"interface":"select-dropdown-m2o","options":{"template":"{{avatar.$thumbnail}} {{first_name}} {{last_name}}"},"display":"user","readonly":true,"hidden":true,"width":"half","field":"user_created","collection":"instagram"}	\N
+643	802	directus_fields	149	{"width":"full","options":{"choices":[{"text":"$t:published","value":"published"},{"text":"$t:draft","value":"draft"},{"text":"$t:archived","value":"archived"}]},"interface":"select-dropdown","display":"labels","display_options":{"showAsDot":true,"choices":[{"text":"$t:published","value":"published","foreground":"#FFFFFF","background":"var(--primary)"},{"text":"$t:draft","value":"draft","foreground":"#18222F","background":"#D3DAE4"},{"text":"$t:archived","value":"archived","foreground":"#FFFFFF","background":"var(--warning)"}]},"field":"status","collection":"tutkinto_rakenne"}	{"width":"full","options":{"choices":[{"text":"$t:published","value":"published"},{"text":"$t:draft","value":"draft"},{"text":"$t:archived","value":"archived"}]},"interface":"select-dropdown","display":"labels","display_options":{"showAsDot":true,"choices":[{"text":"$t:published","value":"published","foreground":"#FFFFFF","background":"var(--primary)"},{"text":"$t:draft","value":"draft","foreground":"#18222F","background":"#D3DAE4"},{"text":"$t:archived","value":"archived","foreground":"#FFFFFF","background":"var(--warning)"}]},"field":"status","collection":"tutkinto_rakenne"}	\N
+644	803	directus_fields	150	{"interface":"input","hidden":true,"field":"sort","collection":"tutkinto_rakenne"}	{"interface":"input","hidden":true,"field":"sort","collection":"tutkinto_rakenne"}	\N
+645	804	directus_fields	151	{"special":["user-created"],"interface":"select-dropdown-m2o","options":{"template":"{{avatar.$thumbnail}} {{first_name}} {{last_name}}"},"display":"user","readonly":true,"hidden":true,"width":"half","field":"user_created","collection":"tutkinto_rakenne"}	{"special":["user-created"],"interface":"select-dropdown-m2o","options":{"template":"{{avatar.$thumbnail}} {{first_name}} {{last_name}}"},"display":"user","readonly":true,"hidden":true,"width":"half","field":"user_created","collection":"tutkinto_rakenne"}	\N
+646	805	directus_fields	152	{"special":["date-created"],"interface":"datetime","readonly":true,"hidden":true,"width":"half","display":"datetime","display_options":{"relative":true},"field":"date_created","collection":"tutkinto_rakenne"}	{"special":["date-created"],"interface":"datetime","readonly":true,"hidden":true,"width":"half","display":"datetime","display_options":{"relative":true},"field":"date_created","collection":"tutkinto_rakenne"}	\N
+647	806	directus_fields	153	{"special":["user-updated"],"interface":"select-dropdown-m2o","options":{"template":"{{avatar.$thumbnail}} {{first_name}} {{last_name}}"},"display":"user","readonly":true,"hidden":true,"width":"half","field":"user_updated","collection":"tutkinto_rakenne"}	{"special":["user-updated"],"interface":"select-dropdown-m2o","options":{"template":"{{avatar.$thumbnail}} {{first_name}} {{last_name}}"},"display":"user","readonly":true,"hidden":true,"width":"half","field":"user_updated","collection":"tutkinto_rakenne"}	\N
+648	807	directus_fields	154	{"special":["date-updated"],"interface":"datetime","readonly":true,"hidden":true,"width":"half","display":"datetime","display_options":{"relative":true},"field":"date_updated","collection":"tutkinto_rakenne"}	{"special":["date-updated"],"interface":"datetime","readonly":true,"hidden":true,"width":"half","display":"datetime","display_options":{"relative":true},"field":"date_updated","collection":"tutkinto_rakenne"}	\N
+649	808	directus_collections	tutkinto_rakenne	{"sort_field":"sort","archive_field":"status","archive_value":"archived","unarchive_value":"draft","singleton":false,"collection":"tutkinto_rakenne"}	{"sort_field":"sort","archive_field":"status","archive_value":"archived","unarchive_value":"draft","singleton":false,"collection":"tutkinto_rakenne"}	\N
+650	809	directus_fields	155	{"interface":"select-dropdown","special":null,"required":true,"options":{"choices":[{"text":"yleisopinnot","value":"yleisopinnot"},{"text":"Kieli- ja viestintäopinnot","value":"kieliviesti"},{"text":"Perusopinnot","value":"perusopinnot"},{"text":"Valinnaiset aineopinnot","value":"valinnaiset"},{"text":"Pakolliset aineopinnot","value":"valinnaiset"},{"text":"Sivuaineet","value":"sivuaine"}]},"collection":"tutkinto_rakenne","field":"tyyppi"}	{"interface":"select-dropdown","special":null,"required":true,"options":{"choices":[{"text":"yleisopinnot","value":"yleisopinnot"},{"text":"Kieli- ja viestintäopinnot","value":"kieliviesti"},{"text":"Perusopinnot","value":"perusopinnot"},{"text":"Valinnaiset aineopinnot","value":"valinnaiset"},{"text":"Pakolliset aineopinnot","value":"valinnaiset"},{"text":"Sivuaineet","value":"sivuaine"}]},"collection":"tutkinto_rakenne","field":"tyyppi"}	\N
+651	810	directus_fields	156	{"interface":"input","special":null,"required":true,"options":{"placeholder":"Opintojakson nimi","iconLeft":"drive_file_rename_outline"},"collection":"tutkinto_rakenne","field":"nimi"}	{"interface":"input","special":null,"required":true,"options":{"placeholder":"Opintojakson nimi","iconLeft":"drive_file_rename_outline"},"collection":"tutkinto_rakenne","field":"nimi"}	\N
+652	811	directus_fields	157	{"interface":"input-multiline","special":null,"options":{"placeholder":"Opintojakson kuvaus"},"required":true,"collection":"tutkinto_rakenne","field":"kuvaus"}	{"interface":"input-multiline","special":null,"options":{"placeholder":"Opintojakson kuvaus"},"required":true,"collection":"tutkinto_rakenne","field":"kuvaus"}	\N
+653	812	directus_fields	158	{"interface":"input","special":null,"required":true,"options":{"step":0.5,"min":0,"max":30},"collection":"tutkinto_rakenne","field":"laajuus"}	{"interface":"input","special":null,"required":true,"options":{"step":0.5,"min":0,"max":30},"collection":"tutkinto_rakenne","field":"laajuus"}	\N
+654	813	tutkinto_rakenne	1	{"status":"published","tyyppi":"yleisopinnot","nimi":"Hops-tietojenkäsittelytiede","kuvaus":"(Hops = henkilökohtainen opintosuunnitelma)","laajuus":2}	{"status":"published","tyyppi":"yleisopinnot","nimi":"Hops-tietojenkäsittelytiede","kuvaus":"(Hops = henkilökohtainen opintosuunnitelma)","laajuus":2}	\N
+655	814	tutkinto_rakenne	2	{"kuvaus":"Opiskelija tutustuu oppiaine- ja vertaistuutoroinnin, verkkomateriaalin, erilaisten orientaatiotapahtumien sekä oheismateriaalin avulla yliopistoon opiskeluympäristönä ja oppimisyhteisönä. Erityisesti tutustutaan oman oppiaineen opiskelukäytäntöihin ja opiskelua tukeviin palveluihin. Lisäksi saadaan tietoa akateemisen opiskelun edellyttämistä tiedoista ja taidoista sekä opiskelukyvystä ja sen ylläpitämisestä. ","nimi":"Orientaatio yliopisto-opiskeluun","laajuus":1,"tyyppi":"yleisopinnot"}	{"kuvaus":"Opiskelija tutustuu oppiaine- ja vertaistuutoroinnin, verkkomateriaalin, erilaisten orientaatiotapahtumien sekä oheismateriaalin avulla yliopistoon opiskeluympäristönä ja oppimisyhteisönä. Erityisesti tutustutaan oman oppiaineen opiskelukäytäntöihin ja opiskelua tukeviin palveluihin. Lisäksi saadaan tietoa akateemisen opiskelun edellyttämistä tiedoista ja taidoista sekä opiskelukyvystä ja sen ylläpitämisestä. ","nimi":"Orientaatio yliopisto-opiskeluun","laajuus":1,"tyyppi":"yleisopinnot"}	\N
+684	844	directus_fields	162	{"special":["date-created"],"interface":"datetime","readonly":true,"hidden":true,"width":"half","display":"datetime","display_options":{"relative":true},"field":"date_created","collection":"instagram"}	{"special":["date-created"],"interface":"datetime","readonly":true,"hidden":true,"width":"half","display":"datetime","display_options":{"relative":true},"field":"date_created","collection":"instagram"}	\N
+656	815	tutkinto_rakenne	2	{"id":2,"status":"published","sort":null,"user_created":"0891a0cd-876b-4a0d-a22e-0cce30121382","date_created":"2023-05-02T17:27:41.703Z","user_updated":"0891a0cd-876b-4a0d-a22e-0cce30121382","date_updated":"2023-05-02T17:27:46.339Z","tyyppi":"yleisopinnot","nimi":"Orientaatio yliopisto-opiskeluun","kuvaus":"Opiskelija tutustuu oppiaine- ja vertaistuutoroinnin, verkkomateriaalin, erilaisten orientaatiotapahtumien sekä oheismateriaalin avulla yliopistoon opiskeluympäristönä ja oppimisyhteisönä. Erityisesti tutustutaan oman oppiaineen opiskelukäytäntöihin ja opiskelua tukeviin palveluihin. Lisäksi saadaan tietoa akateemisen opiskelun edellyttämistä tiedoista ja taidoista sekä opiskelukyvystä ja sen ylläpitämisestä. ","laajuus":"1.00000"}	{"status":"published","user_updated":"0891a0cd-876b-4a0d-a22e-0cce30121382","date_updated":"2023-05-02T17:27:46.339Z"}	\N
+657	816	tutkinto_rakenne	3	{"tyyppi":"yleisopinnot","nimi":"Tieto- ja viestintätekniikka opiskelun tukena","kuvaus":"Internetin edistyksellinen käyttö. Tietoturva, tekijänoikeudet ja sosiaalinen media opiskelussa.\\n\\nPdf-tiedoston luominen.\\n\\nOffice 365 ympäristö henkilökohtaisena oppimisympäristönä.\\n\\nTekstinkäsittely (tekstin muokkaus ja muotoilu, listan muokkaus, ala- ja loppuviite, taulukon lisäys ja muokkaus, kuvan lisäys ja muokkaus, tyylin päivittäminen, ylä- ja alatunnisteet, sivunumerointi, otsikointi, sisällysluettelo).\\n\\nEsitysgrafiikan perusteet (dian muokkaus, muodot, teemojen käyttö, diatunnisteet).\\n\\nTaulukkolaskennan perusteet (taulukon muokkaus, perusfunktiot, kaavion luominen ja muokkaaminen).\\n\\nYliopisto-opiskelun keskeiset verkkoresurssit.","laajuus":2}	{"tyyppi":"yleisopinnot","nimi":"Tieto- ja viestintätekniikka opiskelun tukena","kuvaus":"Internetin edistyksellinen käyttö. Tietoturva, tekijänoikeudet ja sosiaalinen media opiskelussa.\\n\\nPdf-tiedoston luominen.\\n\\nOffice 365 ympäristö henkilökohtaisena oppimisympäristönä.\\n\\nTekstinkäsittely (tekstin muokkaus ja muotoilu, listan muokkaus, ala- ja loppuviite, taulukon lisäys ja muokkaus, kuvan lisäys ja muokkaus, tyylin päivittäminen, ylä- ja alatunnisteet, sivunumerointi, otsikointi, sisällysluettelo).\\n\\nEsitysgrafiikan perusteet (dian muokkaus, muodot, teemojen käyttö, diatunnisteet).\\n\\nTaulukkolaskennan perusteet (taulukon muokkaus, perusfunktiot, kaavion luominen ja muokkaaminen).\\n\\nYliopisto-opiskelun keskeiset verkkoresurssit.","laajuus":2}	\N
+658	817	tutkinto_rakenne	3	{"id":3,"status":"published","sort":null,"user_created":"0891a0cd-876b-4a0d-a22e-0cce30121382","date_created":"2023-05-02T17:28:12.203Z","user_updated":"0891a0cd-876b-4a0d-a22e-0cce30121382","date_updated":"2023-05-02T17:28:16.570Z","tyyppi":"yleisopinnot","nimi":"Tieto- ja viestintätekniikka opiskelun tukena","kuvaus":"Internetin edistyksellinen käyttö. Tietoturva, tekijänoikeudet ja sosiaalinen media opiskelussa.\\n\\nPdf-tiedoston luominen.\\n\\nOffice 365 ympäristö henkilökohtaisena oppimisympäristönä.\\n\\nTekstinkäsittely (tekstin muokkaus ja muotoilu, listan muokkaus, ala- ja loppuviite, taulukon lisäys ja muokkaus, kuvan lisäys ja muokkaus, tyylin päivittäminen, ylä- ja alatunnisteet, sivunumerointi, otsikointi, sisällysluettelo).\\n\\nEsitysgrafiikan perusteet (dian muokkaus, muodot, teemojen käyttö, diatunnisteet).\\n\\nTaulukkolaskennan perusteet (taulukon muokkaus, perusfunktiot, kaavion luominen ja muokkaaminen).\\n\\nYliopisto-opiskelun keskeiset verkkoresurssit.","laajuus":"2.00000"}	{"status":"published","user_updated":"0891a0cd-876b-4a0d-a22e-0cce30121382","date_updated":"2023-05-02T17:28:16.570Z"}	\N
+659	818	tutkinto_rakenne	4	{"status":"published","tyyppi":"kieliviesti","nimi":"Kirjoitusviestintää tietojenkäsittelytieteen opiskelijoille","kuvaus":"• opintojen ja työelämän kannalta keskeiset tekstilajit sekä tieteen viestinnän erityispiirteet\\n• oikeakielisyys ja huoliteltu teksti\\n• argumentoinnin keinot\\n• tyyli ja tarkoituksenmukainen sävy\\n• kriittinen lukutapa ja tekstianalyysi\\n• kirjoitusprosessin hallinta ja erityisesti oman kandidaatintutkielman työstäminen\\n• tekstien kohdentaminen lukijoille ja yleistajuinen viestintä\\n• rakentavan palautteen antaminen ja vastaanottaminen ","laajuus":2}	{"status":"published","tyyppi":"kieliviesti","nimi":"Kirjoitusviestintää tietojenkäsittelytieteen opiskelijoille","kuvaus":"• opintojen ja työelämän kannalta keskeiset tekstilajit sekä tieteen viestinnän erityispiirteet\\n• oikeakielisyys ja huoliteltu teksti\\n• argumentoinnin keinot\\n• tyyli ja tarkoituksenmukainen sävy\\n• kriittinen lukutapa ja tekstianalyysi\\n• kirjoitusprosessin hallinta ja erityisesti oman kandidaatintutkielman työstäminen\\n• tekstien kohdentaminen lukijoille ja yleistajuinen viestintä\\n• rakentavan palautteen antaminen ja vastaanottaminen ","laajuus":2}	\N
+660	819	lomake_vastaukset	125	{"firm_message":"Moro","firm_contact":"mattimeikalainen@moro.com","firm_name":"Moro"}	{"firm_message":"Moro","firm_contact":"mattimeikalainen@moro.com","firm_name":"Moro"}	\N
+661	820	tutkinto_rakenne	5	{"status":"published","tyyppi":"kieliviesti","nimi":"Puheviestintää tietojenkäsittelytieteen opiskelijoille","kuvaus":"Vuorovaikutusosaaminen ja sen kehittäminen, vuorovaikutus omalla ammatti- ja tieteenalalla, vuorovaikutuskeskeisyys, reagoiva kuunteleminen, kohderyhmän huomioon ottaminen, palautteen antaminen ja vastaanottaminen, yhteistyötaidot. ","laajuus":2}	{"status":"published","tyyppi":"kieliviesti","nimi":"Puheviestintää tietojenkäsittelytieteen opiskelijoille","kuvaus":"Vuorovaikutusosaaminen ja sen kehittäminen, vuorovaikutus omalla ammatti- ja tieteenalalla, vuorovaikutuskeskeisyys, reagoiva kuunteleminen, kohderyhmän huomioon ottaminen, palautteen antaminen ja vastaanottaminen, yhteistyötaidot. ","laajuus":2}	\N
+662	821	tutkinto_rakenne	4	{"id":4,"status":"published","sort":null,"user_created":"0891a0cd-876b-4a0d-a22e-0cce30121382","date_created":"2023-05-02T17:28:52.135Z","user_updated":"0891a0cd-876b-4a0d-a22e-0cce30121382","date_updated":"2023-05-02T17:30:03.023Z","tyyppi":"kieliviesti","nimi":"Kirjoitusviestintää tietojenkäsittelytieteen opiskelijoille","kuvaus":"opintojen ja työelämän kannalta keskeiset tekstilajit sekä tieteen viestinnän erityispiirteet\\noikeakielisyys ja huoliteltu teksti\\nargumentoinnin keinot\\ntyyli ja tarkoituksenmukainen sävy\\nkriittinen lukutapa ja tekstianalyysi\\nkirjoitusprosessin hallinta ja erityisesti oman kandidaatintutkielman työstäminen\\ntekstien kohdentaminen lukijoille ja yleistajuinen viestintä\\nrakentavan palautteen antaminen ja vastaanottaminen ","laajuus":"2.00000"}	{"kuvaus":"opintojen ja työelämän kannalta keskeiset tekstilajit sekä tieteen viestinnän erityispiirteet\\noikeakielisyys ja huoliteltu teksti\\nargumentoinnin keinot\\ntyyli ja tarkoituksenmukainen sävy\\nkriittinen lukutapa ja tekstianalyysi\\nkirjoitusprosessin hallinta ja erityisesti oman kandidaatintutkielman työstäminen\\ntekstien kohdentaminen lukijoille ja yleistajuinen viestintä\\nrakentavan palautteen antaminen ja vastaanottaminen ","user_updated":"0891a0cd-876b-4a0d-a22e-0cce30121382","date_updated":"2023-05-02T17:30:03.023Z"}	\N
+663	822	lomake_vastaukset	126	{"firm_message":"Terve","firm_contact":"mattimeikalainen@moro.com","firm_name":"Moro"}	{"firm_message":"Terve","firm_contact":"mattimeikalainen@moro.com","firm_name":"Moro"}	\N
+730	891	directus_permissions	119	{"id":119,"role":null,"collection":"sosiaaliset_mediat","action":"read","permissions":{},"validation":{},"presets":null,"fields":["url","img","nimi"]}	{"role":null,"collection":"sosiaaliset_mediat","action":"read","permissions":{},"validation":{},"presets":null,"fields":["url","img","nimi"]}	\N
+664	823	tutkinto_rakenne	6	{"status":"published","tyyppi":"perusopinnot","nimi":"Johdatus tietojenkäsittelyyn","kuvaus":"Informaatio, sen esittäminen ja tallentaminen ja sen käsittelemisen automatisointi. Ohjelmointi, ohjelmointikielet, ja kuinka niillä luodaan ohjelmia ja ohjelmistoja. Tiedon mallintaminen, tietokannat, tietoverkot ja kuinka tietoa hallitaan. Laskennan rajat. Suunnittelu, design ja älykkäät järjestelmät. Tietojenkäsittelyn ja tietojenkäsittelijän tehtävät ja vastuut yhteiskunnassa. "}	{"status":"published","tyyppi":"perusopinnot","nimi":"Johdatus tietojenkäsittelyyn","kuvaus":"Informaatio, sen esittäminen ja tallentaminen ja sen käsittelemisen automatisointi. Ohjelmointi, ohjelmointikielet, ja kuinka niillä luodaan ohjelmia ja ohjelmistoja. Tiedon mallintaminen, tietokannat, tietoverkot ja kuinka tietoa hallitaan. Laskennan rajat. Suunnittelu, design ja älykkäät järjestelmät. Tietojenkäsittelyn ja tietojenkäsittelijän tehtävät ja vastuut yhteiskunnassa. "}	\N
+665	824	tutkinto_rakenne	7	{"status":"published","tyyppi":"valinnaiset","nimi":"Diskreetit rakenteet","kuvaus":"Propositio- ja predikaattilogiikka, joukko-oppi, funktiot ja relaatiot, kombinatoriikka, graafiteoria, matemaattinen induktio"}	{"status":"published","tyyppi":"valinnaiset","nimi":"Diskreetit rakenteet","kuvaus":"Propositio- ja predikaattilogiikka, joukko-oppi, funktiot ja relaatiot, kombinatoriikka, graafiteoria, matemaattinen induktio"}	\N
+666	825	tutkinto_rakenne	8	{"status":"published","tyyppi":"valinnaiset","nimi":"Johdatus testaukseen","kuvaus":"Ohjelmistovirheet, testauksen vaiheet, testausmenetelmät, regressiotestaus, testauksen automatisointi, testausprosessin kehittäminen ","laajuus":4}	{"status":"published","tyyppi":"valinnaiset","nimi":"Johdatus testaukseen","kuvaus":"Ohjelmistovirheet, testauksen vaiheet, testausmenetelmät, regressiotestaus, testauksen automatisointi, testausprosessin kehittäminen ","laajuus":4}	\N
+667	826	tutkinto_rakenne	9	{"tyyppi":"sivuaine","nimi":"Matematiikka","laajuus":25,"kuvaus":"matikkaa voi opiskella :D"}	{"tyyppi":"sivuaine","nimi":"Matematiikka","laajuus":25,"kuvaus":"matikkaa voi opiskella :D"}	\N
+668	827	tutkinto_rakenne	9	{"id":9,"status":"published","sort":null,"user_created":"0891a0cd-876b-4a0d-a22e-0cce30121382","date_created":"2023-05-02T17:35:01.253Z","user_updated":"0891a0cd-876b-4a0d-a22e-0cce30121382","date_updated":"2023-05-02T17:35:06.777Z","tyyppi":"sivuaine","nimi":"Matematiikka","kuvaus":"matikkaa voi opiskella :D","laajuus":"25.00000"}	{"status":"published","user_updated":"0891a0cd-876b-4a0d-a22e-0cce30121382","date_updated":"2023-05-02T17:35:06.777Z"}	\N
+669	828	directus_collections	tutkinto_rakenne	{"collection":"tutkinto_rakenne","icon":"golf_course","note":null,"display_template":null,"hidden":false,"singleton":false,"translations":null,"archive_field":"status","archive_app_filter":true,"archive_value":"archived","unarchive_value":"draft","sort_field":"sort","accountability":"all","color":null,"item_duplication_fields":null,"sort":null,"group":null,"collapse":"open"}	{"icon":"golf_course"}	\N
+670	829	directus_fields	155	{"id":155,"collection":"tutkinto_rakenne","field":"tyyppi","special":null,"interface":"select-dropdown","options":{"choices":[{"text":"yleisopinnot","value":"yleisopinnot"},{"text":"Kieli- ja viestintäopinnot","value":"kieliviesti"},{"text":"Perusopinnot","value":"perusopinnot"},{"text":"Valinnaiset aineopinnot","value":"valinnaiset"},{"text":"Pakolliset aineopinnot","value":"pakolliset"},{"text":"Sivuaineet","value":"sivuaine"}]},"display":null,"display_options":null,"readonly":false,"hidden":false,"sort":null,"width":"full","translations":null,"note":null,"conditions":null,"required":true,"group":null,"validation":null,"validation_message":null}	{"collection":"tutkinto_rakenne","field":"tyyppi","special":null,"interface":"select-dropdown","options":{"choices":[{"text":"yleisopinnot","value":"yleisopinnot"},{"text":"Kieli- ja viestintäopinnot","value":"kieliviesti"},{"text":"Perusopinnot","value":"perusopinnot"},{"text":"Valinnaiset aineopinnot","value":"valinnaiset"},{"text":"Pakolliset aineopinnot","value":"pakolliset"},{"text":"Sivuaineet","value":"sivuaine"}]},"display":null,"display_options":null,"readonly":false,"hidden":false,"sort":null,"width":"full","translations":null,"note":null,"conditions":null,"required":true,"group":null,"validation":null,"validation_message":null}	\N
+671	830	tutkinto_rakenne	7	{"id":7,"status":"published","sort":null,"user_created":"0891a0cd-876b-4a0d-a22e-0cce30121382","date_created":"2023-05-02T17:32:27.239Z","user_updated":"0891a0cd-876b-4a0d-a22e-0cce30121382","date_updated":"2023-05-02T17:36:33.382Z","tyyppi":"pakolliset","nimi":"Diskreetit rakenteet","kuvaus":"Propositio- ja predikaattilogiikka, joukko-oppi, funktiot ja relaatiot, kombinatoriikka, graafiteoria, matemaattinen induktio","laajuus":"5.00000"}	{"tyyppi":"pakolliset","user_updated":"0891a0cd-876b-4a0d-a22e-0cce30121382","date_updated":"2023-05-02T17:36:33.382Z"}	\N
+672	831	directus_permissions	116	{"role":null,"collection":"tutkinto_rakenne","action":"read"}	{"role":null,"collection":"tutkinto_rakenne","action":"read"}	\N
+673	832	directus_permissions	116	{"id":116,"role":null,"collection":"tutkinto_rakenne","action":"read","permissions":null,"validation":null,"presets":null,"fields":["tyyppi","nimi","laajuus","kuvaus","sort"]}	{"role":null,"collection":"tutkinto_rakenne","action":"read","permissions":null,"validation":null,"presets":null,"fields":["tyyppi","nimi","laajuus","kuvaus","sort"]}	\N
+674	833	directus_permissions	117	{"role":null,"collection":"events","action":"read"}	{"role":null,"collection":"events","action":"read"}	\N
+675	835	directus_fields	158	{"id":158,"collection":"tutkinto_rakenne","field":"laajuus","special":null,"interface":"input","options":{"step":0.5,"min":0,"max":30},"display":null,"display_options":null,"readonly":false,"hidden":false,"sort":null,"width":"full","translations":null,"note":null,"conditions":null,"required":true,"group":null,"validation":null,"validation_message":null}	{"collection":"tutkinto_rakenne","field":"laajuus","special":null,"interface":"input","options":{"step":0.5,"min":0,"max":30},"display":null,"display_options":null,"readonly":false,"hidden":false,"sort":null,"width":"full","translations":null,"note":null,"conditions":null,"required":true,"group":null,"validation":null,"validation_message":null}	\N
+676	836	lomake_vastaukset	127	{"firm_contact":"sad@asd.com","firm_name":"AS"}	{"firm_contact":"sad@asd.com","firm_name":"AS"}	\N
+677	837	lomake_vastaukset	128	{"firm_contact":"ASD@asd.com","firm_name":"sad"}	{"firm_contact":"ASD@asd.com","firm_name":"sad"}	\N
+678	838	lomake_vastaukset	129	{"firm_message":"sadad","firm_contact":"mattimeikalainen@moro.com","firm_name":"asdasd"}	{"firm_message":"sadad","firm_contact":"mattimeikalainen@moro.com","firm_name":"asdasd"}	\N
+679	839	lomake_vastaukset	130	{"firm_message":"asdasd","firm_contact":"ASD@asd.com","firm_name":"asdasd"}	{"firm_message":"asdasd","firm_contact":"ASD@asd.com","firm_name":"asdasd"}	\N
+680	840	lomake_vastaukset	131	{"firm_message":"asdasd","firm_contact":"savonen.emppu@gmail.com","firm_name":"asdasdasdasdadasdadasd"}	{"firm_message":"asdasd","firm_contact":"savonen.emppu@gmail.com","firm_name":"asdasdasdasdadasdadasd"}	\N
+681	841	directus_fields	159	{"hidden":true,"interface":"input","readonly":true,"field":"id","collection":"instagram"}	{"hidden":true,"interface":"input","readonly":true,"field":"id","collection":"instagram"}	\N
+685	845	directus_fields	163	{"special":["user-updated"],"interface":"select-dropdown-m2o","options":{"template":"{{avatar.$thumbnail}} {{first_name}} {{last_name}}"},"display":"user","readonly":true,"hidden":true,"width":"half","field":"user_updated","collection":"instagram"}	{"special":["user-updated"],"interface":"select-dropdown-m2o","options":{"template":"{{avatar.$thumbnail}} {{first_name}} {{last_name}}"},"display":"user","readonly":true,"hidden":true,"width":"half","field":"user_updated","collection":"instagram"}	\N
+686	846	directus_fields	164	{"special":["date-updated"],"interface":"datetime","readonly":true,"hidden":true,"width":"half","display":"datetime","display_options":{"relative":true},"field":"date_updated","collection":"instagram"}	{"special":["date-updated"],"interface":"datetime","readonly":true,"hidden":true,"width":"half","display":"datetime","display_options":{"relative":true},"field":"date_updated","collection":"instagram"}	\N
+687	847	directus_collections	instagram	{"sort_field":"sort","singleton":false,"collection":"instagram"}	{"sort_field":"sort","singleton":false,"collection":"instagram"}	\N
+688	848	directus_fields	165	{"interface":"input","special":null,"required":true,"options":{"placeholder":"instagram postauksen url","iconLeft":"image"},"collection":"instagram","field":"postaus_url"}	{"interface":"input","special":null,"required":true,"options":{"placeholder":"instagram postauksen url","iconLeft":"image"},"collection":"instagram","field":"postaus_url"}	\N
+689	849	lomake_vastaukset	132	{"firm_message":"MOIKKA","firm_contact":"savonen.emppu@gmail.com","firm_name":"TErvehdys"}	{"firm_message":"MOIKKA","firm_contact":"savonen.emppu@gmail.com","firm_name":"TErvehdys"}	\N
+690	850	directus_collections	instagram	{"collection":"instagram","icon":"image","note":null,"display_template":null,"hidden":false,"singleton":false,"translations":null,"archive_field":null,"archive_app_filter":true,"archive_value":null,"unarchive_value":null,"sort_field":"sort","accountability":"all","color":null,"item_duplication_fields":null,"sort":null,"group":null,"collapse":"open"}	{"icon":"image"}	\N
+691	851	lomake_vastaukset	133	{"firm_message":"asdasd","firm_contact":"mattimeikalainen@moro.com","firm_name":"Moro"}	{"firm_message":"asdasd","firm_contact":"mattimeikalainen@moro.com","firm_name":"Moro"}	\N
+692	852	directus_fields	166	{"interface":"input","special":null,"required":true,"options":{"iconLeft":"grid_3x3"},"collection":"instagram","field":"postaus_id"}	{"interface":"input","special":null,"required":true,"options":{"iconLeft":"grid_3x3"},"collection":"instagram","field":"postaus_id"}	\N
+693	853	directus_fields	167	{"interface":"input","special":null,"collection":"instagram","field":"postauksen_kuvaus"}	{"interface":"input","special":null,"collection":"instagram","field":"postauksen_kuvaus"}	\N
+694	854	lomake_vastaukset	134	{"firm_message":"asdasd","firm_contact":"ASD@asd.com","firm_name":"asdasd"}	{"firm_message":"asdasd","firm_contact":"ASD@asd.com","firm_name":"asdasd"}	\N
+695	855	directus_fields	166	{"id":166,"collection":"instagram","field":"postaus_id","special":null,"interface":"input","options":{"iconLeft":"grid_3x3"},"display":null,"display_options":null,"readonly":false,"hidden":false,"sort":null,"width":"full","translations":null,"note":"Postauksen url osoitteen id osa, esim. CqFdw7MBG5N","conditions":null,"required":true,"group":null,"validation":null,"validation_message":null}	{"collection":"instagram","field":"postaus_id","special":null,"interface":"input","options":{"iconLeft":"grid_3x3"},"display":null,"display_options":null,"readonly":false,"hidden":false,"sort":null,"width":"full","translations":null,"note":"Postauksen url osoitteen id osa, esim. CqFdw7MBG5N","conditions":null,"required":true,"group":null,"validation":null,"validation_message":null}	\N
+696	856	directus_fields	167	{"id":167,"collection":"instagram","field":"postauksen_kuvaus","special":null,"interface":"input","options":null,"display":null,"display_options":null,"readonly":false,"hidden":false,"sort":null,"width":"full","translations":null,"note":"Kuvaus helpottaa sisällön hallinnan käyttäjää ymmärtämään mistä instagram postauksesta on kyse","conditions":null,"required":false,"group":null,"validation":null,"validation_message":null}	{"collection":"instagram","field":"postauksen_kuvaus","special":null,"interface":"input","options":null,"display":null,"display_options":null,"readonly":false,"hidden":false,"sort":null,"width":"full","translations":null,"note":"Kuvaus helpottaa sisällön hallinnan käyttäjää ymmärtämään mistä instagram postauksesta on kyse","conditions":null,"required":false,"group":null,"validation":null,"validation_message":null}	\N
+697	857	instagram	1	{"postaus_id":"Cq2gVmnh_kK","postauksen_kuvaus":"vappuviikko"}	{"postaus_id":"Cq2gVmnh_kK","postauksen_kuvaus":"vappuviikko"}	\N
+698	858	instagram	2	{"postaus_id":"CrS1H8FgYKB","postauksen_kuvaus":"wabudebug"}	{"postaus_id":"CrS1H8FgYKB","postauksen_kuvaus":"wabudebug"}	\N
+699	859	instagram	3	{"postaus_id":"CrQCRNwBtnk","postauksen_kuvaus":"muikkis"}	{"postaus_id":"CrQCRNwBtnk","postauksen_kuvaus":"muikkis"}	\N
+700	860	instagram	4	{"postaus_id":"CrIO_5ihvXc","postauksen_kuvaus":"salakapakka kierros"}	{"postaus_id":"CrIO_5ihvXc","postauksen_kuvaus":"salakapakka kierros"}	\N
+701	861	instagram	5	{"postaus_id":"CrDGCk8BcHE","postauksen_kuvaus":"vabusatanen"}	{"postaus_id":"CrDGCk8BcHE","postauksen_kuvaus":"vabusatanen"}	\N
+702	862	instagram	6	{"postaus_id":"Cqu4q48tp6M","postauksen_kuvaus":"socius serveri piknik"}	{"postaus_id":"Cqu4q48tp6M","postauksen_kuvaus":"socius serveri piknik"}	\N
+703	863	directus_permissions	118	{"role":null,"collection":"instagram","action":"read"}	{"role":null,"collection":"instagram","action":"read"}	\N
+704	864	directus_permissions	118	{"id":118,"role":null,"collection":"instagram","action":"read","permissions":null,"validation":null,"presets":null,"fields":["postaus_id"]}	{"role":null,"collection":"instagram","action":"read","permissions":null,"validation":null,"presets":null,"fields":["postaus_id"]}	\N
+705	865	directus_permissions	13	{"id":13,"role":null,"collection":"lomake_vastaukset","action":"create","permissions":{},"validation":{"_and":[{"firm_name":{"_nempty":true}},{"firm_contact":{"_nempty":true}},{"firm_message":{"_nempty":true}}]},"presets":null,"fields":["firm_name","firm_contact","firm_message"]}	{"role":null,"collection":"lomake_vastaukset","action":"create","permissions":{},"validation":{"_and":[{"firm_name":{"_nempty":true}},{"firm_contact":{"_nempty":true}},{"firm_message":{"_nempty":true}}]},"presets":null,"fields":["firm_name","firm_contact","firm_message"]}	\N
+706	866	lomake_vastaukset	135	{"firm_message":"asdasd","firm_contact":"mattimeikalainen@moro.com","firm_name":"moasd"}	{"firm_message":"asdasd","firm_contact":"mattimeikalainen@moro.com","firm_name":"moasd"}	\N
+707	867	directus_fields	168	{"hidden":true,"interface":"input","readonly":true,"field":"id","collection":"sosiaaliset_mediat"}	{"hidden":true,"interface":"input","readonly":true,"field":"id","collection":"sosiaaliset_mediat"}	\N
+732	893	lomake_vastaukset	144	{"firm_message":"asdasd","firm_contact":"mattimeikalainen@moro.com","firm_name":"asdasd"}	{"firm_message":"asdasd","firm_contact":"mattimeikalainen@moro.com","firm_name":"asdasd"}	\N
+708	868	directus_fields	169	{"width":"full","options":{"choices":[{"text":"$t:published","value":"published"},{"text":"$t:draft","value":"draft"},{"text":"$t:archived","value":"archived"}]},"interface":"select-dropdown","display":"labels","display_options":{"showAsDot":true,"choices":[{"text":"$t:published","value":"published","foreground":"#FFFFFF","background":"var(--primary)"},{"text":"$t:draft","value":"draft","foreground":"#18222F","background":"#D3DAE4"},{"text":"$t:archived","value":"archived","foreground":"#FFFFFF","background":"var(--warning)"}]},"field":"status","collection":"sosiaaliset_mediat"}	{"width":"full","options":{"choices":[{"text":"$t:published","value":"published"},{"text":"$t:draft","value":"draft"},{"text":"$t:archived","value":"archived"}]},"interface":"select-dropdown","display":"labels","display_options":{"showAsDot":true,"choices":[{"text":"$t:published","value":"published","foreground":"#FFFFFF","background":"var(--primary)"},{"text":"$t:draft","value":"draft","foreground":"#18222F","background":"#D3DAE4"},{"text":"$t:archived","value":"archived","foreground":"#FFFFFF","background":"var(--warning)"}]},"field":"status","collection":"sosiaaliset_mediat"}	\N
+709	869	directus_fields	170	{"interface":"input","hidden":true,"field":"sort","collection":"sosiaaliset_mediat"}	{"interface":"input","hidden":true,"field":"sort","collection":"sosiaaliset_mediat"}	\N
+710	870	directus_fields	171	{"special":["user-created"],"interface":"select-dropdown-m2o","options":{"template":"{{avatar.$thumbnail}} {{first_name}} {{last_name}}"},"display":"user","readonly":true,"hidden":true,"width":"half","field":"user_created","collection":"sosiaaliset_mediat"}	{"special":["user-created"],"interface":"select-dropdown-m2o","options":{"template":"{{avatar.$thumbnail}} {{first_name}} {{last_name}}"},"display":"user","readonly":true,"hidden":true,"width":"half","field":"user_created","collection":"sosiaaliset_mediat"}	\N
+711	871	directus_fields	172	{"special":["date-created"],"interface":"datetime","readonly":true,"hidden":true,"width":"half","display":"datetime","display_options":{"relative":true},"field":"date_created","collection":"sosiaaliset_mediat"}	{"special":["date-created"],"interface":"datetime","readonly":true,"hidden":true,"width":"half","display":"datetime","display_options":{"relative":true},"field":"date_created","collection":"sosiaaliset_mediat"}	\N
+712	872	directus_fields	173	{"special":["user-updated"],"interface":"select-dropdown-m2o","options":{"template":"{{avatar.$thumbnail}} {{first_name}} {{last_name}}"},"display":"user","readonly":true,"hidden":true,"width":"half","field":"user_updated","collection":"sosiaaliset_mediat"}	{"special":["user-updated"],"interface":"select-dropdown-m2o","options":{"template":"{{avatar.$thumbnail}} {{first_name}} {{last_name}}"},"display":"user","readonly":true,"hidden":true,"width":"half","field":"user_updated","collection":"sosiaaliset_mediat"}	\N
+713	873	directus_fields	174	{"special":["date-updated"],"interface":"datetime","readonly":true,"hidden":true,"width":"half","display":"datetime","display_options":{"relative":true},"field":"date_updated","collection":"sosiaaliset_mediat"}	{"special":["date-updated"],"interface":"datetime","readonly":true,"hidden":true,"width":"half","display":"datetime","display_options":{"relative":true},"field":"date_updated","collection":"sosiaaliset_mediat"}	\N
+714	874	directus_collections	sosiaaliset_mediat	{"sort_field":"sort","archive_field":"status","archive_value":"archived","unarchive_value":"draft","singleton":false,"collection":"sosiaaliset_mediat"}	{"sort_field":"sort","archive_field":"status","archive_value":"archived","unarchive_value":"draft","singleton":false,"collection":"sosiaaliset_mediat"}	\N
+715	875	lomake_vastaukset	136	{"firm_message":"asdasd","firm_contact":"mattimeikalainen@moro.com","firm_name":"moasd"}	{"firm_message":"asdasd","firm_contact":"mattimeikalainen@moro.com","firm_name":"moasd"}	\N
+716	876	lomake_vastaukset	137	{"firm_message":"asdasd","firm_contact":"mattimeikalainen@moro.com","firm_name":"moasd"}	{"firm_message":"asdasd","firm_contact":"mattimeikalainen@moro.com","firm_name":"moasd"}	\N
+717	877	directus_fields	175	{"interface":"input","special":null,"required":true,"collection":"sosiaaliset_mediat","field":"nimi"}	{"interface":"input","special":null,"required":true,"collection":"sosiaaliset_mediat","field":"nimi"}	\N
+718	878	directus_fields	176	{"interface":"input","special":null,"required":true,"collection":"sosiaaliset_mediat","field":"url"}	{"interface":"input","special":null,"required":true,"collection":"sosiaaliset_mediat","field":"url"}	\N
+719	879	directus_fields	177	{"interface":"input","special":null,"required":true,"collection":"sosiaaliset_mediat","field":"img"}	{"interface":"input","special":null,"required":true,"collection":"sosiaaliset_mediat","field":"img"}	\N
+720	880	lomake_vastaukset	138	{"firm_message":"asdasd","firm_contact":"mattimeikalainen@moro.com","firm_name":"moasd"}	{"firm_message":"asdasd","firm_contact":"mattimeikalainen@moro.com","firm_name":"moasd"}	\N
+721	881	sosiaaliset_mediat	1	{"status":"published","nimi":"Discord","url":"https://discord.gg/JFCZfNMgjM","img":"https://assets-global.website-files.com/6257adef93867e50d84d30e2/636e0a69f118df70ad7828d4_icon_clyde_blurple_RGB.svg"}	{"status":"published","nimi":"Discord","url":"https://discord.gg/JFCZfNMgjM","img":"https://assets-global.website-files.com/6257adef93867e50d84d30e2/636e0a69f118df70ad7828d4_icon_clyde_blurple_RGB.svg"}	\N
+722	882	lomake_vastaukset	139	{"firm_contact":"testi@testi.com"}	{"firm_contact":"testi@testi.com"}	\N
+723	883	lomake_vastaukset	140	{"firm_contact":"ASD@asd.com"}	{"firm_contact":"ASD@asd.com"}	\N
+724	884	lomake_vastaukset	141	{"firm_contact":"ASD@asd.com"}	{"firm_contact":"ASD@asd.com"}	\N
+725	885	lomake_vastaukset	142	{"firm_contact":"ASD@asd.com"}	{"firm_contact":"ASD@asd.com"}	\N
+726	886	lomake_vastaukset	143	{"firm_contact":"ASD@asd.com"}	{"firm_contact":"ASD@asd.com"}	\N
+727	887	sosiaaliset_mediat	2	{"nimi":"Instagram","url":"https://www.instagram.com/serveriry/","img":"https://img.freepik.com/free-vector/instagram-icon_1057-2227.jpg"}	{"nimi":"Instagram","url":"https://www.instagram.com/serveriry/","img":"https://img.freepik.com/free-vector/instagram-icon_1057-2227.jpg"}	\N
+728	888	sosiaaliset_mediat	2	{"id":2,"status":"published","sort":null,"user_created":"0891a0cd-876b-4a0d-a22e-0cce30121382","date_created":"2023-05-02T18:53:15.619Z","user_updated":"0891a0cd-876b-4a0d-a22e-0cce30121382","date_updated":"2023-05-02T18:53:20.006Z","nimi":"Instagram","url":"https://www.instagram.com/serveriry/","img":"https://img.freepik.com/free-vector/instagram-icon_1057-2227.jpg"}	{"status":"published","user_updated":"0891a0cd-876b-4a0d-a22e-0cce30121382","date_updated":"2023-05-02T18:53:20.006Z"}	\N
+729	890	directus_permissions	119	{"role":null,"collection":"sosiaaliset_mediat","action":"read","fields":["*"],"permissions":{},"validation":{}}	{"role":null,"collection":"sosiaaliset_mediat","action":"read","fields":["*"],"permissions":{},"validation":{}}	\N
+731	892	sosiaaliset_mediat	3	{"status":"published","nimi":"Telegram","url":"https://t.me/serveriry","img":"https://cloud.serveriry.fi/s/HH2XfiB54P6q5sz"}	{"status":"published","nimi":"Telegram","url":"https://t.me/serveriry","img":"https://cloud.serveriry.fi/s/HH2XfiB54P6q5sz"}	\N
+734	895	sosiaaliset_mediat	3	{"id":3,"status":"published","sort":null,"user_created":"0891a0cd-876b-4a0d-a22e-0cce30121382","date_created":"2023-05-02T19:07:25.720Z","user_updated":"0891a0cd-876b-4a0d-a22e-0cce30121382","date_updated":"2023-05-02T19:08:50.910Z","nimi":"Telegram","url":"https://t.me/serveriry","img":"https://cloud.serveriry.fi/apps/files_sharing/publicpreview/Cj9PCWopPLb8i7g?x=1920&y=577&a=true&file=telegram.png"}	{"img":"https://cloud.serveriry.fi/apps/files_sharing/publicpreview/Cj9PCWopPLb8i7g?x=1920&y=577&a=true&file=telegram.png","user_updated":"0891a0cd-876b-4a0d-a22e-0cce30121382","date_updated":"2023-05-02T19:08:50.910Z"}	\N
+735	896	lomake_vastaukset	146	{"firm_contact":"asd","firm_name":"asdasd"}	{"firm_contact":"asd","firm_name":"asdasd"}	\N
+737	898	lomake_vastaukset	147	{"firm_contact":"asd","firm_name":"asdasd"}	{"firm_contact":"asd","firm_name":"asdasd"}	\N
+738	899	sosiaaliset_mediat	4	{"status":"published","nimi":"Codeberg (git)","url":"https://codeberg.org/serveriry/","img":"https://cloud.serveriry.fi/apps/files_sharing/publicpreview/sitCbDRiJozEqWH?x=1920&y=577&a=true&file=codeberg.png"}	{"status":"published","nimi":"Codeberg (git)","url":"https://codeberg.org/serveriry/","img":"https://cloud.serveriry.fi/apps/files_sharing/publicpreview/sitCbDRiJozEqWH?x=1920&y=577&a=true&file=codeberg.png"}	\N
+736	897	sosiaaliset_mediat	2	{"id":2,"status":"published","sort":null,"user_created":"0891a0cd-876b-4a0d-a22e-0cce30121382","date_created":"2023-05-02T18:53:15.619Z","user_updated":"0891a0cd-876b-4a0d-a22e-0cce30121382","date_updated":"2023-05-02T19:10:01.555Z","nimi":"Instagram","url":"https://www.instagram.com/serveriry/","img":"https://cloud.serveriry.fi/apps/files_sharing/publicpreview/qKH7aMkrD8LJ9PA?x=1920&y=577&a=true&file=Instagram_Glyph_Gradient.png"}	{"img":"https://cloud.serveriry.fi/apps/files_sharing/publicpreview/qKH7aMkrD8LJ9PA?x=1920&y=577&a=true&file=Instagram_Glyph_Gradient.png","user_updated":"0891a0cd-876b-4a0d-a22e-0cce30121382","date_updated":"2023-05-02T19:10:01.555Z"}	\N
+739	900	lomake_vastaukset	148	\N	\N	\N
+740	901	lomake_vastaukset	149	\N	\N	\N
+741	902	lomake_vastaukset	150	\N	\N	\N
+742	903	lomake_vastaukset	151	\N	\N	\N
+743	904	lomake_vastaukset	152	\N	\N	\N
+744	905	lomake_vastaukset	153	\N	\N	\N
+745	906	lomake_vastaukset	154	\N	\N	\N
+746	907	lomake_vastaukset	155	\N	\N	\N
+747	908	lomake_vastaukset	156	\N	\N	\N
+748	909	lomake_vastaukset	157	\N	\N	\N
+749	910	lomake_vastaukset	158	\N	\N	\N
+750	911	lomake_vastaukset	159	\N	\N	\N
+751	912	lomake_vastaukset	160	\N	\N	\N
+752	913	lomake_vastaukset	161	\N	\N	\N
+753	914	lomake_vastaukset	162	\N	\N	\N
+754	915	lomake_vastaukset	163	\N	\N	\N
+755	916	lomake_vastaukset	164	\N	\N	\N
+756	917	lomake_vastaukset	165	\N	\N	\N
+757	918	lomake_vastaukset	166	\N	\N	\N
+758	919	lomake_vastaukset	167	\N	\N	\N
+759	920	lomake_vastaukset	168	\N	\N	\N
+760	921	lomake_vastaukset	169	\N	\N	\N
+761	922	lomake_vastaukset	170	\N	\N	\N
+762	923	lomake_vastaukset	171	\N	\N	\N
+763	924	lomake_vastaukset	172	\N	\N	\N
+764	925	sosiaaliset_mediat	5	{"img":"https://cloud.serveriry.fi/s/B7pkkj3grZRcMPM","nimi":"Matrix","status":"published","url":"https://matrix.to/#/#serverirymatrix:matrix.org"}	{"img":"https://cloud.serveriry.fi/s/B7pkkj3grZRcMPM","nimi":"Matrix","status":"published","url":"https://matrix.to/#/#serverirymatrix:matrix.org"}	\N
+765	926	sosiaaliset_mediat	5	{"id":5,"status":"published","sort":null,"user_created":"0891a0cd-876b-4a0d-a22e-0cce30121382","date_created":"2023-05-02T19:15:41.649Z","user_updated":"0891a0cd-876b-4a0d-a22e-0cce30121382","date_updated":"2023-05-02T19:16:15.326Z","nimi":"Matrix","url":"https://matrix.to/#/#serverirymatrix:matrix.org","img":"https://cloud.serveriry.fi/apps/files_sharing/publicpreview/B7pkkj3grZRcMPM?x=1920&y=577&a=true&file=matrix.svg"}	{"img":"https://cloud.serveriry.fi/apps/files_sharing/publicpreview/B7pkkj3grZRcMPM?x=1920&y=577&a=true&file=matrix.svg","user_updated":"0891a0cd-876b-4a0d-a22e-0cce30121382","date_updated":"2023-05-02T19:16:15.326Z"}	\N
+766	927	sosiaaliset_mediat	5	{"id":5,"status":"published","sort":null,"user_created":"0891a0cd-876b-4a0d-a22e-0cce30121382","date_created":"2023-05-02T19:15:41.649Z","user_updated":"0891a0cd-876b-4a0d-a22e-0cce30121382","date_updated":"2023-05-02T19:17:43.158Z","nimi":"Matrix","url":"https://matrix.to/#/#serverirymatrix:matrix.org","img":"https://cloud.serveriry.fi/apps/files_sharing/publicpreview/FAMSHmmc628ZCmx?x=1920&y=577&a=true&file=matrix.png"}	{"img":"https://cloud.serveriry.fi/apps/files_sharing/publicpreview/FAMSHmmc628ZCmx?x=1920&y=577&a=true&file=matrix.png","user_updated":"0891a0cd-876b-4a0d-a22e-0cce30121382","date_updated":"2023-05-02T19:17:43.158Z"}	\N
 \.
 
 
@@ -2831,6 +3647,7 @@ COPY public.directus_revisions (id, activity, collection, item, data, delta, par
 
 COPY public.directus_roles (id, name, icon, description, ip_access, enforce_tfa, admin_access, app_access) FROM stdin;
 7bd45b9d-d719-4ab1-b7ec-2c68f2eefc76	Administrator	verified	$t:admin_description	\N	f	t	t
+4491158e-dc93-41ee-bb07-4e191785d730	Julkaisija	supervised_user_circle	Käyttäjä voi muokata ja luoda sivun sisältöä. 	\N	f	f	t
 \.
 
 
@@ -2843,6 +3660,10 @@ gwwvrfo2Zj5dxPjVi891OZjXX-A-kMARoiBk8NsfDen1zzFvzLQnzMSKyl8Yaqjt	0891a0cd-876b-4
 p9GrZu96161jO-rGhi_iYMTxDhlRDzk2awUIQVbQ806yYFBOXrNrsAQsAS2U2vQd	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-05-06 20:32:04.979+00	10.0.2.2	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	\N	http://127.0.0.1:8081
 DzQC0N7BhOhQav01s3XGfuyy0atI13_FaqJVawsrKyLQPmvcPjX3vGjx_IOiEzw3	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-05-06 17:53:10.026+00	10.0.2.2	Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:109.0) Gecko/20100101 Firefox/112.0	\N	http://10.143.20.7:8081
 ddKudaMplwgkJz4wdb4ag7OPM2Fjfeh_LO3Qeym5T7Jx6rJVwiPmPlvCz2X1jnvA	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-05-09 14:26:47.196+00	10.0.2.2	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	\N	http://127.0.0.1:8081
+8NwLOuQ8zHSh7FI8OUL3QZmSCFD2VyZp-USKM-GUflbZ3iQ3L1zOkrXwyH08Kge8	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-05-09 16:23:54.336+00	85.202.81.202	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	\N	http://65.109.179.68:8001
+DRrSFu5fyukoHSO2JrwSuD24SJSycqM-iGJRIABVWqWsiooMDw8_nAvZc7W9b6eW	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-05-09 18:20:01.081+00	85.23.69.165	Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/112.0.0.0 Safari/537.36	\N	http://65.109.179.68:8001
+H1y5KzX1ts6MEMEGTafm0XhkuweNtSVyXFMXsTmrFGZiMsvHpl7zXFe1W5QUXjKK	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-05-09 18:48:27.842+00	10.10.0.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	\N	https://api.serveri.jeb4.dev
+cVN661HgO4TXZ-yIU4WzYS2SoNGOztvFoj3RTElDOqXgakphlYzgJPKgl0OKcFYc	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-05-09 19:04:30.814+00	10.10.0.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0	\N	https://api.serveri.jeb4.dev
 \.
 
 
@@ -2851,7 +3672,7 @@ ddKudaMplwgkJz4wdb4ag7OPM2Fjfeh_LO3Qeym5T7Jx6rJVwiPmPlvCz2X1jnvA	0891a0cd-876b-4
 --
 
 COPY public.directus_settings (id, project_name, project_url, project_color, project_logo, public_foreground, public_background, public_note, auth_login_attempts, auth_password_policy, storage_asset_transform, storage_asset_presets, custom_css, storage_default_folder, basemaps, mapbox_key, module_bar, project_descriptor, translation_strings, default_language, custom_aspect_ratios) FROM stdin;
-1	Serveri ry nuxt	https://serveriry.fi	\N	\N	\N	\N	\N	25	\N	all	\N	\N	\N	\N	\N	\N	Serveri ry web page content api for nuxt frontend	\N	en-US	\N
+1	Serveri ry Sisällönhallinta	https://serveriry.fi	#FFFFFF	55882074-5535-47d4-8a1a-eef51fbd5b38	\N	b072ae6a-77b8-4f8f-85f9-ccd9cbfc7e2e	\N	25	\N	all	\N	body {\n\t--primary: #009fb8 !important;\n}	\N	\N	\N	\N	Serveri ry:n sisällönhallintasovellus, josta voi muokata kotisivujamme.	\N	fi-FI	\N
 \.
 
 
@@ -2868,7 +3689,8 @@ COPY public.directus_shares (id, name, collection, item, role, password, user_cr
 --
 
 COPY public.directus_users (id, first_name, last_name, email, password, location, title, description, tags, avatar, language, theme, tfa_secret, status, role, token, last_access, last_page, provider, external_identifier, auth_data, email_notifications) FROM stdin;
-0891a0cd-876b-4a0d-a22e-0cce30121382	Admin	User	dev@serveriry.fi	$argon2id$v=19$m=65536,t=3,p=4$hVskI8M5iDcSrNlBjYgpqQ$VOD9EUHOMkKmWrElydlVl/7ysElrGr+dZcdOU34Ugm0	\N	\N	\N	\N	\N	\N	auto	\N	active	7bd45b9d-d719-4ab1-b7ec-2c68f2eefc76	Of2wfHYZ3N-yP0IoKDuR-REqH1-0eZCV	2023-05-02 14:26:47.198+00	/content/for_new_student	default	\N	\N	t
+1f3676e5-f46e-44b5-9d25-948d9f1768a8	Valtteri	Savonen	vsavonen@uef.fi	$argon2id$v=19$m=65536,t=3,p=4$TeMygYOVoXjTqicXurLK3w$uZzeHgwryC6xmRGzvU4ETmhYvUSHRpSLz5ORUUNqRU4	\N	Ylläpitovastaava	\N	\N	4c58bdbf-bdb1-4b3f-953a-fb619c26cae3	\N	auto	\N	active	4491158e-dc93-41ee-bb07-4e191785d730	\N	2023-05-02 16:40:34.813+00	/users/1f3676e5-f46e-44b5-9d25-948d9f1768a8	default	\N	\N	t
+0891a0cd-876b-4a0d-a22e-0cce30121382	Admin	User	dev@serveriry.fi	$argon2id$v=19$m=65536,t=3,p=4$ni44yJUmZtoqhYGJW9hRqg$nx6kHREWkd36CWdhMVCseQ7mUh991fiKI16qXimjhvk	\N	\N	\N	\N	\N	\N	auto	\N	active	7bd45b9d-d719-4ab1-b7ec-2c68f2eefc76	Of2wfHYZ3N-yP0IoKDuR-REqH1-0eZCV	2023-05-02 19:04:30.815+00	/content/sosiaaliset_mediat	default	\N	\N	t
 \.
 
 
@@ -2916,6 +3738,20 @@ COPY public.hallitus_page (id, user_updated, date_updated, fi_text, en_text) FRO
 
 
 --
+-- Data for Name: instagram; Type: TABLE DATA; Schema: public; Owner: serveri
+--
+
+COPY public.instagram (id, sort, user_created, date_created, user_updated, date_updated, postaus_id, postauksen_kuvaus) FROM stdin;
+1	\N	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-05-02 18:32:32.147+00	\N	\N	Cq2gVmnh_kK	vappuviikko
+2	\N	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-05-02 18:32:47.728+00	\N	\N	CrS1H8FgYKB	wabudebug
+3	\N	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-05-02 18:32:57.835+00	\N	\N	CrQCRNwBtnk	muikkis
+4	\N	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-05-02 18:33:24.688+00	\N	\N	CrIO_5ihvXc	salakapakka kierros
+5	\N	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-05-02 18:34:56.076+00	\N	\N	CrDGCk8BcHE	vabusatanen
+6	\N	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-05-02 18:35:10.492+00	\N	\N	Cqu4q48tp6M	socius serveri piknik
+\.
+
+
+--
 -- Data for Name: liity_serveriin; Type: TABLE DATA; Schema: public; Owner: serveri
 --
 
@@ -2929,29 +3765,54 @@ COPY public.liity_serveriin (id, user_updated, date_updated, fi_text, en_text) F
 --
 
 COPY public.lomake_vastaukset (id, firm_name, firm_contact, firm_message) FROM stdin;
-102	Efecte	asdasd@gmail.com	asdasdasd
-103	Moro	matti.meikalainen@gmail.com	Moro
-104	MOro	matti.meikalainen@gmail.com	Moro
-105	yritys	nimi@email.co	moro mite menee
-106	yritys	nimi@email.co	moro mite menee
-107	yritys	nimi@email.co	moro mite menee
-108	yritys	nimi@email.co	moro mite menee
-109	yritys	nimi@email.co	moro mite menee
-110	Footer on mobile	nimi@email.co	moro... 1
-111	Footer on mobile	nimi@email.co	moro... 1
-112	\N	\N	\N
-113	fuksipassi	dawd	dawdaw
-114	\N	\N	\N
-115	\N	\N	\N
-116	\N	\N	\N
-117	klada vappen	klada@vappen.fi	Tehdäänkö yhteistyötä
-118	\N	\N	\N
-119	\N	\N	\N
-120	\N	\N	\N
-121	\N	\N	\N
-122	1	1	1
-123	\N	\N	\N
-124	\N	\N	\N
+125	Moro	mattimeikalainen@moro.com	Moro
+126	Moro	mattimeikalainen@moro.com	Terve
+127	AS	sad@asd.com	\N
+128	sad	ASD@asd.com	\N
+129	asdasd	mattimeikalainen@moro.com	sadad
+130	asdasd	ASD@asd.com	asdasd
+131	asdasdasdasdadasdadasd	savonen.emppu@gmail.com	asdasd
+132	TErvehdys	savonen.emppu@gmail.com	MOIKKA
+133	Moro	mattimeikalainen@moro.com	asdasd
+134	asdasd	ASD@asd.com	asdasd
+135	moasd	mattimeikalainen@moro.com	asdasd
+136	moasd	mattimeikalainen@moro.com	asdasd
+137	moasd	mattimeikalainen@moro.com	asdasd
+138	moasd	mattimeikalainen@moro.com	asdasd
+139	\N	testi@testi.com	\N
+140	\N	ASD@asd.com	\N
+141	\N	ASD@asd.com	\N
+142	\N	ASD@asd.com	\N
+143	\N	ASD@asd.com	\N
+144	asdasd	mattimeikalainen@moro.com	asdasd
+145	asda	ASD@asd.com	asd
+146	asdasd	asd	\N
+147	asdasd	asd	\N
+148	\N	\N	\N
+149	\N	\N	\N
+150	\N	\N	\N
+151	\N	\N	\N
+152	\N	\N	\N
+153	\N	\N	\N
+154	\N	\N	\N
+155	\N	\N	\N
+156	\N	\N	\N
+157	\N	\N	\N
+158	\N	\N	\N
+159	\N	\N	\N
+160	\N	\N	\N
+161	\N	\N	\N
+162	\N	\N	\N
+163	\N	\N	\N
+164	\N	\N	\N
+165	\N	\N	\N
+166	\N	\N	\N
+167	\N	\N	\N
+168	\N	\N	\N
+169	\N	\N	\N
+170	\N	\N	\N
+171	\N	\N	\N
+172	\N	\N	\N
 \.
 
 
@@ -2990,11 +3851,15 @@ COPY public.serveri_rules (id, user_updated, date_updated, rules_fi, rules_en) F
 
 
 --
--- Data for Name: social_medias; Type: TABLE DATA; Schema: public; Owner: serveri
+-- Data for Name: sosiaaliset_mediat; Type: TABLE DATA; Schema: public; Owner: serveri
 --
 
-COPY public.social_medias (id, user_created, date_created, user_updated, date_updated, name, url, icon) FROM stdin;
-1	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-04-17 10:59:01.244+00	\N	\N	Discord	www.google.com	https://assets-global.website-files.com/6257adef93867e50d84d30e2/636e0a6a49cf127bf92de1e2_icon_clyde_blurple_RGB.png
+COPY public.sosiaaliset_mediat (id, status, sort, user_created, date_created, user_updated, date_updated, nimi, url, img) FROM stdin;
+1	published	3	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-05-02 18:50:15.452+00	\N	\N	Discord	https://discord.gg/JFCZfNMgjM	https://assets-global.website-files.com/6257adef93867e50d84d30e2/636e0a69f118df70ad7828d4_icon_clyde_blurple_RGB.svg
+3	published	1	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-05-02 19:07:25.72+00	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-05-02 19:08:50.91+00	Telegram	https://t.me/serveriry	https://cloud.serveriry.fi/apps/files_sharing/publicpreview/Cj9PCWopPLb8i7g?x=1920&y=577&a=true&file=telegram.png
+2	published	2	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-05-02 18:53:15.619+00	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-05-02 19:10:01.555+00	Instagram	https://www.instagram.com/serveriry/	https://cloud.serveriry.fi/apps/files_sharing/publicpreview/qKH7aMkrD8LJ9PA?x=1920&y=577&a=true&file=Instagram_Glyph_Gradient.png
+4	published	\N	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-05-02 19:13:05.769+00	\N	\N	Codeberg (git)	https://codeberg.org/serveriry/	https://cloud.serveriry.fi/apps/files_sharing/publicpreview/sitCbDRiJozEqWH?x=1920&y=577&a=true&file=codeberg.png
+5	published	\N	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-05-02 19:15:41.649+00	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-05-02 19:17:43.158+00	Matrix	https://matrix.to/#/#serverirymatrix:matrix.org	https://cloud.serveriry.fi/apps/files_sharing/publicpreview/FAMSHmmc628ZCmx?x=1920&y=577&a=true&file=matrix.png
 \.
 
 
@@ -3017,6 +3882,23 @@ COPY public.turvallinen_tila (id, user_updated, date_updated, turvallinen_tila_f
 
 
 --
+-- Data for Name: tutkinto_rakenne; Type: TABLE DATA; Schema: public; Owner: serveri
+--
+
+COPY public.tutkinto_rakenne (id, status, sort, user_created, date_created, user_updated, date_updated, tyyppi, nimi, kuvaus, laajuus) FROM stdin;
+1	published	7	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-05-02 17:27:13.04+00	\N	\N	yleisopinnot	Hops-tietojenkäsittelytiede	(Hops = henkilökohtainen opintosuunnitelma)	2.00
+2	published	6	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-05-02 17:27:41.703+00	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-05-02 17:27:46.339+00	yleisopinnot	Orientaatio yliopisto-opiskeluun	Opiskelija tutustuu oppiaine- ja vertaistuutoroinnin, verkkomateriaalin, erilaisten orientaatiotapahtumien sekä oheismateriaalin avulla yliopistoon opiskeluympäristönä ja oppimisyhteisönä. Erityisesti tutustutaan oman oppiaineen opiskelukäytäntöihin ja opiskelua tukeviin palveluihin. Lisäksi saadaan tietoa akateemisen opiskelun edellyttämistä tiedoista ja taidoista sekä opiskelukyvystä ja sen ylläpitämisestä. 	1.00
+5	published	5	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-05-02 17:29:36.798+00	\N	\N	kieliviesti	Puheviestintää tietojenkäsittelytieteen opiskelijoille	Vuorovaikutusosaaminen ja sen kehittäminen, vuorovaikutus omalla ammatti- ja tieteenalalla, vuorovaikutuskeskeisyys, reagoiva kuunteleminen, kohderyhmän huomioon ottaminen, palautteen antaminen ja vastaanottaminen, yhteistyötaidot. 	2.00
+4	published	4	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-05-02 17:28:52.135+00	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-05-02 17:30:03.023+00	kieliviesti	Kirjoitusviestintää tietojenkäsittelytieteen opiskelijoille	opintojen ja työelämän kannalta keskeiset tekstilajit sekä tieteen viestinnän erityispiirteet\noikeakielisyys ja huoliteltu teksti\nargumentoinnin keinot\ntyyli ja tarkoituksenmukainen sävy\nkriittinen lukutapa ja tekstianalyysi\nkirjoitusprosessin hallinta ja erityisesti oman kandidaatintutkielman työstäminen\ntekstien kohdentaminen lukijoille ja yleistajuinen viestintä\nrakentavan palautteen antaminen ja vastaanottaminen 	2.00
+6	published	9	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-05-02 17:31:49.054+00	\N	\N	perusopinnot	Johdatus tietojenkäsittelyyn	Informaatio, sen esittäminen ja tallentaminen ja sen käsittelemisen automatisointi. Ohjelmointi, ohjelmointikielet, ja kuinka niillä luodaan ohjelmia ja ohjelmistoja. Tiedon mallintaminen, tietokannat, tietoverkot ja kuinka tietoa hallitaan. Laskennan rajat. Suunnittelu, design ja älykkäät järjestelmät. Tietojenkäsittelyn ja tietojenkäsittelijän tehtävät ja vastuut yhteiskunnassa. 	5.00
+3	published	8	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-05-02 17:28:12.203+00	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-05-02 17:28:16.57+00	yleisopinnot	Tieto- ja viestintätekniikka opiskelun tukena	Internetin edistyksellinen käyttö. Tietoturva, tekijänoikeudet ja sosiaalinen media opiskelussa.\n\nPdf-tiedoston luominen.\n\nOffice 365 ympäristö henkilökohtaisena oppimisympäristönä.\n\nTekstinkäsittely (tekstin muokkaus ja muotoilu, listan muokkaus, ala- ja loppuviite, taulukon lisäys ja muokkaus, kuvan lisäys ja muokkaus, tyylin päivittäminen, ylä- ja alatunnisteet, sivunumerointi, otsikointi, sisällysluettelo).\n\nEsitysgrafiikan perusteet (dian muokkaus, muodot, teemojen käyttö, diatunnisteet).\n\nTaulukkolaskennan perusteet (taulukon muokkaus, perusfunktiot, kaavion luominen ja muokkaaminen).\n\nYliopisto-opiskelun keskeiset verkkoresurssit.	2.00
+7	published	3	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-05-02 17:32:27.239+00	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-05-02 17:36:33.382+00	pakolliset	Diskreetit rakenteet	Propositio- ja predikaattilogiikka, joukko-oppi, funktiot ja relaatiot, kombinatoriikka, graafiteoria, matemaattinen induktio	5.00
+8	published	1	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-05-02 17:34:09.881+00	\N	\N	valinnaiset	Johdatus testaukseen	Ohjelmistovirheet, testauksen vaiheet, testausmenetelmät, regressiotestaus, testauksen automatisointi, testausprosessin kehittäminen 	4.00
+9	published	2	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-05-02 17:35:01.253+00	0891a0cd-876b-4a0d-a22e-0cce30121382	2023-05-02 17:35:06.777+00	sivuaine	Matematiikka	matikkaa voi opiskella :D	25.00
+\.
+
+
+--
 -- Name: LandingPage_id_seq; Type: SEQUENCE SET; Schema: public; Owner: serveri
 --
 
@@ -3034,14 +3916,14 @@ SELECT pg_catalog.setval('public.board_members_id_seq', 7, true);
 -- Name: directus_activity_id_seq; Type: SEQUENCE SET; Schema: public; Owner: serveri
 --
 
-SELECT pg_catalog.setval('public.directus_activity_id_seq', 601, true);
+SELECT pg_catalog.setval('public.directus_activity_id_seq', 927, true);
 
 
 --
 -- Name: directus_fields_id_seq; Type: SEQUENCE SET; Schema: public; Owner: serveri
 --
 
-SELECT pg_catalog.setval('public.directus_fields_id_seq', 126, true);
+SELECT pg_catalog.setval('public.directus_fields_id_seq', 177, true);
 
 
 --
@@ -3055,28 +3937,28 @@ SELECT pg_catalog.setval('public.directus_notifications_id_seq', 1, false);
 -- Name: directus_permissions_id_seq; Type: SEQUENCE SET; Schema: public; Owner: serveri
 --
 
-SELECT pg_catalog.setval('public.directus_permissions_id_seq', 19, true);
+SELECT pg_catalog.setval('public.directus_permissions_id_seq', 119, true);
 
 
 --
 -- Name: directus_presets_id_seq; Type: SEQUENCE SET; Schema: public; Owner: serveri
 --
 
-SELECT pg_catalog.setval('public.directus_presets_id_seq', 4, true);
+SELECT pg_catalog.setval('public.directus_presets_id_seq', 12, true);
 
 
 --
 -- Name: directus_relations_id_seq; Type: SEQUENCE SET; Schema: public; Owner: serveri
 --
 
-SELECT pg_catalog.setval('public.directus_relations_id_seq', 20, true);
+SELECT pg_catalog.setval('public.directus_relations_id_seq', 31, true);
 
 
 --
 -- Name: directus_revisions_id_seq; Type: SEQUENCE SET; Schema: public; Owner: serveri
 --
 
-SELECT pg_catalog.setval('public.directus_revisions_id_seq', 482, true);
+SELECT pg_catalog.setval('public.directus_revisions_id_seq', 766, true);
 
 
 --
@@ -3122,6 +4004,13 @@ SELECT pg_catalog.setval('public.hallitus_page_id_seq', 1, true);
 
 
 --
+-- Name: instagram_id_seq; Type: SEQUENCE SET; Schema: public; Owner: serveri
+--
+
+SELECT pg_catalog.setval('public.instagram_id_seq', 6, true);
+
+
+--
 -- Name: liity_serveriin_id_seq; Type: SEQUENCE SET; Schema: public; Owner: serveri
 --
 
@@ -3132,7 +4021,7 @@ SELECT pg_catalog.setval('public.liity_serveriin_id_seq', 1, true);
 -- Name: lomake_vastaukset_id_seq; Type: SEQUENCE SET; Schema: public; Owner: serveri
 --
 
-SELECT pg_catalog.setval('public.lomake_vastaukset_id_seq', 124, true);
+SELECT pg_catalog.setval('public.lomake_vastaukset_id_seq', 172, true);
 
 
 --
@@ -3157,10 +4046,10 @@ SELECT pg_catalog.setval('public.serveri_rules_id_seq', 1, true);
 
 
 --
--- Name: social_medias_id_seq; Type: SEQUENCE SET; Schema: public; Owner: serveri
+-- Name: sosiaaliset_mediat_id_seq; Type: SEQUENCE SET; Schema: public; Owner: serveri
 --
 
-SELECT pg_catalog.setval('public.social_medias_id_seq', 1, true);
+SELECT pg_catalog.setval('public.sosiaaliset_mediat_id_seq', 5, true);
 
 
 --
@@ -3175,6 +4064,13 @@ SELECT pg_catalog.setval('public.study_club_id_seq', 1, true);
 --
 
 SELECT pg_catalog.setval('public.turvallinen_tila_id_seq', 1, true);
+
+
+--
+-- Name: tutkinto_rakenne_id_seq; Type: SEQUENCE SET; Schema: public; Owner: serveri
+--
+
+SELECT pg_catalog.setval('public.tutkinto_rakenne_id_seq', 9, true);
 
 
 --
@@ -3442,6 +4338,14 @@ ALTER TABLE ONLY public.hallitus_page
 
 
 --
+-- Name: instagram instagram_pkey; Type: CONSTRAINT; Schema: public; Owner: serveri
+--
+
+ALTER TABLE ONLY public.instagram
+    ADD CONSTRAINT instagram_pkey PRIMARY KEY (id);
+
+
+--
 -- Name: liity_serveriin liity_serveriin_pkey; Type: CONSTRAINT; Schema: public; Owner: serveri
 --
 
@@ -3482,11 +4386,11 @@ ALTER TABLE ONLY public.serveri_rules
 
 
 --
--- Name: social_medias social_medias_pkey; Type: CONSTRAINT; Schema: public; Owner: serveri
+-- Name: sosiaaliset_mediat sosiaaliset_mediat_pkey; Type: CONSTRAINT; Schema: public; Owner: serveri
 --
 
-ALTER TABLE ONLY public.social_medias
-    ADD CONSTRAINT social_medias_pkey PRIMARY KEY (id);
+ALTER TABLE ONLY public.sosiaaliset_mediat
+    ADD CONSTRAINT sosiaaliset_mediat_pkey PRIMARY KEY (id);
 
 
 --
@@ -3503,6 +4407,14 @@ ALTER TABLE ONLY public.study_club
 
 ALTER TABLE ONLY public.turvallinen_tila
     ADD CONSTRAINT turvallinen_tila_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: tutkinto_rakenne tutkinto_rakenne_pkey; Type: CONSTRAINT; Schema: public; Owner: serveri
+--
+
+ALTER TABLE ONLY public.tutkinto_rakenne
+    ADD CONSTRAINT tutkinto_rakenne_pkey PRIMARY KEY (id);
 
 
 --
@@ -3802,6 +4714,22 @@ ALTER TABLE ONLY public.hallitus_page
 
 
 --
+-- Name: instagram instagram_user_created_foreign; Type: FK CONSTRAINT; Schema: public; Owner: serveri
+--
+
+ALTER TABLE ONLY public.instagram
+    ADD CONSTRAINT instagram_user_created_foreign FOREIGN KEY (user_created) REFERENCES public.directus_users(id);
+
+
+--
+-- Name: instagram instagram_user_updated_foreign; Type: FK CONSTRAINT; Schema: public; Owner: serveri
+--
+
+ALTER TABLE ONLY public.instagram
+    ADD CONSTRAINT instagram_user_updated_foreign FOREIGN KEY (user_updated) REFERENCES public.directus_users(id);
+
+
+--
 -- Name: LandingPage landingpage_user_updated_foreign; Type: FK CONSTRAINT; Schema: public; Owner: serveri
 --
 
@@ -3858,19 +4786,19 @@ ALTER TABLE ONLY public.serveri_rules
 
 
 --
--- Name: social_medias social_medias_user_created_foreign; Type: FK CONSTRAINT; Schema: public; Owner: serveri
+-- Name: sosiaaliset_mediat sosiaaliset_mediat_user_created_foreign; Type: FK CONSTRAINT; Schema: public; Owner: serveri
 --
 
-ALTER TABLE ONLY public.social_medias
-    ADD CONSTRAINT social_medias_user_created_foreign FOREIGN KEY (user_created) REFERENCES public.directus_users(id);
+ALTER TABLE ONLY public.sosiaaliset_mediat
+    ADD CONSTRAINT sosiaaliset_mediat_user_created_foreign FOREIGN KEY (user_created) REFERENCES public.directus_users(id);
 
 
 --
--- Name: social_medias social_medias_user_updated_foreign; Type: FK CONSTRAINT; Schema: public; Owner: serveri
+-- Name: sosiaaliset_mediat sosiaaliset_mediat_user_updated_foreign; Type: FK CONSTRAINT; Schema: public; Owner: serveri
 --
 
-ALTER TABLE ONLY public.social_medias
-    ADD CONSTRAINT social_medias_user_updated_foreign FOREIGN KEY (user_updated) REFERENCES public.directus_users(id);
+ALTER TABLE ONLY public.sosiaaliset_mediat
+    ADD CONSTRAINT sosiaaliset_mediat_user_updated_foreign FOREIGN KEY (user_updated) REFERENCES public.directus_users(id);
 
 
 --
@@ -3887,6 +4815,22 @@ ALTER TABLE ONLY public.study_club
 
 ALTER TABLE ONLY public.turvallinen_tila
     ADD CONSTRAINT turvallinen_tila_user_updated_foreign FOREIGN KEY (user_updated) REFERENCES public.directus_users(id);
+
+
+--
+-- Name: tutkinto_rakenne tutkinto_rakenne_user_created_foreign; Type: FK CONSTRAINT; Schema: public; Owner: serveri
+--
+
+ALTER TABLE ONLY public.tutkinto_rakenne
+    ADD CONSTRAINT tutkinto_rakenne_user_created_foreign FOREIGN KEY (user_created) REFERENCES public.directus_users(id);
+
+
+--
+-- Name: tutkinto_rakenne tutkinto_rakenne_user_updated_foreign; Type: FK CONSTRAINT; Schema: public; Owner: serveri
+--
+
+ALTER TABLE ONLY public.tutkinto_rakenne
+    ADD CONSTRAINT tutkinto_rakenne_user_updated_foreign FOREIGN KEY (user_updated) REFERENCES public.directus_users(id);
 
 
 --
