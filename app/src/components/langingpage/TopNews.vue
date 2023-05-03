@@ -13,9 +13,9 @@
                :link="event.id"
             />
          </div>
-         <a :to="localePath('/yhdistys/tapahtumat')" class="flex flex-col items-center pt-3">
+         <nuxt-link :to="localePath('/yhdistys/tapahtumat')" class="flex flex-col items-center pt-3">
             <button class="btn-custom-primary" type="button">Näytä kaikki tapahtumat</button>
-         </a>
+         </nuxt-link>
       </div>
    </div>
 </template>

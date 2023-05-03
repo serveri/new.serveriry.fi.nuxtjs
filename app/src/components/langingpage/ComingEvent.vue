@@ -1,10 +1,10 @@
 <template>
    <div class="max-w-sm py-2">
-      <nuxt-link :to="localePath('/yhdistys/tapahtuma/' + link)" class="hover:underline">
+      <a :href="'/yhdistys/tapahtuma/' + link" class="hover:underline">
          <h3 class="text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
             {{ event[$i18n.locale + '_otsikko'] }}
          </h3>
-      </nuxt-link>
+      </a>
       <p class="font-light text-gray-400 dark:text-gray-400">
          {{ alku_aika.toLocaleDateString($i18n.locale, DateOptions) }}
       </p>
