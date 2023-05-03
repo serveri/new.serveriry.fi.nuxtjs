@@ -5,7 +5,7 @@
             :src="Socialmedia.img"
             :alt="Socialmedia.name"
             loading="lazy"
-            :class="'some-logo scale-100 group-hover:scale-110 group-hover:-translate-y-1' + custom_style"
+            :class="'some-logo scale-100 group-hover:scale-110 ' + custom_style"
          />
          <p class="info group-hover:opacity-100">
             {{ Socialmedia.name }}
@@ -67,7 +67,8 @@
       overflow: hidden;
    }
    .some-container {
-      @apply rounded-2xl py-5 px-6 w-full cursor-pointer dark:bg-zinc-900 dark:shadow-lg dark:shadow-zinc-600/50;
+      @apply rounded-2xl py-5 px-6 w-full cursor-pointer;
+      /*@apply dark:bg-zinc-900 dark:shadow-lg dark:shadow-zinc-600/50;*/
    }
    .some-logo {
       height: 7rem;
