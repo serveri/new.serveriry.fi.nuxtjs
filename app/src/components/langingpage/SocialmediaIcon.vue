@@ -1,22 +1,16 @@
 <template>
    <div class="some-container">
-      <a :href="Socialmedia.url" target="_blank" class="w-full" @mouseover="hover = true" @mouseleave="hover = false">
+      <a :href="Socialmedia.url" target="_blank" class="relative w-full group">
          <img
-            v-if="hover"
             :src="Socialmedia.img"
             :alt="Socialmedia.name"
             loading="lazy"
-            :class="'some-logo scale-110 ' + custom_style"
-            :title="Socialmedia.name"
+            :class="'some-logo scale-100 group-hover:scale-110 group-hover:-translate-y-1' + custom_style"
          />
-         <img
-            v-else
-            :src="Socialmedia.img"
-            :alt="Socialmedia.name"
-            loading="lazy"
-            :class="'some-logo scale-100 ' + custom_style"
-         />
-         <p v-if="hover" class="pt-2 text-center overflow-hidden">{{ Socialmedia[$i18n.locale + '_desc'] }}</p>
+         <p class="info group-hover:opacity-100">
+            {{ Socialmedia.name }}
+            <!--            {{ Socialmedia[$i18n.locale + '_desc'] }}-->
+         </p>
       </a>
    </div>
 </template>
@@ -80,5 +74,16 @@
       width: 100%;
       object-fit: contain;
       -o-object-fit: contain;
+   }
+   .info {
+      position: absolute;
+      padding: 15px 60px;
+      bottom: -100px;
+      left: 50%;
+      text-align: center;
+      transform: translate(-50%, -50px);
+      opacity: 0;
+      white-space: nowrap;
+      transition: all 0.3s;
    }
 </style>
