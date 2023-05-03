@@ -7,9 +7,16 @@
             <div class="sm:w-1/3">
                <h2 class="mb-2 text-xl font-bold text-gray-900 dark:text-white">Serveri ry</h2>
                <h2 class="mb-6 text-md font-semibold text-gray-900 dark:text-white">Y: 1085522-1</h2>
-               <p class="mb-1 text-md font-mediumfont-bold text-gray-9font-bold00 dark:text-white">Microkatu 1</p>
+               <p class="mb-1 text-md font-mediumfont-bold text-gray-9font-bold00 dark:text-white">Microkatu 1 E 24</p>
                <p class="mb-1 text-md font-mediumfont-bold text-gray-900 dark:text-white">PL 1627</p>
                <p class="mb-1 text-md font-mediumfont-bold text-gray-900 dark:text-white">70211 Kuopio</p>
+               <br>
+               <a
+                  class="text-md font-mediumfont-bold text-gray-900 dark:text-white hover:underline"
+                  href="mailto:hallitus@serveriry.fi"
+                  target="_blank"
+                  >hallitus@serveriry.fi</a
+               >
             </div>
             <!-- Logo -->
             <div class="hidden sm:block sm:w-1/3">
@@ -71,9 +78,9 @@
    const links = [
       { text: 'rules-footer', href: '/yhdistys/saannot' },
       { text: 'gdpr', href: '/gdpr' },
+      { text: 'links', href: '/links' },
       { text: 'tkt', href: 'https://www.uef.fi/fi/koulutus/tietojenkasittelytiede' },
       { text: 'skripti', href: 'https://www.skripti.org/' },
-      { text: 'links', href: '/links' },
    ];
    const socialMedia = [
       {

@@ -17,7 +17,7 @@
             <div class="flex flex-col gap-6 py-10 px-8 sm:px-16 bg-white dark:bg-black rounded-lg shadow">
                <p class="font-bold text-2xl uppercase">{{ $t('contact-us') }}</p>
                <div>
-                  <p>Microkatu 1</p>
+                  <p>Microkatu 1 E 24</p>
                   <p>PL 1627</p>
                   <p>70211 Kuopio</p>
                </div>
@@ -32,7 +32,7 @@
                   <p>
                      <span class="pr-2">
                         <client-only><font-awesome-icon icon="fa fa-envelope" /></client-only> </span
-                     >pj@serveriry.fi
+                     >hallitus@serveriry.fi
                   </p>
                </div>
             </div>
