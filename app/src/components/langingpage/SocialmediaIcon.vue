@@ -66,7 +66,7 @@
 <style scoped>
    .some-container {
       min-height: 180px;
-      box-shadow: 0 0 26px -5px rgba(0, 0, 0, 0.27);
+      /*box-shadow: 0 0 26px -5px rgba(0, 0, 0, 0.27);*/
       display: flex;
       justify-content: center;
       align-items: center;
