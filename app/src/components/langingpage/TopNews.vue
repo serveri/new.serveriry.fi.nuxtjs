@@ -14,7 +14,7 @@
             />
          </div>
          <nuxt-link :to="localePath('/yhdistys/tapahtumat')" class="flex flex-col items-center pt-3">
-            <button class="btn-custom-primary" type="button">Näytä kaikki tapahtumat</button>
+            <button class="btn-custom-primary" type="button">{{ $t('show-all-coming-events') }}</button>
          </nuxt-link>
       </div>
    </div>
@@ -22,10 +22,21 @@
 <script setup lang="ts">
    import ComingEvent from '@/components/langingpage/ComingEvent.vue';
 
-   let events;
+   interface DataItem {
+      alku_aika: string;
+   }
+
+   let events: DataItem[];
    try {
       const response = await useFetch('https://api.serveri.jeb4.dev/items/tapahtuma');
       events = response.data.value.data;
+
+      // filter
+      const today = new Date();
+      const pastData = events.filter((item) => new Date(item.alku_aika) < today);
+      const futureData = events.filter((item) => new Date(item.alku_aika) >= today);
+
+      events = futureData.slice(0, 5);
    } catch (error) {
       events = [
          {
