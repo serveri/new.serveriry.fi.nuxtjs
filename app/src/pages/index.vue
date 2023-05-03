@@ -30,7 +30,7 @@
       <section>
          <h2 class="custom-page-title my-7">Löydät Serverin myös täältä!</h2>
 
-         <div class="grid grid-cols-1 gap-8 mb-8 md:grid-cols-2 md:gap-8 lg:grid-cols-6 lg:gap-7">
+         <div class="grid grid-cols-2 gap-8 mb-8 sm:grid-cols-3 md:grid-cols-4 md:gap-8 lg:grid-cols-6 lg:gap-7">
             <SocialmediaIcon
                v-for="some in SoMes"
                :key="some.nimi"
