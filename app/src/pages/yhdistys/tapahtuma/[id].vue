@@ -3,29 +3,69 @@
       <!--  events article with image header and content   -->
       <div class="NewsCard">
          <article class="py-8">
-            <h2 class="card-header py-6 text-2xl font-extrabold">{{ events[$i18n.locale + '_otsikko'] }}</h2>
+            <h2 class="card-header py-6 text-3xl sm:text-6xl font-bold text-center">
+               {{ events[$i18n.locale + '_otsikko'] }}
+            </h2>
 
-            <img class="object-cover md:h-[35rem] w-full p-0 m-0" :src="events.image" alt="Photo related to the events article." />
+            <img
+               class="object-fit w-full aspect-video p-0 m-0"
+               :src="events.image"
+               alt="Photo related to the events article."
+            />
 
-            <p class="events-date font-normal uppercase py-2 text-xs">
-               {{ $t('news_released') }}
-               <span>
-                  {{
-                     released_date.toLocaleDateString($i18n.locale, {
-                        weekday: 'long',
-                        year: 'numeric',
-                        month: 'long',
-                        day: 'numeric',
-                        hour: 'numeric',
-                        minute: 'numeric',
-                     })
-                  }}
-               </span>
-            </p>
+            <div class="sm:inline-flex items-center py-2 gap-8">
+               <p class="events-date font-normal uppercase text-xs">
+                  {{ $t('news_released') }}
+                  <span>
+                     {{
+                        released_date.toLocaleDateString($i18n.locale, {
+                           weekday: 'long',
+                           year: 'numeric',
+                           month: 'long',
+                           day: 'numeric',
+                           hour: 'numeric',
+                           minute: 'numeric',
+                        })
+                     }}
+                  </span>
+               </p>
+               <div>
+                  <span
+                     v-if="events.tyyppi.includes('ilmainen')"
+                     class="bg-green-100 text-green-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-gray-700 dark:text-green-400 border border-green-400"
+                     >Ilmainen</span
+                  >
+                  <span
+                     v-if="events.tyyppi.includes('mainos')"
+                     class="bg-yellow-100 text-yellow-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-gray-700 dark:text-yellow-300 border border-yellow-300"
+                     >Mainos</span
+                  >
+                  <span
+                     v-if="events.tyyppi.includes('alkoholiton')"
+                     class="bg-indigo-100 text-indigo-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-gray-700 dark:text-indigo-400 border border-indigo-400"
+                     >Alkoholiton</span
+                  >
+                  <span
+                     v-if="events.tyyppi.includes('poikkitieteellinen')"
+                     class="bg-pink-100 text-pink-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-gray-700 dark:text-pink-400 border border-pink-400"
+                     >Poikkitieteellinen</span
+                  >
+                  <span
+                     v-if="events.tyyppi.includes('turvallinen_tila')"
+                     class="bg-purple-100 text-purple-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-gray-700 dark:text-purple-400 border border-purple-400"
+                     >Turvallinen tila</span
+                  >
+                  <span
+                     v-if="events.tyyppi.includes('excursio')"
+                     class="bg-red-100 text-red-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-gray-700 dark:text-red-400 border border-red-400"
+                     >Excursio</span
+                  >
+               </div>
+            </div>
 
             <vue-markdown class="rich-text py-2" :source="events[$i18n.locale + '_kuvaus']" />
 
-            <p class="events-date font-normal uppercase py-2 text-xs">
+            <p v-if="alku_aika" class="events-date font-normal uppercase py-2 text-xs">
                {{ $t('event_start') }}
                <span>
                   {{
@@ -40,7 +80,7 @@
                   }}
                </span>
             </p>
-            <p class="events-date font-normal uppercase py-2 text-xs">
+            <p v-if="loppu_aika" class="events-date font-normal uppercase py-2 text-xs">
                {{ $t('event_end') }}
                <span>
                   {{
@@ -55,16 +95,85 @@
                   }}
                </span>
             </p>
+            <div class="pt-8">
+               <div
+                  v-if="events.tyyppi.includes('turvallinen_tila')"
+                  class="flex p-4 mb-4 text-sm text-blue-800 border border-blue-300 rounded-lg bg-blue-50 dark:bg-gray-800 dark:text-blue-400 dark:border-blue-800"
+               >
+                  <info-svg />
+                  <span class="sr-only">Info</span>
+                  <div>
+                     Tapahtumassa noudatetaan
+                     <nuxt-link :to="localePath('/yhdistys/turvallinen-tila')" class="text-blue-500 hover:underline">
+                        turvallisemman tilan
+                     </nuxt-link>
+                     periaatteita. Osallistumalla tapahtumaan sitoudut noudattamaan näitä periaatteita.
+                  </div>
+               </div>
+
+               <div
+                  v-if="events.tyyppi.includes('mainos')"
+                  class="flex p-4 mb-4 text-sm text-blue-800 border border-blue-300 rounded-lg bg-blue-50 dark:bg-gray-800 dark:text-blue-400 dark:border-blue-800"
+               >
+                  <info-svg />
+                  <span class="sr-only">Info</span>
+                  <div>
+                     Tapahtuma on <i class="cursor-pointer" title="Mainos voi olla maksettu tai ilmainen.">mainos</i>,
+                     eikä Serveri ry osallistu sen järjestämiseen. Haluaisitko sinä tai yrityksesi mainostaa tapahtumaa
+                     Serverin somessa ja verkkosivuilla?
+                     <nuxt-link :to="localePath('/yrityksille/yhteistyo')" class="hover:underline">
+                        Ota yhteyttä
+                     </nuxt-link>
+                  </div>
+               </div>
+
+               <div class="sm:inline-flex">
+                  <div v-if="events.kideapp_linkki">
+                     <a :href="events.kideapp_linkki" target="_blank" tabindex="-1">
+                        <button
+                           type="button"
+                           role="link"
+                           class="w-full sm:w-auto text-black dark:text-white bg-transparent hover:bg-gradient-to-r from-[#5a31af] via-purple-500 to-pink-500 outline outline-1 outline-[#5a31af] hover:outline-0 focus:ring-4 rounded-md focus:outline-none focus:ring-purple-800 font-bold px-5 py-2.5 text-center inline-flex items-center mr-2 mb-2 justify-center"
+                        >
+                           <img
+                              src="/images/kideapp.webp"
+                              alt="KideApp logo"
+                              loading="lazy"
+                              class="h-10 pr-4"
+                              tabindex="-1"
+                           />
+
+                           Osta liput KideAppista
+                        </button>
+                     </a>
+                  </div>
+                  <div v-if="events.sijainti">
+                     <a
+                        :href="'https://www.openstreetmap.org/?mlat=' + x + '&mlon=' + y + '&zoom=17&layers=M'"
+                        target="_blank"
+                     >
+                        <button
+                           type="button"
+                           role="link"
+                           class="w-full sm:w-auto text-black dark:text-white bg-transparent hover:bg-gradient-to-r from-[#5a31af] via-purple-500 to-pink-500 outline outline-1 outline-[#5a31af] hover:outline-0 focus:ring-4 rounded-md focus:outline-none focus:ring-purple-800 font-bold px-5 py-2.5 text-center inline-flex items-center mr-2 mb-2 justify-center"
+                        >
+                           <img
+                              src="/images/maps.png"
+                              alt="KideApp logo"
+                              loading="lazy"
+                              class="h-10 pr-4 dark:invert"
+                              tabindex="-1"
+                           />
+                           Reittiohjeet
+                        </button>
+                     </a>
+                  </div>
+               </div>
+            </div>
          </article>
       </div>
    </div>
 </template>
-
-<script>
-   export default {
-      name: '[id].vue',
-   };
-</script>
 
 <script setup>
    import VueMarkdown from 'vue-markdown-render';
@@ -72,15 +181,22 @@
    let events;
    const route = useRoute();
    let released_date = new Date();
-   let alku_aika = new Date();
-   let loppu_aika = new Date();
+   let alku_aika;
+   let loppu_aika;
+   let x;
+   let y;
    try {
       const response = await useFetch('https://api.serveri.jeb4.dev/items/tapahtuma/' + route.params.id);
       if (response?.data?.value?.data) {
          events = response.data.value.data;
          released_date = new Date(events.date_created);
          alku_aika = new Date(events.alku_aika);
-         loppu_aika = new Date(events.loppu_aika);
+         loppu_aika = events.loppu_aika ? new Date(events.loppu_aika) : null;
+         if (events.sijainti) {
+            let matches = events.sijainti.match(/-?\d+(\.\d+)?/g);
+            y = parseFloat(matches[0]);
+            x = parseFloat(matches[1]);
+         }
       } else {
          events = {
             image: 'https://api.serveriry.fi/uploads/large_computerstuffwithlogo_da6b992e47.jpg',
@@ -89,8 +205,8 @@
             en_otsikko: 'The events title cannot be found',
             fi_kuvaus: 'Valitettavasti rest rajapintaan ei saada yhteyttä, ovatkohan serverit liekeissä?',
             en_kuvaus: 'Unfortunately we cannot connect to the rest interface, maybe the servers are on fire?',
-            alku_aika: new Date(),
-            loppu_aika: new Date(),
+            alku_aika: null,
+            loppu_aika: null,
          };
       }
    } catch (error) {
@@ -101,8 +217,8 @@
          en_otsikko: 'The events title cannot be found',
          fi_kuvaus: 'Valitettavasti rest rajapintaan ei saada yhteyttä, ovatkohan serverit liekeissä?',
          en_kuvaus: 'Unfortunately we cannot connect to the rest interface, maybe the servers are on fire?',
-         alku_aika: new Date(),
-         loppu_aika: new Date(),
+         alku_aika: null,
+         loppu_aika: null,
       };
    }
 </script>
