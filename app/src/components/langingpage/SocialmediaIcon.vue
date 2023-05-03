@@ -1,15 +1,21 @@
 <template>
    <div class="some-container">
-      <a :href="Socialmedia.url" class="w-32" @mouseover="hover = true" @mouseleave="hover = false">
+      <a :href="Socialmedia.url" target="_blank" class="w-full" @mouseover="hover = true" @mouseleave="hover = false">
          <img
             v-if="hover"
             :src="Socialmedia.img"
             :alt="Socialmedia.name"
             loading="lazy"
-            class="some-logo scale-110"
+            :class="'some-logo scale-110 ' + custom_style"
             :title="Socialmedia.name"
          />
-         <img v-else :src="Socialmedia.img" :alt="Socialmedia.name" loading="lazy" class="some-logo scale-100" />
+         <img
+            v-else
+            :src="Socialmedia.img"
+            :alt="Socialmedia.name"
+            loading="lazy"
+            :class="'some-logo scale-100 ' + custom_style"
+         />
          <p v-if="hover" class="pt-2 text-center overflow-hidden">{{ Socialmedia[$i18n.locale + '_desc'] }}</p>
       </a>
    </div>
@@ -37,6 +43,11 @@
       en_desc: {
          type: String,
          required: false,
+      },
+      custom_style: {
+         type: String,
+         required: false,
+         default: '',
       },
    });
 </script>
