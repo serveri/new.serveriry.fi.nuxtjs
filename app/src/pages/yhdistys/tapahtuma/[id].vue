@@ -8,7 +8,7 @@
             </h2>
 
             <img
-               class="object-fit w-full aspect-video p-0 m-0"
+               class="object-cover w-full aspect-video p-0 m-0"
                :src="events.image"
                alt="Photo related to the events article."
             />

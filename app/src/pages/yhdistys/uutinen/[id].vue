@@ -5,7 +5,7 @@
          <article class="py-8">
             <h2 class="card-header py-6 text-2xl font-extrabold">{{ news[$i18n.locale + '_title'] }}</h2>
 
-            <img class="object-cover md:h-[35rem] w-full p-0 m-0" :src="news.image" alt="Photo related to the news article." />
+            <img class="object-cover aspect-video w-full p-0 m-0" :src="news.image" alt="Photo related to the news article." />
 
             <p class="news-date font-normal uppercase py-2 text-xs">
                {{ $t('news_released') }}
