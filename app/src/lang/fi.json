@@ -59,6 +59,8 @@
    "h1_board": "Hallitustoiminta",
    "h1_rules": "Säännöt",
    "h1_events": "Tapahtumat",
+   "h1_events_coming": "Tulevat tapahtumat",
+   "h1_events_past": "Menneet tapahtumat",
    "h1_merch": "Merch",
    "h1_news": "Uutiset",
    "h1_safe-space": "Turvallinen tila",
@@ -94,5 +96,8 @@
    "updated_last_time": "Päivitetty viimeksi: ",
    "thanks-contact": "Kiitos yhteydenotosta!",
    "we-contact-you-soon": "Otamme teihin yhteyttä mahdollisimman pian",
-   "back-to-frontpage": "Palaa etusivulle"
+   "back-to-frontpage": "Palaa etusivulle",
+
+   "show-all-coming-events": "Näytä kaikki tulevat tapahtumat"
+
 }
