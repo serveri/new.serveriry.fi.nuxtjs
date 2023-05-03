@@ -1,7 +1,7 @@
 <template>
    <a :href="SoMe.link" :title="SoMe.name" class="text-gray-500 hover:text-gray-900 dark:hover:text-white">
       <ClientOnly fallback-tag="span" fallback="">
-         <font-awesome-icon :icon="SoMe.icon" />
+         <font-awesome-icon :icon="SoMe.icon" class="h-8 hover:text-custom-primary" />
       </ClientOnly>
       <span class="sr-only" :aria-label="SoMe.name">{{ SoMe.name }}</span>
    </a>
