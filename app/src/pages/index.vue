@@ -30,7 +30,7 @@
       <section>
          <h2 class="custom-page-title my-7">Löydät Serverin myös täältä!</h2>
 
-         <div class="grid grid-cols-1 gap-8 mb-8 md:grid-cols-2 md:gap-8 lg:grid-cols-4 lg:gap-7">
+         <div class="grid grid-cols-1 gap-8 mb-8 md:grid-cols-2 md:gap-8 lg:grid-cols-6 lg:gap-7">
             <SocialmediaIcon
                v-for="some in SoMes"
                :key="some.nimi"
@@ -40,6 +40,7 @@
                :name="some.nimi"
                :fi_desc="some.fi_kuvaus"
                :en_desc="some.en_kuvaus"
+               :custom_style="some.custom_css"
             />
          </div>
       </section>
@@ -72,6 +73,7 @@
          en_button_text: 'What is computer science like?',
          fi_button_url: '/opiskelu/tkt',
          en_button_url: '/opiskelu/tkt',
+         custom_css: '',
       };
    }
 
