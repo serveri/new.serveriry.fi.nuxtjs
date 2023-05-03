@@ -17,8 +17,10 @@
             :name="member.name"
             :email="member.email"
             :telegram="member.telegram"
-            :desc="member.description"
-            :role="member.role"
+            :fi_desc="member.fi_desc"
+            :en_desc="member.en_desc"
+            :fi_role="member.fi_role"
+            :en_role="member.en_role"
          />
       </div>
    </div>
@@ -38,11 +40,13 @@
          {
             img: '/images/member.jpeg',
             hover_img: '/images/member2.jpeg',
-            role: 'Jäsen',
+            fi_role: 'Jäsen',
+            en_role: 'Member',
             email: 'email@serveriry.fi',
             telegram: 'telegram',
             name: 'API error',
-            description: 'joo joku ongelma vissii serverit tulessa :O',
+            fi_description: 'joo joku ongelma vissii serverit tulessa :O',
+            en_description: 'Api error',
          },
       ];
       text = {

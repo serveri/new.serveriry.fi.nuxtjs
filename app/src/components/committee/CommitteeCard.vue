@@ -1,6 +1,6 @@
 <template>
    <div>
-      <div class="card-container">
+      <div class="card-container h-full">
          <div class="member-info flex flex-wrap justify-center px-4">
             <div class="w-9/12 sm:w-11/12" @mouseover="hover = true" @mouseleave="hover = false">
                <img
@@ -23,9 +23,9 @@
          </div>
 
          <div class="member-header text-center py-2">
-            <h2 class="member-role font-extrabold text-2xl">{{ content.role }}</h2>
+            <h2 class="member-role text-xl font-bold">{{ content[$i18n.locale + '_role'] }}</h2>
 
-            <h2 class="member-name font-extrabold text-2xl">{{ content.name }}</h2>
+            <h2 class="member-name font-extrabold pt-1 text-2xl">{{ content.name }}</h2>
          </div>
 
          <div class="member-desc text-center pb-2">
@@ -48,7 +48,7 @@
          <div class="button-container text-center">
             <div class="role-desc">
                <p v-if="isExpanded" class="role-text p-3 text-left">
-                  {{ content.desc }}
+                  {{ content[$i18n.locale + '_desc'] }}
                </p>
             </div>
 
@@ -96,15 +96,20 @@
          default: 'Seppo Taalasmaa',
          required: false,
       },
-      role: {
+      fi_role: {
          type: String,
-         default: 'Puheenjohtaja',
          required: false,
       },
-      desc: {
+      en_role: {
          type: String,
-         default:
-            'Puheenjohtajan tehtävänä on pähkinänkuoressa johtaa kokouksia, pitää huoli, että hallitus toimii ja asiat pelittävät, sekä hoitaa erinäisiä edustustehtäviä.',
+         required: false,
+      },
+      fi_desc: {
+         type: String,
+         required: false,
+      },
+      en_desc: {
+         type: String,
          required: false,
       },
    });
