@@ -79,6 +79,7 @@
       { text: 'rules-footer', href: '/yhdistys/saannot' },
       { text: 'gdpr', href: '/gdpr' },
       { text: 'links', href: '/links' },
+      { text: 'about', href: '/tietoa-sivusta' },
       { text: 'tkt', href: 'https://www.uef.fi/fi/koulutus/tietojenkasittelytiede' },
       { text: 'skripti', href: 'https://www.skripti.org/' },
    ];
