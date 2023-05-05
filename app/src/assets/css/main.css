@@ -23,10 +23,20 @@
   h4,
   h5,
   h6,
-  html {
+  html,
+  td,
+  th {
     @apply text-black dark:text-white;
 
     font-family: Exo, sans-serif;
+  }
+
+  th {
+    @apply text-center;
+  }
+
+  td {
+    @apply pr-8;
   }
 
   .custom-page-title {
