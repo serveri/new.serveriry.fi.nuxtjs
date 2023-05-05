@@ -67,11 +67,23 @@
   }
 
   .rich-text h2 {
-    @apply py-3 text-xl;
+    @apply pt-8 pb-4 text-3xl font-bold;
   }
 
   .rich-text h3 {
-    @apply py-2 text-lg;
+    @apply py-3 text-2xl font-semibold;
+  }
+
+  .rich-text h4 {
+    @apply py-2 text-xl;
+  }
+
+  .rich-text h5 {
+    @apply text-lg;
+  }
+
+  .rich-text h6 {
+    @apply text-sm;
   }
 
   .rich-text li {
@@ -91,6 +103,8 @@
   }
 
   .rich-text p {
-    @apply py-2 text-base;
+    @apply py-2 text-base tracking-wide leading-relaxed text-gray-800 dark:text-gray-100;
+
+    font-family: Exo, sans-serif;
   }
 }
