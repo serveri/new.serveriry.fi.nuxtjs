@@ -11,9 +11,9 @@
                   {{ content[$i18n.locale + '_title'] }}
                </span>
             </h1>
-            <h3 class="text-xl md:text-2xl mb-8 md:mb-16 dark:text-black">
+            <h2 class="text-xl md:text-2xl mb-8 md:mb-16 dark:text-black">
                {{ content[$i18n.locale + '_description'] }}
-            </h3>
+            </h2>
             <nuxt-link :to="content[$i18n.locale + '_button_url']" class="py-4">
                <div
                   class="p-3 sm:py-4 sm:px-6 text-white bg-custom-primary hover:bg-custom-secondary rounded-lg text-center uppercase font-bold md:text-lg tracking-wider mx-auto"
