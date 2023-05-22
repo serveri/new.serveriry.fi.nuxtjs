@@ -33,8 +33,10 @@
 
       // filter
       const today = new Date();
-      const pastData = events.filter((item) => new Date(item.alku_aika) < today);
+      // const pastData = events.filter((item) => new Date(item.alku_aika) < today);
       const futureData = events.filter((item) => new Date(item.alku_aika) >= today);
+      // order by first by date
+      futureData.sort((a, b) => new Date(a.alku_aika).getTime() - new Date(b.alku_aika).getTime());
 
       events = futureData.slice(0, 5);
    } catch (error) {
