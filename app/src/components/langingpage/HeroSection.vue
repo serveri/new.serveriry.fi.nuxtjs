@@ -38,13 +38,15 @@
 </template>
 
 <script setup>
-   const data = defineProps({
+   import { computed } from 'vue';
+   const props = defineProps({
       content: {
          type: Object,
          required: true,
       },
    });
-   const content = data.content;
+   // Use a computed property to derive a new value based on the prop's value
+   const content = computed(() => props.content);
 </script>
 
 <style scoped>
