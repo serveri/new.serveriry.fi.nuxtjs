@@ -67,7 +67,7 @@
       box-shadow: 0 0 26px -5px rgba(0, 0, 0, 0.27);
    }
    .NewsCard {
-      @apply dark:shadow-lg dark:shadow-zinc-600/50;
+      @apply dark:shadow-lg dark:shadow-zinc-600/50 dark:bg-zinc-900;
    }
    .NewsCard {
       @apply justify-self-center overflow-hidden rounded-2xl h-full w-full;
