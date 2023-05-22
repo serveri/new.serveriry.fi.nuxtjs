@@ -57,7 +57,7 @@
 
   .btn-custom-primary {
     @apply inline-flex items-center px-3 py-2 text-sm font-bold text-center text-white rounded;
-    @apply bg-custom-primary hover:bg-custom-secondary dark:hover:bg-custom-secondary-dark;
+    @apply bg-custom-secondary hover:bg-custom-primary dark:hover:bg-custom-secondary-dark;
   }
 
   .paragraph {
