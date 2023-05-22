@@ -17,9 +17,9 @@
       </div>
 
       <div>
-         <h4 class="text-xl font-bold mt-2 mb-3">
+         <h3 class="text-xl font-bold mt-2 mb-3">
             Jos mietit kannattaisiko alaa alkaa opiskelemaan niin olet oikealla sivulla
-         </h4>
+         </h3>
          <p>
             Tietojenkäsittelytiede on aavistuksen näsäviisaasti ilmaistuna tiedettä tiedon käsittelystä. Nykyään
             tietojenkäsittelytiede hyödyntää vahvasti digitaalisia järjestelmiä. Käytännössä tietojenkäsittelytieteeseen
@@ -45,11 +45,11 @@
             <table class="course-table">
                <thead>
                   <tr>
-                     <th class="table-header name"><p>Opintojakso</p></th>
+                     <th class="table-header name"><p class="text-white">Opintojakso</p></th>
 
-                     <th class="table-header desc"><p>Kurssikuvaus</p></th>
+                     <th class="table-header desc"><p class="text-white">Kurssikuvaus</p></th>
 
-                     <th class="table-header credits"><p>Laajuus (opintopisteet)</p></th>
+                     <th class="table-header credits"><p class="text-white">Laajuus (opintopisteet)</p></th>
                   </tr>
                </thead>
                <tbody>
@@ -85,11 +85,11 @@
             <table class="course-table">
                <thead>
                   <tr>
-                     <th class="table-header name"><p>Opintojakso</p></th>
+                     <th class="table-header name"><p class="text-white">Opintojakso</p></th>
 
-                     <th class="table-header desc"><p>Kurssikuvaus</p></th>
+                     <th class="table-header desc"><p class="text-white">Kurssikuvaus</p></th>
 
-                     <th class="table-header credits"><p>Laajuus (opintopisteet)</p></th>
+                     <th class="table-header credits"><p class="text-white">Laajuus (opintopisteet)</p></th>
                   </tr>
                </thead>
                <tbody>
@@ -126,11 +126,11 @@
             <table class="course-table">
                <thead>
                   <tr>
-                     <th class="table-header name"><p>Opintojakso</p></th>
+                     <th class="table-header name"><p class="text-white">Opintojakso</p></th>
 
-                     <th class="table-header desc"><p>Kurssikuvaus</p></th>
+                     <th class="table-header desc"><p class="text-white">Kurssikuvaus</p></th>
 
-                     <th class="table-header credits"><p>Laajuus (opintopisteet)</p></th>
+                     <th class="table-header credits"><p class="text-white">Laajuus (opintopisteet)</p></th>
                   </tr>
                </thead>
                <tbody>
@@ -163,11 +163,11 @@
             <table class="course-table">
                <thead>
                   <tr>
-                     <th class="table-header name"><p>Opintojakso</p></th>
+                     <th class="table-header name"><p class="text-white">Opintojakso</p></th>
 
-                     <th class="table-header desc"><p>Kurssikuvaus</p></th>
+                     <th class="table-header desc"><p class="text-white">Kurssikuvaus</p></th>
 
-                     <th class="table-header credits"><p>Laajuus (opintopisteet)</p></th>
+                     <th class="table-header credits"><p class="text-white">Laajuus (opintopisteet)</p></th>
                   </tr>
                </thead>
                <tbody>
@@ -200,11 +200,11 @@
             <table class="course-table">
                <thead>
                   <tr>
-                     <th class="table-header name"><p>Opintojakso</p></th>
+                     <th class="table-header name"><p class="text-white">Opintojakso</p></th>
 
-                     <th class="table-header desc"><p>Kurssikuvaus</p></th>
+                     <th class="table-header desc"><p class="text-white">Kurssikuvaus</p></th>
 
-                     <th class="table-header credits"><p>Laajuus (opintopisteet)</p></th>
+                     <th class="table-header credits"><p class="text-white">Laajuus (opintopisteet)</p></th>
                   </tr>
                </thead>
                <tbody>
@@ -237,11 +237,11 @@
             <table class="course-table">
                <thead>
                   <tr>
-                     <th class="table-header name"><p>Opintojakso</p></th>
+                     <th class="table-header name"><p class="text-white">Opintojakso</p></th>
 
-                     <th class="table-header desc"><p>Kurssikuvaus</p></th>
+                     <th class="table-header desc"><p class="text-white">Kurssikuvaus</p></th>
 
-                     <th class="table-header credits"><p>Laajuus (opintopisteet)</p></th>
+                     <th class="table-header credits"><p class="text-white">Laajuus (opintopisteet)</p></th>
                   </tr>
                </thead>
                <tbody>
@@ -275,11 +275,11 @@
             <table class="course-table">
                <thead>
                   <tr>
-                     <th class="table-header name"><p>Opintojakso</p></th>
+                     <th class="table-header name"><p class="text-white">Opintojakso</p></th>
 
-                     <th class="table-header desc"><p>Kurssikuvaus</p></th>
+                     <th class="table-header desc"><p class="text-white">Kurssikuvaus</p></th>
 
-                     <th class="table-header credits"><p>Laajuus (opintopisteet)</p></th>
+                     <th class="table-header credits"><p class="text-white">Laajuus (opintopisteet)</p></th>
                   </tr>
                </thead>
                <tbody>
