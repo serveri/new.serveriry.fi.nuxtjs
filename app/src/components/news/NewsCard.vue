@@ -9,7 +9,15 @@
             <h2 class="card-header pt-3 text-2xl font-extrabold">{{ content[$i18n.locale + '_title'] }}</h2>
 
             <p class="news-date font-normal uppercase mt-1 py-1 text-xs">
-               {{ $t('news_released') }} <span>{{ content.date.toLocaleDateString($i18n.locale, options) }}</span>
+               {{ $t('news_released') }}
+               <span>{{
+                  content.date.toLocaleDateString($i18n.locale, {
+                     weekday: 'long',
+                     year: 'numeric',
+                     month: 'long',
+                     day: 'numeric',
+                  })
+               }}</span>
             </p>
 
             <p class="card-content mt-1 mb-3 line-clamp-3">{{ content[$i18n.locale + '_text'] }}</p>
@@ -57,7 +65,6 @@
          required: true,
       },
    });
-   const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
 </script>
 
 <style scoped>
