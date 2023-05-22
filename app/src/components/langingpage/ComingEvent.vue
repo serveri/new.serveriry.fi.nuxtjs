@@ -5,7 +5,7 @@
             {{ event[$i18n.locale + '_otsikko'] }}
          </h3>
       </a>
-      <p class="font-light text-gray-400 dark:text-gray-400">
+      <p class="font-light text-gray-500 dark:text-gray-400">
          {{ alku_aika.toLocaleDateString($i18n.locale, DateOptions) }}
       </p>
    </div>
