@@ -2,7 +2,7 @@
    <a :href="'/yhdistys/tapahtuma/' + content.url">
       <div class="NewsCard">
          <div class="rounded-sm">
-            <img class="news-image w-full h-64 object-cover" :src="content.img" alt="Cover image for the news card" />
+            <img class="news-image w-full h-64 object-cover" :src="content.img?.startsWith('http') ? content.img : '/images/placeholder.jpg'" alt="Cover image for the news card" />
          </div>
 
          <div class="px-4">
