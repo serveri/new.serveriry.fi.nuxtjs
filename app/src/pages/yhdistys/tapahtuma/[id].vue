@@ -1,12 +1,15 @@
 <template>
-  <Head>
-    <Title>{{ events[$i18n.locale + '_otsikko'] }} - Serveri ry</Title>
-    <Meta
-      name="description"
-      :content="events[$i18n.locale + '_kuvaus'].match(new RegExp(`^.{1,150}\\b`))?.[0] || events[$i18n.locale + '_kuvaus'].slice(0, 150)"
-    />
-    <Meta property="og:image" :content="events.image" />
-  </Head>
+   <Head>
+      <Title>{{ events[$i18n.locale + '_otsikko'] }} - Serveri ry</Title>
+      <Meta
+         name="description"
+         :content="
+            events[$i18n.locale + '_kuvaus'].match(new RegExp(`^.{1,150}\\b`))?.[0] ||
+            events[$i18n.locale + '_kuvaus'].slice(0, 150)
+         "
+      />
+      <Meta property="og:image" :content="events.image" />
+   </Head>
    <div>
       <!--  events article with image header and content   -->
       <div class="NewsCard">
@@ -112,9 +115,9 @@
                   <span class="sr-only">Info</span>
                   <div>
                      Tapahtumassa noudatetaan
-                     <nuxt-link :to="localePath('/yhdistys/turvallinen-tila')" class="text-blue-500 hover:underline">
-                        turvallisemman tilan
-                     </nuxt-link>
+                     <nuxt-link :to="localePath('/yhdistys/turvallinen-tila')" class="text-blue-600 hover:underline"
+                        >turvallisemman tilan</nuxt-link
+                     >
                      periaatteita. Osallistumalla tapahtumaan sitoudut noudattamaan näitä periaatteita.
                   </div>
                </div>
@@ -156,10 +159,7 @@
                      </a>
                   </div>
                   <div v-if="events.sijainti">
-                     <a
-                        :href="`https://www.google.com/maps/place/${x},${y}`"
-                        target="_blank"
-                     >
+                     <a :href="`https://www.google.com/maps/place/${x},${y}`" target="_blank">
                         <button
                            type="button"
                            role="link"
