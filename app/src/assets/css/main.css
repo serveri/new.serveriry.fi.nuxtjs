@@ -109,7 +109,7 @@
   }
 
   .rich-text a {
-    @apply text-blue-500 dark:text-blue-400 hover:underline;
+    @apply text-blue-600 dark:text-blue-400 hover:underline;
   }
 
   .rich-text p {
