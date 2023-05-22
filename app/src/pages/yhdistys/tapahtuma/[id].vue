@@ -1,4 +1,12 @@
 <template>
+  <Head>
+    <Title>{{ events[$i18n.locale + '_otsikko'] }} - Serveri ry</Title>
+    <Meta
+      name="description"
+      :content="events[$i18n.locale + '_kuvaus'].match(new RegExp(`^.{1,150}\\b`))?.[0] || events[$i18n.locale + '_kuvaus'].slice(0, 150)"
+    />
+    <Meta property="og:image" :content="events.image" />
+  </Head>
    <div>
       <!--  events article with image header and content   -->
       <div class="NewsCard">
