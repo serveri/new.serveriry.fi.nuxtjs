@@ -55,6 +55,10 @@
       const today = new Date();
       events.pastData = events.filter((item) => new Date(item.alku_aika) < today);
       events.futureData = events.filter((item) => new Date(item.alku_aika) >= today);
+
+      // order by first by date
+      events.pastData.sort((a, b) => new Date(b.alku_aika).getTime() - new Date(a.alku_aika).getTime());
+      events.futureData.sort((a, b) => new Date(a.alku_aika).getTime() - new Date(b.alku_aika).getTime());
    } catch (error) {
       events = [
          {
