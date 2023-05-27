@@ -45,11 +45,11 @@
             <table class="course-table">
                <thead>
                   <tr>
-                     <th class="table-header name"><p class="text-white">Opintojakso</p></th>
+                     <th class="table-header name">Opintojakso</th>
 
-                     <th class="table-header desc"><p class="text-white">Kurssikuvaus</p></th>
+                     <th class="table-header desc">Kurssikuvaus</th>
 
-                     <th class="table-header credits"><p class="text-white">Laajuus (opintopisteet)</p></th>
+                     <th class="table-header credits">Laajuus (opintopisteet)</th>
                   </tr>
                </thead>
                <tbody>
@@ -85,11 +85,11 @@
             <table class="course-table">
                <thead>
                   <tr>
-                     <th class="table-header name"><p class="text-white">Opintojakso</p></th>
+                     <th class="table-header name">Opintojakso</th>
 
-                     <th class="table-header desc"><p class="text-white">Kurssikuvaus</p></th>
+                     <th class="table-header desc">Kurssikuvaus</th>
 
-                     <th class="table-header credits"><p class="text-white">Laajuus (opintopisteet)</p></th>
+                     <th class="table-header credits">Laajuus (opintopisteet)</th>
                   </tr>
                </thead>
                <tbody>
@@ -126,11 +126,11 @@
             <table class="course-table">
                <thead>
                   <tr>
-                     <th class="table-header name"><p class="text-white">Opintojakso</p></th>
+                     <th class="table-header name">Opintojakso</th>
 
-                     <th class="table-header desc"><p class="text-white">Kurssikuvaus</p></th>
+                     <th class="table-header desc">Kurssikuvaus</th>
 
-                     <th class="table-header credits"><p class="text-white">Laajuus (opintopisteet)</p></th>
+                     <th class="table-header credits">Laajuus (opintopisteet)</th>
                   </tr>
                </thead>
                <tbody>
@@ -157,17 +157,21 @@
          <div class="table-container">
             <div>
                <h2 class="table-desc">Valinnaiset aineopinnot</h2>
-               <p>Valinnaisia aineopintoja kuuluu tutkintoon vähintään 5 op. Ne sijoittuvat toiseen ja kolmanteen opiskeluvuoteen. Kurssit käsittelevät tietojenkäsittelyn erilaisia kiinnostavia osa-alueita, jotka tukevat ammatillista osaamista ja antavat osaltaan pohjaa maisteriopinnoille.</p>
+               <p>
+                  Valinnaisia aineopintoja kuuluu tutkintoon vähintään 5 op. Ne sijoittuvat toiseen ja kolmanteen
+                  opiskeluvuoteen. Kurssit käsittelevät tietojenkäsittelyn erilaisia kiinnostavia osa-alueita, jotka
+                  tukevat ammatillista osaamista ja antavat osaltaan pohjaa maisteriopinnoille.
+               </p>
             </div>
 
             <table class="course-table">
                <thead>
                   <tr>
-                     <th class="table-header name"><p class="text-white">Opintojakso</p></th>
+                     <th class="table-header name">Opintojakso</th>
 
-                     <th class="table-header desc"><p class="text-white">Kurssikuvaus</p></th>
+                     <th class="table-header desc">Kurssikuvaus</th>
 
-                     <th class="table-header credits"><p class="text-white">Laajuus (opintopisteet)</p></th>
+                     <th class="table-header credits">Laajuus (opintopisteet)</th>
                   </tr>
                </thead>
                <tbody>
@@ -194,17 +198,20 @@
          <div class="table-container">
             <div>
                <h2 class="table-desc">Kieli- ja viestintäopinnot</h2>
-               <p>Kieli- ja viestintäopinnot tukevat tietojenkäsittelytieteen opintoja ja antavat perustaidot ruotsin ja englannin kielten akateemiselle osaamiselle.</p>
+               <p>
+                  Kieli- ja viestintäopinnot tukevat tietojenkäsittelytieteen opintoja ja antavat perustaidot ruotsin ja
+                  englannin kielten akateemiselle osaamiselle.
+               </p>
             </div>
 
             <table class="course-table">
                <thead>
                   <tr>
-                     <th class="table-header name"><p class="text-white">Opintojakso</p></th>
+                     <th class="table-header name">Opintojakso</th>
 
-                     <th class="table-header desc"><p class="text-white">Kurssikuvaus</p></th>
+                     <th class="table-header desc">Kurssikuvaus</th>
 
-                     <th class="table-header credits"><p class="text-white">Laajuus (opintopisteet)</p></th>
+                     <th class="table-header credits">Laajuus (opintopisteet)</th>
                   </tr>
                </thead>
                <tbody>
@@ -237,11 +244,11 @@
             <table class="course-table">
                <thead>
                   <tr>
-                     <th class="table-header name"><p class="text-white">Opintojakso</p></th>
+                     <th class="table-header name">Opintojakso</th>
 
-                     <th class="table-header desc"><p class="text-white">Kurssikuvaus</p></th>
+                     <th class="table-header desc">Kurssikuvaus</th>
 
-                     <th class="table-header credits"><p class="text-white">Laajuus (opintopisteet)</p></th>
+                     <th class="table-header credits">Laajuus (opintopisteet)</th>
                   </tr>
                </thead>
                <tbody>
@@ -266,20 +273,25 @@
             </table>
          </div>
 
-          <div class="table-container">
+         <div class="table-container">
             <div>
                <h2 class="table-desc">Valinnaiset syventävät opinnot</h2>
-               <p>Valinnaiset syventävät opintojaksot vuorottelevat eri vuosina. Valinnaisia syventävien opintojen opintojaksoja sopii tutkintoon 30-40 op tai jopa enemmän, riippuen omasta HOPS:sta. Valinnaiset syventävät opintojaksot kannattaa valinta omaan syventävien opintojen suuntautumiseen eli HOPS:iin sopiviksi sen lisäksi että ne sopivat omiin kiinnostuksen kohteisiin ja työllistymisen tukemiseen.</p>
+               <p>
+                  Valinnaiset syventävät opintojaksot vuorottelevat eri vuosina. Valinnaisia syventävien opintojen
+                  opintojaksoja sopii tutkintoon 30-40 op tai jopa enemmän, riippuen omasta HOPS:sta. Valinnaiset
+                  syventävät opintojaksot kannattaa valinta omaan syventävien opintojen suuntautumiseen eli HOPS:iin
+                  sopiviksi sen lisäksi että ne sopivat omiin kiinnostuksen kohteisiin ja työllistymisen tukemiseen.
+               </p>
             </div>
 
             <table class="course-table">
                <thead>
                   <tr>
-                     <th class="table-header name"><p class="text-white">Opintojakso</p></th>
+                     <th class="table-header name">Opintojakso</th>
 
-                     <th class="table-header desc"><p class="text-white">Kurssikuvaus</p></th>
+                     <th class="table-header desc">Kurssikuvaus</th>
 
-                     <th class="table-header credits"><p class="text-white">Laajuus (opintopisteet)</p></th>
+                     <th class="table-header credits">Laajuus (opintopisteet)</th>
                   </tr>
                </thead>
                <tbody>
@@ -363,6 +375,7 @@
 <style scoped>
    th {
       background-color: rgb(0 119 138 / var(--tw-bg-opacity));
+      @apply text-white dark:text-white;
    }
    .table-container {
       @apply my-6;
