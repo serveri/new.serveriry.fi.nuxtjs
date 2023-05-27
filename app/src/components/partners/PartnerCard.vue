@@ -1,7 +1,15 @@
 <template>
-   <a :href="partner.url" target="_blank" @mouseover="hover = true" @mouseleave="hover = false">
-      <img v-if="hover" :src="partner.img" :alt="partner.name" loading="lazy" class="scale-110" :title="partner.name" />
-      <img v-else :src="partner.img" :alt="partner.name" loading="lazy" class="scale-100" />
+   <a :href="partner.url" target="_blank" tabindex="-1" @mouseover="hover = true" @mouseleave="hover = false">
+      <img
+         v-if="hover"
+         :src="partner.img"
+         :alt="partner.name"
+         loading="lazy"
+         class="scale-110"
+         :title="partner.name"
+         tabindex="-1"
+      />
+      <img v-else :src="partner.img" :alt="partner.name" loading="lazy" class="scale-100" tabindex="-1" />
    </a>
 </template>
 

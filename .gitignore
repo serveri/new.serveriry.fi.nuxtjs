@@ -5,3 +5,5 @@ node_modules
 /.idea
 .nuxt
 .vs
+/app/dist/
+/.unlighthouse/

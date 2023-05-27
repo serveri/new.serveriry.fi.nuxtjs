@@ -8,6 +8,7 @@
       <iframe
          v-for="post in posts.slice(0, 4)"
          :key="post.postaus_id"
+         title="Instagram post"
          class="rounded-lg w-full h-[97vw] sm:h-[100%]"
          :src="'//instagram.com/p/' + post.postaus_id + '/embed/'"
          height="100%"

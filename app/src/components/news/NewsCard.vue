@@ -9,7 +9,15 @@
             <h2 class="card-header pt-3 text-2xl font-extrabold">{{ content[$i18n.locale + '_title'] }}</h2>
 
             <p class="news-date font-normal uppercase mt-1 py-1 text-xs">
-               {{ $t('news_released') }} <span>{{ content.date.toLocaleDateString($i18n.locale, options) }}</span>
+               {{ $t('news_released') }}
+               <span>{{
+                  content.date.toLocaleDateString($i18n.locale, {
+                     weekday: 'long',
+                     year: 'numeric',
+                     month: 'long',
+                     day: 'numeric',
+                  })
+               }}</span>
             </p>
 
             <p class="card-content mt-1 mb-3 line-clamp-3">{{ content[$i18n.locale + '_text'] }}</p>
@@ -57,7 +65,6 @@
          required: true,
       },
    });
-   const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
 </script>
 
 <style scoped>
@@ -67,7 +74,7 @@
       box-shadow: 0 0 26px -5px rgba(0, 0, 0, 0.27);
    }
    .NewsCard {
-      @apply dark:shadow-lg dark:shadow-zinc-600/50;
+      @apply dark:shadow-lg dark:shadow-zinc-600/50 dark:bg-zinc-900;
    }
    .NewsCard {
       @apply justify-self-center overflow-hidden rounded-2xl h-full w-full;

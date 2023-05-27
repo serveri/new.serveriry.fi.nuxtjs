@@ -1,4 +1,15 @@
 <template>
+   <Head>
+      <Title>{{ events[$i18n.locale + '_otsikko'] }} - Serveri ry</Title>
+      <Meta
+         name="description"
+         :content="
+            events[$i18n.locale + '_kuvaus'].match(new RegExp(`^.{1,150}\\b`))?.[0] ||
+            events[$i18n.locale + '_kuvaus'].slice(0, 150)
+         "
+      />
+      <Meta property="og:image" :content="events.image" />
+   </Head>
    <div>
       <!--  events article with image header and content   -->
       <div class="NewsCard">
@@ -9,7 +20,7 @@
 
             <img
                class="object-cover w-full aspect-video p-0 m-0"
-               :src="events.image"
+               :src="events.image?.startsWith('http') ? events.image : '/images/placeholder.jpg'"
                alt="Photo related to the events article."
             />
 
@@ -104,9 +115,9 @@
                   <span class="sr-only">Info</span>
                   <div>
                      Tapahtumassa noudatetaan
-                     <nuxt-link :to="localePath('/yhdistys/turvallinen-tila')" class="text-blue-500 hover:underline">
-                        turvallisemman tilan
-                     </nuxt-link>
+                     <nuxt-link :to="localePath('/yhdistys/turvallinen-tila')" class="text-blue-600 hover:underline"
+                        >turvallisemman tilan</nuxt-link
+                     >
                      periaatteita. Osallistumalla tapahtumaan sitoudut noudattamaan näitä periaatteita.
                   </div>
                </div>
@@ -148,13 +159,11 @@
                      </a>
                   </div>
                   <div v-if="events.sijainti">
-                     <a
-                        :href="'https://www.openstreetmap.org/?mlat=' + x + '&mlon=' + y + '&zoom=17&layers=M'"
-                        target="_blank"
-                     >
+                     <a :href="`https://www.google.com/maps/place/${x},${y}`" target="_blank">
                         <button
                            type="button"
                            role="link"
+                           title="Reittiohjeet - Google Maps"
                            class="w-full sm:w-auto text-black dark:text-white bg-transparent hover:bg-gradient-to-r from-[#5a31af] via-purple-500 to-pink-500 outline outline-1 outline-[#5a31af] hover:outline-0 focus:ring-4 rounded-md focus:outline-none focus:ring-purple-800 font-bold px-5 py-2.5 text-center inline-flex items-center mr-2 mb-2 justify-center"
                         >
                            <img
