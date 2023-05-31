@@ -62,7 +62,7 @@
    } catch (error) {
       events = [
          {
-            img: '/images/placeholder.jpg',
+            img: '/images/tapahtumat-placeholder.png',
             id: '1',
             header: 'Serveri ry:n 35-vuotis vuosijuhlat',
             date: new Date('09/25/2022'),

@@ -20,7 +20,7 @@
 
             <img
                class="object-cover w-full aspect-video p-0 m-0"
-               :src="events.image?.startsWith('http') ? events.image : '/images/placeholder.jpg'"
+               :src="events.image?.startsWith('http') ? events.image : '/images/tapahtumat-placeholder.png'"
                alt="Photo related to the events article."
             />
 

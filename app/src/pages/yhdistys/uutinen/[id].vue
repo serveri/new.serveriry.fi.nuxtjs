@@ -62,7 +62,7 @@
       released_date = new Date(news.date_created);
    } catch (error) {
       news = {
-         image: 'https://api.serveriry.fi/uploads/large_computerstuffwithlogo_da6b992e47.jpg',
+         image: '/images/uutinen-placeholder.png',
          id: route.params.id,
          fi_title: 'Uutisen otsikon pitäisi olla tässä',
          en_title: 'The news title should be here',
