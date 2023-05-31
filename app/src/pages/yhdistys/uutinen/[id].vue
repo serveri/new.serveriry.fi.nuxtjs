@@ -8,6 +8,13 @@
             news[$i18n.locale + '_text'].slice(0, 150)
          "
       />
+      <Meta
+         name="og:description"
+         :content="
+            news[$i18n.locale + '_text'].match(new RegExp(`^.{1,150}\\b`))?.[0] ||
+            news[$i18n.locale + '_text'].slice(0, 150)
+         "
+      />
       <Meta property="og:image" :content="news.image" />
    </Head>
    <div>

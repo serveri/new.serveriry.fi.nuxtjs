@@ -8,6 +8,13 @@
             events[$i18n.locale + '_kuvaus'].slice(0, 150)
          "
       />
+      <Meta
+         name="og:description"
+         :content="
+            events[$i18n.locale + '_kuvaus'].match(new RegExp(`^.{1,150}\\b`))?.[0] ||
+            events[$i18n.locale + '_kuvaus'].slice(0, 150)
+         "
+      />
       <Meta property="og:image" :content="events.image" />
    </Head>
    <div>
