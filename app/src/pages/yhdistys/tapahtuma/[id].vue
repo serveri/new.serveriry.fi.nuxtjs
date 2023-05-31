@@ -1,10 +1,7 @@
 <template>
    <Head>
       <Title>{{ events[$i18n.locale + '_otsikko'] }} - Serveri ry</Title>
-      <Meta
-         name="og:title"
-         :content="events[$i18n.locale + '_otsikko'] + ' - Serveri ry'"
-      />
+      <Meta name="og:title" :content="events[$i18n.locale + '_otsikko'] + ' - Serveri ry'" />
       <Meta
          name="description"
          :content="
@@ -62,32 +59,56 @@
                   <span
                      v-if="events.tyyppi.includes('ilmainen')"
                      class="bg-green-100 text-green-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-gray-700 dark:text-green-400 border border-green-400"
+                     title="Tapahtuma on ilmainen"
                      >Ilmainen</span
                   >
                   <span
                      v-if="events.tyyppi.includes('mainos')"
                      class="bg-yellow-100 text-yellow-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-gray-700 dark:text-yellow-300 border border-yellow-300"
+                     title="Tapahtuma on mainos (maksettu tai ilmainen) eikä Serveri ry osallistu sen järjestämiseen."
                      >Mainos</span
                   >
                   <span
                      v-if="events.tyyppi.includes('alkoholiton')"
                      class="bg-indigo-100 text-indigo-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-gray-700 dark:text-indigo-400 border border-indigo-400"
-                     >Alkoholiton</span
+                     title="Tapahtuman on tarkoitus olla päihteetön tai ainakaan ryyppääminen ei ole pääosassa."
+                     >Päihteetön</span
                   >
                   <span
                      v-if="events.tyyppi.includes('poikkitieteellinen')"
                      class="bg-pink-100 text-pink-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-gray-700 dark:text-pink-400 border border-pink-400"
+                     title="Kivaa yhdessä muiden alojen opiskelijoiden kanssa"
                      >Poikkitieteellinen</span
                   >
                   <span
                      v-if="events.tyyppi.includes('turvallinen_tila')"
                      class="bg-purple-100 text-purple-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-gray-700 dark:text-purple-400 border border-purple-400"
+                     title="Tapahtumassa noudatetaan turvallisen tilan periaatteita."
                      >Turvallinen tila</span
                   >
                   <span
                      v-if="events.tyyppi.includes('excursio')"
                      class="bg-red-100 text-red-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-gray-700 dark:text-red-400 border border-red-400"
+                     title="Excursio"
                      >Excursio</span
+                  >
+                  <span
+                     v-if="events.tyyppi.includes('ulkoilma')"
+                     class="bg-indigo-100 text-indigo-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-gray-700 dark:text-indigo-400 border border-indigo-400"
+                     title="Ulkoilma tapahtuma"
+                     >Ulkoilma</span
+                  >
+                  <span
+                     v-if="events.tyyppi.includes('collab')"
+                     class="bg-green-100 text-green-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-gray-700 dark:text-green-400 border border-green-400"
+                     title="Serveri ry osallistuu tapahtuman järjestämiseen yhteistyössä jonkun tahon kanssa."
+                     >Yhteistyö</span
+                  >
+                  <span
+                     v-if="events.tyyppi.includes('ulkoinen')"
+                     class="bg-red-100 text-red-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-gray-700 dark:text-red-400 border border-red-400"
+                     title="Tapahtuma on ulkopuolisen tahon järjestämä."
+                     >Ulkoinen järjestäjä</span
                   >
                </div>
             </div>
