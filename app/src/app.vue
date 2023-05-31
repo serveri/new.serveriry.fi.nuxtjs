@@ -10,10 +10,7 @@
          name="og:description"
          content="Itä-Suomen yliopiston Kuopion kampuksen tietojenkäsittelytieteen opiskelijoiden ainejärjestö."
       />
-      <Meta
-         name="og:image"
-         content="https://cloud.serveriry.fi/apps/files_sharing/publicpreview/MjiD9378faa3RA6?x=1920&y=577&a=true&file=serverihiiri.png"
-      />
+      <Meta name="og:image" content="https://serveri.jeb4.dev/images/tapahtumat-placeholder.png" />
       <Meta name="og:url" content="https://serveriry.fi/" />
       <Title>Serveri ry</Title>
    </Head>
@@ -73,9 +70,9 @@
       methods: {
          deleteCookies() {
             if (process.client) {
-               var Cookies = document.cookie.split(';');
+               const Cookies = document.cookie.split(';');
                // set 1 Jan, 1970 expiry for every cookies
-               for (var i = 0; i < Cookies.length; i++)
+               for (let i = 0; i < Cookies.length; i++)
                   document.cookie = Cookies[i] + '=;expires=' + new Date(0).toUTCString();
                this.isHidden = true;
                document.cookie = 'cookieconsent_status=deny; expires=Thu, 18 Dec 2040 12:00:00 UTC; path=/;';
@@ -122,4 +119,5 @@
 <script setup lang="ts">
    import NavBar from '@/components/navbar/NavBar.vue';
    import CustomFooter from '@/components/footer/CustomFooter.vue';
+   import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 </script>
