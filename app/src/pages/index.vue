@@ -18,9 +18,13 @@
          </div>
       </section>
 
-      <section class="py-8 flex flex-col md:flex-row w-full gap-8">
+      <section v-if="!showDiv" class="py-8 flex flex-col md:flex-row w-full gap-8">
          <YTHS />
          <InstagramFeed />
+      </section>
+
+      <section v-else class="py-8 flex flex-col md:flex-row w-full gap-8">
+         <YTHS />
       </section>
 
       <section class="pt-8">
@@ -94,6 +98,39 @@
    if (!SoMes.en_kuvaus) {
       SoMes.en_kuvaus = null;
    }
+</script>
+
+<script lang="ts">
+   export default {
+      computed: {
+         showDiv() {
+            // Check the cookie value and return a boolean
+            const cookieValue = this.getCookieValue('cookieconsent_status');
+            return cookieValue === 'deny'; // if cookie value is not allow, return true
+         },
+      },
+      methods: {
+         getCookieValue(cookieName: string) {
+            const name = cookieName + '=';
+            const decodedCookie = decodeURIComponent(document.cookie);
+            const cookieArray = decodedCookie.split(';');
+
+            for (let i = 0; i < cookieArray.length; i++) {
+               let cookie = cookieArray[i];
+               while (cookie.charAt(0) === ' ') {
+                  cookie = cookie.substring(1);
+               }
+               if (cookie.indexOf(name) === 0) {
+                  return cookie.substring(name.length, cookie.length);
+               }
+            }
+            return '';
+         },
+         setCookieValue(cookieName: string, value: string) {
+            document.cookie = `${cookieName}=${value}; path=/`;
+         },
+      },
+   };
 </script>
 
 <style>
