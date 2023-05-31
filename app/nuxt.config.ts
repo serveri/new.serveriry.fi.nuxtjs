@@ -14,6 +14,9 @@ export default {
       vueI18n: {
          fallbackLocale: ['fi', 'en'],
       },
+      detectBrowserLanguage: {
+         useCookie: false,
+      },
       locales: [
          {
             code: 'fi',
@@ -29,10 +32,5 @@ export default {
       lazy: false,
       langDir: 'lang/',
       defaultLocale: 'fi',
-   },
-   delayHydration: {
-      mode: 'init',
-      // enables nuxt-delay-hydration in dev mode for testing
-      debug: process.env.NODE_ENV === 'development',
    },
 };
