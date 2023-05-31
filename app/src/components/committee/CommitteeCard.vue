@@ -1,6 +1,6 @@
 <template>
    <div>
-      <div class="card-container h-full">
+      <div class="card-container h-full flex flex-col">
          <div class="member-info flex flex-wrap justify-center px-4">
             <div class="w-9/12 sm:w-11/12" @mouseover="hover = true" @mouseleave="hover = false">
                <img
@@ -11,14 +11,7 @@
                   role="img"
                   loading="lazy"
                />
-               <img
-                  v-else
-                  class="member-image"
-                  :src="content.img"
-                  alt="Hallituksen jäsenen kuva"
-                  role="img"
-                  loading="lazy"
-               />
+               <img v-else class="member-image" :src="content.img" alt="Hallituksen jäsenen kuva" role="img" />
             </div>
          </div>
 
@@ -32,7 +25,7 @@
             <a :href="'mailto:' + content.email + '@serveriry.fi'" class="member-email hover:underline"
                >{{ content.email }}@serveriry.fi</a
             >
-            <p>
+            <p v-if="content.telegram">
                <client-only>
                   <font-awesome-icon class="fa-xl mr-1" :icon="['fab', 'telegram']" />
                </client-only>
@@ -45,14 +38,14 @@
             </p>
          </div>
 
-         <div class="button-container text-center">
+         <div class="button-container text-center relative flex-grow pt-4">
             <div class="role-desc">
-               <p v-if="isExpanded" class="role-text p-3 text-left">
+               <p v-if="isExpanded" class="role-text p-3 text-left pb-8">
                   {{ content[$i18n.locale + '_desc'] }}
                </p>
             </div>
 
-            <button class="expandable-button pt-1" type="button" @click="isExpanded = !isExpanded">
+            <button class="expandable-button bottom-0 absolute" type="button" @click="isExpanded = !isExpanded">
                <client-only>
                   <button v-if="isExpanded">
                      <font-awesome-icon class="collapse-button fa-xl" :icon="['fas', 'chevron-up']" />
