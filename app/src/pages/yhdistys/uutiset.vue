@@ -29,12 +29,12 @@
    // This hard coded data will be replaced with data from directus
    let news;
    try {
-      const response = await useFetch('https://api.serveri.jeb4.dev/items/news');
+      const response = await useFetch('https://api.serveri.jeb4.dev/items/uutiset');
       news = response.data.value.data;
    } catch (error) {
       news = [
          {
-            img: '/images/placeholder.jpg',
+            img: '/images/uutiset-placeholder.png',
             id: '1',
             header: 'Serveri ry:n 35-vuotis vuosijuhlat',
             date: new Date('09/25/2022'),
