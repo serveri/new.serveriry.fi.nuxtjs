@@ -25,7 +25,7 @@
 
    <!-- CookieConsent -->
    <div
-      v-if="!isHidden && !isConsent"
+      v-if="!isHidden && !isConsent && !isPageLoaded"
       class="flex gap-5 items-center justify-center sm:justify-start sm:h-16 fixed bottom-0 w-full h-24 p-4 bg-white"
    >
       <button class="p-2 text-white bg-custom-primary hover:bg-custom-secondary" @click="deleteCookies">
@@ -37,7 +37,7 @@
    </div>
 
    <div
-      v-if="isHidden && isConsent"
+      v-if="isHidden && isConsent && !isPageLoaded"
       class="flex items-center justify-center fixed bottom-4 left-4 w-[3rem] h-[3rem] bg-black dark:bg-white rounded-full cursor-pointer"
       @click="handleSmallCookie()"
    >
@@ -58,10 +58,16 @@
             }
          }
       },
+      mounted() {
+         window.onload = () => {
+            this.isPageLoaded = true;
+         };
+      },
       data() {
          return {
             isHidden: false,
             isConsent: false,
+            isPageLoaded: false,
          };
       },
       methods: {
