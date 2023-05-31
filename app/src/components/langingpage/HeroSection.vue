@@ -2,8 +2,6 @@
    <div
       class="py-20 bg-cover bg-no-repeat bg-fixed bg-[url('/images/serveritoverit.png')] bg-cover w-screen h-96 md:h-[40rem]"
    >
-      <!-- content -->
-
       <div class="flex w-full justify-center text-center absolute">
          <div>
             <h1 class="text text-5xl font-extrabold text-gray-900 dark:text-gray-900 sm:text-6xl lg:text-8xl pb-2">
