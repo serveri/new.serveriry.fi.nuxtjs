@@ -1,5 +1,5 @@
 <template>
-   <div class="lg:max-w-[60%] py-6">
+   <div class="lg:max-w-[60%] pb-6">
       <vue-markdown class="rich-text py-2" :source="data[$i18n.locale + '_description']" />
    </div>
 </template>
