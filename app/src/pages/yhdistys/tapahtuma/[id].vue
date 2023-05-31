@@ -15,7 +15,10 @@
             events[$i18n.locale + '_kuvaus'].slice(0, 150)
          "
       />
-      <Meta property="og:image" :content="events.image" />
+      <Meta
+         name="og:image"
+         content="{{events.image}}"
+      />
    </Head>
    <div>
       <!--  events article with image header and content   -->
