@@ -65,19 +65,6 @@
 
    const router = useRouter();
 
-   // function validateForm(e) {
-   //    e.preventDefault();
-   //    console.log('data:', firm_contact, firm_name);
-   //    // Validate form
-   //    if (firm_contact === '' || firm_name === '') {
-   //       validated = false;
-   //       console.log('data:', firm_contact, firm_name);
-   //       console.log('Ei validoitu!');
-
-   //       console.log('validated:', validated);
-   //    }
-   // }
-
    async function submitForm(e) {
       e.preventDefault();
       // POST validated form data
