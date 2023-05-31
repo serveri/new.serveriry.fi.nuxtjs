@@ -1,6 +1,7 @@
 <template>
    <Head>
       <Title>{{ news[$i18n.locale + '_title'] }} - Serveri ry</Title>
+      <Meta name="og:title" :content="news[$i18n.locale + '_title'] + ' - Serveri ry'" />
       <Meta
          name="description"
          :content="
@@ -15,7 +16,12 @@
             news[$i18n.locale + '_text'].slice(0, 150)
          "
       />
-      <Meta property="og:image" :content="news.image" />
+      <Meta
+         name="og:image"
+         :content="
+            news.image?.startsWith('http') ? news.image : 'https://serveri.jeb4.dev/images/uutiset-placeholder.png'
+         "
+      />
    </Head>
    <div>
       <!--  news article with image header and content   -->

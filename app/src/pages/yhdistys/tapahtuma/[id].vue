@@ -2,6 +2,10 @@
    <Head>
       <Title>{{ events[$i18n.locale + '_otsikko'] }} - Serveri ry</Title>
       <Meta
+         name="og:title"
+         :content="events[$i18n.locale + '_otsikko'] + ' - Serveri ry'"
+      />
+      <Meta
          name="description"
          :content="
             events[$i18n.locale + '_kuvaus'].match(new RegExp(`^.{1,150}\\b`))?.[0] ||
@@ -17,7 +21,11 @@
       />
       <Meta
          name="og:image"
-         content="{{events.image}}"
+         :content="
+            events.image?.startsWith('http')
+               ? events.image
+               : 'https://serveri.jeb4.dev/images/tapahtumat-placeholder.png'
+         "
       />
    </Head>
    <div>
