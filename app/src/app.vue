@@ -50,10 +50,12 @@
 <script lang="ts">
    export default {
       created() {
-         const cookieValue = this.getCookie('cookieconsent_status');
-         if (cookieValue !== null) {
-            this.isConsent = true;
-            this.isHidden = true;
+         if (process.client) {
+            const cookieValue = this.getCookie('cookieconsent_status');
+            if (cookieValue !== null) {
+               this.isConsent = true;
+               this.isHidden = true;
+            }
          }
       },
       data() {
@@ -64,41 +66,49 @@
       },
       methods: {
          deleteCookies() {
-            var Cookies = document.cookie.split(';');
-            // set 1 Jan, 1970 expiry for every cookies
-            for (var i = 0; i < Cookies.length; i++)
-               document.cookie = Cookies[i] + '=;expires=' + new Date(0).toUTCString();
-            this.isHidden = true;
-            document.cookie = 'cookieconsent_status=deny; expires=Thu, 18 Dec 2040 12:00:00 UTC; path=/;';
-            setTimeout(() => {
-               window.location.reload();
-            }, 1000); // reload page after 1 second
+            if (process.client) {
+               var Cookies = document.cookie.split(';');
+               // set 1 Jan, 1970 expiry for every cookies
+               for (var i = 0; i < Cookies.length; i++)
+                  document.cookie = Cookies[i] + '=;expires=' + new Date(0).toUTCString();
+               this.isHidden = true;
+               document.cookie = 'cookieconsent_status=deny; expires=Thu, 18 Dec 2040 12:00:00 UTC; path=/;';
+               setTimeout(() => {
+                  window.location.reload();
+               }, 1000); // reload page after 1 second
+            }
          },
          hideDiv() {
-            this.isHidden = true;
-            document.cookie = 'cookieconsent_status=allow; expires=Thu, 18 Dec 2040 12:00:00 UTC; path=/;';
-            setTimeout(() => {
-               window.location.reload();
-            }, 1000); // reload page after 1 second
+            if (process.client) {
+               this.isHidden = true;
+               document.cookie = 'cookieconsent_status=allow; expires=Thu, 18 Dec 2040 12:00:00 UTC; path=/;';
+               setTimeout(() => {
+                  window.location.reload();
+               }, 1000); // reload page after 1 second
+            }
          },
          getCookie(name: string) {
-            const cookieString = document.cookie;
-            const cookies = cookieString.split(';');
+            if (process.client) {
+               const cookieString = process.client ? document.cookie : '';
+               const cookies = cookieString.split(';');
 
-            for (let i = 0; i < cookies.length; i++) {
-               const cookie = cookies[i].trim();
-               if (cookie.startsWith(name + '=')) {
-                  const value = cookie.substring(name.length + 1);
-                  console.log('value', value);
-                  return value;
+               for (let i = 0; i < cookies.length; i++) {
+                  const cookie = cookies[i].trim();
+                  if (cookie.startsWith(name + '=')) {
+                     const value = cookie.substring(name.length + 1);
+                     console.log('value', value);
+                     return value;
+                  }
                }
-            }
 
-            return null; // Return null if cookie not found
+               return null; // Return null if cookie not found
+            }
          },
          handleSmallCookie() {
-            this.isHidden = false;
-            this.isConsent = false;
+            if (process.client) {
+               this.isHidden = false;
+               this.isConsent = false;
+            }
          },
       },
    };
