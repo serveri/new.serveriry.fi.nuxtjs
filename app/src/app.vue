@@ -96,7 +96,6 @@
                   const cookie = cookies[i].trim();
                   if (cookie.startsWith(name + '=')) {
                      const value = cookie.substring(name.length + 1);
-                     console.log('value', value);
                      return value;
                   }
                }
