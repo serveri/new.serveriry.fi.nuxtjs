@@ -15,7 +15,7 @@ export default {
          fallbackLocale: ['fi', 'en'],
       },
       detectBrowserLanguage: {
-         useCookie: false,
+         useCookie: true,
       },
       locales: [
          {
