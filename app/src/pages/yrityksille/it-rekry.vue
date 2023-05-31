@@ -3,21 +3,21 @@
       <Head>
          <Title>{{ $t('title_it-rekry') }} - Serveri ry</Title>
       </Head>
-      <vue-markdown class="rich-text merch-content" :source="merch[$i18n.locale + '_text']" />
+      <vue-markdown class="rich-text rekry-content" :source="rekry[$i18n.locale + '_text']" />
    </div>
 </template>
 
 <script setup lang="ts">
    import VueMarkdown from 'vue-markdown-render';
 
-   let merch;
+   let rekry;
    let updated: Date;
    try {
       const response = await useFetch('https://api.serveri.jeb4.dev/items/it_rekry');
-      merch = response.data.value.data;
-      updated = new Date(merch.date_updated);
+      rekry = response.data.value.data;
+      updated = new Date(rekry.date_updated);
    } catch (e) {
-      merch = {
+      rekry = {
          fi_text: '# IT Rekry',
          en_text: '# IT Recruitment',
       };
@@ -29,24 +29,24 @@
    p {
       @apply tracking-wide;
    }
-   .merch-content img {
+   .rekry-content img {
       @apply w-full;
    }
-   .merch-content h2 {
+   .rekry-content h2 {
       @apply font-bold text-3xl mt-4 text-center md:text-left;
    }
-   .merch-content h3 {
+   .rekry-content h3 {
       @apply text-2xl;
    }
-   .merch-content h4 {
+   .rekry-content h4 {
       @apply text-xl;
    }
 
-   .merch-content h6 {
+   .rekry-content h6 {
       @apply text-sm;
    }
 
-   .merch-content table {
+   .rekry-content table {
       @apply table-auto;
    }
 
