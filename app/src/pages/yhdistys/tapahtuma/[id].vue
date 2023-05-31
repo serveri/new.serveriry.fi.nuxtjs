@@ -208,7 +208,7 @@
          }
       } else {
          events = {
-            image: 'https://api.serveriry.fi/uploads/large_computerstuffwithlogo_da6b992e47.jpg',
+            image: '/images/tapahtumat-placeholder.png',
             id: route.params.id,
             fi_otsikko: 'Tapahtuman nimeä ei löytynyt',
             en_otsikko: 'The events title cannot be found',
@@ -220,7 +220,7 @@
       }
    } catch (error) {
       events = {
-         image: 'https://api.serveriry.fi/uploads/large_computerstuffwithlogo_da6b992e47.jpg',
+         image: '/images/tapahtumat-placeholder.png',
          id: route.params.id,
          fi_otsikko: 'Tapahtuman nimeä ei löytynyt',
          en_otsikko: 'The events title cannot be found',
