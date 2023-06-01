@@ -64,6 +64,6 @@
    }
 
    p {
-      @apply paragraph;
+      @apply font-light tracking-wide text-gray-500 dark:text-gray-400 sm:text-xl;
    }
 </style>
