@@ -39,7 +39,7 @@
       @click="handleSmallCookie()"
    >
       <client-only>
-         <font-awesome-icon class="fa-xl" :icon="['fas', 'cookie-bite']" style="color: #000000" />
+         <font-awesome-icon class="fa-xl text-white dark:invert" :icon="['fas', 'cookie-bite']" />
       </client-only>
    </div>
 </template>
