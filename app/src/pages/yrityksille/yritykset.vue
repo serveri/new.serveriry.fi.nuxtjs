@@ -6,7 +6,6 @@
 
       <h1 class="custom-page-title">{{ $t('h1_companies') }}</h1>
       <p class="text-center paragraph pb-6">
-         <!--         if language fin "" else ""-->
          {{
             $i18n.locale === 'fi'
                ? 'Tervetuloa sivustollemme, jossa on listattu kaikki Suomen IT-yritykset. Tämän sivun tarkoituksena on auttaaopiskelijoita löytämään työpaikkoja alan yrityksistä. Selaa listaa ja löydä unelmiesi työpaikka IT-alalta!'
