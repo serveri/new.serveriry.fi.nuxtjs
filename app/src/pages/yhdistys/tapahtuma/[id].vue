@@ -65,14 +65,14 @@
                   <span
                      v-if="events.tyyppi.includes('mainos')"
                      class="bg-yellow-100 text-yellow-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-gray-700 dark:text-yellow-300 border border-yellow-300"
-                     title="Tapahtuma on mainos (maksettu tai ilmainen) eikä Serveri ry osallistu sen järjestämiseen."
+                     title="Tapahtuma on mainos eikä Serveri ry osallistu sen järjestämiseen."
                      >Mainos</span
                   >
                   <span
                      v-if="events.tyyppi.includes('alkoholiton')"
                      class="bg-indigo-100 text-indigo-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-gray-700 dark:text-indigo-400 border border-indigo-400"
-                     title="Tapahtuman on tarkoitus olla päihteetön tai ainakaan ryyppääminen ei ole pääosassa."
-                     >Päihteetön</span
+                     title="Alkoholiton tapahtuma."
+                     >Alkoholiton</span
                   >
                   <span
                      v-if="events.tyyppi.includes('poikkitieteellinen')"
@@ -95,7 +95,7 @@
                   <span
                      v-if="events.tyyppi.includes('ulkoilma')"
                      class="bg-indigo-100 text-indigo-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-gray-700 dark:text-indigo-400 border border-indigo-400"
-                     title="Ulkoilma tapahtuma"
+                     title="Tapahtumapaikka sijaitsee ulkotiloissa."
                      >Ulkoilma</span
                   >
                   <span
