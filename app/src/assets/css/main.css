@@ -4,117 +4,158 @@
 
 @layer components {
   @font-face {
+    font-family: Exo;
     src: url("../../../src/assets/fonts/Exo-Thin.ttf");
+    font-weight: 100;
+  }
+
+  @font-face {
+    font-family: Exo;
     src: url("../../../src/assets/fonts/Exo-ExtraLight.ttf");
+    font-weight: 200;
+  }
+
+  @font-face {
+    font-family: Exo;
     src: url("../../../src/assets/fonts/Exo-Light.ttf");
+    font-weight: 300;
+  }
+
+  @font-face {
+    font-family: Exo;
     src: url("../../../src/assets/fonts/Exo-Medium.ttf");
+    font-weight: 500;
+  }
+
+  @font-face {
+    font-family: Exo;
     src: url("../../../src/assets/fonts/Exo-Regular.ttf");
+    font-weight: 400;
+  }
+
+  @font-face {
+    font-family: Exo;
     src: url("../../../src/assets/fonts/Exo-SemiBold.ttf");
+    font-weight: 600;
+  }
+
+  @font-face {
+    font-family: Exo;
     src: url("../../../src/assets/fonts/Exo-Bold.ttf");
+    font-weight: 700;
+  }
+
+  @font-face {
+    font-family: Exo;
     src: url("../../../src/assets/fonts/Exo-ExtraBold.ttf");
+    font-weight: 800;
+  }
+
+  @font-face {
+    font-family: Exo;
     src: url("../../../src/assets/fonts/Exo-Black.ttf");
+    font-weight: 900;
   }
+}
 
-  a,
-  p,
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6,
-  html,
-  td,
-  th {
-    @apply text-black dark:text-white;
+a,
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+html,
+td,
+th {
+  @apply text-black dark:text-white;
+  font-family: Exo, sans-serif;
+}
 
-    font-family: Exo, sans-serif;
-  }
+th {
+  @apply text-center;
+}
 
-  th {
-    @apply text-center;
-  }
+td {
+  @apply pr-8;
+}
 
-  td {
-    @apply pr-8;
-  }
+.custom-page-title {
+  font-size: 2em;
+  padding: 2rem 0;
+  text-align: center;
+  font-weight: 800;
+}
 
-  .custom-page-title {
-    font-size: 2em;
-    padding: 2rem 0;
-    text-align: center;
-    font-weight: 800;
-  }
+.content {
+  @apply mx-auto max-w-7xl pb-10 px-6 lg:px-8;
+}
 
-  .content {
-    @apply mx-auto max-w-7xl pb-10 px-6 lg:px-8;
-  }
+.btn-gradient-blue {
+  @apply px-5 py-2.5 mr-2 mb-2 text-white font-medium rounded-lg text-sm text-center;
+  @apply bg-gradient-to-r from-cyan-400 via-cyan-500 to-cyan-600 hover:bg-gradient-to-br;
+}
 
-  .btn-gradient-blue {
-    @apply px-5 py-2.5 mr-2 mb-2 text-white font-medium rounded-lg text-sm text-center;
-    @apply bg-gradient-to-r from-cyan-400 via-cyan-500 to-cyan-600 hover:bg-gradient-to-br;
-  }
+.btn-custom-primary {
+  @apply inline-flex items-center px-3 py-2 text-sm font-bold text-center text-white rounded;
+  @apply bg-custom-secondary hover:bg-custom-primary dark:hover:bg-custom-secondary-dark;
+}
 
-  .btn-custom-primary {
-    @apply inline-flex items-center px-3 py-2 text-sm font-bold text-center text-white rounded;
-    @apply bg-custom-secondary hover:bg-custom-primary dark:hover:bg-custom-secondary-dark;
-  }
+.paragraph {
+  @apply font-light tracking-wide text-gray-500 dark:text-gray-400 sm:text-xl;
+}
 
-  .paragraph {
-    @apply font-light tracking-wide text-gray-500 dark:text-gray-400 sm:text-xl;
-  }
+/* Rich text directus styles */
+.rich-text {
+  @apply tracking-wide leading-8;
+}
 
-  /* Rich text directus styles */
-  .rich-text {
-    @apply tracking-wide leading-8;
-  }
+.rich-text h1 {
+  font-size: 2em;
+  padding: 2rem 0;
+  text-align: center;
+  font-weight: 800;
+}
 
-  .rich-text h1 {
-    font-size: 2em;
-    padding: 2rem 0;
-    text-align: center;
-    font-weight: 800;
-  }
+.rich-text h2 {
+  @apply pt-8 pb-4 text-3xl font-bold;
+}
 
-  .rich-text h2 {
-    @apply pt-8 pb-4 text-3xl font-bold;
-  }
+.rich-text h3 {
+  @apply py-3 text-2xl font-semibold;
+}
 
-  .rich-text h3 {
-    @apply py-3 text-2xl font-semibold;
-  }
+.rich-text h4 {
+  @apply py-2 text-xl;
+}
 
-  .rich-text h4 {
-    @apply py-2 text-xl;
-  }
+.rich-text h5 {
+  @apply text-lg;
+}
 
-  .rich-text h5 {
-    @apply text-lg;
-  }
+.rich-text h6 {
+  @apply text-sm;
+}
 
-  .rich-text h6 {
-    @apply text-sm;
-  }
+.rich-text li {
+  @apply py-1 text-base dark:text-white px-1;
+}
 
-  .rich-text li {
-    @apply py-1 text-base dark:text-white px-1;
-  }
+.rich-text ul {
+  @apply py-1 text-base list-disc px-8;
+}
 
-  .rich-text ul {
-    @apply py-1 text-base list-disc px-8;
-  }
+.rich-text ol {
+  @apply py-1 text-base list-decimal px-8;
+}
 
-  .rich-text ol {
-    @apply py-1 text-base list-decimal px-8;
-  }
+.rich-text a {
+  @apply text-blue-600 dark:text-blue-400 hover:underline;
+}
 
-  .rich-text a {
-    @apply text-blue-600 dark:text-blue-400 hover:underline;
-  }
+.rich-text p {
+  @apply py-2 text-base tracking-wide leading-relaxed text-gray-800 dark:text-gray-100;
 
-  .rich-text p {
-    @apply py-2 text-base tracking-wide leading-relaxed text-gray-800 dark:text-gray-100;
-
-    font-family: Exo, sans-serif;
-  }
+  font-family: Exo, sans-serif;
 }
