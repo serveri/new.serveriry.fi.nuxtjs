@@ -1,11 +1,11 @@
 <template>
-   <a :href="'/yhdistys/tapahtuma/' + content.url" class="max-w-md w-full">
-      <div class="NewsCard">
+   <a :href="'/yhdistys/tapahtuma/' + content.url" class="grid-item md:max-w-lg">
+      <div class="event-card">
          <div class="rounded-sm">
             <img
-               class="news-image w-full h-64 object-cover"
+               class="w-full max-h-64 object-cover"
                :src="content.img?.startsWith('http') ? content.img : '/images/tapahtumat-placeholder.png'"
-               alt="Cover image for the news card"
+               alt="Cover image for the event card"
             />
          </div>
 
@@ -72,15 +72,18 @@
 </script>
 
 <style scoped>
-   .NewsCard {
+   .event-card {
       -webkit-box-shadow: 0 0 26px -5px rgba(0, 0, 0, 0.27);
       -moz-box-shadow: 0 0 26px -5px rgba(0, 0, 0, 0.27);
       box-shadow: 0 0 26px -5px rgba(0, 0, 0, 0.27);
    }
-   .NewsCard {
+   .event-card {
       @apply dark:shadow-lg dark:shadow-zinc-600/50 dark:bg-zinc-900;
    }
-   .NewsCard {
+   .event-card {
       @apply justify-self-center overflow-hidden rounded-2xl h-full w-full;
+   }
+   .grid-item {
+      --aspect-ratio: 16/9;
    }
 </style>
