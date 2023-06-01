@@ -1,5 +1,5 @@
 <template>
-   <a :href="'/yhdistys/tapahtuma/' + content.url">
+   <a :href="'/yhdistys/tapahtuma/' + content.url" class="max-w-md w-full">
       <div class="NewsCard">
          <div class="rounded-sm">
             <img
