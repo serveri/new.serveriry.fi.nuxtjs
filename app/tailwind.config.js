@@ -21,7 +21,7 @@ module.exports = {
          },
       },
    },
-   plugins: [require('@tailwindcss/line-clamp')],
+   plugins: [],
    variants: {
       extend: {
          backgroundColor: ['even', 'odd'],
