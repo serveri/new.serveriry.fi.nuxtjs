@@ -52,9 +52,9 @@
       };
    }
 
-   const validated = true;
-   const person_name = '';
-   const person_message = '';
+   let validated = true;
+   let person_name = '';
+   let person_message = '';
 
    const router = useRouter();
 

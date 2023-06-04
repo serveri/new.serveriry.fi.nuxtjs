@@ -58,10 +58,10 @@
 </template>
 
 <script setup>
-   const validated = true;
-   const firm_name = '';
-   const firm_contact = '';
-   const firm_message = '';
+   let validated = true;
+   let firm_name = '';
+   let firm_contact = '';
+   let firm_message = '';
 
    const router = useRouter();
 
