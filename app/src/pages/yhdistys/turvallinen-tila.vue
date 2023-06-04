@@ -3,7 +3,11 @@
       <Head>
          <Title>{{ $t('title_safe-space') }} - Serveri ry</Title>
       </Head>
-      <SafeSpace :safe_space_fi="rules.turvallinen_tila_fi" :safe_space_en="rules.turvalinen_tila_en" :updated_at="updated" />
+      <SafeSpace
+         :safe_space_fi="rules.turvallinen_tila_fi"
+         :safe_space_en="rules.turvalinen_tila_en"
+         :updated_at="updated"
+      />
    </div>
 </template>
 

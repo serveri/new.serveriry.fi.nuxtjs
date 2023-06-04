@@ -10,7 +10,7 @@
                <p class="mb-1 text-md font-mediumfont-bold text-gray-9font-bold00 dark:text-white">Microkatu 1 E 24</p>
                <p class="mb-1 text-md font-mediumfont-bold text-gray-900 dark:text-white">PL 1627</p>
                <p class="mb-1 text-md font-mediumfont-bold text-gray-900 dark:text-white">70211 Kuopio</p>
-               <br>
+               <br />
                <a
                   class="text-md font-mediumfont-bold text-gray-900 dark:text-white hover:underline"
                   href="mailto:hallitus@serveriry.fi"

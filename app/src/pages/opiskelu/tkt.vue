@@ -369,7 +369,7 @@
          },
       ];
    }
-   const pakolliset = courses.filter((item: { tyyppi: string }) => item.tyyppi == 'valinnaiset');
+   // const pakolliset = courses.filter((item: { tyyppi: string }) => item.tyyppi == 'valinnaiset');
 </script>
 
 <style scoped>

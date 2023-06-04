@@ -18,7 +18,10 @@
       "project": "./tsconfig.json"
    },
    "plugins": ["security", "jsx-a11y"],
-   "rules": {},
+   "rules": {
+      "vue/prop-name-casing": "off",
+      "vue/multi-word-component-names": "off"
+   },
    "overrides": [
       {
          "files": ["src/pages/**/*.vue", "src/pages/*.vue", "src/*.vue"],

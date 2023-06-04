@@ -16,7 +16,7 @@
 
 <script>
    export default {
-      name: 'infoSvg',
+      name: 'InfoSvg',
    };
 </script>
 

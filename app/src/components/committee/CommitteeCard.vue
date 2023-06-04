@@ -92,18 +92,22 @@
       fi_role: {
          type: String,
          required: false,
+         default: 'Virhe',
       },
       en_role: {
          type: String,
          required: false,
+         default: 'Error',
       },
       fi_desc: {
          type: String,
          required: false,
+         default: 'Api virhe',
       },
       en_desc: {
          type: String,
          required: false,
+         default: 'Api error',
       },
    });
 </script>

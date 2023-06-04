@@ -46,6 +46,13 @@
 
 <script lang="ts">
    export default {
+      data() {
+         return {
+            isHidden: false,
+            isConsent: false,
+            isPageLoaded: false,
+         };
+      },
       created() {
          if (process.client) {
             const cookieValue = this.getCookie('cookieconsent_status');
@@ -63,13 +70,6 @@
                this.isHidden = true;
             }
             this.isPageLoaded = true;
-         };
-      },
-      data() {
-         return {
-            isHidden: false,
-            isConsent: false,
-            isPageLoaded: false,
          };
       },
       methods: {

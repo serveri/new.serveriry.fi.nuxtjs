@@ -11,17 +11,17 @@
    import VueMarkdown from 'vue-markdown-render';
 
    let merch;
-   let updated: Date;
+   // let updated: Date;
    try {
       const response = await useFetch('https://api.serveri.jeb4.dev/items/merch_sivu');
       merch = response.data.value.data;
-      updated = new Date(merch.date_updated);
+      // updated = new Date(merch.date_updated);
    } catch (e) {
       merch = {
          fi_content: '# Mertsi kadoksissa',
          en_content: '# Merch missing',
       };
-      updated = new Date();
+      // updated = new Date();
    }
 </script>
 

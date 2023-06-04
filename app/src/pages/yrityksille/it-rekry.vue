@@ -11,17 +11,17 @@
    import VueMarkdown from 'vue-markdown-render';
 
    let rekry;
-   let updated: Date;
+   // let updated: Date;
    try {
       const response = await useFetch('https://api.serveri.jeb4.dev/items/it_rekry');
       rekry = response.data.value.data;
-      updated = new Date(rekry.date_updated);
+      // updated = new Date(rekry.date_updated);
    } catch (e) {
       rekry = {
          fi_text: '# IT Rekry',
          en_text: '# IT Recruitment',
       };
-      updated = new Date();
+      // updated = new Date();
    }
 </script>
 

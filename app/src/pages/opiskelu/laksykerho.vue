@@ -3,7 +3,7 @@
       <Head>
          <Title>{{ $t('title_study-club') }} - Serveri ry</Title>
       </Head>
-     <vue-markdown class="rich-text py-2" :source="text[$i18n.locale + '_text']" />
+      <vue-markdown class="rich-text py-2" :source="text[$i18n.locale + '_text']" />
    </div>
 </template>
 
