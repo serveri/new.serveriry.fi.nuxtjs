@@ -4,13 +4,14 @@
          <div class="relative flex items-center justify-between">
             <!-- Mobile menu button-->
             <div class="absolute inset-y-0 left-0 flex items-center md:hidden">
-               <DisclosureButton
-                  class="inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white"
+               <div
+                  @click="toggleMenu"
+                  class="inline-flex items-center justify-center rounded-md p-2 cursor-pointer text-gray-400 hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white"
                >
                   <span class="sr-only">Open main menu</span>
-                  <Bars3Icon v-if="!open" class="block h-6 w-6" aria-hidden="true" />
+                  <Bars3Icon v-if="!isOpen" class="block h-6 w-6" aria-hidden="true" />
                   <XMarkIcon v-else class="block h-6 w-6" aria-hidden="true" />
-               </DisclosureButton>
+               </div>
             </div>
 
             <div class="flex md:items-stretch w-full">
@@ -67,9 +68,9 @@
       </div>
 
       <!-- Mobile NavBar-->
-      <DisclosurePanel class="md:hidden">
+      <div v-show="isOpen" class="md:hidden">
          <div class="space-y-3 px-2 pt-2 pb-5">
-            <DisclosureButton
+            <div
                v-for="item in navigation"
                :key="item.name"
                :as="item.subMenu ? 'div' : 'div'"
@@ -78,9 +79,9 @@
             >
                <!-- IF -->
                <div v-if="item.subMenu">
-                  <DropDownMobile :menu="item" />
+                  <DropDownMobile :menu="item" :toggleMenu="toggleMenu" />
                </div>
-               <!-- ELSE -->
+               <!-- ELSE (if there is no children/submenu) -->
                <div v-else class="relative">
                   <nuxt-link
                      :to="localePath(item.href)"
@@ -91,21 +92,22 @@
                            : 'text-gray-700 dark:text-gray-300 hover:bg-gray-700 hover:text-white',
                         'flex items-center justify-start block px-3 py-2 rounded-md text-base font-bold uppercase whitespace-nowrap cursor-pointer select-none',
                      ]"
+                     @click="toggleMenu"
                   >
                      {{ $t(item.name) }}
                   </nuxt-link>
                </div>
-            </DisclosureButton>
+            </div>
             <!-- Languages -->
             <lang-switcher />
             <DarkMode id="mobile" />
          </div>
-      </DisclosurePanel>
+      </div>
    </Disclosure>
 </template>
 
 <script setup>
-   import { Disclosure, DisclosureButton, DisclosurePanel } from '@headlessui/vue';
+   import { Disclosure, DisclosureButton } from '@headlessui/vue';
    import { Bars3Icon, XMarkIcon } from '@heroicons/vue/24/outline';
    import ServerLogo from '@/components/navbar/ServerLogo.vue';
    import LangSwitcher from '@/components/navbar/LangSwitcher.vue';
@@ -161,9 +163,16 @@
          DropDownMobile,
          DarkMode,
       },
+      methods: {
+         toggleMenu() {
+            this.isOpen = !this.isOpen;
+            console.log('click on menu', this.isOpen);
+         },
+      },
       data() {
          return {
             menu: 'Error occurred',
+            isOpen: false,
          };
       },
    };
