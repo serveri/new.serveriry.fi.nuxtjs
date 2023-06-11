@@ -60,7 +60,7 @@
    .custom-grid {
       display: grid;
       gap: 2rem;
-      grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(16.5rem, 1fr));
    }
 
    p {

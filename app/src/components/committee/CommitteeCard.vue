@@ -1,5 +1,5 @@
 <template>
-   <div class="flex flex-col items-center justify-center">
+   <div class="flex flex-col items-center">
       <div class="card-container flex flex-col min-w-[16.5rem]">
          <div class="member-info flex flex-wrap justify-center px-4">
             <div class="w-9/12 sm:w-11/12" @mouseover="hover = true" @mouseleave="hover = false">
