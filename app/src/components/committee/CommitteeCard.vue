@@ -4,49 +4,47 @@
          <div class="member-info flex flex-wrap justify-center px-4">
             <div class="w-9/12 sm:w-11/12" @mouseover="hover = true" @mouseleave="hover = false">
                <img
-                  v-if="hover"
-                  :src="content.hover_img"
-                  class="member-image"
-                  alt="Toinen kuva hallituksen jäsenestä"
+                  :src="hover ? content.hover_img : content.img"
+                  class="member-image transition duration-500 ease-in-out transform hover:scale-110"
+                  alt="Hallituksen jäsenen kuva"
                   role="img"
-                  loading="lazy"
                />
-               <img v-else class="member-image" :src="content.img" alt="Hallituksen jäsenen kuva" role="img" />
             </div>
          </div>
 
-         <div class="member-header text-center py-2">
-            <h2 class="member-name font-extrabold pt-1 text-2xl">{{ content.name }}</h2>
-            <h2 class="member-role text-md font-bold">{{ content[$i18n.locale + '_role'] }}</h2>
-         </div>
+         <div class="min-h-[10rem]">
+            <div class="member-header text-center py-2">
+               <h2 class="member-name font-extrabold pt-1 text-2xl">{{ props.name }}</h2>
+               <h2 class="member-role text-md font-bold line-clamp-2">{{ props[$i18n.locale + '_role'] }}</h2>
+            </div>
+            <div class="member-desc text-center pb-4 text-sm">
+               <p v-if="props.email">
+                  <client-only>
+                     <font-awesome-icon class="fa-xl mr-1" :icon="['fas', 'envelope']" />
+                  </client-only>
+                  <a :href="'mailto:' + props.email + '@serveriry.fi'" class="member-email hover:underline"
+                     >{{ props.email }}@serveriry.fi</a
+                  >
+               </p>
 
-         <div class="member-desc text-center pb-4 text-sm">
-            <p v-if="content.email">
-               <client-only>
-                  <font-awesome-icon class="fa-xl mr-1" :icon="['fas', 'envelope']" />
-               </client-only>
-               <a :href="'mailto:' + content.email + '@serveriry.fi'" class="member-email hover:underline"
-                  >{{ content.email }}@serveriry.fi</a
-               >
-            </p>
-
-            <p v-if="content.telegram">
-               <client-only>
-                  <font-awesome-icon class="fa-xl mr-1" :icon="['fab', 'telegram']" />
-               </client-only>
-               <a
-                  class="member-telegram hover:underline"
-                  :href="'https://telegram.me/' + content.telegram"
-                  target="_blank"
-                  >@{{ content.telegram }}</a
-               >
-            </p>
+               <p v-if="props.telegram">
+                  <client-only>
+                     <font-awesome-icon class="fa-xl mr-1" :icon="['fab', 'telegram']" />
+                  </client-only>
+                  <a
+                     class="member-telegram hover:underline"
+                     :href="'https://telegram.me/' + props.telegram"
+                     target="_blank"
+                     >@{{ props.telegram }}</a
+                  >
+               </p>
+            </div>
          </div>
 
          <div class="button-container text-center relative flex-grow pt-4">
             <div class="role-desc">
                <p v-if="isExpanded" class="role-text p-3 text-left pb-8">
-                  {{ content[$i18n.locale + '_desc'] }}
+                  {{ props[$i18n.locale + '_desc'] }}
                </p>
             </div>
 
@@ -66,9 +64,10 @@
 </template>
 
 <script setup lang="ts">
+   import { reactive } from 'vue';
    import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 
-   const content = defineProps({
+   const props = defineProps({
       img: {
          type: String,
          default: '/images/placeholder-square.jpg',
@@ -114,6 +113,18 @@
          required: false,
          default: 'Api error',
       },
+   });
+
+   const content = reactive({
+      img: props.img,
+      hover_img: props.hover_img,
+   });
+
+   onMounted(() => {
+      const imgEl = new Image();
+      imgEl.src = props.img;
+      const hoverImgEl = new Image();
+      hoverImgEl.src = props.hover_img;
    });
 </script>
 
