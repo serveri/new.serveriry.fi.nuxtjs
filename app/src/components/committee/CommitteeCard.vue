@@ -1,6 +1,6 @@
 <template>
    <div>
-      <div class="card-container h-full flex flex-col">
+      <div class="card-container flex flex-col">
          <div class="member-info flex flex-wrap justify-center px-4">
             <div class="w-9/12 sm:w-11/12" @mouseover="hover = true" @mouseleave="hover = false">
                <img
@@ -16,15 +16,20 @@
          </div>
 
          <div class="member-header text-center py-2">
-            <h2 class="member-role text-xl font-bold">{{ content[$i18n.locale + '_role'] }}</h2>
-
             <h2 class="member-name font-extrabold pt-1 text-2xl">{{ content.name }}</h2>
+            <h2 class="member-role text-md font-bold">{{ content[$i18n.locale + '_role'] }}</h2>
          </div>
 
-         <div class="member-desc text-center pb-2">
-            <a :href="'mailto:' + content.email + '@serveriry.fi'" class="member-email hover:underline"
-               >{{ content.email }}@serveriry.fi</a
-            >
+         <div class="member-desc text-center pb-4 text-sm">
+            <p v-if="content.email">
+               <client-only>
+                  <font-awesome-icon class="fa-xl mr-1" :icon="['fas', 'envelope']" />
+               </client-only>
+               <a :href="'mailto:' + content.email + '@serveriry.fi'" class="member-email hover:underline"
+                  >{{ content.email }}@serveriry.fi</a
+               >
+            </p>
+
             <p v-if="content.telegram">
                <client-only>
                   <font-awesome-icon class="fa-xl mr-1" :icon="['fab', 'telegram']" />
