@@ -1,11 +1,11 @@
 <template>
    <div class="flex flex-col items-center">
-      <div class="card-container flex flex-col min-w-[16.5rem]">
+      <div class="card-container flex flex-col sm:min-w-[16.5rem] min-w-full">
          <div class="member-info flex flex-wrap justify-center px-4">
             <div class="w-9/12 sm:w-11/12" @mouseover="hover = true" @mouseleave="hover = false">
                <img
                   :src="hover ? content.hover_img : content.img"
-                  class="member-image transition duration-500 ease-in-out transform hover:scale-110"
+                  class="member-image w-full"
                   alt="Hallituksen jäsenen kuva"
                   role="img"
                />
@@ -18,7 +18,7 @@
                <h2 class="member-role text-md font-bold line-clamp-2">{{ props[$i18n.locale + '_role'] }}</h2>
             </div>
             <div class="member-desc text-center pb-4 text-sm">
-               <p v-if="props.email" class="flex justify-center">
+               <p v-if="props.email" class="flex justify-center px-2">
                   <client-only>
                      <font-awesome-icon class="fa-xl mr-1" :icon="['fas', 'envelope']" />
                   </client-only>
