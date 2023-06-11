@@ -8,7 +8,7 @@
 
          <h1 class="custom-page-title text-left font-bold">{{ $t('h1_events_coming') }}</h1>
 
-         <div class="p-8 sm:px-0 mx-8 sm:mx-24">
+         <div class="p-0 mx-8 md:mx-24 md:p-8">
             <div class="custom-grid">
                <EvetsCard
                   v-for="item in events.futureData"
@@ -27,7 +27,7 @@
 
          <h1 class="custom-page-title text-left font-bold">{{ $t('h1_events_past') }}</h1>
 
-         <div class="p-8 sm:px-0 md:mx-24">
+         <div class="p-0 mx-8 md:mx-24 md:p-8">
             <div class="custom-grid">
                <EvetsCard
                   v-for="item in events.pastData"
@@ -76,11 +76,11 @@
 
 <style scoped>
    .custom-grid {
-     @apply grid grid-cols-1 gap-4;
+      @apply grid grid-cols-1 gap-4;
    }
    @media (min-width: 600px) {
-     .custom-grid {
-       grid-template-columns: repeat(auto-fit, minmax(21rem, 1fr));
-     }
+      .custom-grid {
+         grid-template-columns: repeat(auto-fit, minmax(21rem, 1fr));
+      }
    }
 </style>
