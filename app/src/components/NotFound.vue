@@ -11,7 +11,7 @@
             </h6>
 
             <p class="mb-8 text-center text-gray-500 md:text-lg">
-               {{ $t('404_msg_long') }}
+               {{ error.error.statusCode == 404 ? $t('404_msg_long') : error.error.message }}
             </p>
 
             <button
