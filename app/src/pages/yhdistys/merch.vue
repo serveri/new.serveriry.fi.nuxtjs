@@ -3,7 +3,10 @@
       <Head>
          <Title>{{ $t('title_merch') }} - Serveri ry</Title>
       </Head>
-      <vue-markdown class="rich-text merch-content" :source="merch[$i18n.locale + '_content']" />
+      <vue-markdown
+         class="rich-text merch-content flex flex-col items-center"
+         :source="merch[$i18n.locale + '_content']"
+      />
    </div>
 </template>
 

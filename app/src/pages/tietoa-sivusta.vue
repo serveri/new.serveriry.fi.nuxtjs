@@ -11,7 +11,6 @@
 </template>
 
 <script setup>
-   import { HandRaisedIcon } from '@heroicons/vue/24/outline';
    import VueMarkdown from 'vue-markdown-render';
    let about_text;
    try {

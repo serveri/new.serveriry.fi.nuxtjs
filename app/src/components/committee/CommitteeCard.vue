@@ -1,6 +1,6 @@
 <template>
-   <div>
-      <div class="card-container flex flex-col">
+   <div class="flex flex-col items-center justify-center">
+      <div class="card-container flex flex-col min-w-[17rem]">
          <div class="member-info flex flex-wrap justify-center px-4">
             <div class="w-9/12 sm:w-11/12" @mouseover="hover = true" @mouseleave="hover = false">
                <img
@@ -18,7 +18,7 @@
                <h2 class="member-role text-md font-bold line-clamp-2">{{ props[$i18n.locale + '_role'] }}</h2>
             </div>
             <div class="member-desc text-center pb-4 text-sm">
-               <p v-if="props.email">
+               <p v-if="props.email" class="flex justify-center">
                   <client-only>
                      <font-awesome-icon class="fa-xl mr-1" :icon="['fas', 'envelope']" />
                   </client-only>
