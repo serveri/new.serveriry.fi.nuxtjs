@@ -27,10 +27,12 @@
 </template>
 
 <script setup>
+   const config = useRuntimeConfig();
+
    // This hard coded data will be replaced with data from directus
    let news;
    try {
-      const response = await useFetch('https://api.serveri.jeb4.dev/items/uutiset');
+      const response = await useFetch(config.public['API_URL'] + 'items/uutiset');
       news = response.data.value.data;
    } catch (error) {
       news = [

@@ -20,9 +20,11 @@
 </template>
 
 <script setup lang="ts">
+   const config = useRuntimeConfig();
+
    let posts;
    try {
-      const { data } = await useFetch('https://api.serveri.jeb4.dev/items/instagram');
+      const { data } = await useFetch(config.public['API_URL'] + 'items/instagram');
       posts = data.value.data;
    } catch (e) {
       posts = ['CqFdw7MBG5N', 'CqC49UgBFpR', 'CpzqO4Ah9HC', 'CphwTQLBho9'];

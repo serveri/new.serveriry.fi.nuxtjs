@@ -9,11 +9,12 @@
 
 <script setup lang="ts">
    import VueMarkdown from 'vue-markdown-render';
+   const config = useRuntimeConfig();
 
    let rekry;
    // let updated: Date;
    try {
-      const response = await useFetch('https://api.serveri.jeb4.dev/items/it_rekry');
+      const response = await useFetch(config.public['API_URL'] + 'items/it_rekry');
       rekry = response.data.value.data;
       // updated = new Date(rekry.date_updated);
    } catch (e) {

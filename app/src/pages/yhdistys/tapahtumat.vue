@@ -48,10 +48,12 @@
 </template>
 
 <script setup>
+   const config = useRuntimeConfig();
+
    // This hard coded data will be replaced with data from directus
    let events;
    try {
-      const response = await useFetch('https://api.serveri.jeb4.dev/items/tapahtuma');
+      const response = await useFetch(config.public['API_URL'] + 'items/tapahtuma');
       events = response.data.value.data;
       // filter
       const today = new Date();

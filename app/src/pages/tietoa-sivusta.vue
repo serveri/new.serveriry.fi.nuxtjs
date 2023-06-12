@@ -12,9 +12,11 @@
 
 <script setup>
    import VueMarkdown from 'vue-markdown-render';
+   const config = useRuntimeConfig();
+
    let about_text;
    try {
-      let response = await useFetch('https://api.serveri.jeb4.dev/items/tietoa_sivustosta');
+      let response = await useFetch(config.public['API_URL'] + 'items/tietoa_sivustosta');
       about_text = response.data.value.data;
    } catch (e) {
       about_text = {

@@ -37,16 +37,23 @@
 
 <script setup lang="ts">
    import PartnerPageSection from '@/components/partners/PartnerPageSection.vue';
+   const config = useRuntimeConfig();
 
    let data;
    let kuopio: string[];
    let finland: string[];
    try {
-      const response = await useFetch('https://api.serveri.jeb4.dev/items/it_comppanies');
+      const response = await useFetch(config.public['API_URL'] + 'items/it_comppanies');
       data = response.data.value.data;
-      // format data to array and remove dashes
-      kuopio = data.kuopio.split('\n').map((item: string) => item.replace('- ', ''));
-      finland = data.finland.split('\n').map((item: string) => item.replace('- ', ''));
+      // format data to array and remove dashes and sort alphabetically
+      kuopio = data.kuopio
+         .split('\n')
+         .map((item: string) => item.replace('- ', ''))
+         .sort();
+      finland = data.finland
+         .split('\n')
+         .map((item: string) => item.replace('- ', ''))
+         .sort();
    } catch (e) {
       data = {
          kuopio: 'loading companies failed',

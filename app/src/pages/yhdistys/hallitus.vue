@@ -28,12 +28,14 @@
 
 <script setup lang="ts">
    import VueMarkdown from 'vue-markdown-render';
+   const config = useRuntimeConfig();
+
    let members;
    let text;
    try {
-      let response = await useFetch('https://api.serveri.jeb4.dev/items/board_members');
+      let response = await useFetch(config.public['API_URL'] + 'items/board_members');
       members = response.data.value.data;
-      response = await useFetch('https://api.serveri.jeb4.dev/items/hallitus_page');
+      response = await useFetch(config.public['API_URL'] + 'items/hallitus_page');
       text = response.data.value.data;
    } catch (e) {
       members = [
