@@ -2,7 +2,7 @@ name: Bugi
 description: Luo bugi-raportti
 labels: ['area: examples']
 body: 
-- type: textarea
+  - type: textarea
     attributes:
       label: Kuvaile bugia
       description: Selkeä ja tiivis kuvaus siitä, mikä vika on.
