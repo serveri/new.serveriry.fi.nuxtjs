@@ -10,7 +10,7 @@
          :key="post.postaus_id"
          title="Instagram post"
          class="rounded-lg w-full h-[97vw] sm:h-[100%]"
-         :src="'//instagram.com/p/' + post.postaus_id + '/embed/'"
+         :src="`https://www.instagram.com/p/${post.postaus_id}/embed/?utm_source=ig_embed&amp%3Butm_campaign=loading`"
          height="100%"
          scrolling="no"
          allowtransparency="true"
