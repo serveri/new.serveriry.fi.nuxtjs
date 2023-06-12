@@ -15,10 +15,11 @@
 <script setup lang="ts">
    import ContactFormBusiness from '@/components/partners/ContactFormBusiness.vue';
    import VueMarkdown from 'vue-markdown-render';
+   const config = useRuntimeConfig();
 
    let content;
    try {
-      const response = await useFetch('https://api.serveri.jeb4.dev/items/yhteistyo_sivu');
+      const response = await useFetch(config.public['API_URL'] + 'items/yhteistyo_sivu');
       content = response.data.value.data;
    } catch (e) {
       content = {

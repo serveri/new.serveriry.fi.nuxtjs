@@ -60,10 +60,11 @@
    import TopNews from '@/components/langingpage/TopNews.vue';
    import SponsorCarousel from '@/components/langingpage/SponsorCarousel.vue';
    import SocialmediaIcon from '@/components/langingpage/SocialmediaIcon.vue';
+   const config = useRuntimeConfig();
 
    let content;
    try {
-      const response = await useFetch('https://api.serveri.jeb4.dev/items/LandingPage');
+      const response = await useFetch(config.public['API_URL'] + 'items/LandingPage');
       content = response.data.value.data;
    } catch (e) {
       content = {
@@ -83,7 +84,7 @@
 
    let SoMes;
    try {
-      const response = await useFetch('https://api.serveri.jeb4.dev/items/sosiaaliset_mediat');
+      const response = await useFetch(config.public['API_URL'] + 'items/sosiaaliset_mediat');
       SoMes = response.data.value.data;
    } catch (e) {
       SoMes = {

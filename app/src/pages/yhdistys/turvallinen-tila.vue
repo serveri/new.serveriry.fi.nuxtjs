@@ -13,11 +13,12 @@
 
 <script setup lang="ts">
    import SafeSpace from '@/components/yhdistys/SafeSpace.vue';
+   const config = useRuntimeConfig();
 
    let rules;
    let updated: Date;
    try {
-      const response = await useFetch('https://api.serveri.jeb4.dev/items/turvallinen_tila');
+      const response = await useFetch(config.public['API_URL'] + 'items/turvallinen_tila');
       rules = response.data.value.data;
       updated = new Date(rules.date_updated);
    } catch (e) {

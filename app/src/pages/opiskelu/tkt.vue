@@ -320,9 +320,11 @@
 </template>
 
 <script setup lang="ts">
+   const config = useRuntimeConfig();
+
    let courses;
    try {
-      const { data } = await useFetch('https://api.serveri.jeb4.dev/items/tutkinto_rakenne');
+      const { data } = await useFetch(config.public['API_URL'] + 'items/tutkinto_rakenne');
       courses = data.value.data;
    } catch (e) {
       courses = [

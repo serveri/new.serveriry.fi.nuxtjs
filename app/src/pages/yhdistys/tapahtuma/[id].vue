@@ -225,6 +225,8 @@
 
 <script setup>
    import VueMarkdown from 'vue-markdown-render';
+   const config = useRuntimeConfig();
+
    // This hard coded data will be replaced with data from directus
    let events;
    const route = useRoute();
@@ -234,7 +236,7 @@
    let x;
    let y;
    try {
-      const response = await useFetch('https://api.serveri.jeb4.dev/items/tapahtuma/' + route.params.id);
+      const response = await useFetch(config.public['API_URL'] + 'items/tapahtuma/' + route.params.id);
       if (response?.data?.value?.data) {
          events = response.data.value.data;
          released_date = new Date(events.date_created);

@@ -23,19 +23,20 @@
 
 <script setup>
    import PartnerCard from '@/components/partners/PartnerCard.vue';
+   const config = useRuntimeConfig();
 
    let sponsors;
    try {
-     const response = await useFetch('https://api.serveri.jeb4.dev/items/partners');
-     sponsors = response.data.value.data;
+      const response = await useFetch(config.public['API_URL'] + 'items/partners');
+      sponsors = response.data.value.data;
    } catch (e) {
-     sponsors = [
-       {
-         name: 'Yrityksen logo puuttuu',
-         url: 'https://serveriry.fi',
-         img: 'https://api.serveriry.fi/uploads/large_computerstuffwithlogo_da6b992e47.jpg',
-       },
-     ];
+      sponsors = [
+         {
+            name: 'Yrityksen logo puuttuu',
+            url: 'https://serveriry.fi',
+            img: 'https://api.serveriry.fi/uploads/large_computerstuffwithlogo_da6b992e47.jpg',
+         },
+      ];
    }
 </script>
 

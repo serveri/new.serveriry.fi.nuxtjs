@@ -1,9 +1,10 @@
 # new.serveriry.fi.nextjs
 
-[![Vue v3](https://img.shields.io/badge/Vue-v3-blue)](https://vuejs.org/)
-[![Nuxt](https://img.shields.io/badge/Nuxt-v3.1-blue)](https://nuxt.com/)
+[![Vue v3](https://img.shields.io/badge/Vue-v3.3-blue)](https://vuejs.org/)
+[![Nuxt](https://img.shields.io/badge/Nuxt-v3.4-blue)](https://nuxt.com/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-v4.9-blue)](https://www.typescriptlang.org/)
-[![Node v19](https://img.shields.io/badge/NodeJS-v19-blue)](https://nodejs.org/en/)
+[![Node v18](https://img.shields.io/badge/NodeJS-v18-blue)](https://nodejs.org/en/)
+[![Tailwind](https://img.shields.io/badge/TailwindCSS-v3-blue)](https://tailwindcss.com/)
 [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
 
 New webpages for [serveri ry].
@@ -173,8 +174,6 @@ See docker-compose [docs](./app/DOCKER-COMPOSE.md)
 | db       | postgresql  | 10.10.0.3:5432 | Database for Directus    |
 | cache    | redis       | 10.10.0.4      | Cache for Directus       |
 | directus | directus    | 10.10.0.4:8001 | CMS                      |
-
-test...
 
 [Docker]: https://www.docker.com/
 [Vue]: https://vuejs.org/

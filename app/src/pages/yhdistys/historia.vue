@@ -37,10 +37,11 @@
 
 <script setup lang="ts">
    import VueMarkdown from 'vue-markdown-render';
+   const config = useRuntimeConfig();
 
    let reports;
    try {
-      const response = await useFetch('https://api.serveri.jeb4.dev/items/toimintakertomus');
+      const response = await useFetch(config.public['API_URL'] + 'items/toimintakertomus');
       reports = response.data.value.data;
    } catch (e) {
       reports = [

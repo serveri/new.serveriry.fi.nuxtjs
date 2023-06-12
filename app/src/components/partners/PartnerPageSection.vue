@@ -13,10 +13,11 @@
 
 <script setup lang="ts">
    import PartnerCard from '@/components/partners/PartnerCard.vue';
+   const config = useRuntimeConfig();
 
    let sponsors;
    try {
-      const response = await useFetch('https://api.serveri.jeb4.dev/items/partners');
+      const response = await useFetch(config.public['API_URL'] + 'items/partners');
       sponsors = response.data.value.data;
    } catch (e) {
       sponsors = [

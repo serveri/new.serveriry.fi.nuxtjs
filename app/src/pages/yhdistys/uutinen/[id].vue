@@ -65,12 +65,14 @@
 
 <script setup>
    import VueMarkdown from 'vue-markdown-render';
+   const config = useRuntimeConfig();
+
    // This hard coded data will be replaced with data from directus
    let news;
    const route = useRoute();
    let released_date = new Date();
    try {
-      const response = await useFetch('https://api.serveri.jeb4.dev/items/uutiset/' + route.params.id);
+      const response = await useFetch(config.public['API_URL'] + 'items/uutiset/' + route.params.id);
       news = response.data.value.data;
       released_date = new Date(news.date_created);
    } catch (error) {
