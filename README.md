@@ -174,6 +174,8 @@ See docker-compose [docs](./app/DOCKER-COMPOSE.md)
 | cache    | redis       | 10.10.0.4      | Cache for Directus       |
 | directus | directus    | 10.10.0.4:8001 | CMS                      |
 
+test...
+
 [Docker]: https://www.docker.com/
 [Vue]: https://vuejs.org/
 [serveri ry]: https://serveriry.fi
