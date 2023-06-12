@@ -1,37 +1,37 @@
 name: Bugi
 description: Luo bugi-raportti
 labels: ['area: examples']
-body: 
-  - type: textarea
-    attributes:
-      label: Kuvaile bugia
-      description: Selkeä ja tiivis kuvaus siitä, mikä vika on.
-    validations:
-      required: true
-  - type: textarea
-    attributes:
-      label: Odotettu käyttäytyminen
-      description: Selkeä ja tiivis kuvaus siitä, mitä odotit tapahtuvan.
-    validations:
-      required: true
-  - type: textarea
-    attributes:
-      label: Miten bugi toistetaan?
-      description: Vaiheet bugi toistamiseksi, anna selkeä kuvaus siitä, miten ongelma voidaan toistaa asiaankuuluvan esimerkin perusteella. Kuvakaappauksia voi antaa alla olevassa ongelman rungossa. Jos käytät koodilohkoja, varmista, että [syntaksin korostus on oikein](https://docs.github.com/en/get-started/writing-on-github/working-with-advanced-formatting/creating-and-highlighting-code-blocks#syntax-highlighting) ja tarkista, että renderöity esikatselu ei ole rikki.
-    validations:
-      required: true
+body:
    - type: textarea
-    attributes:
-      label: Mahdollinen korjaus (jos on)
-      description: Jos olet löytänyt mahdollisen (väliaikaisen) korjauksen bugiin.
-    validations:
-      required: false
-  - type: markdown
-    attributes:
-      value: Ennen bugin lähettämistä käy läpi kirjoittamasi vaiheet ja varmista, että ne ovat yksityiskohtaisia ja selkeitä.
-  - type: markdown
-    attributes:
-      value: Osallistujien pitäisi pystyä noudattamaan annettuja ohjeita vian toistamiseksi.
-  - type: markdown
-    attributes:
-      value: Kiitos etukäteen!
+     attributes:
+        label: Kuvaile bugia
+        description: Selkeä ja tiivis kuvaus siitä, mikä vika on.
+     validations:
+        required: true
+   - type: textarea
+     attributes:
+        label: Odotettu käyttäytyminen
+        description: Selkeä ja tiivis kuvaus siitä, mitä odotit tapahtuvan.
+     validations:
+        required: true
+   - type: textarea
+     attributes:
+        label: Miten bugi toistetaan?
+        description: Vaiheet bugi toistamiseksi, anna selkeä kuvaus siitä, miten ongelma voidaan toistaa asiaankuuluvan esimerkin perusteella. Kuvakaappauksia voi antaa alla olevassa ongelman rungossa. Jos käytät koodilohkoja, varmista, että [syntaksin korostus on oikein](https://docs.github.com/en/get-started/writing-on-github/working-with-advanced-formatting/creating-and-highlighting-code-blocks#syntax-highlighting) ja tarkista, että renderöity esikatselu ei ole rikki.
+     validations:
+        required: true
+   - type: textarea
+     attributes:
+        label: Mahdollinen korjaus (jos on)
+        description: Jos olet löytänyt mahdollisen (väliaikaisen) korjauksen bugiin.
+     validations:
+        required: false
+   - type: markdown
+     attributes:
+        value: Ennen bugin lähettämistä käy läpi kirjoittamasi vaiheet ja varmista, että ne ovat yksityiskohtaisia ja selkeitä.
+   - type: markdown
+     attributes:
+        value: Osallistujien pitäisi pystyä noudattamaan annettuja ohjeita vian toistamiseksi.
+   - type: markdown
+     attributes:
+        value: Kiitos etukäteen!
