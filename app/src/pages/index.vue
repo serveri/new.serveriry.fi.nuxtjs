@@ -19,12 +19,28 @@
       </section>
 
       <section v-if="!showDiv" class="py-8 flex flex-col md:flex-row w-full gap-8">
-         <YTHS />
+         <LastNews
+            :url="article.id"
+            :img="article.image"
+            :fi_title="article.fi_title"
+            :en_title="article.en_title"
+            :date="article.date_created"
+            :fi_text="article.fi_text"
+            :en_text="article.en_text"
+         />
          <InstagramFeed />
       </section>
 
-      <section v-else class="py-8 flex flex-col md:flex-row w-full gap-8">
-         <YTHS />
+      <section v-else class="py-8 flex flex-col md:flex-row md:w-2/3 gap-8">
+         <LastNews
+            :url="article.id"
+            :img="article.image"
+            :fi_title="article.fi_title"
+            :en_title="article.en_title"
+            :date="article.date_created"
+            :fi_text="article.fi_text"
+            :en_text="article.en_text"
+         />
       </section>
 
       <section class="pt-8">
@@ -53,7 +69,7 @@
 
 <script setup lang="ts">
    import InstagramFeed from '@/components/langingpage/InstagramFeed.vue';
-   import YTHS from '@/components/langingpage/yths.vue';
+   import LastNews from '@/components/langingpage/LastNews.vue';
    import EmbeddedMap from '@/components/langingpage/EmbeddedMap.vue';
    import HeroSection from '@/components/langingpage/HeroSection.vue';
    import DescriptionText from '@/components/langingpage/DescriptionText.vue';
@@ -81,6 +97,21 @@
          custom_css: '',
       };
    }
+
+   let articles;
+   try {
+      const response = await useFetch(config.public['API_URL'] + 'items/uutiset');
+      articles = response.data.value.data;
+   } catch (e) {
+      articles = {
+         img: '/images/uutiset-placeholder.png',
+         id: 'f4d13a49-0539-442f-a5e9-6f486ff4d5d7',
+         header: 'Api Error',
+         date_created: '09/25/2022',
+         text: 'Toivotamme Teidät mitä lämpimimmin tervetulleeksi viettämään Serveri ry:n 35-vuotis vuosijuhlaa pitkän odotuksen jälkeen!',
+      };
+   }
+   const article = articles[1];
 
    let SoMes;
    try {
