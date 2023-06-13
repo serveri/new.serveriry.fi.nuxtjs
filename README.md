@@ -130,26 +130,26 @@ through your commits before merging changes.
 
 #### Docker
 
-- start - `docker-compose up -d --build`
-- stop - `docker-compose down -v`
-- logs - `docker-compose logs -f`
+- start - `docker compose up -d --build`
+- stop - `docker compose down -v`
+- logs - `docker compose logs -f`
 
 ### Production
 
 1. Clone git repository.
 2. Copy `.env.prod` and `.env.prod.db` files to parent folder using `cp <filename> <../filename>`
 3. Edit `CHANGE_ME` values to safe passwords etc. in those `.env` files
-4. Start container (you may have to install docker-compose command)
+4. Start container (you may have to install `docker compose` command)
 
-- start - `docker-compose -f docker-compose.prod.yml up -d --build`
-- stop - `docker-compose -f docker-compose.prod.yml down`
-- logs - `docker-compose -f docker-compose.prod.yml logs`
+- start - `docker compose -f docker compose.prod.yml up -d --build`
+- stop - `docker compose -f docker compose.prod.yml down`
+- logs - `docker compose -f docker compose.prod.yml logs`
 
 ### Other
 
 - Go inside container - `docker exec -it {{name}} bash`
 
-See docker-compose [docs](./app/DOCKER-COMPOSE.md)
+See docker compose [docs](./app/DOCKER-COMPOSE.md)
 
 ---
 
@@ -166,7 +166,7 @@ See docker-compose [docs](./app/DOCKER-COMPOSE.md)
 | frontend | TypeScript  |             | JavaScript like language with types           |
 | backend  | Directus    | v9.22.4     | Content Management Service (CMS)              |
 
-### Docker-Compose Services
+### Docker-Compose-Services
 
 | Name     | Image       | IP:Port        | Explanation              |
 |----------|-------------|----------------|--------------------------|
