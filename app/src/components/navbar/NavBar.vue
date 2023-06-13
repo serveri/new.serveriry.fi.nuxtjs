@@ -5,8 +5,8 @@
             <!-- Mobile menu button-->
             <div class="absolute inset-y-0 left-0 flex items-center md:hidden">
                <div
-                  @click="toggleMenu"
                   class="inline-flex items-center justify-center rounded-md p-2 cursor-pointer text-gray-400 hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white"
+                  @click="toggleMenu"
                >
                   <span class="sr-only">Open main menu</span>
                   <Bars3Icon v-if="!isOpen" class="block h-6 w-6" aria-hidden="true" />
@@ -79,7 +79,7 @@
             >
                <!-- IF -->
                <div v-if="item.subMenu">
-                  <DropDownMobile :menu="item" :toggleMenu="toggleMenu" />
+                  <DropDownMobile :menu="item" :toggle-menu="toggleMenu" />
                </div>
                <!-- ELSE (if there is no children/submenu) -->
                <div v-else class="relative">
@@ -163,17 +163,16 @@
          DropDownMobile,
          DarkMode,
       },
-      methods: {
-         toggleMenu() {
-            this.isOpen = !this.isOpen;
-            console.log('click on menu', this.isOpen);
-         },
-      },
       data() {
          return {
             menu: 'Error occurred',
             isOpen: false,
          };
+      },
+      methods: {
+         toggleMenu() {
+            this.isOpen = !this.isOpen;
+         },
       },
    };
 </script>
