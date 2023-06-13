@@ -1,5 +1,5 @@
 <template>
-   <div class="lg:pr-10 md:pr-5 sm:pr-0 md:flex-1 flex items-center">
+   <div class="lg:pr-10 md:pr-5 sm:pr-0 md:flex-1 flex items-center max-w-full">
       <div>
          <div class="rounded-sm">
             <img class="w-full max-h-64 object-cover" :src="content.img" alt="Cover image for the news card" />
@@ -22,9 +22,9 @@
 
             <p class="card-content mt-1 mb-3 line-clamp-6">{{ content[$i18n.locale + '_text'].replaceAll('#', '') }}</p>
 
-            <nuxt-link :to="localePath('/yhdistys/uutinen/' + content.url)" class="pt-3">
+            <a :href="'/yhdistys/uutinen/' + content.url" class="pt-3">
                <button class="btn-custom-primary" type="button">{{ 'Lue lisää' }}</button>
-            </nuxt-link>
+            </a>
          </div>
       </div>
    </div>

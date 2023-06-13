@@ -13,6 +13,7 @@
       <Meta name="og:image" content="https://serveri.jeb4.dev/images/tapahtumat-placeholder.png" />
       <Meta name="og:url" content="https://serveriry.fi/" />
       <Title>Serveri ry</Title>
+      <Link rel="icon" href="/images/rotta.svg" />
    </Head>
    <div id="app" class="bg-white dark:bg-zinc-800 min-h-screen overflow-hidden">
       <NavBar />
