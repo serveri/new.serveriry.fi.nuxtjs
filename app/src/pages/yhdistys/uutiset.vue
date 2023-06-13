@@ -34,6 +34,9 @@
    try {
       const response = await useFetch(config.public['API_URL'] + 'items/uutiset');
       news = response.data.value.data;
+
+      // order by first by date
+      news.sort((a, b) => new Date(b.date_created).getTime() - new Date(a.date_created).getTime());
    } catch (error) {
       news = [
          {
@@ -53,7 +56,7 @@
    }
    @media (min-width: 600px) {
       .custom-gridi {
-         grid-template-columns: repeat(auto-fit, minmax(21rem, 1fr));
+         grid-template-columns: repeat(3, minmax(21rem, 1fr));
       }
    }
 </style>

@@ -20,7 +20,7 @@
                }}</span>
             </p>
 
-            <p class="card-content mt-1 mb-3 line-clamp-3">{{ content[$i18n.locale + '_text'] }}</p>
+            <p class="card-content mt-1 mb-3 line-clamp-3">{{ content[$i18n.locale + '_text'].replaceAll('#', '') }}</p>
          </div>
       </div>
    </a>

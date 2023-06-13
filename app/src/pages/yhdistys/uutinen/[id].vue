@@ -5,15 +5,15 @@
       <Meta
          name="description"
          :content="
-            news[$i18n.locale + '_text'].match(new RegExp(`^.{1,150}\\b`))?.[0] ||
-            news[$i18n.locale + '_text'].slice(0, 150)
+            news[$i18n.locale + '_text'].replaceAll('#', '').match(new RegExp(`^.{1,150}\\b`))?.[0] ||
+            news[$i18n.locale + '_text'].slice(0, 150).replaceAll('#', '')
          "
       />
       <Meta
          name="og:description"
          :content="
-            news[$i18n.locale + '_text'].match(new RegExp(`^.{1,150}\\b`))?.[0] ||
-            news[$i18n.locale + '_text'].slice(0, 150)
+            news[$i18n.locale + '_text'].replaceAll('#', '').match(new RegExp(`^.{1,150}\\b`))?.[0] ||
+            news[$i18n.locale + '_text'].slice(0, 150).replaceAll('#', '')
          "
       />
       <Meta
