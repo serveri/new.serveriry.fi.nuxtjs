@@ -55,6 +55,7 @@
    try {
       const response = await useFetch(config.public['API_URL'] + 'items/tapahtuma');
       events = response.data.value.data;
+
       // filter
       const today = new Date();
       events.pastData = events.filter((item) => new Date(item.alku_aika) < today);
