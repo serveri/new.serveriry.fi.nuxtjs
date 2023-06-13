@@ -22,9 +22,9 @@
 
             <p class="card-content mt-1 mb-3 line-clamp-6">{{ content[$i18n.locale + '_text'].replaceAll('#', '') }}</p>
 
-            <nuxt-link :to="localePath('/yhdistys/uutinen/' + content.url)" class="pt-3">
+            <a :href="'/yhdistys/uutinen/' + content.url" class="pt-3">
                <button class="btn-custom-primary" type="button">{{ 'Lue lisää' }}</button>
-            </nuxt-link>
+            </a>
          </div>
       </div>
    </div>
