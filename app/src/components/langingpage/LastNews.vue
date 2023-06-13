@@ -1,5 +1,5 @@
 <template>
-   <div class="lg:pr-10 md:pr-5 sm:pr-0 md:flex-1 flex items-center max-w-full">
+   <div class="pr-0 sm:pr-0 md:pr-5 lg:pr-10 md:flex-1 md:flex md:items-center md:justify-center">
       <div>
          <div class="rounded-sm">
             <img class="w-full max-h-64 object-cover" :src="content.img" alt="Cover image for the news card" />
@@ -20,7 +20,7 @@
                }}</span>
             </p>
 
-            <p class="card-content mt-1 mb-3 line-clamp-6">{{ content[$i18n.locale + '_text'].replaceAll('#', '') }}</p>
+            <p class="mt-1 mb-3 line-clamp-6">{{ content[$i18n.locale + '_text'].replaceAll('#', '') }}</p>
 
             <a :href="'/yhdistys/uutinen/' + content.url" class="pt-3">
                <button class="btn-custom-primary" type="button">{{ 'Lue lisää' }}</button>
