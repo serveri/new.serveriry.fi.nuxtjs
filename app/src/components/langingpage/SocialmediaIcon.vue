@@ -33,10 +33,12 @@
       fi_desc: {
          type: String,
          required: false,
+         default: 'Oletus Sosiaalinen Media',
       },
       en_desc: {
          type: String,
          required: false,
+         default: 'Default Social Media',
       },
       custom_style: {
          type: String,

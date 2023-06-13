@@ -1,3 +1,4 @@
+import { defineNuxtConfig } from 'nuxt';
 export default {
    ssr: true,
    srcDir: 'src/',
@@ -11,8 +12,11 @@ export default {
    plugins: [{ src: '~/plugins/fontawesome.ts' }],
    modules: ['@nuxtjs/i18n', 'nuxt-delay-hydration'],
    i18n: {
-      vueI18n: {
-         fallbackLocale: ['fi', 'en'],
+      fallbackLocale: { default: ['fi', 'en'] },
+      detectBrowserLanguage: {
+         useCookie: true,
+         cookieKey: 'i18n_redirected',
+         redirectOn: 'root',
       },
       locales: [
          {
@@ -27,12 +31,13 @@ export default {
          },
       ],
       lazy: false,
-      langDir: 'lang/',
+      langDir: 'lang',
       defaultLocale: 'fi',
    },
-   delayHydration: {
-      mode: 'init',
-      // enables nuxt-delay-hydration in dev mode for testing
-      debug: process.env.NODE_ENV === 'development',
+   runtimeConfig: {
+      // Config within public will be also exposed to the client
+      public: {
+         API_URL: process.env.NUXT_API_URL || 'http://localhost:8001',
+      },
    },
 };

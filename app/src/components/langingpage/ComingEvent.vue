@@ -6,13 +6,21 @@
          </h3>
       </a>
       <p class="font-light text-gray-500 dark:text-gray-400">
-         {{ alku_aika.toLocaleDateString($i18n.locale, DateOptions) }}
+         {{
+            alku_aika.toLocaleDateString($i18n.locale, {
+               weekday: 'long',
+               year: 'numeric',
+               month: 'long',
+               day: 'numeric',
+               hour: 'numeric',
+               minute: 'numeric',
+            })
+         }}
       </p>
    </div>
 </template>
 
 <script setup lang="ts">
-   let alku_aika = new Date();
    const event = defineProps({
       en_otsikko: {
          type: String,
@@ -34,15 +42,7 @@
          required: true,
       },
    });
-   alku_aika = new Date(event.alku_aika);
-   const DateOptions = {
-      weekday: 'long',
-      year: 'numeric',
-      month: 'long',
-      day: 'numeric',
-      hour: 'numeric',
-      minute: 'numeric',
-   };
+   const alku_aika = new Date(event.alku_aika);
 </script>
 
 <script lang="ts">

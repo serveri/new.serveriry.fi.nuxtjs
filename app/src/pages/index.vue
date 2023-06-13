@@ -7,7 +7,7 @@
          <HeroSection class="w-screen" :content="content" />
       </section>
 
-      <section class="sm:my-[-3rem] xl:sm:my-[-6rem] 2xl:sm:my-[-8rem] flex flex-col lg:flex-row">
+      <section class="sm:my-[-3rem] xl:sm:my-[-6rem] 2xl:sm:my-[-8rem] flex flex-col lg:flex-row md:gap-8">
          <DescriptionText :en_description="content.en_long_desc" :fi_description="content.fi_long_desc" />
          <TopNews />
       </section>
@@ -18,9 +18,13 @@
          </div>
       </section>
 
-      <section class="py-8 flex flex-col md:flex-row w-full gap-8">
+      <section v-if="!showDiv" class="py-8 flex flex-col md:flex-row w-full gap-8">
          <YTHS />
          <InstagramFeed />
+      </section>
+
+      <section v-else class="py-8 flex flex-col md:flex-row w-full gap-8">
+         <YTHS />
       </section>
 
       <section class="pt-8">
@@ -56,10 +60,11 @@
    import TopNews from '@/components/langingpage/TopNews.vue';
    import SponsorCarousel from '@/components/langingpage/SponsorCarousel.vue';
    import SocialmediaIcon from '@/components/langingpage/SocialmediaIcon.vue';
+   const config = useRuntimeConfig();
 
    let content;
    try {
-      const response = await useFetch('https://api.serveri.jeb4.dev/items/LandingPage');
+      const response = await useFetch(config.public['API_URL'] + 'items/LandingPage');
       content = response.data.value.data;
    } catch (e) {
       content = {
@@ -79,7 +84,7 @@
 
    let SoMes;
    try {
-      const response = await useFetch('https://api.serveri.jeb4.dev/items/sosiaaliset_mediat');
+      const response = await useFetch(config.public['API_URL'] + 'items/sosiaaliset_mediat');
       SoMes = response.data.value.data;
    } catch (e) {
       SoMes = {
@@ -94,6 +99,45 @@
    if (!SoMes.en_kuvaus) {
       SoMes.en_kuvaus = null;
    }
+</script>
+
+<script lang="ts">
+   export default {
+      computed: {
+         showDiv() {
+            if (process.client) {
+               // Check the cookie value and return a boolean
+               const cookieValue = this.getCookieValue('cookieconsent_status');
+               return cookieValue === 'deny'; // if cookie value is not allow, return true
+            }
+         },
+      },
+      methods: {
+         getCookieValue(cookieName: string) {
+            if (process.client) {
+               const name = cookieName + '=';
+               const decodedCookie = decodeURIComponent(document.cookie);
+               const cookieArray = decodedCookie.split(';');
+
+               for (let i = 0; i < cookieArray.length; i++) {
+                  let cookie = cookieArray[i];
+                  while (cookie.charAt(0) === ' ') {
+                     cookie = cookie.substring(1);
+                  }
+                  if (cookie.indexOf(name) === 0) {
+                     return cookie.substring(name.length, cookie.length);
+                  }
+               }
+               return '';
+            }
+         },
+         setCookieValue(cookieName: string, value: string) {
+            if (process.client) {
+               document.cookie = `${cookieName}=${value}; path=/`;
+            }
+         },
+      },
+   };
 </script>
 
 <style>

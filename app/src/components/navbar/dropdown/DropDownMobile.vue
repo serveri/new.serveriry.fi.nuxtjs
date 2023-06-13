@@ -35,7 +35,7 @@
                         active ? 'bg-neutral-100' : '',
                         'block px-4 py-1 text-lg text-left text-black hover:bg-zinc-600 hover:text-white even:bg-zinc-200 odd:bg-zinc-50 dark:text-gray-200 dark:hover:bg-gray-600 dark:hover:text-white dark:even:bg-zinc-800 dark:odd:bg-zinc-700 w-full',
                      ]"
-                     ><span class="nav-dropdown-link" @click="close">
+                     ><span class="nav-dropdown-link" @click="toggleMenu">
                         {{ $t(subMenu.name) }}
                      </span></nuxt-link
                   >
@@ -55,6 +55,7 @@
    export default {
       name: 'DropDownMobile',
       props: {
+         toggleMenu: Function,
          // eslint-disable-next-line vue/require-default-prop
          menu: Object,
       },

@@ -21,6 +21,7 @@
 </template>
 <script setup lang="ts">
    import ComingEvent from '@/components/langingpage/ComingEvent.vue';
+   const config = useRuntimeConfig();
 
    interface DataItem {
       alku_aika: string;
@@ -28,7 +29,7 @@
 
    let events: DataItem[];
    try {
-      const response = await useFetch('https://api.serveri.jeb4.dev/items/tapahtuma');
+      const response = await useFetch(config.public['API_URL'] + 'items/tapahtuma');
       events = response.data.value.data;
 
       // filter

@@ -24,13 +24,6 @@
                <div>
                   <p>
                      <span class="pr-2">
-                        <client-only><font-awesome-icon icon="fa fa-phone" /></client-only> </span
-                     >+358 45 1234567
-                  </p>
-               </div>
-               <div>
-                  <p>
-                     <span class="pr-2">
                         <client-only><font-awesome-icon icon="fa fa-envelope" /></client-only> </span
                      >hallitus@serveriry.fi
                   </p>

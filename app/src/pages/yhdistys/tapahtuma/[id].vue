@@ -1,6 +1,7 @@
 <template>
    <Head>
       <Title>{{ events[$i18n.locale + '_otsikko'] }} - Serveri ry</Title>
+      <Meta name="og:title" :content="events[$i18n.locale + '_otsikko'] + ' - Serveri ry'" />
       <Meta
          name="description"
          :content="
@@ -8,7 +9,21 @@
             events[$i18n.locale + '_kuvaus'].slice(0, 150)
          "
       />
-      <Meta property="og:image" :content="events.image" />
+      <Meta
+         name="og:description"
+         :content="
+            events[$i18n.locale + '_kuvaus'].match(new RegExp(`^.{1,150}\\b`))?.[0] ||
+            events[$i18n.locale + '_kuvaus'].slice(0, 150)
+         "
+      />
+      <Meta
+         name="og:image"
+         :content="
+            events.image?.startsWith('http')
+               ? events.image
+               : 'https://serveri.jeb4.dev/images/tapahtumat-placeholder.png'
+         "
+      />
    </Head>
    <div>
       <!--  events article with image header and content   -->
@@ -20,7 +35,7 @@
 
             <img
                class="object-cover w-full aspect-video p-0 m-0"
-               :src="events.image?.startsWith('http') ? events.image : '/images/placeholder.jpg'"
+               :src="events.image?.startsWith('http') ? events.image : '/images/tapahtumat-placeholder.png'"
                alt="Photo related to the events article."
             />
 
@@ -44,32 +59,56 @@
                   <span
                      v-if="events.tyyppi.includes('ilmainen')"
                      class="bg-green-100 text-green-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-gray-700 dark:text-green-400 border border-green-400"
+                     title="Tapahtuma on ilmainen"
                      >Ilmainen</span
                   >
                   <span
                      v-if="events.tyyppi.includes('mainos')"
                      class="bg-yellow-100 text-yellow-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-gray-700 dark:text-yellow-300 border border-yellow-300"
+                     title="Tapahtuma on mainos eikä Serveri ry osallistu sen järjestämiseen."
                      >Mainos</span
                   >
                   <span
                      v-if="events.tyyppi.includes('alkoholiton')"
                      class="bg-indigo-100 text-indigo-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-gray-700 dark:text-indigo-400 border border-indigo-400"
+                     title="Alkoholiton tapahtuma."
                      >Alkoholiton</span
                   >
                   <span
                      v-if="events.tyyppi.includes('poikkitieteellinen')"
                      class="bg-pink-100 text-pink-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-gray-700 dark:text-pink-400 border border-pink-400"
+                     title="Kivaa yhdessä muiden alojen opiskelijoiden kanssa"
                      >Poikkitieteellinen</span
                   >
                   <span
                      v-if="events.tyyppi.includes('turvallinen_tila')"
                      class="bg-purple-100 text-purple-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-gray-700 dark:text-purple-400 border border-purple-400"
+                     title="Tapahtumassa noudatetaan turvallisen tilan periaatteita."
                      >Turvallinen tila</span
                   >
                   <span
                      v-if="events.tyyppi.includes('excursio')"
                      class="bg-red-100 text-red-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-gray-700 dark:text-red-400 border border-red-400"
+                     title="Excursio"
                      >Excursio</span
+                  >
+                  <span
+                     v-if="events.tyyppi.includes('ulkoilma')"
+                     class="bg-indigo-100 text-indigo-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-gray-700 dark:text-indigo-400 border border-indigo-400"
+                     title="Tapahtumapaikka sijaitsee ulkotiloissa."
+                     >Ulkoilma</span
+                  >
+                  <span
+                     v-if="events.tyyppi.includes('collab')"
+                     class="bg-green-100 text-green-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-gray-700 dark:text-green-400 border border-green-400"
+                     title="Serveri ry osallistuu tapahtuman järjestämiseen yhteistyössä jonkun tahon kanssa."
+                     >Yhteistyö</span
+                  >
+                  <span
+                     v-if="events.tyyppi.includes('ulkoinen')"
+                     class="bg-red-100 text-red-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-gray-700 dark:text-red-400 border border-red-400"
+                     title="Tapahtuma on ulkopuolisen tahon järjestämä."
+                     >Ulkoinen järjestäjä</span
                   >
                </div>
             </div>
@@ -186,6 +225,8 @@
 
 <script setup>
    import VueMarkdown from 'vue-markdown-render';
+   const config = useRuntimeConfig();
+
    // This hard coded data will be replaced with data from directus
    let events;
    const route = useRoute();
@@ -195,7 +236,7 @@
    let x;
    let y;
    try {
-      const response = await useFetch('https://api.serveri.jeb4.dev/items/tapahtuma/' + route.params.id);
+      const response = await useFetch(config.public['API_URL'] + 'items/tapahtuma/' + route.params.id);
       if (response?.data?.value?.data) {
          events = response.data.value.data;
          released_date = new Date(events.date_created);
@@ -208,7 +249,7 @@
          }
       } else {
          events = {
-            image: 'https://api.serveriry.fi/uploads/large_computerstuffwithlogo_da6b992e47.jpg',
+            image: '/images/tapahtumat-placeholder.png',
             id: route.params.id,
             fi_otsikko: 'Tapahtuman nimeä ei löytynyt',
             en_otsikko: 'The events title cannot be found',
@@ -220,7 +261,7 @@
       }
    } catch (error) {
       events = {
-         image: 'https://api.serveriry.fi/uploads/large_computerstuffwithlogo_da6b992e47.jpg',
+         image: '/images/tapahtumat-placeholder.png',
          id: route.params.id,
          fi_otsikko: 'Tapahtuman nimeä ei löytynyt',
          en_otsikko: 'The events title cannot be found',

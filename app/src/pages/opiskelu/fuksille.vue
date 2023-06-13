@@ -9,9 +9,11 @@
 
 <script setup lang="ts">
    import VueMarkdown from 'vue-markdown-render';
+   const config = useRuntimeConfig();
+
    let text;
    try {
-      const { data } = await useFetch('https://api.serveri.jeb4.dev/items/for_new_student');
+      const { data } = await useFetch(config.public['API_URL'] + 'items/for_new_student');
       text = data.value.data;
    } catch (e) {
       text = {

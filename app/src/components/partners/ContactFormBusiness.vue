@@ -11,8 +11,8 @@
                >Yrityksen nimi</label
             >
             <input
-               id="subject"
                v-if="validated"
+               id="subject"
                v-model="firm_name"
                type="text"
                class="block p-3 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 shadow-sm focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500 dark:shadow-sm-light"
@@ -64,19 +64,6 @@
    let firm_message = '';
 
    const router = useRouter();
-
-   // function validateForm(e) {
-   //    e.preventDefault();
-   //    console.log('data:', firm_contact, firm_name);
-   //    // Validate form
-   //    if (firm_contact === '' || firm_name === '') {
-   //       validated = false;
-   //       console.log('data:', firm_contact, firm_name);
-   //       console.log('Ei validoitu!');
-
-   //       console.log('validated:', validated);
-   //    }
-   // }
 
    async function submitForm(e) {
       e.preventDefault();

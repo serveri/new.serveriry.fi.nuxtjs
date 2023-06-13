@@ -1,19 +1,39 @@
 <template>
-  <Head>
-    <Title>{{ news[$i18n.locale + '_title'] }} - Serveri ry</Title>
-    <Meta
-      name="description"
-      :content="news[$i18n.locale + '_text'].match(new RegExp(`^.{1,150}\\b`))?.[0] || news[$i18n.locale + '_text'].slice(0, 150)"
-    />
-    <Meta property="og:image" :content="news.image" />
-  </Head>
+   <Head>
+      <Title>{{ news[$i18n.locale + '_title'] }} - Serveri ry</Title>
+      <Meta name="og:title" :content="news[$i18n.locale + '_title'] + ' - Serveri ry'" />
+      <Meta
+         name="description"
+         :content="
+            news[$i18n.locale + '_text'].match(new RegExp(`^.{1,150}\\b`))?.[0] ||
+            news[$i18n.locale + '_text'].slice(0, 150)
+         "
+      />
+      <Meta
+         name="og:description"
+         :content="
+            news[$i18n.locale + '_text'].match(new RegExp(`^.{1,150}\\b`))?.[0] ||
+            news[$i18n.locale + '_text'].slice(0, 150)
+         "
+      />
+      <Meta
+         name="og:image"
+         :content="
+            news.image?.startsWith('http') ? news.image : 'https://serveri.jeb4.dev/images/uutiset-placeholder.png'
+         "
+      />
+   </Head>
    <div>
       <!--  news article with image header and content   -->
       <div class="NewsCard">
          <article class="py-8">
             <h2 class="card-header py-6 text-2xl font-extrabold">{{ news[$i18n.locale + '_title'] }}</h2>
 
-            <img class="object-cover aspect-video w-full p-0 m-0" :src="news.image" alt="Photo related to the news article." />
+            <img
+               class="object-cover aspect-video w-full p-0 m-0"
+               :src="news.image"
+               alt="Photo related to the news article."
+            />
 
             <p class="news-date font-normal uppercase py-2 text-xs">
                {{ $t('news_released') }}
@@ -45,30 +65,19 @@
 
 <script setup>
    import VueMarkdown from 'vue-markdown-render';
+   const config = useRuntimeConfig();
+
    // This hard coded data will be replaced with data from directus
    let news;
    const route = useRoute();
    let released_date = new Date();
    try {
-      // TODO: FIX THIS BUG
-      const response = await useFetch('https://api.serveri.jeb4.dev/items/news/' + route.params.id);
-      if (response?.data?.value?.data) {
-         news = response.data.value.data;
-         released_date = new Date(news.date_created);
-      } else {
-         news = {
-            image: 'https://api.serveriry.fi/uploads/large_computerstuffwithlogo_da6b992e47.jpg',
-            id: route.params.id,
-            fi_title: 'Uutisen otsikon pitäisi olla tässä',
-            en_title: 'The news title should be here',
-            fi_text: 'Valitettavasti rest rajapintaan ei saada yhteyttä, ovatkohan serverit liekeissä?',
-            en_text: 'But unfortunately we cannot connect to the rest interface, maybe the servers are on fire?',
-            date: new Date(),
-         };
-      }
+      const response = await useFetch(config.public['API_URL'] + 'items/uutiset/' + route.params.id);
+      news = response.data.value.data;
+      released_date = new Date(news.date_created);
    } catch (error) {
       news = {
-         image: 'https://api.serveriry.fi/uploads/large_computerstuffwithlogo_da6b992e47.jpg',
+         image: '/images/uutinen-placeholder.png',
          id: route.params.id,
          fi_title: 'Uutisen otsikon pitäisi olla tässä',
          en_title: 'The news title should be here',
