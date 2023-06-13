@@ -40,7 +40,8 @@ voimme keskustella sen tarpeellisuudesta ja toteutustavasta.
 ### Tule mukaan ylläpitoon
 
 Jos haluat tulla mukaan ylläpitoon, voit lähettää vapaamuotoisen järjestelmätoimikuntahakemuksen ylläpidolle
-yllapito@serveriry.fi tai vaikka telegrammissa. Kerro hakemuksessa vähän itsestäsi, osaamisestasi ja siitä, mitä haluaisit tehdä
+yllapito@serveriry.fi tai vaikka telegrammissa. Kerro hakemuksessa vähän itsestäsi, osaamisestasi ja siitä, mitä
+haluaisit tehdä
 järjestelmätoimikunnassa. Lähtökohtaisesti kaikki halukkaat pääsevät mukaan, eikä se sido sinua mihinkään.
 Tule rohkeasti mukaan kehittämään omia taitojasi ja Serveri ry:n infrastruktuuria.
 
@@ -77,3 +78,8 @@ kirjoittamiseen:
 - Käytä koodin tarkistukseen [ESLint](https://eslint.org/)-työkalua. ESLint tarkistaa koodin automaattisesti
   yleisimmät virheet ja varoittaa niistä. ESLintin asetukset löytyvät [.eslintrc](app/.eslintrc)-tiedostosta.
 - Tarkista että koodisi ei aiheuta virheitä tai varoituksia. Jos koodi aiheuttaa virheitä tai varoituksia, korjaa ne.
+
+## Code of Conduct
+
+Kaikkien projektin osallistujien tulee noudattaa 
+[Serveri ry:n turvallisen tilan periaatteita](https://beta.serveriry.fi/yhdistys/turvallinen-tila).
