@@ -1,0 +1,22 @@
+name: Uusi ominaisuus
+description: Luo "Uusi ominaisuus"-raportti
+labels: ['area: examples']
+body:
+   - type: textarea
+     attributes:
+        label: Kuvaile uutta, lisättävää ominaisuutta
+        description: Selkeä ja tiivis kuvaus siitä, mistä on kyse.
+     validations:
+        required: true
+   - type: textarea
+     attributes:
+        label: Mahdollinen toteutustapa (lyhyesti)
+        description: Jos sinulla on idea miten uusi ominaisuus voitaisiin toteuttaa.
+     validations:
+        required: false
+   - type: markdown
+     attributes:
+        value: Ennen raportin lähettämistä käy läpi kirjoittamasi vaiheet ja varmista, että ne ovat yksityiskohtaisia ja selkeitä.
+   - type: markdown
+     attributes:
+        value: Kiitos osallistumisesta!
