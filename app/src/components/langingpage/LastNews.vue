@@ -1,17 +1,17 @@
 <template>
-   <a :href="'/yhdistys/uutinen/' + content.url" class="grid-item md:max-w-lg">
-      <div class="news-card">
+   <div class="lg:pr-10 md:pr-5 sm:pr-0 md:flex-1 flex items-center">
+      <div>
          <div class="rounded-sm">
             <img class="w-full max-h-64 object-cover" :src="content.img" alt="Cover image for the news card" />
          </div>
 
-         <div class="px-4">
+         <div>
             <h2 class="card-header pt-3 text-2xl font-extrabold">{{ content[$i18n.locale + '_title'] }}</h2>
 
             <p class="news-date font-normal uppercase mt-1 py-1 text-xs">
                {{ $t('news_released') }}
                <span>{{
-                  content.date.toLocaleDateString($i18n.locale, {
+                  releaseDate.toLocaleDateString($i18n.locale, {
                      weekday: 'long',
                      year: 'numeric',
                      month: 'long',
@@ -20,10 +20,14 @@
                }}</span>
             </p>
 
-            <p class="card-content mt-1 mb-3 line-clamp-3">{{ content[$i18n.locale + '_text'].replaceAll('#', '') }}</p>
+            <p class="card-content mt-1 mb-3 line-clamp-6">{{ content[$i18n.locale + '_text'].replaceAll('#', '') }}</p>
+
+            <nuxt-link :to="localePath('/yhdistys/uutinen/' + content.url)" class="pt-3">
+               <button class="btn-custom-primary" type="button">{{ 'Lue lisää' }}</button>
+            </nuxt-link>
          </div>
       </div>
-   </a>
+   </div>
 </template>
 
 <script setup lang="ts">
@@ -49,7 +53,7 @@
          required: true,
       },
       date: {
-         type: Date,
+         type: String,
          default: new Date('01/01/1970'),
          required: true,
       },
@@ -65,21 +69,7 @@
          required: true,
       },
    });
+   const releaseDate = new Date(content.date);
 </script>
 
-<style scoped>
-   .news-card {
-      -webkit-box-shadow: 0 0 26px -5px rgba(0, 0, 0, 0.27);
-      -moz-box-shadow: 0 0 26px -5px rgba(0, 0, 0, 0.27);
-      box-shadow: 0 0 26px -5px rgba(0, 0, 0, 0.27);
-   }
-   .news-card {
-      @apply dark:shadow-lg dark:shadow-zinc-600/50 dark:bg-zinc-900;
-   }
-   .news-card {
-      @apply justify-self-center overflow-hidden rounded-2xl h-full w-full;
-   }
-   .grid-item {
-      --aspect-ratio: 16/9;
-   }
-</style>
+<style scoped></style>
