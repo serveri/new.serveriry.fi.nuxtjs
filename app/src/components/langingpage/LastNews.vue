@@ -2,7 +2,7 @@
    <div class="pr-0 sm:pr-0 md:pr-5 lg:pr-10 md:flex-1 md:flex md:items-center md:justify-center">
       <div>
          <div class="rounded-sm">
-            <img class="w-full max-h-64 object-cover" :src="content.img" alt="Cover image for the news card" />
+            <img class="w-full h-64 object-cover" :src="content.img" alt="Cover image for the news card" />
          </div>
 
          <div>
