@@ -70,6 +70,7 @@ html,
 td,
 th {
   @apply text-black dark:text-white;
+
   font-family: Exo, sans-serif;
 }
 
