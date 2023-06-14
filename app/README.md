@@ -4,7 +4,7 @@
 
 ### How to contribute
 
-Contributions are welcome! Please read [CONTRIBUTING.md](../CONTRIBUTING.md) for details on our code of conduct, and the
+Contributions are welcome! Please read [CONTRIBUTING.md](../.github/CONTRIBUTING.md) for details on our code of conduct, and the
 process for submitting pull requests to us.
 
 ### How to run
