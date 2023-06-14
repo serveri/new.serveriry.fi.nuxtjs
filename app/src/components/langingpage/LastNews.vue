@@ -1,7 +1,7 @@
 <template>
-   <div class="pr-0 sm:pr-0 md:pr-5 lg:pr-10 md:flex-1 md:flex md:items-center md:justify-center">
-      <div>
-         <div class="rounded-sm">
+   <div class="md:flex md:items-center md:justify-center">
+      <div class="w-full">
+         <div class="rounded-sm w-full">
             <img class="w-full h-64 object-cover" :src="content.img" alt="Cover image for the news card" />
          </div>
 
