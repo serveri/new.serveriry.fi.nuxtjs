@@ -32,7 +32,7 @@
          <InstagramFeed />
       </section>
 
-      <section v-else class="py-8 flex flex-col md:flex-row md:w-2/3 items-center gap-8">
+      <section v-else class="py-8 flex flex-col md:flex-row items-center w-full gap-8">
          <LastNews
             :url="article.id"
             :img="article.image"
