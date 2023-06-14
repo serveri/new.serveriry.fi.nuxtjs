@@ -20,6 +20,7 @@
 
       <section v-if="!showDiv" class="py-8 flex flex-col md:flex-row w-full gap-8">
          <LastNews
+            class="md:w-1/2"
             :url="article.id"
             :img="article.image"
             :fi_title="article.fi_title"
@@ -31,7 +32,7 @@
          <InstagramFeed />
       </section>
 
-      <section v-else class="py-8 flex flex-col md:flex-row md:w-2/3 gap-8">
+      <section v-else class="py-8 flex flex-col md:flex-row items-center w-full gap-8">
          <LastNews
             :url="article.id"
             :img="article.image"
