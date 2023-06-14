@@ -320,11 +320,13 @@
 </template>
 
 <script setup lang="ts">
+   import { Data } from '@/app.vue';
+
    const config = useRuntimeConfig();
 
    let courses;
    try {
-      const { data } = await useFetch(config.public['API_URL'] + 'items/tutkinto_rakenne');
+      const { data } = (await useFetch(`${config.public['API_URL']}items/tutkinto_rakenne`)) as { data: Data };
       courses = data.value.data;
    } catch (e) {
       courses = [

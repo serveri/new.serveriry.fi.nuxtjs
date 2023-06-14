@@ -28,25 +28,28 @@
 
 <script setup lang="ts">
    import VueMarkdown from 'vue-markdown-render';
+   import { Data } from '@/app.vue';
    const config = useRuntimeConfig();
 
    let members;
    let text;
    try {
-      let response = await useFetch(config.public['API_URL'] + 'items/board_members');
-      members = response.data.value.data;
-      response = await useFetch(config.public['API_URL'] + 'items/hallitus_page');
-      text = response.data.value.data;
+      const { data: membersData } = (await useFetch(`${config.public['API_URL']}items/board_members`)) as {
+         data: Data;
+      };
+      members = membersData.value.data;
+      const { data: textData } = (await useFetch(`${config.public['API_URL']}items/hallitus_page`)) as { data: Data };
+      text = textData.value.data;
    } catch (e) {
       members = [
          {
-            img: '/images/member.jpeg',
-            hover_img: '/images/member2.jpeg',
+            img: '/images/hallitus-placeholder.png',
+            hover_img: '/images/hallitus-placeholder.png',
             fi_role: 'Jäsen',
             en_role: 'Member',
             email: 'email@serveriry.fi',
             telegram: 'telegram',
-            name: 'API error',
+            name: 'API Error',
             fi_description: 'joo joku ongelma vissii serverit tulessa :O',
             en_description: 'Api error',
          },

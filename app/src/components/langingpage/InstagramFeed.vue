@@ -20,11 +20,13 @@
 </template>
 
 <script setup lang="ts">
+   import { Data } from '@/app.vue';
+
    const config = useRuntimeConfig();
 
    let posts;
    try {
-      const { data } = await useFetch(config.public['API_URL'] + 'items/instagram');
+      const { data } = (await useFetch(`${config.public['API_URL']}items/instagram`)) as { data: Data };
       posts = data.value.data;
    } catch (e) {
       posts = ['CqFdw7MBG5N', 'CqC49UgBFpR', 'CpzqO4Ah9HC', 'CphwTQLBho9'];

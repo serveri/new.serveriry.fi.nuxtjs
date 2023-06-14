@@ -128,4 +128,10 @@
    import NavBar from '@/components/navbar/NavBar.vue';
    import CustomFooter from '@/components/footer/CustomFooter.vue';
    import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
+
+   export interface Data {
+      value: {
+         data: object;
+      };
+   }
 </script>

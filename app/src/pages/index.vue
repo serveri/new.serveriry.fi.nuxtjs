@@ -77,12 +77,13 @@
    import TopNews from '@/components/langingpage/TopNews.vue';
    import SponsorCarousel from '@/components/langingpage/SponsorCarousel.vue';
    import SocialmediaIcon from '@/components/langingpage/SocialmediaIcon.vue';
+   import { Data } from '@/app.vue';
    const config = useRuntimeConfig();
 
    let content;
    try {
-      const response = await useFetch(config.public['API_URL'] + 'items/LandingPage');
-      content = response.data.value.data;
+      const { data } = (await useFetch(`${config.public['API_URL']}items/LandingPage`)) as { data: Data };
+      content = data.value.data;
    } catch (e) {
       content = {
          fi_title: 'Serveri ry',
@@ -101,8 +102,8 @@
 
    let articles;
    try {
-      const response = await useFetch(config.public['API_URL'] + 'items/uutiset');
-      articles = response.data.value.data;
+      const { data } = (await useFetch(`${config.public['API_URL']}items/uutiset`)) as { data: Data };
+      articles = data.value.data;
    } catch (e) {
       articles = {
          img: '/images/uutiset-placeholder.png',
@@ -116,8 +117,8 @@
 
    let SoMes;
    try {
-      const response = await useFetch(config.public['API_URL'] + 'items/sosiaaliset_mediat');
-      SoMes = response.data.value.data;
+      const { data } = (await useFetch(`${config.public['API_URL']}items/sosiaaliset_mediat`)) as { data: Data };
+      SoMes = data.value.data;
    } catch (e) {
       SoMes = {
          nimi: 'Telegram',

@@ -26,14 +26,16 @@
    </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
+   import { Data } from '@/app.vue';
+
    const config = useRuntimeConfig();
 
    // This hard coded data will be replaced with data from directus
    let news;
    try {
-      const response = await useFetch(config.public['API_URL'] + 'items/uutiset');
-      news = response.data.value.data;
+      const { data } = (await useFetch(`${config.public['API_URL']}items/uutiset`)) as { data: Data };
+      news = data.value.data;
 
       // order by first by date
       news.sort((a, b) => new Date(b.date_created).getTime() - new Date(a.date_created).getTime());

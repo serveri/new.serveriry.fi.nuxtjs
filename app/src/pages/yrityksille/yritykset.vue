@@ -37,25 +37,26 @@
 
 <script setup lang="ts">
    import PartnerPageSection from '@/components/partners/PartnerPageSection.vue';
+   import { Data } from '@/app.vue';
    const config = useRuntimeConfig();
 
-   let data;
+   let companies;
    let kuopio: string[];
    let finland: string[];
    try {
-      const response = await useFetch(config.public['API_URL'] + 'items/it_comppanies');
-      data = response.data.value.data;
+      const { data } = (await useFetch(`${config.public['API_URL']}items/it_comppanies`)) as { data: Data };
+      companies = data.value.data;
       // format data to array and remove dashes and sort alphabetically
-      kuopio = data.kuopio
+      kuopio = companies.kuopio
          .split('\n')
          .map((item: string) => item.replace('- ', ''))
          .sort();
-      finland = data.finland
+      finland = companies.finland
          .split('\n')
          .map((item: string) => item.replace('- ', ''))
          .sort();
    } catch (e) {
-      data = {
+      companies = {
          kuopio: 'loading companies failed',
          finland: 'loading companies failed',
       };

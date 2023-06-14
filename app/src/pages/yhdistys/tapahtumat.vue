@@ -47,14 +47,16 @@
    </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
+   import { Data } from '@/app.vue';
+
    const config = useRuntimeConfig();
 
    // This hard coded data will be replaced with data from directus
    let events;
    try {
-      const response = await useFetch(config.public['API_URL'] + 'items/tapahtuma');
-      events = response.data.value.data;
+      const { data } = (await useFetch(`${config.public['API_URL']}items/tapahtuma`)) as { data: Data };
+      events = data.value.data;
 
       // filter
       const today = new Date();
