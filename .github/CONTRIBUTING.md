@@ -47,17 +47,40 @@ Tule rohkeasti mukaan kehittämään omia taitojasi ja Serveri ry:n infrastruktu
 
 ## Kehitysympäristön pystytys ja käyttö
 
-Ohjeet kehitysympäristön pystyttämiseen löytyvät [README.md](README.md)-tiedostosta.
+Ohjeet kehitysympäristön pystyttämiseen löytyvät [README.md](../README.md)-tiedostosta.
 
 ## Muutosten tekeminen
 
 1. Tee issue uudesta ominaisuudesta tai virheestä, jonka haluat korjata tai valitse joku olemassa oleva issue, johon
    haluat tehdä muutoksia. Tarkista, ettei samasta asiasta ole jo tehty issueta.
-2. Forkkaa tämä repository.
-3. Tee muutokset omaan forkkiisi. Varmista, että koodisi on [laadukasta](#laadukkaan-koodin-kirjoittaminen).
-4. Tee pull request dev branchiin. Lisää pull requestiin issue numero, johon pull request liittyy. Kuvaa pull
-   requestissa tekemäsi muutokset mahdollisimman tarkasti.
-5. Kun pull request on valmis, ylläpito tarkistaa sen ja joko pyytää muutoksia tai hyväksyy sen.
+2. Forkkaa tämä repo omalle GitHub käyttäjällesi. Tämä luo reposta kopion omalle käyttäjällesi. Voit muokata luotua repoa ilman, että se vaikuttaa alkuperäiseen.
+    - Forkataksesi repon, paina **Fork** nappulaa sivun oikeassa yläkulmassa tai paina [tästä](https://github.com/serveri/new.serveriry.fi.nuxtjs/fork).
+3. Kloonaa forkkaamasi repo omalle koneellesi
+    - Käytä komentoa
+
+      ```bash
+      git clone https://github.com/<your-user-name>/community-standards.git
+      ```
+4. Tee muutokset ja committaa ne kuvaavalla commit viestillä. Varmista koodin laadukkuus.
+    - Varmista, että koodisi on [laadukasta](#laadukkaan-koodin-kirjoittaminen) eli formatoitu oikein eikä sisällä onglemia.
+    - Käytä lyhyitä ja kuvaavia englannin kielisiä commit viestejä, katso jonkun [näkemys hyvästä commit viestistä](https://github.com/dileepabandara/community-standards/blob/main/COMMIT_MESSAGE_GUIDELINES.md).
+
+      ```bash
+      git commit -m "fix: overflowing text"
+      ```
+5. Puske muutoksesi omaan forkattuun repoosi.
+    - Käytä komentoa
+
+      ```bash
+      git push origin your-branch-name
+      ```
+6. Lähetä **pull requesti** alkuperäiseen repoon.
+    - Pull requestin luomiseksi käytä seuraavia vaiheita.
+        1. Mene forkkaamaasi repoon.
+        2. Paina **Compare & pull request** nappulaa `sinun-branch-nimi`-branchin vieressä.
+        3. Kirjoita otsikko ja kuvaus pull requestillesi.
+        4. Paina **Create pull request** ja valitse sopivat "labelit" oikeaan reunaan, kuten `bug` tai `enhancement`.
+7. Kun pull request on lähetetty, ylläpito tarkistaa sen ja joko pyytää muutoksia tai hyväksyy sen.
 
 Jos tarvitset missään vaiheessa apua tai neuvoja, voit kysyä niitä GitHubin / Codebergin Issues-osiossa tai suoraan
 ylläpidolta, esimerkiksi telegram **yksityisviestillä**. Yhteystiedot
@@ -73,13 +96,12 @@ kirjoittamiseen:
   ylläpitoa. Vältä kuitenkin itsestäänselvyyksien kommentointia.
 - Käytä koodin muotoiluun [Prettier](https://prettier.io/)-työkalua. Prettier muotoilee koodin automaattisesti
   yhtenäiseen muotoon, jolloin koodin muotoilusta ei tarvitse huolehtia itse. Prettierin asetukset löytyvät
-  [.prettierrc](app/.prettierrc)-tiedostosta. Suositeltavaa on lisätä Prettier suoraan editoriin, jotta koodin
+  [.prettierrc](../app/.prettierrc)-tiedostosta. Suositeltavaa on lisätä Prettier suoraan editoriin, jotta koodin
   muotoilu tapahtuu automaattisesti.
 - Käytä koodin tarkistukseen [ESLint](https://eslint.org/)-työkalua. ESLint tarkistaa koodin automaattisesti
-  yleisimmät virheet ja varoittaa niistä. ESLintin asetukset löytyvät [.eslintrc](app/.eslintrc)-tiedostosta.
+  yleisimmät virheet ja varoittaa niistä. ESLintin asetukset löytyvät [.eslintrc](../app/.eslintrc)-tiedostosta.
 - Tarkista että koodisi ei aiheuta virheitä tai varoituksia. Jos koodi aiheuttaa virheitä tai varoituksia, korjaa ne.
 
 ## Code of Conduct
 
-Kaikkien projektin osallistujien tulee noudattaa 
-[Serveri ry:n turvallisen tilan periaatteita](https://beta.serveriry.fi/yhdistys/turvallinen-tila).
+Kaikkien projektin osallistujien tulee noudattaa [Serveri ry:n turvallisen tilan periaatteita](https://beta.serveriry.fi/yhdistys/turvallinen-tila).
