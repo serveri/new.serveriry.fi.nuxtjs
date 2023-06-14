@@ -1,0 +1,11 @@
+# Comment to be posted to on first time issues
+newIssueWelcomeComment: >
+  Thanks for opening your first issue in serveri/new.serveriry.fi.nuxtjs! Be sure to follow the issue template and provide every bit of information to help the developers!
+
+# Comment to be posted to on PRs from first time contributors in your repository
+newPRWelcomeComment: >
+  Thanks for opening this pull request! Please check out our contributing guidelines and make sure to follow the pull request template.
+
+# Comment to be posted to on pull requests merged by a first time user
+firstPRMergeComment: >
+  Congrats on merging your first pull request! Keep making great things with us, thanks!!

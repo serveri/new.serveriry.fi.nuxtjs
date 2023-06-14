@@ -1,37 +1,69 @@
-name: Bugi
+name: 🐞 Bugi
 description: Luo bugi-raportti
-labels: ['area: examples']
+labels: [ "area: examples" ]
 body:
-   - type: textarea
-     attributes:
-        label: Kuvaile bugia
-        description: Selkeä ja tiivis kuvaus siitä, mikä vika on.
-     validations:
-        required: true
-   - type: textarea
-     attributes:
-        label: Odotettu käyttäytyminen
-        description: Selkeä ja tiivis kuvaus siitä, mitä odotit tapahtuvan.
-     validations:
-        required: true
-   - type: textarea
-     attributes:
-        label: Miten bugi toistetaan?
-        description: Vaiheet bugi toistamiseksi, anna selkeä kuvaus siitä, miten ongelma voidaan toistaa asiaankuuluvan esimerkin perusteella. Kuvakaappauksia voi antaa alla olevassa ongelman rungossa. Jos käytät koodilohkoja, varmista, että [syntaksin korostus on oikein](https://docs.github.com/en/get-started/writing-on-github/working-with-advanced-formatting/creating-and-highlighting-code-blocks#syntax-highlighting) ja tarkista, että renderöity esikatselu ei ole rikki.
-     validations:
-        required: true
-   - type: textarea
-     attributes:
-        label: Mahdollinen korjaus (jos on)
-        description: Jos olet löytänyt mahdollisen (väliaikaisen) korjauksen bugiin.
-     validations:
-        required: false
-   - type: markdown
-     attributes:
-        value: Ennen bugin lähettämistä käy läpi kirjoittamasi vaiheet ja varmista, että ne ovat yksityiskohtaisia ja selkeitä.
-   - type: markdown
-     attributes:
-        value: Osallistujien pitäisi pystyä noudattamaan annettuja ohjeita vian toistamiseksi.
-   - type: markdown
-     attributes:
-        value: Kiitos etukäteen!
+  - type: textarea
+    attributes:
+      label: Kuvaile bugia
+      description: Selkeä ja tiivis kuvaus siitä, mikä vika on.
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: Odotettu käyttäytyminen
+      description: Selkeä ja tiivis kuvaus siitä, mitä odotit tapahtuvan.
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: Miten bugi toistetaan?
+      description: Vaiheet bugi toistamiseksi, anna selkeä kuvaus siitä, miten ongelma voidaan toistaa asiaankuuluvan esimerkin perusteella. Kuvakaappauksia voi antaa alla olevassa ongelman rungossa. Jos käytät koodilohkoja, varmista, että [syntaksin korostus on oikein](https://docs.github.com/en/get-started/writing-on-github/working-with-advanced-formatting/creating-and-highlighting-code-blocks#syntax-highlighting) ja tarkista, että renderöity esikatselu ei ole rikki.
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: Ympäristön kuvaus
+      description: |
+        Esimerkiksi:
+          - **Laite**: Kannettava tietokone
+          - **Näyttö**: 1920x1080
+          - **Käyttöjärjestelmä**: Windows 10
+          - **Selain**: Firefox 87.0
+      value: |
+        Jos ongelma liittyy verkkosivuihin, anna seuraavat tiedot:
+        
+        - Laite:
+        - Näyttö:
+        - Käyttöjärjestelmä:
+        - Selain:
+        
+        Jos ongelma liittyy koodiin, anna seuraavat tiedot:
+        
+        - Käyttöjärjestelmä:
+        - Node-versio:
+        - NPM-versio:
+
+    validations:
+      required: false
+  - type: textarea
+    attributes:
+      label: Mahdollinen korjaus (jos on)
+      description: Jos olet löytänyt mahdollisen (väliaikaisen) korjauksen bugiin.
+    validations:
+      required: false
+  - type: checkboxes
+    attributes:
+      label: Turvallisen tilan periaatteet
+      description: Luomalla tämän bugi raportin, sitoudut noudattamaan Serveri ry:n [turvallisemman tila periaatteita](https://serveriry.fi/yhdistys/turvallinen-tila).
+      options:
+        - label: Sitoudun noudattamaan turvallisemman tilan periaatteita
+          required: true
+  - type: markdown
+    attributes:
+      value: Ennen bugin lähettämistä käy läpi kirjoittamasi vaiheet ja varmista, että ne ovat yksityiskohtaisia ja selkeitä.
+  - type: markdown
+    attributes:
+      value: Osallistujien pitäisi pystyä noudattamaan annettuja ohjeita vian toistamiseksi.
+  - type: markdown
+    attributes:
+      value: Kiitos etukäteen!

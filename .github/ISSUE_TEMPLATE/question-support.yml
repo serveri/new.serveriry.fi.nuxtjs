@@ -1,0 +1,23 @@
+name: Kysymys
+description: Heräsikö kysymys tai tarvitsetko apua? Luo "Kysymys"-raportti
+labels: ['area: examples']
+body:
+   - type: textarea
+     attributes:
+        label: Kysymys
+        description: Kirjoita kysymyksesi selkeästi ja yksityiskohtaisesti. Mitä enemmän tietoa annat, sitä paremmin voimme auttaa.
+     validations:
+        required: true
+   - type: checkboxes
+     attributes:
+       label: Turvallisen tilan periaatteet
+       description: Luomalla tämän kysymyksen, sitoudut noudattamaan Serveri ry:n [turvallisemman tila periaatteita](https://serveriry.fi/yhdistys/turvallinen-tila).
+       options:
+         - label: Sitoudun noudattamaan turvallisemman tilan periaatteita
+           required: true
+   - type: markdown
+     attributes:
+        value: Ennen raportin lähettämistä käy läpi kirjoittamasi vaiheet ja varmista, että ne ovat yksityiskohtaisia ja selkeitä.
+   - type: markdown
+     attributes:
+        value: Kiitos osallistumisesta!

@@ -1,0 +1,5 @@
+blank_issues_enabled: true
+contact_links:
+  - name: Security Related Issues
+    url: https://github.com/serveri/new.serveriry.fi.nuxtjs/blob/master/.github/CONTRIBUTING.md
+    about: Please read our security policy for reporting security vulnerabilities.

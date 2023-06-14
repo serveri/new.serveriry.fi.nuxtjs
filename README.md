@@ -32,7 +32,7 @@ See [backend README](./backend/README.md) for more information.
 
 ### How to contribute
 
-See [CONTRIBUTING.md](./CONTRIBUTING.md) for details on our code of conduct, and the process for submitting pull
+See [CONTRIBUTING.md](.github/CONTRIBUTING.md) for details on our code of conduct, and the process for submitting pull
 requests to us.
 
 ## Docker Commands

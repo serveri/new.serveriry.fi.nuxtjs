@@ -14,6 +14,13 @@ body:
         description: Jos sinulla on idea miten uusi ominaisuus voitaisiin toteuttaa.
      validations:
         required: false
+   - type: checkboxes
+     attributes:
+       label: Turvallisen tilan periaatteet
+       description: Luomalla tämän ominaisuus pyynnön, sitoudut noudattamaan Serveri ry:n [turvallisemman tila periaatteita](https://serveriry.fi/yhdistys/turvallinen-tila).
+       options:
+         - label: Sitoudun noudattamaan turvallisemman tilan periaatteita
+           required: true
    - type: markdown
      attributes:
         value: Ennen raportin lähettämistä käy läpi kirjoittamasi vaiheet ja varmista, että ne ovat yksityiskohtaisia ja selkeitä.
