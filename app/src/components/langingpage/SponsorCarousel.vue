@@ -21,14 +21,15 @@
    </Carousel>
 </template>
 
-<script setup>
+<script setup lang="ts">
    import PartnerCard from '@/components/partners/PartnerCard.vue';
+   import { Data } from '@/app.vue';
    const config = useRuntimeConfig();
 
    let sponsors;
    try {
-      const response = await useFetch(config.public['API_URL'] + 'items/partners');
-      sponsors = response.data.value.data;
+      const { data } = (await useFetch(`${config.public['API_URL']}items/partners`)) as { data: Data };
+      sponsors = data.value.data;
    } catch (e) {
       sponsors = [
          {
@@ -40,9 +41,9 @@
    }
 </script>
 
-<script>
+<script lang="ts">
    import { defineComponent } from 'vue';
-   import { Carousel, Pagination, Slide } from 'vue3-carousel';
+   import { Carousel, Slide } from 'vue3-carousel';
 
    import 'vue3-carousel/dist/carousel.css';
 

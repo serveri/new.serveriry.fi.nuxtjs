@@ -13,12 +13,13 @@
 
 <script setup lang="ts">
    import PartnerCard from '@/components/partners/PartnerCard.vue';
+   import { Data } from '@/app.vue';
    const config = useRuntimeConfig();
 
    let sponsors;
    try {
-      const response = await useFetch(config.public['API_URL'] + 'items/partners');
-      sponsors = response.data.value.data;
+      const { data } = (await useFetch(`${config.public['API_URL']}items/partners`)) as { data: Data };
+      sponsors = data.value.data;
    } catch (e) {
       sponsors = [
          {

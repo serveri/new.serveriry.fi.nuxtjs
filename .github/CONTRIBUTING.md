@@ -55,32 +55,33 @@ Ohjeet kehitysympäristön pystyttämiseen löytyvät [README.md](../README.md)-
    haluat tehdä muutoksia. Tarkista, ettei samasta asiasta ole jo tehty issueta.
 2. Forkkaa tämä repo omalle GitHub käyttäjällesi. Tämä luo reposta kopion omalle käyttäjällesi. Voit muokata luotua repoa ilman, että se vaikuttaa alkuperäiseen.
     - Forkataksesi repon, paina **Fork** nappulaa sivun oikeassa yläkulmassa tai paina [tästä](https://github.com/serveri/new.serveriry.fi.nuxtjs/fork).
-3. Kloonaa forkkaamasi repo omalle koneellesi
+3. Aseta ympäristömuuttujat oikein, yleensä tarvitsee määrittää vain [apin osoite](/app/.env) (https://api.serveriry.fi/)
+4. Kloonaa forkkaamasi repo omalle koneellesi
     - Käytä komentoa
 
       ```bash
       git clone https://github.com/<your-user-name>/community-standards.git
       ```
-4. Tee muutokset ja committaa ne kuvaavalla commit viestillä. Varmista koodin laadukkuus.
+5. Tee muutokset ja committaa ne kuvaavalla commit viestillä. Varmista koodin laadukkuus.
     - Varmista, että koodisi on [laadukasta](#laadukkaan-koodin-kirjoittaminen) eli formatoitu oikein eikä sisällä onglemia.
     - Käytä lyhyitä ja kuvaavia englannin kielisiä commit viestejä, katso jonkun [näkemys hyvästä commit viestistä](https://github.com/dileepabandara/community-standards/blob/main/COMMIT_MESSAGE_GUIDELINES.md).
 
       ```bash
       git commit -m "fix: overflowing text"
       ```
-5. Puske muutoksesi omaan forkattuun repoosi.
+6. Puske muutoksesi omaan forkattuun repoosi.
     - Käytä komentoa
 
       ```bash
       git push origin your-branch-name
       ```
-6. Lähetä **pull requesti** alkuperäiseen repoon.
+7. Lähetä **pull requesti** alkuperäiseen repoon.
     - Pull requestin luomiseksi käytä seuraavia vaiheita.
         1. Mene forkkaamaasi repoon.
         2. Paina **Compare & pull request** nappulaa `sinun-branch-nimi`-branchin vieressä.
         3. Kirjoita otsikko ja kuvaus pull requestillesi.
         4. Paina **Create pull request** ja valitse sopivat "labelit" oikeaan reunaan, kuten `bug` tai `enhancement`.
-7. Kun pull request on lähetetty, ylläpito tarkistaa sen ja joko pyytää muutoksia tai hyväksyy sen.
+8. Kun pull request on lähetetty, ylläpito tarkistaa sen ja joko pyytää muutoksia tai hyväksyy sen.
 
 Jos tarvitset missään vaiheessa apua tai neuvoja, voit kysyä niitä GitHubin / Codebergin Issues-osiossa tai suoraan
 ylläpidolta, esimerkiksi telegram **yksityisviestillä**. Yhteystiedot

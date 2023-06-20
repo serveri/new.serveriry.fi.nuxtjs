@@ -21,7 +21,7 @@
          :content="
             events.image?.startsWith('http')
                ? events.image
-               : 'https://serveri.jeb4.dev/images/tapahtumat-placeholder.png'
+               : config.public['API_URL'] + 'images/tapahtumat-placeholder.png'
          "
       />
    </Head>
@@ -223,8 +223,9 @@
    </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
    import VueMarkdown from 'vue-markdown-render';
+   import { Data } from '@/app.vue';
    const config = useRuntimeConfig();
 
    // This hard coded data will be replaced with data from directus
@@ -236,14 +237,16 @@
    let x;
    let y;
    try {
-      const response = await useFetch(config.public['API_URL'] + 'items/tapahtuma/' + route.params.id);
-      if (response?.data?.value?.data) {
-         events = response.data.value.data;
+      const { data } = (await useFetch(`${config.public['API_URL']}items/tapahtuma/${route.params.id}`)) as {
+         data: Data;
+      };
+      if (data.value.data) {
+         events = data.value.data;
          released_date = new Date(events.date_created);
          alku_aika = new Date(events.alku_aika);
          loppu_aika = events.loppu_aika ? new Date(events.loppu_aika) : null;
          if (events.sijainti) {
-            let matches = events.sijainti.match(/-?\d+(\.\d+)?/g);
+            const matches = events.sijainti.match(/-?\d+(\.\d+)?/g);
             y = parseFloat(matches[0]);
             x = parseFloat(matches[1]);
          }

@@ -21,6 +21,7 @@
 </template>
 <script setup lang="ts">
    import ComingEvent from '@/components/langingpage/ComingEvent.vue';
+   import { Data } from '@/app.vue';
    const config = useRuntimeConfig();
 
    interface DataItem {
@@ -29,8 +30,8 @@
 
    let events: DataItem[];
    try {
-      const response = await useFetch(config.public['API_URL'] + 'items/tapahtuma');
-      events = response.data.value.data;
+      const { data } = (await useFetch(`${config.public['API_URL']}items/tapahtuma`)) as { data: Data };
+      events = data.value.data;
 
       // filter
       const today = new Date();

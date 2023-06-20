@@ -40,12 +40,14 @@
 
 <script setup lang="ts">
    import VueMarkdown from 'vue-markdown-render';
+   import { Data } from '@/app.vue';
    const config = useRuntimeConfig();
+   const router = useRouter();
 
    let content;
    try {
-      const response = await useFetch(config.public['API_URL'] + 'items/feedback_page');
-      content = response.data.value.data;
+      const { data } = (await useFetch(`${config.public['API_URL']}items/feedback_page`)) as { data: Data };
+      content = data.value.data;
    } catch (e) {
       content = {
          fi_text: '# Palaute',
@@ -57,12 +59,10 @@
    let person_name = '';
    let person_message = '';
 
-   const router = useRouter();
-
    async function submitForm(e) {
       e.preventDefault();
       // POST validated form data
-      await fetch('https://api.serveri.jeb4.dev/items/feedback', {
+      await fetch(config.public['API_URL'] + 'items/feedback', {
          headers: {
             'Content-Type': 'application/json',
          },
