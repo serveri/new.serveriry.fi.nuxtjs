@@ -10,14 +10,15 @@
    </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
    import VueMarkdown from 'vue-markdown-render';
+   import { Data } from '@/app.vue';
    const config = useRuntimeConfig();
 
    let about_text;
    try {
-      let response = await useFetch(config.public['API_URL'] + 'items/tietoa_sivustosta');
-      about_text = response.data.value.data;
+      const { data } = (await useFetch(`${config.public['API_URL']}items/tietoa_sivustosta`)) as { data: Data };
+      about_text = data.value.data;
    } catch (e) {
       about_text = {
          tietoa_sivustosta_text_fi: 'API error',

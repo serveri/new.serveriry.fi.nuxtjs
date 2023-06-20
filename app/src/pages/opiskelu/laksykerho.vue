@@ -9,12 +9,13 @@
 
 <script setup lang="ts">
    import VueMarkdown from 'vue-markdown-render';
+   import { Data } from '@/app.vue';
    const config = useRuntimeConfig();
 
    let text;
    try {
-      const response = await useFetch(config.public['API_URL'] + 'items/study_club');
-      text = response.data.value.data;
+      const { data } = (await useFetch(`${config.public['API_URL']}items/study_club`)) as { data: Data };
+      text = data.value.data;
    } catch (e) {
       text = {
          fi_text: 'API error',

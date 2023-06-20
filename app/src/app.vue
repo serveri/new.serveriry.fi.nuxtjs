@@ -10,7 +10,7 @@
          name="og:description"
          content="Itä-Suomen yliopiston Kuopion kampuksen tietojenkäsittelytieteen opiskelijoiden ainejärjestö."
       />
-      <Meta name="og:image" content="https://serveri.jeb4.dev/images/tapahtumat-placeholder.png" />
+      <Meta name="og:image" :content="config.public['API_URL'] + 'images/tapahtumat-placeholder.png'" />
       <Meta name="og:url" content="https://serveriry.fi/" />
       <Title>Serveri ry</Title>
       <Link rel="icon" href="/images/rotta.svg" />
@@ -23,7 +23,7 @@
 
    <!-- CookieConsent -->
    <div
-      v-if="isHidden === false && isConsent === false && isPageLoaded === true"
+      v-if="!isHidden && !isConsent && isPageLoaded"
       class="flex gap-5 items-center justify-center sm:justify-start sm:h-16 fixed bottom-0 w-full h-24 p-4 bg-white"
    >
       <button class="p-2 text-white bg-custom-primary hover:bg-custom-secondary" @click="deleteCookies">
@@ -35,7 +35,7 @@
    </div>
 
    <div
-      v-if="isHidden === true && isConsent === true && isPageLoaded === true"
+      v-if="isHidden && isConsent && isPageLoaded"
       class="flex items-center justify-center fixed bottom-4 left-4 w-[3rem] h-[3rem] bg-black dark:bg-white rounded-full cursor-pointer"
       @click="handleSmallCookie()"
    >
@@ -106,8 +106,7 @@
                for (let i = 0; i < cookies.length; i++) {
                   const cookie = cookies[i].trim();
                   if (cookie.startsWith(name + '=')) {
-                     const value = cookie.substring(name.length + 1);
-                     return value;
+                     return cookie.substring(name.length + 1);
                   }
                }
 
@@ -128,4 +127,11 @@
    import NavBar from '@/components/navbar/NavBar.vue';
    import CustomFooter from '@/components/footer/CustomFooter.vue';
    import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
+   const config = useRuntimeConfig();
+
+   export interface Data {
+      value: {
+         data: object;
+      };
+   }
 </script>

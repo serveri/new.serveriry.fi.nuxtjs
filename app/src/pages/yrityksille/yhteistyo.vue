@@ -15,12 +15,13 @@
 <script setup lang="ts">
    import ContactFormBusiness from '@/components/partners/ContactFormBusiness.vue';
    import VueMarkdown from 'vue-markdown-render';
+   import { Data } from '@/app.vue';
    const config = useRuntimeConfig();
 
    let content;
    try {
-      const response = await useFetch(config.public['API_URL'] + 'items/yhteistyo_sivu');
-      content = response.data.value.data;
+      const { data } = (await useFetch(`${config.public['API_URL']}items/yhteistyo_sivu`)) as { data: Data };
+      content = data.value.data;
    } catch (e) {
       content = {
          fi_text: '# Yhteistyökumppaniksi?',

@@ -107,7 +107,7 @@
 </template>
 
 <script setup>
-   import { Disclosure, DisclosureButton } from '@headlessui/vue';
+   import { Disclosure } from '@headlessui/vue';
    import { Bars3Icon, XMarkIcon } from '@heroicons/vue/24/outline';
    import ServerLogo from '@/components/navbar/ServerLogo.vue';
    import LangSwitcher from '@/components/navbar/LangSwitcher.vue';

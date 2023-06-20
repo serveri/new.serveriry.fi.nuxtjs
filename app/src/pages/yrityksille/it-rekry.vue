@@ -9,20 +9,18 @@
 
 <script setup lang="ts">
    import VueMarkdown from 'vue-markdown-render';
+   import { Data } from '@/app.vue';
    const config = useRuntimeConfig();
 
    let rekry;
-   // let updated: Date;
    try {
-      const response = await useFetch(config.public['API_URL'] + 'items/it_rekry');
-      rekry = response.data.value.data;
-      // updated = new Date(rekry.date_updated);
+      const { data } = (await useFetch(`${config.public['API_URL']}items/it_rekry`)) as { data: Data };
+      rekry = data.value.data;
    } catch (e) {
       rekry = {
          fi_text: '# IT Rekry',
          en_text: '# IT Recruitment',
       };
-      // updated = new Date();
    }
 </script>
 

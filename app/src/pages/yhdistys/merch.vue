@@ -12,20 +12,19 @@
 
 <script setup lang="ts">
    import VueMarkdown from 'vue-markdown-render';
+   import { Data } from '@/app.vue';
    const config = useRuntimeConfig();
 
    let merch;
    // let updated: Date;
    try {
-      const response = await useFetch(config.public['API_URL'] + 'items/merch_sivu');
-      merch = response.data.value.data;
-      // updated = new Date(merch.date_updated);
+      const { data } = (await useFetch(`${config.public['API_URL']}items/merch_sivu`)) as { data: Data };
+      merch = data.value.data;
    } catch (e) {
       merch = {
          fi_content: '# Mertsi kadoksissa',
          en_content: '# Merch missing',
       };
-      // updated = new Date();
    }
 </script>
 

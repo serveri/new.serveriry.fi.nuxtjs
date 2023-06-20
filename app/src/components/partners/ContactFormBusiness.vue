@@ -64,11 +64,12 @@
    let firm_message = '';
 
    const router = useRouter();
+   const config = useRuntimeConfig();
 
    async function submitForm(e) {
       e.preventDefault();
       // POST validated form data
-      await fetch('https://api.serveri.jeb4.dev/items/lomake_vastaukset', {
+      await fetch(config.public['API_URL'] + 'items/lomake_vastaukset', {
          headers: {
             'Content-Type': 'application/json',
          },

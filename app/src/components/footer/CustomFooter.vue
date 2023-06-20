@@ -48,7 +48,7 @@
          <hr class="my-6 border-gray-200 sm:mx-auto dark:border-gray-700 lg:my-8" />
          <!-- Lower Footer -->
          <div class="sm:flex sm:items-stretch sm:justify-between">
-            <span class="sm:w-1/3" />
+            <span class="w-0 lg:w-1/3" />
             <!-- Server logo (mobile) -->
             <div class="sm:hidden sm:w-1/3">
                <a href="https://serveriry.fi/" class="flex items-center justify-center" aria-label="Etusivu">

@@ -9,19 +9,17 @@
 
 <script setup lang="ts">
    import VueMarkdown from 'vue-markdown-render';
+   import { Data } from '@/app.vue';
    const config = useRuntimeConfig();
 
    let links;
-   // let updated: Date;
    try {
-      const response = await useFetch(config.public['API_URL'] + 'items/links');
-      links = response.data.value.data;
-      // updated = new Date(links.date_updated);
+      const { data } = (await useFetch(`${config.public['API_URL']}items/links`)) as { data: Data };
+      links = data.value.data;
    } catch (e) {
       links = {
          fi_content: '# Hyödylliset linkit',
          en_content: '# Useful links',
       };
-      // updated = new Date();
    }
 </script>
