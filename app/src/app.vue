@@ -10,7 +10,7 @@
          name="og:description"
          content="Itä-Suomen yliopiston Kuopion kampuksen tietojenkäsittelytieteen opiskelijoiden ainejärjestö."
       />
-      <Meta name="og:image" content="https://serveri.jeb4.dev/images/tapahtumat-placeholder.png" />
+      <Meta name="og:image" :content="config.public['API_URL'] + 'images/tapahtumat-placeholder.png'" />
       <Meta name="og:url" content="https://serveriry.fi/" />
       <Title>Serveri ry</Title>
       <Link rel="icon" href="/images/rotta.svg" />
@@ -128,4 +128,5 @@
    import NavBar from '@/components/navbar/NavBar.vue';
    import CustomFooter from '@/components/footer/CustomFooter.vue';
    import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
+   const config = useRuntimeConfig();
 </script>

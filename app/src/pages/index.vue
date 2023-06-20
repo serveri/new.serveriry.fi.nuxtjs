@@ -121,8 +121,8 @@
    } catch (e) {
       SoMes = {
          nimi: 'Telegram',
-         url: 'https://www.efecte.com/',
-         img: 'https://api.serveriry.fi/uploads/efecte_logo_eaa50a1bf4.png',
+         url: 'https://example.com/',
+         img: '/images/placeholder-square.jpg',
       };
    }
    if (!SoMes.fi_kuvaus) {

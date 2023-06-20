@@ -41,6 +41,7 @@
 <script setup lang="ts">
    import VueMarkdown from 'vue-markdown-render';
    const config = useRuntimeConfig();
+   const router = useRouter();
 
    let content;
    try {
@@ -57,12 +58,10 @@
    let person_name = '';
    let person_message = '';
 
-   const router = useRouter();
-
    async function submitForm(e) {
       e.preventDefault();
       // POST validated form data
-      await fetch('https://api.serveri.jeb4.dev/items/feedback', {
+      await fetch(config.public['API_URL'] + 'items/feedback', {
          headers: {
             'Content-Type': 'application/json',
          },

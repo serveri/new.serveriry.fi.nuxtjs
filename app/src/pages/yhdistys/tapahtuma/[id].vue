@@ -21,7 +21,7 @@
          :content="
             events.image?.startsWith('http')
                ? events.image
-               : 'https://serveri.jeb4.dev/images/tapahtumat-placeholder.png'
+               : config.public['API_URL'] + 'images/tapahtumat-placeholder.png'
          "
       />
    </Head>

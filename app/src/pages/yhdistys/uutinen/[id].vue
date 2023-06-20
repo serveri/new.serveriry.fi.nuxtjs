@@ -19,7 +19,7 @@
       <Meta
          name="og:image"
          :content="
-            news.image?.startsWith('http') ? news.image : 'https://serveri.jeb4.dev/images/uutiset-placeholder.png'
+            news.image?.startsWith('http') ? news.image : config.public['API_URL'] + 'images/uutiset-placeholder.png'
          "
       />
    </Head>
