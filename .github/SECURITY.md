@@ -4,7 +4,7 @@ The Serveri ry management team takes security issues very seriously. We apprecia
 
 ## Reporting a Vulnerability
 
-If you discover a security vulnerability, please send an email to **yllapito@serveriry.fi**. Please do not create a public issue for the vulnerability.
+If you discover a security vulnerability, please send an email to **yllapito@serveriry.fi**. Please DO NOT create a public issue for the vulnerability.
 
 Your email should include the following information:
 
