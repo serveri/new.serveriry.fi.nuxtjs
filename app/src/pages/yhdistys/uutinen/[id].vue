@@ -57,14 +57,10 @@
    </div>
 </template>
 
-<script>
-   export default {
-      name: '[id].vue',
-   };
-</script>
-
-<script setup>
+<script setup lang="ts">
    import VueMarkdown from 'vue-markdown-render';
+   import { Data } from '@/app.vue';
+
    const config = useRuntimeConfig();
 
    // This hard coded data will be replaced with data from directus
@@ -72,8 +68,8 @@
    const route = useRoute();
    let released_date = new Date();
    try {
-      const response = await useFetch(config.public['API_URL'] + 'items/uutiset/' + route.params.id);
-      news = response.data.value.data;
+      const { data } = (await useFetch(`${config.public['API_URL']}items/uutiset${route.params.id}`)) as { data: Data };
+      news = data.value.data;
       released_date = new Date(news.date_created);
    } catch (error) {
       news = {

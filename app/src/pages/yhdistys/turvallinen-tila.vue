@@ -13,13 +13,14 @@
 
 <script setup lang="ts">
    import SafeSpace from '@/components/yhdistys/SafeSpace.vue';
+   import { Data } from '@/app.vue';
    const config = useRuntimeConfig();
 
    let rules;
    let updated: Date;
    try {
-      const response = await useFetch(config.public['API_URL'] + 'items/turvallinen_tila');
-      rules = response.data.value.data;
+      const { data } = (await useFetch(`${config.public['API_URL']}items/turvallinen_tila`)) as { data: Data };
+      rules = data.value.data;
       updated = new Date(rules.date_updated);
    } catch (e) {
       rules = 'Säännöt ovat kadonneet. Viva la revolucion!';
