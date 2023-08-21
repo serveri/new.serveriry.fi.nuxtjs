@@ -60,7 +60,7 @@
       fi_text: {
          type: String,
          default:
-            'Miksi serverit on niin kuumia? Koska kukaan ei voi vastustaa valkoisia haalareita! API ei muuten vastaa.',
+            'Miksi serverit on niin kuumia? Koska kukaan ei voi vastustaa valkoisia haalareita! Sivut ei muuten nyt toimi koska sisällönhallinta rajapintaan ei saada yhteyttä, jos ongelma toistuu ota yhteyttä ylläpitovastaavaan. Jos olet ylläpitovastaava niin aamuja ;)',
          required: true,
       },
       en_text: {
