@@ -2,18 +2,27 @@
    <a :href="partner.url" target="_blank" tabindex="-1" @mouseover="hover = true" @mouseleave="hover = false">
       <img
          v-if="hover"
-         :src="partner.img"
+         :src="useDark().value ? partner.img_dark : partner.img"
          :alt="partner.name"
          loading="lazy"
          class="scale-110"
          :title="partner.name"
          tabindex="-1"
       />
-      <img v-else :src="partner.img" :alt="partner.name" loading="lazy" class="scale-100" tabindex="-1" />
+      <img
+         v-else
+         :src="useDark().value ? partner.img_dark : partner.img"
+         :alt="partner.name"
+         loading="lazy"
+         class="scale-100"
+         tabindex="-1"
+      />
    </a>
 </template>
 
 <script setup lang="ts">
+   import { useDark } from '@vueuse/core';
+
    const partner = defineProps({
       url: {
          type: String,
@@ -24,6 +33,11 @@
          type: String,
          default: 'Default',
          required: true,
+      },
+      img_dark: {
+         type: String,
+         default: '',
+         required: false,
       },
       name: {
          type: String,
