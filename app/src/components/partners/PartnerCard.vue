@@ -44,6 +44,16 @@
          default: 'Default',
          required: true,
       },
+      fi_text: {
+         type: String,
+         default: 'Default',
+         required: true,
+      },
+      en_text: {
+         type: String,
+         default: 'Default',
+         required: true,
+      },
    });
 </script>
 

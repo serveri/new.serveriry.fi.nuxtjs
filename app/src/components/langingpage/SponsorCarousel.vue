@@ -15,6 +15,8 @@
             :img_dark="sponsor.img_dark"
             :alt="'Serverin toimintaa tukee ' + sponsor.name + ' ja tässä heidän logo'"
             :name="sponsor.name"
+            :fi_text="sponsor.fi_text"
+            :en_text="sponsor.en_text"
          />
       </Slide>
 
