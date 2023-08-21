@@ -2,7 +2,7 @@
    <a :href="partner.url" target="_blank" tabindex="-1" @mouseover="hover = true" @mouseleave="hover = false">
       <img
          v-if="hover"
-         :src="useDark().value ? partner.img_dark : partner.img"
+         :src="useDark().value && partner.img_dark?.startsWith('http') ? partner.img_dark : partner.img"
          :alt="partner.name"
          loading="lazy"
          class="scale-110"
@@ -11,7 +11,7 @@
       />
       <img
          v-else
-         :src="useDark().value ? partner.img_dark : partner.img"
+         :src="useDark().value && partner.img_dark?.startsWith('http') ? partner.img_dark : partner.img"
          :alt="partner.name"
          loading="lazy"
          class="scale-100"

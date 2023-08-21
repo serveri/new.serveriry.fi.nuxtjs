@@ -12,6 +12,7 @@
             :key="sponsor.name"
             :url="sponsor.url"
             :img="sponsor.img"
+            :img_dark="sponsor.img_dark"
             :alt="'Serverin toimintaa tukee ' + sponsor.name + ' ja tässä heidän logo'"
             :name="sponsor.name"
          />
