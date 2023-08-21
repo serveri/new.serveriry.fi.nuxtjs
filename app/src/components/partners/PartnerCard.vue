@@ -59,6 +59,7 @@
 </script>
 
 <style scoped>
+   /**
    a {
       box-shadow: 0 0 26px -5px rgba(0, 0, 0, 0.27);
       display: flex;
@@ -69,6 +70,7 @@
    a {
       @apply rounded-lg w-full h-full cursor-pointer dark:shadow-none dark:bg-zinc-900;
    }
+   */
 
    img {
       height: 7rem;
