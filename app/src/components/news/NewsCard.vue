@@ -35,7 +35,7 @@
       },
       img: {
          type: String,
-         default: 'https://api.serveriry.fi/uploads/large_computerstuffwithlogo_da6b992e47.jpg',
+         default: 'https://cloud.serveriry.fi/s/rRJL8CTTSg9KDYK/download/Tapahtumat-placeholder.png',
          required: true,
       },
       fi_title: {
