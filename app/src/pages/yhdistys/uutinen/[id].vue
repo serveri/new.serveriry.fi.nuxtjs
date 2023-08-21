@@ -68,7 +68,7 @@
    const route = useRoute();
    let released_date = new Date();
    try {
-      const { data } = (await useFetch(`${config.public['API_URL']}items/uutiset${route.params.id}`)) as { data: Data };
+      const { data } = (await useFetch(`${config.public['API_URL']}items/uutiset/${route.params.id}`)) as { data: Data };
       news = data.value.data;
       released_date = new Date(news.date_created);
    } catch (error) {
