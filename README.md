@@ -63,7 +63,7 @@ requests to us.
 - stop - `docker compose -f docker-compose.prod.yml down`
 - logs - `docker compose -f docker-compose.prod.yml logs`
 
-### Updating production build
+### Updating production
 
 1. Navigate to build repositary and run `git pull`
 2. Reload docker with `docker compose -f docker-compose.prod.yml up -d --build`
