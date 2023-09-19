@@ -35,7 +35,7 @@
 
             <img
                class="object-cover w-full aspect-video p-0 m-0"
-               :src="events.image?.startsWith('http') ? events.image : '/images/tapahtumat-placeholder.png'"
+               :src="events.image ? events.image : '/images/tapahtumat-placeholder.png'"
                alt="Photo related to the events article."
             />
 
@@ -245,6 +245,9 @@
          released_date = new Date(events.date_created);
          alku_aika = new Date(events.alku_aika);
          loppu_aika = events.loppu_aika ? new Date(events.loppu_aika) : null;
+         events.image = events.kuva
+            ? `${config.public['API_URL']}assets/${events.kuva}`
+            : '/images/tapahtumat-placeholder.png';
          if (events.sijainti) {
             const matches = events.sijainti.match(/-?\d+(\.\d+)?/g);
             y = parseFloat(matches[0]);
