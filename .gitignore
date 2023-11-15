@@ -2,6 +2,7 @@ node_modules
 .vagrant/
 .env
 /app/.output
+app/.env
 /.idea
 .nuxt
 .vs
