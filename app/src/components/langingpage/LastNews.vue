@@ -39,7 +39,7 @@
       },
       img: {
          type: String,
-         default: 'https://api.serveriry.fi/uploads/large_computerstuffwithlogo_da6b992e47.jpg',
+         default: 'https://cloud.serveriry.fi/s/rRJL8CTTSg9KDYK/download/Tapahtumat-placeholder.png',
          required: true,
       },
       fi_title: {
@@ -60,7 +60,7 @@
       fi_text: {
          type: String,
          default:
-            'Miksi serverit on niin kuumia? Koska kukaan ei voi vastustaa valkoisia haalareita! API ei muuten vastaa.',
+            'Miksi serverit on niin kuumia? Koska kukaan ei voi vastustaa valkoisia haalareita! Sivut ei muuten nyt toimi koska sisällönhallinta rajapintaan ei saada yhteyttä, jos ongelma toistuu ota yhteyttä ylläpitovastaavaan. Jos olet ylläpitovastaava niin aamuja ;)',
          required: true,
       },
       en_text: {

@@ -12,10 +12,10 @@
 - [Frontend](#frontend)
 - [Backend](#backend)
 - [Docker Commands](#docker-commands)
-    - [Development](#development-1)
-    - [Production](#production)
+  - [Development](#development-1)
+  - [Production](#production)
 - [Development](#development)
-    - [Docker services](#services)
+  - [Docker services](#services)
 
 This project is [Vue] app that uses [Nuxt] to provide SSR and SEO for web application. Directus is used as a headless
 CMS.
@@ -59,9 +59,14 @@ requests to us.
 3. Edit `CHANGE_ME` values to safe passwords etc. in those `.env` files
 4. Start container (you may have to install `docker compose` command)
 
-- start - `docker compose -f docker compose.prod.yml up -d --build`
-- stop - `docker compose -f docker compose.prod.yml down`
-- logs - `docker compose -f docker compose.prod.yml logs`
+- start - `docker compose -f docker-compose.prod.yml up -d --build`
+- stop - `docker compose -f docker-compose.prod.yml down`
+- logs - `docker compose -f docker-compose.prod.yml logs`
+
+### Updating production
+
+1. Navigate to build repositary and run `git pull`
+2. Reload docker with `docker compose -f docker-compose.prod.yml up -d --build`
 
 ### Other
 
@@ -72,7 +77,7 @@ See docker compose [docs](./app/DOCKER-COMPOSE.md)
 ### Services
 
 | Name     | Image       | IP:Port        | Explanation              |
-|----------|-------------|----------------|--------------------------|
+| -------- | ----------- | -------------- | ------------------------ |
 | app      | http-server | 10.10.0.2:8000 | HTTP server for frontend |
 | db       | postgresql  | 10.10.0.3:5432 | Database for Directus    |
 | cache    | redis       | 10.10.0.4      | Cache for Directus       |

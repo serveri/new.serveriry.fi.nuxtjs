@@ -113,7 +113,7 @@
          text: 'Toivotamme Teidät mitä lämpimimmin tervetulleeksi viettämään Serveri ry:n 35-vuotis vuosijuhlaa pitkän odotuksen jälkeen!',
       };
    }
-   const article = articles[1];
+   const article = articles[articles.length - 1]; // Get the last article
 
    let SoMes;
    try {

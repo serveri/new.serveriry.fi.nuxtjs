@@ -2,18 +2,27 @@
    <a :href="partner.url" target="_blank" tabindex="-1" @mouseover="hover = true" @mouseleave="hover = false">
       <img
          v-if="hover"
-         :src="partner.img"
+         :src="useDark().value && partner.img_dark?.startsWith('http') ? partner.img_dark : partner.img"
          :alt="partner.name"
          loading="lazy"
          class="scale-110"
          :title="partner.name"
          tabindex="-1"
       />
-      <img v-else :src="partner.img" :alt="partner.name" loading="lazy" class="scale-100" tabindex="-1" />
+      <img
+         v-else
+         :src="useDark().value && partner.img_dark?.startsWith('http') ? partner.img_dark : partner.img"
+         :alt="partner.name"
+         loading="lazy"
+         class="scale-100"
+         tabindex="-1"
+      />
    </a>
 </template>
 
 <script setup lang="ts">
+   import { useDark } from '@vueuse/core';
+
    const partner = defineProps({
       url: {
          type: String,
@@ -25,7 +34,22 @@
          default: 'Default',
          required: true,
       },
+      img_dark: {
+         type: String,
+         default: '',
+         required: false,
+      },
       name: {
+         type: String,
+         default: 'Default',
+         required: true,
+      },
+      fi_text: {
+         type: String,
+         default: 'Default',
+         required: true,
+      },
+      en_text: {
          type: String,
          default: 'Default',
          required: true,
@@ -45,6 +69,7 @@
 </script>
 
 <style scoped>
+   /**
    a {
       box-shadow: 0 0 26px -5px rgba(0, 0, 0, 0.27);
       display: flex;
@@ -55,6 +80,7 @@
    a {
       @apply rounded-lg w-full h-full cursor-pointer dark:shadow-none dark:bg-zinc-900;
    }
+   */
 
    img {
       height: 7rem;

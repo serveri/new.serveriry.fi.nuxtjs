@@ -23,7 +23,10 @@
       rules = data.value.data;
       updated = new Date(rules.date_updated);
    } catch (e) {
-      rules = 'Säännöt ovat kadonneet. Viva la revolucion!';
+      rules = {
+         turvallinen_tila_fi: 'Säännöt ovat kadonneet. Viva la revolucion!',
+         turvalinen_tila_en: 'Rules are missing. Viva la revolucion!',
+      };
       updated = new Date();
    }
 </script>

@@ -68,12 +68,12 @@
    const route = useRoute();
    let released_date = new Date();
    try {
-      const { data } = (await useFetch(`${config.public['API_URL']}items/uutiset${route.params.id}`)) as { data: Data };
+      const { data } = (await useFetch(`${config.public['API_URL']}items/uutiset/${route.params.id}`)) as { data: Data };
       news = data.value.data;
       released_date = new Date(news.date_created);
    } catch (error) {
       news = {
-         image: '/images/uutinen-placeholder.png',
+         image: '/images/uutiset-placeholder.png',
          id: route.params.id,
          fi_title: 'Uutisen otsikon pitäisi olla tässä',
          en_title: 'The news title should be here',

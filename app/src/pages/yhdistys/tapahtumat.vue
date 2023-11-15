@@ -66,6 +66,12 @@
       // order by first by date
       events.pastData.sort((a, b) => new Date(b.alku_aika).getTime() - new Date(a.alku_aika).getTime());
       events.futureData.sort((a, b) => new Date(a.alku_aika).getTime() - new Date(b.alku_aika).getTime());
+
+      events.forEach((event) => {
+         event.image = event.kuva
+            ? `${config.public['API_URL']}assets/${event.kuva}`
+            : '/images/tapahtumat-placeholder.png';
+      });
    } catch (error) {
       events = [
          {
