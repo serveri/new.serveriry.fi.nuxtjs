@@ -106,7 +106,7 @@
       articles = data.value.data;
    } catch (e) {
       articles = {
-         img: '/images/uutiset-placeholder.png',
+         img: '/assets/231aba36-a03b-47c6-811a-b6dfe14ccddb',
          id: 'f4d13a49-0539-442f-a5e9-6f486ff4d5d7',
          header: 'Api Error',
          date_created: '09/25/2022',
