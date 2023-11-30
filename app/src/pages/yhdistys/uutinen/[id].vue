@@ -19,7 +19,7 @@
       <Meta
          name="og:image"
          :content="
-            news.image?.startsWith('http') ? news.image : config.public['API_URL'] + 'images/uutiset-placeholder.png'
+            news.image?.startsWith('http') ? news.image : config.public['API_URL'] + 'assets/231aba36-a03b-47c6-811a-b6dfe14ccddb'
          "
       />
    </Head>
@@ -73,7 +73,7 @@
       released_date = new Date(news.date_created);
    } catch (error) {
       news = {
-         image: '/images/uutiset-placeholder.png',
+         image: '/assets/231aba36-a03b-47c6-811a-b6dfe14ccddb',
          id: route.params.id,
          fi_title: 'Uutisen otsikon pitäisi olla tässä',
          en_title: 'The news title should be here',

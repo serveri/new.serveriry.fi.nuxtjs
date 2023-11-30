@@ -21,7 +21,7 @@
          :content="
             events.image?.startsWith('http')
                ? events.image
-               : config.public['API_URL'] + 'images/tapahtumat-placeholder.png'
+               : config.public['API_URL'] + 'assets/b3ed6d7f-c124-4136-9234-cbd91fccff0f'
          "
       />
    </Head>
@@ -35,7 +35,7 @@
 
             <img
                class="object-cover w-full aspect-video p-0 m-0"
-               :src="events.image ? events.image : '/images/tapahtumat-placeholder.png'"
+               :src="events.image ? events.image : '/assets/b3ed6d7f-c124-4136-9234-cbd91fccff0f'"
                alt="Photo related to the events article."
             />
 
@@ -57,55 +57,55 @@
                </p>
                <div>
                   <span
-                     v-if="events.tyyppi.includes('ilmainen')"
+                     v-if="events.tyyppi?.includes('ilmainen')"
                      class="bg-green-100 text-green-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-gray-700 dark:text-green-400 border border-green-400"
                      title="Tapahtuma on ilmainen"
                      >Ilmainen</span
                   >
                   <span
-                     v-if="events.tyyppi.includes('mainos')"
+                     v-if="events.tyyppi?.includes('mainos')"
                      class="bg-yellow-100 text-yellow-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-gray-700 dark:text-yellow-300 border border-yellow-300"
                      title="Tapahtuma on mainos eikä Serveri ry osallistu sen järjestämiseen."
                      >Mainos</span
                   >
                   <span
-                     v-if="events.tyyppi.includes('alkoholiton')"
+                     v-if="events.tyyppi?.includes('alkoholiton')"
                      class="bg-indigo-100 text-indigo-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-gray-700 dark:text-indigo-400 border border-indigo-400"
                      title="Alkoholiton tapahtuma."
                      >Alkoholiton</span
                   >
                   <span
-                     v-if="events.tyyppi.includes('poikkitieteellinen')"
+                     v-if="events.tyyppi?.includes('poikkitieteellinen')"
                      class="bg-pink-100 text-pink-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-gray-700 dark:text-pink-400 border border-pink-400"
                      title="Kivaa yhdessä muiden alojen opiskelijoiden kanssa"
                      >Poikkitieteellinen</span
                   >
                   <span
-                     v-if="events.tyyppi.includes('turvallinen_tila')"
+                     v-if="events.tyyppi?.includes('turvallinen_tila')"
                      class="bg-purple-100 text-purple-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-gray-700 dark:text-purple-400 border border-purple-400"
                      title="Tapahtumassa noudatetaan turvallisen tilan periaatteita."
                      >Turvallinen tila</span
                   >
                   <span
-                     v-if="events.tyyppi.includes('excursio')"
+                     v-if="events.tyyppi?.includes('excursio')"
                      class="bg-red-100 text-red-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-gray-700 dark:text-red-400 border border-red-400"
                      title="Excursio"
                      >Excursio</span
                   >
                   <span
-                     v-if="events.tyyppi.includes('ulkoilma')"
+                     v-if="events.tyyppi?.includes('ulkoilma')"
                      class="bg-indigo-100 text-indigo-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-gray-700 dark:text-indigo-400 border border-indigo-400"
                      title="Tapahtumapaikka sijaitsee ulkotiloissa."
                      >Ulkoilma</span
                   >
                   <span
-                     v-if="events.tyyppi.includes('collab')"
+                     v-if="events.tyyppi?.includes('collab')"
                      class="bg-green-100 text-green-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-gray-700 dark:text-green-400 border border-green-400"
                      title="Serveri ry osallistuu tapahtuman järjestämiseen yhteistyössä jonkun tahon kanssa."
                      >Yhteistyö</span
                   >
                   <span
-                     v-if="events.tyyppi.includes('ulkoinen')"
+                     v-if="events.tyyppi?.includes('ulkoinen')"
                      class="bg-red-100 text-red-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-gray-700 dark:text-red-400 border border-red-400"
                      title="Tapahtuma on ulkopuolisen tahon järjestämä."
                      >Ulkoinen järjestäjä</span
@@ -147,7 +147,7 @@
             </p>
             <div class="pt-8">
                <div
-                  v-if="events.tyyppi.includes('turvallinen_tila')"
+                  v-if="events.tyyppi?.includes('turvallinen_tila')"
                   class="flex p-4 mb-4 text-sm text-blue-800 border border-blue-300 rounded-lg bg-blue-50 dark:bg-gray-800 dark:text-blue-400 dark:border-blue-800"
                >
                   <info-svg />
@@ -162,7 +162,7 @@
                </div>
 
                <div
-                  v-if="events.tyyppi.includes('mainos')"
+                  v-if="events.tyyppi?.includes('mainos')"
                   class="flex p-4 mb-4 text-sm text-blue-800 border border-blue-300 rounded-lg bg-blue-50 dark:bg-gray-800 dark:text-blue-400 dark:border-blue-800"
                >
                   <info-svg />
@@ -247,7 +247,7 @@
          loppu_aika = events.loppu_aika ? new Date(events.loppu_aika) : null;
          events.image = events.kuva
             ? `${config.public['API_URL']}assets/${events.kuva}`
-            : '/images/tapahtumat-placeholder.png';
+            : '/assets/b3ed6d7f-c124-4136-9234-cbd91fccff0f';
          if (events.sijainti) {
             const matches = events.sijainti.match(/-?\d+(\.\d+)?/g);
             y = parseFloat(matches[0]);
@@ -255,7 +255,7 @@
          }
       } else {
          events = {
-            image: '/images/tapahtumat-placeholder.png',
+            image: '/assets/b3ed6d7f-c124-4136-9234-cbd91fccff0f',
             id: route.params.id,
             fi_otsikko: 'Tapahtuman nimeä ei löytynyt',
             en_otsikko: 'The events title cannot be found',
@@ -263,11 +263,12 @@
             en_kuvaus: 'Unfortunately we cannot connect to the rest interface, maybe the servers are on fire?',
             alku_aika: null,
             loppu_aika: null,
+            tyyppi: null,
          };
       }
    } catch (error) {
       events = {
-         image: '/images/tapahtumat-placeholder.png',
+         image: '/assets/b3ed6d7f-c124-4136-9234-cbd91fccff0f',
          id: route.params.id,
          fi_otsikko: 'Tapahtuman nimeä ei löytynyt',
          en_otsikko: 'The events title cannot be found',
@@ -275,6 +276,7 @@
          en_kuvaus: 'Unfortunately we cannot connect to the rest interface, maybe the servers are on fire?',
          alku_aika: null,
          loppu_aika: null,
+         tyyppi: null,
       };
    }
 </script>

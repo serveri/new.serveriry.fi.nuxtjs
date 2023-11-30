@@ -42,7 +42,7 @@
    } catch (error) {
       news = [
          {
-            img: '/images/uutiset-placeholder.png',
+            img: '/assets/231aba36-a03b-47c6-811a-b6dfe14ccddb',
             id: '1',
             header: 'Serveri ry:n 35-vuotis vuosijuhlat',
             date: new Date('09/25/2022'),
