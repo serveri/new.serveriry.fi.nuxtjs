@@ -122,7 +122,6 @@
             { name: 'news', href: '/yhdistys/uutiset' },
             { name: 'events', href: '/yhdistys/tapahtumat' },
             { name: 'merch', href: '/yhdistys/merch' },
-            { name: 'history', href: '/yhdistys/historia' },
             { name: 'documents', href: '/yhdistys/dokumentit' },
             { name: 'rules', href: '/yhdistys/saannot' },
             { name: 'safe-space', href: '/yhdistys/turvallinen-tila' },
