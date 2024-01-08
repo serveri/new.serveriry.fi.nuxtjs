@@ -118,6 +118,7 @@
          href: '/yhdistys',
          current: false,
          subMenu: [
+            { name: 'history', href: '/yhdistys/historia' },
             { name: 'board', href: '/yhdistys/hallitus' },
             { name: 'committee', href: '/yhdistys/toimikunta' },
             { name: 'news', href: '/yhdistys/uutiset' },
