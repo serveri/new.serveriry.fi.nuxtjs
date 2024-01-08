@@ -3,6 +3,7 @@
    "join-us": "Join us",
    "org": "Organization",
    "board": "Board",
+   "committee": "Toimikunnat",
    "rules": "Rules",
    "rules-footer": "Rules of Serveri ry",
    "events": "Events",
@@ -97,7 +98,9 @@
 
    "updated_last_time": "Updated last time: ",
    "thanks-contact": "Thank you for contacting us!",
-   "we-contact-you-soon": "We will contact you as soon as possible",
+   "thanks-application": "Thank you for your application!",
+   "thanks-desc": "We will contact you as soon as possible.",
+   "we-contact-you-soon": "We will contact you as soon as possible!",
    "back-to-frontpage": "Return to front page",
 
    "show-all-coming-events": "Show all coming events"

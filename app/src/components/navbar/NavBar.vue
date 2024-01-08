@@ -119,10 +119,10 @@
          current: false,
          subMenu: [
             { name: 'board', href: '/yhdistys/hallitus' },
+            { name: 'committee', href: '/yhdistys/toimikunta' },
             { name: 'news', href: '/yhdistys/uutiset' },
             { name: 'events', href: '/yhdistys/tapahtumat' },
             { name: 'merch', href: '/yhdistys/merch' },
-            { name: 'history', href: '/yhdistys/historia' },
             { name: 'documents', href: '/yhdistys/dokumentit' },
             { name: 'rules', href: '/yhdistys/saannot' },
             { name: 'safe-space', href: '/yhdistys/turvallinen-tila' },
