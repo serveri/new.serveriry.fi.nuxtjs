@@ -10,7 +10,7 @@
          name="og:description"
          content="Itä-Suomen yliopiston Kuopion kampuksen tietojenkäsittelytieteen opiskelijoiden ainejärjestö."
       />
-      <Meta name="og:image" :content="config.public['API_URL'] + 'images/tapahtumat-placeholder.png'" />
+      <Meta name="og:image" :content="config.public['API_URL'] + 'assets/b3ed6d7f-c124-4136-9234-cbd91fccff0f'" />
       <Meta name="og:url" content="https://serveriry.fi/" />
       <Title>Serveri ry</Title>
       <Link rel="icon" href="/images/rotta.svg" />

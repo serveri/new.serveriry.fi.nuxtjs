@@ -22,7 +22,6 @@
             <option value="yllapito">Järjestelmätoimikunta</option>
             <option value="tapahtuma">Tapahtumatoimikunta</option>
             <option value="koppi">Koppitoimikunta</option>
-            <option value="sampsa">Sampsan erityisavustaja</option>
          </select>
       </div>
       <div v-if="subject">

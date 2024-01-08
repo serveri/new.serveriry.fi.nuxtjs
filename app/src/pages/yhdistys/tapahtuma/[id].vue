@@ -21,7 +21,7 @@
          :content="
             events.image?.startsWith('http')
                ? events.image
-               : config.public['API_URL'] + 'images/tapahtumat-placeholder.png'
+               : config.public['API_URL'] + 'assets/b3ed6d7f-c124-4136-9234-cbd91fccff0f'
          "
       />
    </Head>
@@ -35,7 +35,7 @@
 
             <img
                class="object-cover w-full aspect-video p-0 m-0"
-               :src="events.image ? events.image : '/images/tapahtumat-placeholder.png'"
+               :src="events.image ? events.image : '/assets/b3ed6d7f-c124-4136-9234-cbd91fccff0f'"
                alt="Photo related to the events article."
             />
 
@@ -247,7 +247,7 @@
          loppu_aika = events.loppu_aika ? new Date(events.loppu_aika) : null;
          events.image = events.kuva
             ? `${config.public['API_URL']}assets/${events.kuva}`
-            : '/images/tapahtumat-placeholder.png';
+            : '/assets/b3ed6d7f-c124-4136-9234-cbd91fccff0f';
          if (events.sijainti) {
             const matches = events.sijainti.match(/-?\d+(\.\d+)?/g);
             y = parseFloat(matches[0]);
@@ -255,7 +255,7 @@
          }
       } else {
          events = {
-            image: '/images/tapahtumat-placeholder.png',
+            image: '/assets/b3ed6d7f-c124-4136-9234-cbd91fccff0f',
             id: route.params.id,
             fi_otsikko: 'Tapahtuman nimeä ei löytynyt',
             en_otsikko: 'The events title cannot be found',
@@ -268,7 +268,7 @@
       }
    } catch (error) {
       events = {
-         image: '/images/tapahtumat-placeholder.png',
+         image: '/assets/b3ed6d7f-c124-4136-9234-cbd91fccff0f',
          id: route.params.id,
          fi_otsikko: 'Tapahtuman nimeä ei löytynyt',
          en_otsikko: 'The events title cannot be found',

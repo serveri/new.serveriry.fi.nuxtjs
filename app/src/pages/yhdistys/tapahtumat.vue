@@ -70,12 +70,12 @@
       events.forEach((event) => {
          event.image = event.kuva
             ? `${config.public['API_URL']}assets/${event.kuva}`
-            : '/images/tapahtumat-placeholder.png';
+            : '/assets/b3ed6d7f-c124-4136-9234-cbd91fccff0f';
       });
    } catch (error) {
       events = [
          {
-            img: '/images/tapahtumat-placeholder.png',
+            img: '/assets/b3ed6d7f-c124-4136-9234-cbd91fccff0f',
             id: '1',
             header: 'Serveri ry:n 35-vuotis vuosijuhlat',
             date: new Date('09/25/2022'),
