@@ -27,7 +27,7 @@
 </template>
 
 <script setup lang="ts">
-   import { Data } from '@/types';
+   import type {Data} from "@/types";
 
    const config = useRuntimeConfig();
 

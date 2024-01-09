@@ -20,7 +20,7 @@
 
 <script setup lang="ts">
    import VueMarkdown from 'vue-markdown-render';
-   import { Data } from '@/types';
+   import type {Data} from "@/types";
    import SEO from '@/components/SEO.vue';
    const config = useRuntimeConfig();
 

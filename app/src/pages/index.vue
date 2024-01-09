@@ -79,7 +79,7 @@
    import TopNews from '@/components/langingpage/TopNews.vue';
    import SponsorCarousel from '@/components/langingpage/SponsorCarousel.vue';
    import SocialmediaIcon from '@/components/langingpage/SocialmediaIcon.vue';
-   import { Data } from '@/types';
+   import type {Data} from "@/types";
    const config = useRuntimeConfig();
 
    interface Content {
