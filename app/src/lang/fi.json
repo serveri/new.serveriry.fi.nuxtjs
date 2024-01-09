@@ -24,7 +24,7 @@
    "skripti": "Skripti ry - Joensuun TKT-ainejärjestö",
    "links": "Hyödyllisiä linkkejä",
    "about": "Tietoa sivusta",
-   "history": "Toimintakertomukset",
+   "history": "Historia",
    "documents": "Dokumentit",
    "change-language": "Vaihda kieli",
    "companies": "Lista IT-yrityksistä",
@@ -47,7 +47,6 @@
    "title_new-student": "Uudelle opiskelijalle",
    "title_study-club": "Läksykerho",
    "title_feedback": "Palaute",
-   "title_committee": "Toimikunnat",
    "title_gdpr": "Tietosuoja ja jäsenrekisteri",
    "title_tkt": "Tietojenkäsittelytieteen laitos",
    "title_skripti": "Skripti ry - Joensuun TKT-ainejärjestö",
@@ -57,6 +56,7 @@
    "title_change-language": "Vaihda kieli",
    "title_companies": "Firmat",
    "title_about_site": "Tietoa sivustosta",
+   
 
    "h1_front-page": "Mitä me teemme?",
    "h1_join-us": "Liity jäseneksi",
@@ -93,6 +93,20 @@
    "h1_companies": "Lista IT alan yrityksistä",
    "h1_about_site": "Tietoa sivustosta",
 
+   "label_contact": "Yhteystiedot",
+   "label_name": "Nimi",
+   "label_topic": "Hakemuksen aihe",
+   "label_msg": "Vapaamuotoinen viesti",
+   "label_field": "Vapamuotoinen kenttä",
+
+   "form_button": "Lähetä hakemus",
+   "form_user_description": "Esittele itsesi ja kerro mitä haluaisit tehdä toimikunnassa. Onko sinulla kokemusta vastaavista tehtävistä? Mikä sinua kiinnostaa?",
+   "form_user_contact": "Sähköposti tai telegram-käyttäjätunnus",
+
+   "option_it_committee": "Järjestelmätoimikunta",
+   "option_event_committee": "Tapahtumatoimikunta",
+   "option_koppi_committee": "Koppitoimikunta",
+   
    "coming-events": "Tulevat tapahtumat",
    "what-is-cs-like": "Millaista tietojenkäsittelytiede on?",
    "contact-us": "Ota yhteyttä",

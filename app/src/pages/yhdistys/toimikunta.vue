@@ -1,7 +1,7 @@
 <template>
    <div>
       <Head>
-         <Title>{{ $t('title_committee') }} - Serveri ry</Title>
+         <Title>{{ $t('title_feedback') }} - Serveri ry</Title>
          <Meta
             name="description"
             content="Haluatko vaikuttaa Serverin toimintaan matalalla kynnnyksellä? Toimikunnat ovat hyvä mahdollisuus tähän. Hae mukaan jo tänään!"
@@ -13,8 +13,8 @@
 
    <form class="space-y-8" @submit="submitForm">
       <div>
-         <label for="subject" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">
-            {{ $i18n.locale === 'fi' ? 'Hakemuksen aihe' : 'Subject of application' }}</label
+         <label for="subject" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+            >{{ $t('label_topic') }}</label
          >
          <select
             id="subject"
@@ -22,20 +22,14 @@
             class="block p-3 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 shadow-sm focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500 dark:shadow-sm-light"
             required
          >
-            <option value="" disabled selected hidden>
-               {{ $i18n.locale === 'fi' ? 'Valitse aihe' : 'Select subject' }}
-            </option>
-            <option value="yllapito">
-               {{ $i18n.locale === 'fi' ? 'Järjestelmätoimikunta' : 'System committee' }}
-            </option>
-            <option value="tapahtuma">{{ $i18n.locale === 'fi' ? 'Tapahtumatoimikunta' : 'Event committee' }}</option>
-            <option value="koppi">
-               {{ $i18n.locale === 'fi' ? 'Koppitoimikunta' : 'Student Room Committee' }}
-            </option>
+            <option value="" disabled selected hidden>{{ $t('label_topic') }}</option>
+            <option value="yllapito">{{ $t('option_it_committee') }}</option>
+            <option value="tapahtuma">{{ $t('option_event_committee') }}</option>
+            <option value="koppi">{{ $t('option_koppi_committee') }}</option>
          </select>
       </div>
       <div v-if="subject">
-         <label for="contact" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Nimi</label>
+         <label for="contact" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">{{ $t('label_name') }}</label>
          <input
             id="contact"
             v-model="person_name"
@@ -46,7 +40,7 @@
       </div>
       <div v-if="subject">
          <label for="contact" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"
-            >Yhteystiedot</label
+            >{{ $t('label_contact') }}</label
          >
          <input
             id="contact"
@@ -58,7 +52,7 @@
       </div>
       <div class="sm:col-span-2" v-if="subject">
          <label for="introduction" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400"
-            >Vapaamuotoinen kenttä</label
+            >{{ $t('label_field') }}</label
          >
          <textarea
             id="introduction"
@@ -71,7 +65,7 @@
       </div>
       <div v-if="subject === 'yllapito'" class="sm:col-span-2">
          <label for="skills" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400"
-            >Vapaamuotoinen kenttä</label
+            >{{ $t('label_field') }}</label
          >
          <textarea
             id="skills"
@@ -84,7 +78,7 @@
       </div>
       <div v-if="subject === 'yllapito'" class="sm:col-span-2">
          <label for="portfolio" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400"
-            >Vapaamuotoinen kenttä</label
+            >{{ $t('label_field') }}</label
          >
          <textarea
             id="portfolio"
@@ -95,7 +89,7 @@
             required
          ></textarea>
       </div>
-      <button type="submit" class="btn-custom-primary">Lähetä hakemus</button>
+      <button type="submit" class="btn-custom-primary">{{ $t('form_button') }}</button>
    </form>
 </template>
 
