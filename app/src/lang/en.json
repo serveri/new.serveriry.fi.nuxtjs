@@ -89,6 +89,20 @@
    "h1_companies": "List of all IT companies in Finland",
    "h1_about_site": "About site",
 
+   "label_contact": "Contactv information",
+   "label_name": "Name",
+   "label_topic": "Application topic",
+   "label_msg": "Free form message",
+   "label_field": "Free form field",
+
+   "form_button": "Send application",
+   "form_user_description": "Esittele itsesi ja kerro mitä haluaisit tehdä toimikunnassa. Onko sinulla kokemusta vastaavista tehtävistä? Mikä sinua kiinnostaa?",
+   "form_user_contact": "Sähköposti tai telegram-käyttäjätunnus",
+
+   "option_it_committee": "IT Committee",
+   "option_event_committee": "Event Vommittee",
+   "option_koppi_committee": "Koppi Committee",
+
    "coming-events": "Coming events",
    "what-is-cs-like": "What is computer science like?",
    "contact-us": "Contact us",
