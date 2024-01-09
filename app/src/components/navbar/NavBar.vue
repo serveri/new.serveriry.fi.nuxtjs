@@ -90,7 +90,7 @@
                         $route.path === localePath(item.href)
                            ? 'text-custom-primary'
                            : 'text-gray-700 dark:text-gray-300 hover:bg-gray-700 hover:text-white',
-                        'flex items-center justify-start block px-3 py-2 rounded-md text-base font-bold uppercase whitespace-nowrap cursor-pointer select-none',
+                        'items-center justify-start block px-3 py-2 rounded-md text-base font-bold uppercase whitespace-nowrap cursor-pointer select-none',
                      ]"
                      @click="toggleMenu"
                   >
