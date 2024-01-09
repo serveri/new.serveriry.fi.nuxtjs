@@ -1,7 +1,7 @@
 <template>
    <div>
       <Head>
-         <Title>{{ $t('title_feedback') }} - Serveri ry</Title>
+         <Title>{{ $t('title_committee') }} - Serveri ry</Title>
       </Head>
 
       <vue-markdown class="rich-text py-2" :source="content[$i18n.locale + '_text']" />
