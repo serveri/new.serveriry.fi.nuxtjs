@@ -21,7 +21,8 @@
       <section v-if="!showDiv" class="py-8 flex flex-col md:flex-row w-full gap-8">
          <LastNews
             class="md:w-1/2"
-            :url="article.id"
+            v-if="article"
+            :url="article?.id"
             :img="article.image"
             :fi_title="article.fi_title"
             :en_title="article.en_title"
@@ -34,6 +35,7 @@
 
       <section v-else class="py-8 flex flex-col md:flex-row items-center w-full gap-8">
          <LastNews
+            v-if="article"
             :url="article.id"
             :img="article.image"
             :fi_title="article.fi_title"
@@ -80,57 +82,99 @@
    import { Data } from '@/types';
    const config = useRuntimeConfig();
 
-   let content;
+   interface Content {
+      fi_title: string;
+      en_title: string;
+      fi_description: string;
+      en_description: string;
+      fi_button_text: string;
+      en_button_text: string;
+      fi_button_url: string;
+      en_button_url: string;
+      custom_css: string;
+      en_long_desc: string;
+      fi_long_desc: string;
+   }
+   let content: Content = {
+      fi_title: 'Serveri ry',
+      en_title: 'Serveri ry',
+      fi_description: 'Itä-Suomen yliopiston Kuopion kampuksen tietojenkäsittelytieteen opiskelijoiden ainejärjestö',
+      en_description:
+         "The computer science students' subject organization of the Kuopio campus of the University of Eastern Finland",
+      fi_button_text: 'Millaista tietojenkäsittelytiede on?',
+      en_button_text: 'What is computer science like?',
+      fi_button_url: '/opiskelu/tkt',
+      en_button_url: '/opiskelu/tkt',
+      custom_css: '',
+      en_long_desc: '',
+      fi_long_desc: '',
+   };
    try {
       const { data } = (await useFetch(`${config.public['API_URL']}items/LandingPage`)) as { data: Data };
-      content = data.value.data;
-   } catch (e) {
       content = {
-         fi_title: 'Serveri ry',
-         en_title: 'Serveri ry',
-         fi_description:
-            'Itä-Suomen yliopiston Kuopion kampuksen tietojenkäsittelytieteen opiskelijoiden ainejärjestö - error',
-         en_description:
-            "The computer science students' subject organization of the Kuopio campus of the University of Eastern Finland - error",
-         fi_button_text: 'Millaista tietojenkäsittelytiede on?',
-         en_button_text: 'What is computer science like?',
-         fi_button_url: '/opiskelu/tkt',
-         en_button_url: '/opiskelu/tkt',
-         custom_css: '',
+         ...content,
+         ...data.value.data,
       };
+   } catch (e) {
+      console.log('Error fetching LandingPage');
    }
-
-   let articles;
+   interface Article {
+      id: string;
+      image: string;
+      fi_title: string;
+      en_title: string;
+      date_created: string;
+      fi_text: string;
+      en_text: string;
+   }
+   let articles: Article[] = [
+      {
+         id: 'f4d13a49-0539-442f-a5e9-6f486ff4d5d7',
+         image: config.public['API_URL'] + '/assets/231aba36-a03b-47c6-811a-b6dfe14ccddb',
+         fi_title: 'Api Error',
+         en_title: 'Api Error',
+         date_created: '09/25/2022',
+         fi_text: 'Api Error',
+         en_text: 'Api Error',
+      },
+   ];
    try {
       const { data } = (await useFetch(`${config.public['API_URL']}items/uutiset`)) as { data: Data };
-      articles = data.value.data;
-   } catch (e) {
       articles = {
-         img: '/assets/231aba36-a03b-47c6-811a-b6dfe14ccddb',
-         id: 'f4d13a49-0539-442f-a5e9-6f486ff4d5d7',
-         header: 'Api Error',
-         date_created: '09/25/2022',
-         text: 'Toivotamme Teidät mitä lämpimimmin tervetulleeksi viettämään Serveri ry:n 35-vuotis vuosijuhlaa pitkän odotuksen jälkeen!',
+         ...articles,
+         ...data.value.data,
       };
-   }
-   const article = articles[articles.length - 1]; // Get the last article
-
-   let SoMes;
-   try {
-      const { data } = (await useFetch(`${config.public['API_URL']}items/sosiaaliset_mediat`)) as { data: Data };
-      SoMes = data.value.data;
    } catch (e) {
-      SoMes = {
+      console.log('Error fetching articles');
+   }
+   const article: Article = articles[articles.length - 1]; // Get the last article
+
+   interface SoMe {
+      nimi: string;
+      url: string;
+      img: string;
+      fi_kuvaus: string;
+      en_kuvaus: string;
+      custom_css: string;
+   }
+   let SoMes: SoMe[] = [
+      {
          nimi: 'Telegram',
          url: 'https://example.com/',
          img: '/images/placeholder-square.jpg',
+         fi_kuvaus: '',
+         en_kuvaus: '',
+         custom_css: '',
+      },
+   ];
+   try {
+      const { data } = (await useFetch(`${config.public['API_URL']}items/sosiaaliset_mediat`)) as { data: Data };
+      SoMes = {
+         ...SoMes,
+         ...data.value.data,
       };
-   }
-   if (!SoMes.fi_kuvaus) {
-      SoMes.fi_kuvaus = null;
-   }
-   if (!SoMes.en_kuvaus) {
-      SoMes.en_kuvaus = null;
+   } catch (e) {
+      console.log('Error fetching Social Medias');
    }
 </script>
 
