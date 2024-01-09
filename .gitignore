@@ -7,4 +7,4 @@ app/.env
 .nuxt
 .vs
 /app/dist/
-/.unlighthouse/
+.unlighthouse
