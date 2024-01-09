@@ -1,5 +1,5 @@
 export interface Data {
-  value: {
-    data: object;
-  };
+   value: {
+      data: object;
+   };
 }

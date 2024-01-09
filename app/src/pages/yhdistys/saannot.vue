@@ -9,7 +9,7 @@
 
 <script setup lang="ts">
    import Saannot from '@/components/yhdistys/Saannot.vue';
-   import type {Data} from "@/types";
+   import type { Data } from '@/types';
    const config = useRuntimeConfig();
 
    let rules;

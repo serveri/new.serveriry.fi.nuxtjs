@@ -21,7 +21,7 @@
 </template>
 <script setup lang="ts">
    import ComingEvent from '@/components/langingpage/ComingEvent.vue';
-   import type {Data} from "@/types";
+   import type { Data } from '@/types';
    const config = useRuntimeConfig();
 
    interface DataItem {
