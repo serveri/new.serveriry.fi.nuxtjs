@@ -77,7 +77,7 @@
    import TopNews from '@/components/langingpage/TopNews.vue';
    import SponsorCarousel from '@/components/langingpage/SponsorCarousel.vue';
    import SocialmediaIcon from '@/components/langingpage/SocialmediaIcon.vue';
-   import { Data } from '@/app.vue';
+   import { Data } from '@/types';
    const config = useRuntimeConfig();
 
    let content;

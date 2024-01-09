@@ -9,7 +9,7 @@
 
 <script setup lang="ts">
    import VueMarkdown from 'vue-markdown-render';
-   import { Data } from '@/app.vue';
+   import { Data } from '@/types';
    const config = useRuntimeConfig();
 
    let links;

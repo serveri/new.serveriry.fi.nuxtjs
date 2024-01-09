@@ -6,6 +6,6 @@ export default {
    },
    // limit the number of concurrent tabs
    puppeteerClusterOptions: {
-      maxConcurrency: 8,
+      maxConcurrency: 10,
    },
 };

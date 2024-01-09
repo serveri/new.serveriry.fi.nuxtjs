@@ -37,7 +37,7 @@
 
 <script setup lang="ts">
    import PartnerPageSection from '@/components/partners/PartnerPageSection.vue';
-   import { Data } from '@/app.vue';
+   import { Data } from '@/types';
    const config = useRuntimeConfig();
 
    let companies;
