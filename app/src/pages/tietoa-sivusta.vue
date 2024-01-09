@@ -12,7 +12,7 @@
 
 <script setup lang="ts">
    import VueMarkdown from 'vue-markdown-render';
-   import { Data } from '@/app.vue';
+   import type { Data } from '@/types';
    const config = useRuntimeConfig();
 
    let about_text;

@@ -128,10 +128,4 @@
    import CustomFooter from '@/components/footer/CustomFooter.vue';
    import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
    const config = useRuntimeConfig();
-
-   export interface Data {
-      value: {
-         data: object;
-      };
-   }
 </script>

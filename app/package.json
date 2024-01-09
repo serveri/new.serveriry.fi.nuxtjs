@@ -8,7 +8,8 @@
       "preview": "nuxt preview",
       "postinstall": "nuxt prepare",
       "lint:script": "eslint --ext .ts,vue --ignore-path .gitignore .",
-      "lint:style": "stylelint src/**/*.{css,scss,vue}"
+      "lint:style": "stylelint src/**/*.{css,scss,vue}",
+      "format": "prettier --write src/**/*.{tsx,jsx,ts,js,vue}"
    },
    "dependencies": {
       "@fortawesome/fontawesome-svg-core": "^6.2.1",
@@ -21,12 +22,12 @@
       "@nuxtjs/i18n": "8.0.0-beta.10",
       "@types/node": "^18.11.18",
       "@vueuse/core": "^9.11.1",
-      "nuxt": "3.4.3",
+      "nuxt": "^3.9.0",
       "nuxt-delay-hydration": "^1.2.1",
       "tailwindcss": "^3.2.4",
-      "vue": "^3.3.4",
+      "vue": "^3.4.0",
       "vue-markdown-render": "^2.0.1",
-      "vue-router": "^4.2.2",
+      "vue-router": "latest",
       "vue3-carousel": "^0.2.12"
    },
    "devDependencies": {

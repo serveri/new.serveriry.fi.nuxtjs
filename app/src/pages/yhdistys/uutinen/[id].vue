@@ -19,7 +19,9 @@
       <Meta
          name="og:image"
          :content="
-            news.image?.startsWith('http') ? news.image : config.public['API_URL'] + 'assets/231aba36-a03b-47c6-811a-b6dfe14ccddb'
+            news.image?.startsWith('http')
+               ? news.image
+               : config.public['API_URL'] + 'assets/231aba36-a03b-47c6-811a-b6dfe14ccddb'
          "
       />
    </Head>
@@ -59,7 +61,7 @@
 
 <script setup lang="ts">
    import VueMarkdown from 'vue-markdown-render';
-   import { Data } from '@/app.vue';
+   import type { Data } from '@/types';
 
    const config = useRuntimeConfig();
 
@@ -68,7 +70,9 @@
    const route = useRoute();
    let released_date = new Date();
    try {
-      const { data } = (await useFetch(`${config.public['API_URL']}items/uutiset/${route.params.id}`)) as { data: Data };
+      const { data } = (await useFetch(`${config.public['API_URL']}items/uutiset/${route.params.id}`)) as {
+         data: Data;
+      };
       news = data.value.data;
       released_date = new Date(news.date_created);
    } catch (error) {

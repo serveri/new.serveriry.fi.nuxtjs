@@ -1,7 +1,7 @@
 <template>
    <div>
       <Head>
-         <Title>{{ $t('title_feedback') }} - Serveri ry</Title>
+         <Title>{{ $t('title_committee') }} - Serveri ry</Title>
          <Meta
             name="description"
             content="Haluatko vaikuttaa Serverin toimintaan matalalla kynnnyksellä? Toimikunnat ovat hyvä mahdollisuus tähän. Hae mukaan jo tänään!"
@@ -95,7 +95,7 @@
 
 <script setup lang="ts">
    import VueMarkdown from 'vue-markdown-render';
-   import { Data } from '@/app.vue';
+   import type { Data } from '@/types';
    const config = useRuntimeConfig();
    const router = useRouter();
 

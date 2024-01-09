@@ -10,7 +10,7 @@
    import { clearError } from 'nuxt/app';
    import NavBar from '@/components/navbar/NavBar.vue';
    import CustomFooter from '@/components/footer/CustomFooter.vue';
-   import NotFound from '@/components/NotFound.vue';
+   import NotFound from '@/components/error.vue';
 
    // default props available on error.vue
    const props = defineProps({

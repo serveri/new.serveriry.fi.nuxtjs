@@ -13,7 +13,7 @@
 
 <script setup lang="ts">
    import SafeSpace from '@/components/yhdistys/SafeSpace.vue';
-   import { Data } from '@/app.vue';
+   import type { Data } from '@/types';
    const config = useRuntimeConfig();
 
    let rules;

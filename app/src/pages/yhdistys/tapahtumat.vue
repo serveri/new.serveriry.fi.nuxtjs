@@ -48,7 +48,7 @@
 </template>
 
 <script setup lang="ts">
-   import { Data } from '@/app.vue';
+   import type { Data } from '@/types';
 
    const config = useRuntimeConfig();
 
@@ -70,12 +70,12 @@
       events.forEach((event) => {
          event.image = event.kuva
             ? `${config.public['API_URL']}assets/${event.kuva}`
-            : '/assets/b3ed6d7f-c124-4136-9234-cbd91fccff0f';
+            : config.public['API_URL'] + 'assets/b3ed6d7f-c124-4136-9234-cbd91fccff0f';
       });
    } catch (error) {
       events = [
          {
-            img: '/assets/b3ed6d7f-c124-4136-9234-cbd91fccff0f',
+            img: config.public['API_URL'] + 'assets/b3ed6d7f-c124-4136-9234-cbd91fccff0f',
             id: '1',
             header: 'Serveri ry:n 35-vuotis vuosijuhlat',
             date: new Date('09/25/2022'),

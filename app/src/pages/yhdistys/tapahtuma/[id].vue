@@ -35,7 +35,9 @@
 
             <img
                class="object-cover w-full aspect-video p-0 m-0"
-               :src="events.image ? events.image : '/assets/b3ed6d7f-c124-4136-9234-cbd91fccff0f'"
+               :src="
+                  events.image ? events.image : config.public['API_URL'] + 'assets/b3ed6d7f-c124-4136-9234-cbd91fccff0f'
+               "
                alt="Photo related to the events article."
             />
 
@@ -225,7 +227,7 @@
 
 <script setup lang="ts">
    import VueMarkdown from 'vue-markdown-render';
-   import { Data } from '@/app.vue';
+   import type { Data } from '@/types';
    const config = useRuntimeConfig();
 
    // This hard coded data will be replaced with data from directus
@@ -247,7 +249,7 @@
          loppu_aika = events.loppu_aika ? new Date(events.loppu_aika) : null;
          events.image = events.kuva
             ? `${config.public['API_URL']}assets/${events.kuva}`
-            : '/assets/b3ed6d7f-c124-4136-9234-cbd91fccff0f';
+            : config.public['API_URL'] + 'assets/b3ed6d7f-c124-4136-9234-cbd91fccff0f';
          if (events.sijainti) {
             const matches = events.sijainti.match(/-?\d+(\.\d+)?/g);
             y = parseFloat(matches[0]);
@@ -255,7 +257,7 @@
          }
       } else {
          events = {
-            image: '/assets/b3ed6d7f-c124-4136-9234-cbd91fccff0f',
+            image: config.public['API_URL'] + 'assets/b3ed6d7f-c124-4136-9234-cbd91fccff0f',
             id: route.params.id,
             fi_otsikko: 'Tapahtuman nimeä ei löytynyt',
             en_otsikko: 'The events title cannot be found',
@@ -268,7 +270,7 @@
       }
    } catch (error) {
       events = {
-         image: '/assets/b3ed6d7f-c124-4136-9234-cbd91fccff0f',
+         image: config.public['API_URL'] + 'assets/b3ed6d7f-c124-4136-9234-cbd91fccff0f',
          id: route.params.id,
          fi_otsikko: 'Tapahtuman nimeä ei löytynyt',
          en_otsikko: 'The events title cannot be found',

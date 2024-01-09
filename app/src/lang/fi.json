@@ -47,6 +47,7 @@
    "title_new-student": "Uudelle opiskelijalle",
    "title_study-club": "Läksykerho",
    "title_feedback": "Palaute",
+   "title_committee": "Toimikunnat",
    "title_gdpr": "Tietosuoja ja jäsenrekisteri",
    "title_tkt": "Tietojenkäsittelytieteen laitos",
    "title_skripti": "Skripti ry - Joensuun TKT-ainejärjestö",
@@ -110,10 +111,15 @@
    "coming-events": "Tulevat tapahtumat",
    "what-is-cs-like": "Millaista tietojenkäsittelytiede on?",
    "contact-us": "Ota yhteyttä",
-   "404_oops": "Hupsista!",
+
+   "oops": "Hupsista!",
    "404_msg": "Sivua ei löytynyt.",
    "404_msg_long": "Etsimäsi sivu saattaa olla poistettu. Kirjoititko osoitteen oikein?",
-   "404_btn": "Etusivulle",
+   "500_msg": "Sisäinen järjestelmävirhe",
+   "500_msg_long": "Yritä myöhemmin uudestaan, jos ongelma jatkuu, ota yhteyttä ylläpitäjään tai tee Git Issue.",
+   "xxx_msg": "Virhe",
+   "xxx_msg_long": "Tapahtui virhe. Mene etusivulle tai yritä myöhemmin uudestaan, jos ongelma jatkuu, ota yhteyttä ylläpitäjään tai tee Git Issue.",
+   "back_to_home": "Etusivulle",
 
    "updated_last_time": "Päivitetty viimeksi: ",
    "thanks-contact": "Kiitos yhteydenotosta!",
@@ -123,5 +129,4 @@
    "back-to-frontpage": "Palaa etusivulle",
 
    "show-all-coming-events": "Näytä kaikki tulevat tapahtumat"
-
 }

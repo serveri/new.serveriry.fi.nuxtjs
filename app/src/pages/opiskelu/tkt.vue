@@ -320,7 +320,7 @@
 </template>
 
 <script setup lang="ts">
-   import { Data } from '@/app.vue';
+   import type { Data } from '@/types';
 
    const config = useRuntimeConfig();
 

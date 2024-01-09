@@ -26,7 +26,7 @@
 
 <script setup lang="ts">
    import PartnerCard from '@/components/partners/PartnerCard.vue';
-   import { Data } from '@/app.vue';
+   import type { Data } from '@/types';
    const config = useRuntimeConfig();
 
    let sponsors;

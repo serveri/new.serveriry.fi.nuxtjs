@@ -5,7 +5,10 @@
          "@/*": ["./src/*"]
       },
       "skipLibCheck": true,
-      "types": ["@nuxt/types", "@nuxtjs/i18n"]
+      "types": ["@nuxt/types", "@nuxtjs/i18n"],
+      "resolve": {
+         "extensions": [".ts", ".vue"]
+      }
    },
    "extends": "./.nuxt/tsconfig.json"
 }
