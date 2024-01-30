@@ -25,7 +25,7 @@
       "nuxt": "^3.9.0",
       "nuxt-delay-hydration": "^1.2.1",
       "tailwindcss": "^3.2.4",
-      "vue": "^3.4.0",
+      "vue": "^3.4.7",
       "vue-markdown-render": "^2.0.1",
       "vue-router": "latest",
       "vue3-carousel": "^0.2.12"
