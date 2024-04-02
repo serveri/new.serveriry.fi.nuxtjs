@@ -149,6 +149,7 @@
             { name: 'new-student', href: '/opiskelu/fuksille' },
             { name: 'study-club', href: '/opiskelu/laksykerho' },
             { name: 'feedback', href: '/opiskelu/palaute' },
+            { name: 'forms', href: '/opiskelu/kysely' },
          ],
       },
    ];
