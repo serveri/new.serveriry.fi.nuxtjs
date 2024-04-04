@@ -5,22 +5,19 @@
       </Head>
       <vue-markdown class="rich-text py-2" :source="content[$i18n.locale + '_text']" />
    </div>
-   <div class="mb-8">
-      <div class="space-y-4 text-center">
-         <NuxtLink class="btn-custom-primary" to="https://forms.office.com/e/4kn5NM7M4u">
-            {{ $i18n.locale === 'fi' ? 'Periodi palautekysely' : 'Feedback form' }}
-            <font-awesome-icon class="ml-4" :icon="['fas', 'arrow-up-right-from-square']" />
+   <div class="mb-8 flex flex-col items-center w-full gap-4">
+      <div v-for="item in links">
+         <NuxtLink
+            class="btn-custom-primary w-96 text-center justify-center"
+            to="{{ $i18n.locale === 'fi' ? item.link_fi : item.link_en }}"
+         >
+            {{ $i18n.locale === 'fi' ? item.title_fi : item.title_en }}
+            <font-awesome-icon
+               v-if="!item.link_en.startsWith('/') || !item.link_en.startsWith('https://serveriry.fi/')"
+               class="ml-4"
+               :icon="['fas', 'arrow-up-right-from-square']"
+            />
          </NuxtLink>
-         <div>
-            <NuxtLink class="btn-custom-primary" to="/about">
-               {{ $i18n.locale === 'fi' ? 'Vappudiplomi lomake' : 'Student Diploma Form' }}
-            </NuxtLink>
-         </div>
-         <div>
-            <NuxtLink class="btn-custom-primary" to="/about">
-               {{ $i18n.locale === 'fi' ? 'Haalarimerkki ideat' : 'Overall Patch Designs' }}
-            </NuxtLink>
-         </div>
       </div>
    </div>
 </template>
@@ -28,6 +25,7 @@
 <script setup lang="ts">
    import VueMarkdown from 'vue-markdown-render';
    import type { Data } from '@/types';
+   import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
    const config = useRuntimeConfig();
    const router = useRouter();
 
@@ -72,6 +70,27 @@
       // Scroll top of page
       window.scrollTo(0, 0);
    }
+
+   const links = [
+      {
+         title_fi: 'Periodi palautekysely',
+         title_en: 'Feedback form',
+         link_fi: 'https://forms.office.com/e/4kn5NM7M4u',
+         link_en: 'https://forms.office.com/e/4kn5NM7M4u',
+      },
+      {
+         title_fi: 'Vappudiplomi lomake',
+         title_en: 'Student Diploma Form',
+         link_fi: '/about',
+         link_en: '/about',
+      },
+      {
+         title_fi: 'Haalarimerkki ideat',
+         title_en: 'Overall Patch Designs',
+         link_fi: '/about',
+         link_en: '/about',
+      },
+   ];
 </script>
 
 <style scoped></style>
