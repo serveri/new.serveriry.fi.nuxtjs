@@ -13,7 +13,7 @@
          >
             {{ $i18n.locale === 'fi' ? item.title_fi : item.title_en }}
             <font-awesome-icon
-               v-if="!item.link_en.startsWith('/') || !item.link_en.startsWith('https://serveriry.fi/')"
+               v-if="!(item.link_en.startsWith('/') || item.link_en.startsWith('https://serveriry.fi/'))"
                class="ml-4"
                :icon="['fas', 'arrow-up-right-from-square']"
             />
