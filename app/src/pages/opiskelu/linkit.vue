@@ -5,19 +5,19 @@
       </Head>
       <vue-markdown class="rich-text py-2" :source="content[$i18n.locale + '_text']" />
    </div>
-   <div class="mb-8">
-      <div class="space-y-4 text-center">
-         <NuxtLink class="btn-custom-primary" to="https://forms.office.com/e/4kn5NM7M4u">
+   <div class="mb-8 !mx-auto">
+      <div class="space-y-4 !mx-auto text-center">
+         <div class="mx-96"><NuxtLink class="btn-custom-primary !block w-full " to="https://forms.office.com/e/4kn5NM7M4u">
             {{ $i18n.locale === 'fi' ? 'Periodi palautekysely' : 'Feedback form' }}
             <font-awesome-icon class="ml-4" :icon="['fas', 'arrow-up-right-from-square']" />
-         </NuxtLink>
-         <div>
-            <NuxtLink class="btn-custom-primary" to="/about">
+         </NuxtLink></div>
+         <div class="mx-96">
+            <NuxtLink class="btn-custom-primary !block w-full" to="/about">
                {{ $i18n.locale === 'fi' ? 'Vappudiplomi lomake' : 'Student Diploma Form' }}
             </NuxtLink>
          </div>
-         <div>
-            <NuxtLink class="btn-custom-primary" to="/about">
+         <div class="mx-96">
+            <NuxtLink class="btn-custom-primary !block w-full" to="/about">
                {{ $i18n.locale === 'fi' ? 'Haalarimerkki ideat' : 'Overall Patch Designs' }}
             </NuxtLink>
          </div>
@@ -28,6 +28,7 @@
 <script setup lang="ts">
    import VueMarkdown from 'vue-markdown-render';
    import type { Data } from '@/types';
+   import fontawesome from '@/plugins/fontawesome';
    const config = useRuntimeConfig();
    const router = useRouter();
 
