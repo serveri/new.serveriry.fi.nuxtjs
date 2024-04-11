@@ -103,6 +103,11 @@ td {
   @apply bg-custom-secondary hover:bg-custom-primary dark:hover:bg-custom-secondary-dark;
 }
 
+.btn-custom-link {
+  @apply py-8 text-xl md:text-2xl font-bold text-center text-white rounded;
+  @apply bg-custom-secondary hover:bg-custom-primary dark:hover:bg-custom-secondary-dark;
+}
+
 .paragraph {
   @apply font-light tracking-wide text-gray-500 dark:text-gray-400 sm:text-xl;
 }

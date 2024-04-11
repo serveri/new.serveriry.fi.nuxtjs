@@ -5,20 +5,24 @@
       </Head>
       <vue-markdown class="rich-text py-2" :source="content[$i18n.locale + '_text']" />
    </div>
-   <div class="mb-8 !mx-auto">
-      <div class="space-y-4 !mx-auto text-center">
-         <div class="mx-0 xl:mx-96"><NuxtLink class="btn-custom-primary !block w-full " to="https://forms.office.com/e/4kn5NM7M4u">
-            {{ $i18n.locale === 'fi' ? 'Periodi palautekysely' : 'Feedback form' }}
-            <font-awesome-icon class="ml-4" :icon="['fas', 'arrow-up-right-from-square']" />
-         </NuxtLink></div>
-         <div class="mx-0 xl:mx-96">
-            <NuxtLink class="btn-custom-primary !block w-full" to="/about">
-               {{ $i18n.locale === 'fi' ? 'Vappudiplomi lomake' : 'Student Diploma Form' }}
+   <div class="mb-8 mx-auto">
+      <div class="space-y-12 mx-auto w-s text-center">
+         <div class="btn-custom-link">
+            <NuxtLink class="text-white" to="https://forms.office.com/e/4kn5NM7M4u">
+               {{ $i18n.locale === 'fi' ? 'Periodi palautekysely' : 'Feedback form' }}
+               <font-awesome-icon class="ml-4" :icon="['fas', 'arrow-up-right-from-square']" />
             </NuxtLink>
          </div>
-         <div class="mx-0 xl:mx-96">
-            <NuxtLink class="btn-custom-primary !block w-full" to="/about">
+         <div class="btn-custom-link">
+            <NuxtLink class="text-white" to="/about">
+               {{ $i18n.locale === 'fi' ? 'Vappudiplomi lomake' : 'Student Diploma Form' }}
+               <font-awesome-icon class="ml-4" :icon="['fas', 'arrow-up-right-from-square']" />
+            </NuxtLink>
+         </div>
+         <div class="btn-custom-link">
+            <NuxtLink class="text-white" to="/about">
                {{ $i18n.locale === 'fi' ? 'Haalarimerkki ideat' : 'Overall Patch Designs' }}
+               <font-awesome-icon class="ml-4" :icon="['fas', 'arrow-up-right-from-square']" />
             </NuxtLink>
          </div>
       </div>
