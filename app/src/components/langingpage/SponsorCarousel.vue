@@ -37,8 +37,11 @@
       sponsors = [
          {
             name: 'Yrityksen logo puuttuu',
-            url: 'https://serveriry.fi',
-            img: 'https://cloud.serveriry.fi/s/rRJL8CTTSg9KDYK/download/Tapahtumat-placeholder.png',
+            url: '#',
+            img: 'https://api.serveriry.fi/assets/9db2e4a2-e9d7-4dab-8156-8cc0f482775d',
+            img_dark: 'https://api.serveriry.fi/assets/9db2e4a2-e9d7-4dab-8156-8cc0f482775d',
+            fi_text: 'Yrityksen kuvaus puuttuu',
+            en_text: 'Company description missing',
          },
       ];
    }
