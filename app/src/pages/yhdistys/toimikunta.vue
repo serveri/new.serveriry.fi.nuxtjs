@@ -13,9 +13,9 @@
 
    <form class="space-y-8" @submit="submitForm">
       <div>
-         <label for="subject" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"
-            >{{ $t('label_topic') }}</label
-         >
+         <label for="subject" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">{{
+            $t('label_topic')
+         }}</label>
          <select
             id="subject"
             v-model="subject"
@@ -29,7 +29,9 @@
          </select>
       </div>
       <div v-if="subject">
-         <label for="contact" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">{{ $t('label_name') }}</label>
+         <label for="contact" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">{{
+            $t('label_name')
+         }}</label>
          <input
             id="contact"
             v-model="person_name"
@@ -39,9 +41,9 @@
          />
       </div>
       <div v-if="subject">
-         <label for="contact" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"
-            >{{ $t('label_contact') }}</label
-         >
+         <label for="contact" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">{{
+            $t('label_contact')
+         }}</label>
          <input
             id="contact"
             v-model="person_contact"
@@ -51,9 +53,9 @@
          />
       </div>
       <div class="sm:col-span-2" v-if="subject">
-         <label for="introduction" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400"
-            >{{ $t('label_field') }}</label
-         >
+         <label for="introduction" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400">{{
+            $t('label_field')
+         }}</label>
          <textarea
             id="introduction"
             v-model="person_info"
@@ -64,9 +66,9 @@
          ></textarea>
       </div>
       <div v-if="subject === 'yllapito'" class="sm:col-span-2">
-         <label for="skills" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400"
-            >{{ $t('label_field') }}</label
-         >
+         <label for="skills" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400">{{
+            $t('label_field')
+         }}</label>
          <textarea
             id="skills"
             v-model="person_skills"
@@ -77,9 +79,9 @@
          ></textarea>
       </div>
       <div v-if="subject === 'yllapito'" class="sm:col-span-2">
-         <label for="portfolio" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400"
-            >{{ $t('label_field') }}</label
-         >
+         <label for="portfolio" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400">{{
+            $t('label_field')
+         }}</label>
          <textarea
             id="portfolio"
             v-model="person_portfolio"
