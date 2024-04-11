@@ -28,7 +28,7 @@
          {
             name: 'Yrityksen logo puuttuu',
             url: 'https://serveriry.fi',
-            img: 'https://cloud.serveriry.fi/s/rRJL8CTTSg9KDYK/download/Tapahtumat-placeholder.png',
+            img: 'https://api.serveriry.fi/assets/9db2e4a2-e9d7-4dab-8156-8cc0f482775d',
          },
       ];
    }

@@ -35,7 +35,7 @@
       },
       img: {
          type: String,
-         default: 'https://cloud.serveriry.fi/s/rRJL8CTTSg9KDYK/download/Tapahtumat-placeholder.png',
+         default: 'https://api.serveriry.fi/assets/9db2e4a2-e9d7-4dab-8156-8cc0f482775d',
          required: true,
       },
       fi_title: {
