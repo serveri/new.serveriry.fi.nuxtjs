@@ -9,19 +9,19 @@
       <div class="space-y-12 mx-auto w-s text-center">
          <div class="btn-custom-link">
             <NuxtLink class="text-white" to="https://forms.office.com/e/4kn5NM7M4u">
-               {{ $i18n.locale === 'fi' ? 'Periodi palautekysely' : 'Feedback form' }}
+               {{ $i18n.locale === 'fi' ? 'Jatkuva opetuspalautelomake' : 'Continious Form for Education Feedback' }}
                <font-awesome-icon class="ml-4" :icon="['fas', 'arrow-up-right-from-square']" />
             </NuxtLink>
          </div>
          <div class="btn-custom-link">
             <NuxtLink class="text-white" to="/about">
-               {{ $i18n.locale === 'fi' ? 'Vappudiplomi lomake' : 'Student Diploma Form' }}
+               {{ $i18n.locale === 'fi' ? 'Vappudiplomilomake' : 'May Day Diploma Form' }}
                <font-awesome-icon class="ml-4" :icon="['fas', 'arrow-up-right-from-square']" />
             </NuxtLink>
          </div>
          <div class="btn-custom-link">
             <NuxtLink class="text-white" to="/about">
-               {{ $i18n.locale === 'fi' ? 'Haalarimerkki ideat' : 'Overall Patch Designs' }}
+               {{ $i18n.locale === 'fi' ? 'Haalarimerkki-ideat' : 'Overalls' Patch Design suggestions' }}
                <font-awesome-icon class="ml-4" :icon="['fas', 'arrow-up-right-from-square']" />
             </NuxtLink>
          </div>
