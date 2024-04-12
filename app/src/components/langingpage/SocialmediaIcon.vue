@@ -2,7 +2,7 @@
    <div class="some-container">
       <a :href="Socialmedia.url" target="_blank" class="relative w-full group">
          <img
-            :src="Socialmedia.img"
+            :src="config.public['API_URL'] + 'assets/' + Socialmedia.img"
             :alt="Socialmedia.name"
             loading="lazy"
             :class="'some-logo scale-100 group-hover:scale-110 ' + custom_style"
@@ -16,6 +16,7 @@
 </template>
 
 <script setup lang="ts">
+   const config = useRuntimeConfig();
    const Socialmedia = defineProps({
       url: {
          type: String,
