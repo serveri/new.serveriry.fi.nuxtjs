@@ -2,6 +2,9 @@
    <div>
       <Head>
          <Title>{{ $t('title_forms') }} - Serveri ry</Title>
+         <Meta name="description" content="Serveri ry:n lomakkeet ja linkit." />
+         <Meta name="og:title" content="{{ $t('title_forms') }} - Serveri ry" />
+         <Meta name="og:description" content="Serveri ry:n lomakkeet ja linkit." />
       </Head>
       <vue-markdown class="rich-text py-2" :source="content[$i18n.locale + '_text']" />
    </div>
