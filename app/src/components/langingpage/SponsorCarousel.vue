@@ -1,88 +1,62 @@
 <template>
-   <Carousel
-      class="w-full"
-      :wrap-around="true"
-      :autoplay="3000"
-      :transition="1000"
-      :settings="settings"
-      :breakpoints="breakpoints"
-   >
-      <Slide v-for="sponsor in sponsors" :key="sponsor">
-         <partner-card
-            :key="sponsor.name"
-            :url="sponsor.url"
-            :img="sponsor.img"
-            :img_dark="sponsor.img_dark"
-            :alt="'Serverin toimintaa tukee ' + sponsor.name + ' ja tässä heidän logo'"
-            :name="sponsor.name"
-            :fi_text="sponsor.fi_text"
-            :en_text="sponsor.en_text"
-         />
-      </Slide>
-
-      ...
-   </Carousel>
+<!--   <Carousel-->
+<!--      class="w-full"-->
+<!--      :wrap-around="true"-->
+<!--      :autoplay="3000"-->
+<!--      :transition="1000"-->
+<!--      :settings="settings"-->
+<!--      :breakpoints="breakpoints"-->
+<!--   >-->
+<!--      <Slide v-for="sponsor in sponsors" :key="sponsor.name">-->
+<!--         <partner-card-->
+<!--            :url="sponsor.url"-->
+<!--            :img="sponsor.img"-->
+<!--            :img_dark="sponsor.img_dark"-->
+<!--            :alt="'Serverin toimintaa tukee ' + sponsor.name + ' ja tässä heidän logo'"-->
+<!--            :name="sponsor.name"-->
+<!--            :fi_text="sponsor.fi_text"-->
+<!--            :en_text="sponsor.en_text"-->
+<!--         />-->
+<!--      </Slide>-->
+<!--   </Carousel>-->
 </template>
 
 <script setup lang="ts">
-   import PartnerCard from '@/components/partners/PartnerCard.vue';
-   import type { Data } from '@/types';
-   const config = useRuntimeConfig();
-
-   let sponsors;
-   try {
-      const { data } = (await useFetch(`${config.public['API_URL']}items/partners`)) as { data: Data };
-      sponsors = data.value.data;
-   } catch (e) {
-      sponsors = [
-         {
-            name: 'Yrityksen logo puuttuu',
-            url: 'https://serveriry.fi',
-            img: 'https://cloud.serveriry.fi/s/rRJL8CTTSg9KDYK/download/Tapahtumat-placeholder.png',
-         },
-      ];
-   }
-</script>
-
-<script lang="ts">
-   import { defineComponent } from 'vue';
-   import { Carousel, Slide } from 'vue3-carousel';
-
-   import 'vue3-carousel/dist/carousel.css';
-
-   export default defineComponent({
-      name: 'SponsorCarousel',
-      components: {
-         Carousel,
-         Slide,
-      },
-      data: () => ({
-         // carousel settings
-         settings: {
-            itemsToShow: 1,
-            snapAlign: 'center',
-         },
-         // breakpoints are mobile first
-         // any settings not specified will fall back to the carousel settings
-         breakpoints: {
-            // 700px and up
-            700: {
-               itemsToShow: 3,
-               snapAlign: 'center',
-            },
-            // 1024 and up
-            1024: {
-               itemsToShow: 4,
-               snapAlign: 'center',
-            },
-            // 1440 and up
-            1440: {
-               itemsToShow: 6,
-               snapAlign: 'center',
-            },
-         },
-      }),
-   });
+   // import { ref } from 'vue';
+   // import { Carousel, Slide } from 'vue3-carousel';
+   // import PartnerCard from '@/components/partners/PartnerCard.vue';
+   // import 'vue3-carousel/dist/carousel.css';
+   // import type { Data } from '@/types';
+   //
+   // const config = useRuntimeConfig();
+   //
+   // // Fetch sponsors data
+   // let sponsors = ref([]);
+   // try {
+   //    const { data } = (await useFetch(`${config.public['API_URL']}items/partners`)) as { data: Data };
+   //    sponsors.value = data.value.data;
+   // } catch (e) {
+   //    sponsors.value = [
+   //       {
+   //          name: 'Yrityksen logo puuttuu',
+   //          url: 'https://serveriry.fi',
+   //          img: 'https://cloud.serveriry.fi/s/rRJL8CTTSg9KDYK/download/Tapahtumat-placeholder.png',
+   //       },
+   //    ];
+   // }
+   //
+   // // Carousel settings
+   // const settings = ref({
+   //    itemsToShow: 1,
+   //    snapAlign: 'center',
+   // });
+   //
+   // // Breakpoints for responsive design
+   // const breakpoints = ref({
+   //    700: { itemsToShow: 3, snapAlign: 'center' },
+   //    1024: { itemsToShow: 4, snapAlign: 'center' },
+   //    1440: { itemsToShow: 6, snapAlign: 'center' },
+   // });
 </script>
 
 <style scoped>
