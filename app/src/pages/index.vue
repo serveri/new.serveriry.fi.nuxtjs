@@ -80,6 +80,7 @@
    import SponsorCarousel from '@/components/langingpage/SponsorCarousel.vue';
    import SocialmediaIcon from '@/components/langingpage/SocialmediaIcon.vue';
    import type { Data } from '@/types';
+   import { toRaw } from 'vue';
    const config = useRuntimeConfig();
 
    interface Content {
@@ -140,12 +141,12 @@
    ];
    try {
       const { data } = (await useFetch(`${config.public['API_URL']}items/uutiset`)) as { data: Data };
-      articles = {
-         ...articles,
-         ...data.value.data,
-      };
+      for (const article of data.value.data) {
+         const _article = toRaw(article);
+         articles.push(_article);
+      }
    } catch (e) {
-      console.log('Error fetching articles');
+      console.log('Error fetching articles: ', e);
    }
    const article: Article = articles[articles.length - 1]; // Get the last article
 
