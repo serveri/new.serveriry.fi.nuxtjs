@@ -57,6 +57,7 @@
    //    1024: { itemsToShow: 4, snapAlign: 'center' },
    //    1440: { itemsToShow: 6, snapAlign: 'center' },
    // });
+
 </script>
 
 <style scoped>
