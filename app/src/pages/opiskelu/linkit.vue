@@ -9,7 +9,7 @@
       <div v-for="item in links">
          <NuxtLink
             class="btn-custom-primary w-96 text-center justify-center"
-            to="{{ $i18n.locale === 'fi' ? item.link_fi : item.link_en }}"
+            :to="$i18n.locale === 'fi' ? item.link_fi : item.link_en"
          >
             {{ $i18n.locale === 'fi' ? item.title_fi : item.title_en }}
             <font-awesome-icon
