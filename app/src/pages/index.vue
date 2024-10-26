@@ -46,6 +46,10 @@
          />
       </section>
 
+      <section class="w-full">
+         <partner-page-section />
+      </section>
+
       <section class="pt-8">
          <EmbeddedMap />
       </section>
@@ -81,6 +85,7 @@
    import SocialmediaIcon from '@/components/langingpage/SocialmediaIcon.vue';
    import type { Data } from '@/types';
    import { toRaw } from 'vue';
+   import PartnerPageSection from '@/components/partners/PartnerPageSection.vue';
    const config = useRuntimeConfig();
 
    interface Content {
