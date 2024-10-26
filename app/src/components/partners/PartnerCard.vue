@@ -1,92 +1,73 @@
 <template>
-   <a :href="partner.url" target="_blank" tabindex="-1" @mouseover="hover = true" @mouseleave="hover = false">
-      <img
-         v-if="hover"
-         :src="useDark().value && partner.img_dark?.startsWith('http') ? partner.img_dark : partner.img"
-         :alt="partner.name"
-         loading="lazy"
-         class="scale-110"
-         :title="partner.name"
+   <div class="flex flex-col">
+      <a
+         :href="partner.url"
+         target="_blank"
          tabindex="-1"
-      />
-      <img
-         v-else
-         :src="useDark().value && partner.img_dark?.startsWith('http') ? partner.img_dark : partner.img"
-         :alt="partner.name"
-         loading="lazy"
-         class="scale-100"
-         tabindex="-1"
-      />
-   </a>
+         @mouseover="hover = true"
+         @mouseleave="hover = false"
+      >
+         <img
+            :src="computedImgSrc"
+            :alt="partner.name"
+            loading="lazy"
+            :class="{ 'scale-110': hover, 'scale-100': !hover }"
+            :title="partner.name"
+            tabindex="-1"
+         />
+      </a>
+      <p class="sr-only">
+         {{ $i18n.locale === 'fi' ? partner.fi_text : partner.en_text }}
+      </p>
+   </div>
 </template>
 
 <script setup lang="ts">
+   import { ref, computed } from 'vue';
    import { useDark } from '@vueuse/core';
 
-   const partner = defineProps({
-      url: {
-         type: String,
-         default: 'Default',
-         required: true,
-      },
-      img: {
-         type: String,
-         default: 'Default',
-         required: true,
-      },
-      img_dark: {
-         type: String,
-         default: '',
-         required: false,
-      },
-      name: {
-         type: String,
-         default: 'Default',
-         required: true,
-      },
-      fi_text: {
-         type: String,
-         default: 'Default',
-         required: true,
-      },
-      en_text: {
-         type: String,
-         default: 'Default',
-         required: true,
-      },
+   // Props definition using defineProps
+   const partner = defineProps<{
+      url: string;
+      img: string;
+      img_dark?: string;
+      name: string;
+      fi_text: string;
+      en_text: string;
+   }>();
+
+   // Hover state
+   const hover = ref(false);
+
+   // Dark mode state
+   const isDark = useDark();
+
+   // Computed property for image source
+   const computedImgSrc = computed(() => {
+      return isDark.value && partner.img_dark?.startsWith('http') ? partner.img_dark : partner.img;
    });
 </script>
 
-<script lang="ts">
-   export default {
-      name: 'PartnerCard',
-      data() {
-         return {
-            hover: false,
-         };
-      },
-   };
-</script>
-
 <style scoped>
-   /**
-   a {
-      box-shadow: 0 0 26px -5px rgba(0, 0, 0, 0.27);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-   }
-
-   a {
-      @apply rounded-lg w-full h-full cursor-pointer dark:shadow-none dark:bg-zinc-900;
-   }
-   */
-
    img {
-      height: 7rem;
-      width: 90%;
+      height: 12rem;
+      width: 12rem;
+      max-width: 100%;
+      max-height: 100%;
       padding: 0.8rem;
       object-fit: contain;
-      -o-object-fit: contain;
+   }
+
+   .main-partner-card img {
+      height: 15rem;
+      width: 15rem;
+   }
+
+   .scale-110 {
+      transform: scale(1.1);
+   }
+
+   .scale-100 {
+      transform: scale(1);
    }
 </style>
