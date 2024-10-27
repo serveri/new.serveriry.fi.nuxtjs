@@ -1,6 +1,5 @@
 import { H3Event, send, defineEventHandler, getQuery, createError } from 'h3';
 import { useRuntimeConfig } from '#imports';
-import { zonedTimeToUtc, format } from 'date-fns-tz';
 
 export default defineEventHandler(async (event: H3Event) => {
    const config = useRuntimeConfig();
@@ -93,9 +92,17 @@ DTSTART:${startDate}
 
 // Helper function to format date for ICS file in UTC
 function formatDateUTC(dateString: string) {
-   const timeZone = 'Europe/Helsinki';
-   const date = zonedTimeToUtc(dateString, timeZone);
-   return format(date, "yyyyMMdd'T'HHmmss'Z'");
+   const date = new Date(dateString);
+
+   const year = date.getUTCFullYear().toString().padStart(4, '0');
+   const month = (date.getUTCMonth() + 1).toString().padStart(2, '0');
+   const day = date.getUTCDate().toString().padStart(2, '0');
+
+   const hours = date.getUTCHours().toString().padStart(2, '0');
+   const minutes = date.getUTCMinutes().toString().padStart(2, '0');
+   const seconds = date.getUTCSeconds().toString().padStart(2, '0');
+
+   return `${year}${month}${day}T${hours}${minutes}${seconds}Z`;
 }
 
 // Helper function to escape special characters in text fields and remove newlines
