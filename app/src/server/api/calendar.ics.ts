@@ -72,7 +72,7 @@ END:VTIMEZONE
       // Preprocess the description
       let fullDescription = description;
       if (imageUrl) {
-         fullDescription += `\\n\\nImage: ${imageUrl}`;
+         fullDescription += `\nImage: ${imageUrl}`; // Append the image URL to the description without newlines
       }
       fullDescription = escapeText(fullDescription);
 
@@ -127,14 +127,14 @@ function formatDateUTC(dateString: string) {
    return `${year}${month}${day}T${hours}${minutes}${seconds}Z`;
 }
 
-// Helper function to escape special characters in text fields and wrap lines
+// Helper function to escape special characters in text fields and remove newlines
 function escapeText(text: string) {
-   // Replace special characters with escaped versions
+   // Replace special characters with escaped versions and remove newlines
    let escapedText = text
       .replace(/\\/g, '\\\\')  // Escape backslashes
       .replace(/;/g, '\\;')    // Escape semicolons
       .replace(/,/g, '\\,')    // Escape commas
-      .replace(/\r?\n/g, '\\n'); // Convert actual line breaks to iCalendar line breaks
+      .replace(/\r?\n/g, '\\n'); // Escape newlines
 
    // Split long lines into segments of 75 characters or less, with a space at the start of new lines
    const lines = [];
@@ -153,7 +153,7 @@ function formatLocation(point: string) {
    if (match) {
       const longitude = match[1];
       const latitude = match[2];
-      return `${latitude}, ${longitude}`;
+      return `${latitude} ${longitude}`;
    }
    return ''; // Return an empty string if the format doesn't match
 }
