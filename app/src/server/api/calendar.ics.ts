@@ -1,5 +1,3 @@
-// server/api/calendar.ts
-
 import { H3Event, send, defineEventHandler, getQuery, createError } from 'h3';
 import { useRuntimeConfig } from '#imports';
 
@@ -63,19 +61,19 @@ END:VTIMEZONE
       // Select language-specific fields based on the locale
       const title = selectedLocale === 'fi' ? event.fi_otsikko : event.en_otsikko || 'Untitled Event';
       const description = selectedLocale === 'fi' ? event.fi_kuvaus : event.en_kuvaus || '';
-      const startDate = formatDate(event.alku_aika);
-      const endDate = event.loppu_aika ? formatDate(event.loppu_aika) : '';
-      const location = event.sijainti || '';
+      const startDate = formatDateUTC(event.alku_aika);
+      const endDate = event.loppu_aika ? formatDateUTC(event.loppu_aika) : '';
+      const location = formatLocation(event.sijainti || '');
       const imageUrl = event.image || '';
 
       icsContent += `BEGIN:VEVENT
 SUMMARY:${escapeText(title)}
-DTSTART;TZID=Europe/Helsinki:${startDate}
+DTSTART:${startDate}
 `;
 
       // Include DTEND only if an end date is provided
       if (endDate) {
-         icsContent += `DTEND;TZID=Europe/Helsinki:${endDate}
+         icsContent += `DTEND:${endDate}
 `;
       }
 
@@ -107,26 +105,48 @@ DTSTART;TZID=Europe/Helsinki:${startDate}
    return send(event, icsContent);
 });
 
-// Helper function to format date for ICS file (local time without Z)
-function formatDate(dateString: string) {
+// Helper function to format date for ICS file in UTC
+function formatDateUTC(dateString: string) {
    const date = new Date(dateString);
 
-   const year = date.getFullYear().toString().padStart(4, '0');
-   const month = (date.getMonth() + 1).toString().padStart(2, '0'); // Months are zero-based
-   const day = date.getDate().toString().padStart(2, '0');
+   const year = date.getUTCFullYear().toString().padStart(4, '0');
+   const month = (date.getUTCMonth() + 1).toString().padStart(2, '0');
+   const day = date.getUTCDate().toString().padStart(2, '0');
 
-   const hours = date.getHours().toString().padStart(2, '0');
-   const minutes = date.getMinutes().toString().padStart(2, '0');
-   const seconds = date.getSeconds().toString().padStart(2, '0');
+   const hours = date.getUTCHours().toString().padStart(2, '0');
+   const minutes = date.getUTCMinutes().toString().padStart(2, '0');
+   const seconds = date.getUTCSeconds().toString().padStart(2, '0');
 
-   return `${year}${month}${day}T${hours}${minutes}${seconds}`;
+   return `${year}${month}${day}T${hours}${minutes}${seconds}Z`;
 }
 
 // Helper function to escape special characters in text fields
 function escapeText(text: string) {
-   return text.replace(/\\n/g, '\\n')
-      .replace(/,/g, '\\,')
-      .replace(/;/g, '\\;')
-      .replace(/\\/g, '\\\\')
-      .replace(/\n/g, '\\n');
+   // Replace special characters with escaped versions
+   let escapedText = text
+      .replace(/\\/g, '\\\\')  // Escape backslashes
+      .replace(/;/g, '\\;')    // Escape semicolons
+      .replace(/,/g, '\\,')    // Escape commas
+      .replace(/\r?\n/g, '\\n'); // Convert actual line breaks to iCalendar line breaks
+
+   // Split long lines into segments of 75 characters or less, with a space at the start of new lines
+   const lines = [];
+   while (escapedText.length > 75) {
+      lines.push(escapedText.substring(0, 75));
+      escapedText = ' ' + escapedText.substring(75);
+   }
+   lines.push(escapedText);
+
+   return lines.join('\n');
+}
+
+// Helper function to convert POINT format to "latitude, longitude"
+function formatLocation(point: string) {
+   const match = point.match(/POINT\s*\(([^ ]+) ([^ ]+)\)/);
+   if (match) {
+      const longitude = match[1];
+      const latitude = match[2];
+      return `${latitude}, ${longitude}`;
+   }
+   return ''; // Return an empty string if the format doesn't match
 }
