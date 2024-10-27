@@ -58,12 +58,12 @@ METHOD:PUBLISH
       icsContent += `BEGIN:VEVENT
 UID:${uid}
 SUMMARY:${escapeText(title)}
-DTSTART:${startDate}
+DTSTART;TZID=Europe/Helsinki:${startDate}
 `;
 
       // Include DTEND only if an end date is provided
       if (endDate) {
-         icsContent += `DTEND:${endDate}
+         icsContent += `DTEND;TZID=Europe/Helsinki:${endDate}
 `;
       }
 
