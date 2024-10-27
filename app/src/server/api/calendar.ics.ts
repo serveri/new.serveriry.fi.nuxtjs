@@ -61,8 +61,8 @@ END:VTIMEZONE
       // Select language-specific fields based on the locale
       const title = selectedLocale === 'fi' ? event.fi_otsikko : event.en_otsikko || 'Untitled Event';
       const description = selectedLocale === 'fi' ? event.fi_kuvaus : event.en_kuvaus || '';
-      const startDate = formatDateWithTimezone(event.alku_aika);
-      const endDate = event.loppu_aika ? formatDateWithTimezone(event.loppu_aika) : '';
+      const startDate = formatDateLocal(event.alku_aika);
+      const endDate = event.loppu_aika ? formatDateLocal(event.loppu_aika) : '';
       const location = formatLocation(event.sijainti || '');
       const imageUrl = event.image || '';
 
@@ -79,12 +79,12 @@ END:VTIMEZONE
       icsContent += `BEGIN:VEVENT
 UID:${uid}
 SUMMARY:${escapeText(title)}
-DTSTART:${startDate}
+DTSTART;TZID=Europe/Helsinki:${startDate}
 `;
 
       // Include DTEND only if an end date is provided
       if (endDate) {
-         icsContent += `DTEND:${endDate}
+         icsContent += `DTEND;TZID=Europe/Helsinki:${endDate}
 `;
       }
 
@@ -112,8 +112,8 @@ DTSTART:${startDate}
    return send(event, icsContent);
 });
 
-// Helper function to format date for ICS file in local time with offset
-function formatDateWithTimezone(dateString: string) {
+// Helper function to format date for ICS file in local time with TZID
+function formatDateLocal(dateString: string) {
    const date = new Date(dateString);
 
    const year = date.getFullYear().toString().padStart(4, '0');
@@ -124,16 +124,16 @@ function formatDateWithTimezone(dateString: string) {
    const minutes = date.getMinutes().toString().padStart(2, '0');
    const seconds = date.getSeconds().toString().padStart(2, '0');
 
-   return `${year}${month}${day}T${hours}${minutes}${seconds}-0300Z`;
+   return `${year}${month}${day}T${hours}${minutes}${seconds}`;
 }
 
 // Helper function to escape special characters in text fields and remove newlines
 function escapeText(text: string) {
    // Replace special characters with escaped versions and remove newlines
    let escapedText = text
-      .replace(/\\/g, '\\\\')  // Escape backslashes
-      .replace(/;/g, '\\;')    // Escape semicolons
-      .replace(/,/g, '\\,')    // Escape commas
+      .replace(/\\/g, '\\\\') // Escape backslashes
+      .replace(/;/g, '\\;') // Escape semicolons
+      .replace(/,/g, '\\,') // Escape commas
       .replace(/\r?\n/g, ''); // Replace newlines with a space
 
    // Split long lines into segments of 75 characters or less, with a space at the start of new lines
