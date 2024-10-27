@@ -123,8 +123,7 @@ function formatDate(dateString: string) {
 
 // Helper function to escape special characters in text fields
 function escapeText(text: string) {
-   return text
-      .replace(/\\n/g, '\\n')
+   return text.replace(/\\n/g, '\\n')
       .replace(/,/g, '\\,')
       .replace(/;/g, '\\;')
       .replace(/\\/g, '\\\\')
