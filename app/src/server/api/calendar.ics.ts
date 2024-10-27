@@ -124,7 +124,7 @@ function formatDateWithTimezone(dateString: string) {
    const minutes = date.getMinutes().toString().padStart(2, '0');
    const seconds = date.getSeconds().toString().padStart(2, '0');
 
-   return `${year}${month}${day}T${hours}${minutes}${seconds}-020000`;
+   return `${year}${month}${day}T${hours}${minutes}${seconds}-0300`;
 }
 
 // Helper function to escape special characters in text fields and remove newlines
