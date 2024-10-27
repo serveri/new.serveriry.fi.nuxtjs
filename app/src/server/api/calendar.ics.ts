@@ -61,8 +61,8 @@ END:VTIMEZONE
       // Select language-specific fields based on the locale
       const title = selectedLocale === 'fi' ? event.fi_otsikko : event.en_otsikko || 'Untitled Event';
       const description = selectedLocale === 'fi' ? event.fi_kuvaus : event.en_kuvaus || '';
-      const startDate = formatDateWithTimezone(event.alku_aika);
-      const endDate = event.loppu_aika ? formatDateWithTimezone(event.loppu_aika) : '';
+      const startDate = formatDateWithHelsinkiTimezone(event.alku_aika);
+      const endDate = event.loppu_aika ? formatDateWithHelsinkiTimezone(event.loppu_aika) : '';
       const location = formatLocation(event.sijainti || '');
       const imageUrl = event.image || '';
 
@@ -112,29 +112,37 @@ DTSTART:${startDate}
    return send(event, icsContent);
 });
 
-// Helper function to format date for ICS file in local time with offset
-function formatDateWithTimezone(dateString: string) {
+// Helper function to format date for ICS file in Helsinki's timezone
+function formatDateWithHelsinkiTimezone(dateString: string) {
    const date = new Date(dateString);
 
-   const year = date.getFullYear().toString().padStart(4, '0');
-   const month = (date.getMonth() + 1).toString().padStart(2, '0');
-   const day = date.getDate().toString().padStart(2, '0');
+   // Format the date in the 'Europe/Helsinki' timezone
+   const options: Intl.DateTimeFormatOptions = {
+      timeZone: 'Europe/Helsinki',
+      year: 'numeric',
+      month: '2-digit',
+      day: '2-digit',
+      hour: '2-digit',
+      minute: '2-digit',
+      second: '2-digit',
+      hour12: false,
+   };
+   const formatter = new Intl.DateTimeFormat('en-GB', options);
+   const parts = formatter.formatToParts(date);
 
-   const hours = date.getHours().toString().padStart(2, '0');
-   const minutes = date.getMinutes().toString().padStart(2, '0');
-   const seconds = date.getSeconds().toString().padStart(2, '0');
+   // Extract date and time components
+   const year = parts.find(part => part.type === 'year')?.value || '';
+   const month = parts.find(part => part.type === 'month')?.value || '';
+   const day = parts.find(part => part.type === 'day')?.value || '';
+   const hours = parts.find(part => part.type === 'hour')?.value || '';
+   const minutes = parts.find(part => part.type === 'minute')?.value || '';
+   const seconds = parts.find(part => part.type === 'second')?.value || '';
 
-   // Get the timezone offset in hours and minutes
-   const offset = -date.getTimezoneOffset();
-   const offsetHours = Math.floor(Math.abs(offset) / 60)
-      .toString()
-      .padStart(2, '0');
-   const offsetMinutes = (Math.abs(offset) % 60)
-      .toString()
-      .padStart(2, '0');
-   const offsetSign = offset >= 0 ? '+' : '-';
+   // Timezone offset for Europe/Helsinki (+0200 or +0300 depending on DST)
+   const now = new Date();
+   const helsinkiOffset = now.toLocaleTimeString('en-US', { timeZone: 'Europe/Helsinki', hour12: false }).slice(-6);
 
-   return `${year}${month}${day}T${hours}${minutes}${seconds}${offsetSign}${offsetHours}${offsetMinutes}`;
+   return `${year}${month}${day}T${hours}${minutes}${seconds}${helsinkiOffset}`;
 }
 
 // Helper function to escape special characters in text fields and remove newlines
