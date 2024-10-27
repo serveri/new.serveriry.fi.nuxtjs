@@ -92,7 +92,9 @@ DTSTART:${startDate}
 
 // Helper function to format date for ICS file in UTC
 function formatDateUTC(dateString: string) {
-   const date = new Date(dateString) - 2 * 60 * 60 * 1000; // Convert to UTC and adjust for timezone offset
+   const date = new Date(dateString);
+
+   date.setHours(date.getHours() - 2);
 
    const year = date.getUTCFullYear().toString().padStart(4, '0');
    const month = (date.getUTCMonth() + 1).toString().padStart(2, '0');
