@@ -72,7 +72,8 @@ END:VTIMEZONE
       // Preprocess the description
       let fullDescription = description;
       if (imageUrl) {
-         fullDescription += `\nImage: ${imageUrl}`; // Append the image URL to the description without newlines
+         fullDescription += `
+         Picture: ${imageUrl}`; // Append the image URL to the description without newlines
       }
       fullDescription = escapeText(fullDescription);
 
@@ -131,9 +132,9 @@ function formatDateUTC(dateString: string) {
 function escapeText(text: string) {
    // Replace special characters with escaped versions and remove newlines
    let escapedText = text
-      .replace(/\\/g, '\\\\')  // Escape backslashes
-      .replace(/;/g, '\\;')    // Escape semicolons
-      .replace(/,/g, '\\,')    // Escape commas
+      .replace(/\\/g, '\\\\') // Escape backslashes
+      .replace(/;/g, '\\;') // Escape semicolons
+      .replace(/,/g, '\\,') // Escape commas
       .replace(/\r?\n/g, '\\n'); // Escape newlines
 
    // Split long lines into segments of 75 characters or less, with a space at the start of new lines
