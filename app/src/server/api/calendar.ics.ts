@@ -35,6 +35,7 @@ VERSION:2.0
 PRODID:-//Serveri ry//Events//EN
 CALSCALE:GREGORIAN
 METHOD:PUBLISH
+X-WR-TIMEZONE:Europe/Helsinki
 `;
 
    // Add VTIMEZONE component for Europe/Helsinki
