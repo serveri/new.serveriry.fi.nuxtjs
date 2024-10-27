@@ -106,7 +106,7 @@ DTSTART;TZID=Europe/Helsinki:${startDate}
    return send(event, icsContent);
 });
 
-// Helper function to format date for ICS file (local time, no UTC conversion)
+// Helper function to format date for ICS file (local time without Z)
 function formatDate(dateString: string) {
    const date = new Date(dateString);
 
