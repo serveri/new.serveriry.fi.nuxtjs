@@ -57,7 +57,7 @@ END:DAYLIGHT
 END:VTIMEZONE
 `;
 
-   events.forEach((event: any) => {
+   events.forEach((event: any, index: number) => {
       // Select language-specific fields based on the locale
       const title = selectedLocale === 'fi' ? event.fi_otsikko : event.en_otsikko || 'Untitled Event';
       const description = selectedLocale === 'fi' ? event.fi_kuvaus : event.en_kuvaus || '';
@@ -66,7 +66,18 @@ END:VTIMEZONE
       const location = formatLocation(event.sijainti || '');
       const imageUrl = event.image || '';
 
+      // Generate a unique UID for each event
+      const uid = `event-${index}-${Date.now()}@serveriry.fi`;
+
+      // Preprocess the description
+      let fullDescription = description;
+      if (imageUrl) {
+         fullDescription += `\\n\\nImage: ${imageUrl}`;
+      }
+      fullDescription = escapeText(fullDescription);
+
       icsContent += `BEGIN:VEVENT
+UID:${uid}
 SUMMARY:${escapeText(title)}
 DTSTART:${startDate}
 `;
@@ -83,12 +94,8 @@ DTSTART:${startDate}
 `;
       }
 
-      // Include DESCRIPTION and add the image URL if it exists
-      let fullDescription = description;
-      if (imageUrl) {
-         fullDescription += `\\n\\nImage: ${imageUrl}`;
-      }
-      icsContent += `DESCRIPTION:${escapeText(fullDescription)}
+      // Include the processed DESCRIPTION
+      icsContent += `DESCRIPTION:${fullDescription}
 `;
 
       icsContent += `END:VEVENT
@@ -120,7 +127,7 @@ function formatDateUTC(dateString: string) {
    return `${year}${month}${day}T${hours}${minutes}${seconds}Z`;
 }
 
-// Helper function to escape special characters in text fields
+// Helper function to escape special characters in text fields and wrap lines
 function escapeText(text: string) {
    // Replace special characters with escaped versions
    let escapedText = text
