@@ -6,6 +6,13 @@
       <div class="relative w-screen">
          <h1 class="custom-page-title">{{ $t('h1_events') }}</h1>
 
+         <p class="max-w-3xl px-8 mx-auto">
+            {{
+               $i18n.locale === 'fi'
+                  ? 'Tapahtumakalenteriin voit lisätä tulevat tapahtumat omalle sähköiselle kalenterillesi tuomalla osoitteen https:///serveriry.fi/api/calendar.ics kalenteriisi.'
+                  : 'Add coming events to your own electronic calendar by importing https:///serveriry.fi/api/calendar.ics url to your calendar.'
+            }}</p>
+
          <h1 class="custom-page-title text-left font-bold">{{ $t('h1_events_coming') }}</h1>
 
          <div class="p-0 mx-8 md:mx-24 md:p-8">

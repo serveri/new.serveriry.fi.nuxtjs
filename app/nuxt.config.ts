@@ -24,12 +24,12 @@ export default {
      locales: [
         {
            code: 'fi',
-           iso: 'fi-FI',
+           language: 'fi-FI',
            file: 'fi.json',
         },
         {
            code: 'en',
-           iso: 'en-US',
+           language: 'en-US',
            file: 'en.json',
         },
      ],

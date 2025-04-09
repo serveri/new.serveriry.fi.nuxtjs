@@ -5,7 +5,11 @@
    <div>
       <vue-markdown class="rich-text py-2" :source="text[$i18n.locale + '_text']" />
 
-      <h2 class="board-header font-extrabold mt-8 mb-1 text-3xl text-center">Kokoonpano</h2>
+      <h2 class="board-header font-extrabold mt-8 mb-1 text-3xl text-center">{{
+            $i18n.locale === 'fi'
+               ? 'Kokoonpano'
+               : 'Composition of the board'
+         }}</h2>
 
       <div class="board-members py-8 custom-grid">
          <CommitteeCard

@@ -5,7 +5,13 @@
          <h1 class="custom-page-title">{{ $t('h1_history') }}</h1>
          <vue-markdown class="rich-text group-open:animate-fadeIn mb-8" :source="content[$i18n.locale + '_text']" />
 
-         <h2 class="custom-page-title">Vanhat sivut webarkistosta eri vuosilta</h2>
+         <h2 class="custom-page-title">
+            {{
+               $i18n.locale === 'fi'
+                  ? 'Vanhat sivut webarkistosta eri vuosilta'
+                  : 'Old pages from the web archive from different years'
+            }}
+         </h2>
          <div>
             <ul>
                <li v-for="year in Object.keys(iframes)" :key="year" class="py-4">
