@@ -5,7 +5,7 @@ export default defineNuxtPlugin(({ $router }) => {
    $router.options.scrollBehavior = (
       to: RouteLocationNormalized,
       from: RouteLocationNormalized,
-      savedPosition: void | { x: number; y: number } | { selector: string }
+      savedPosition: void | { x: number; y: number } | { selector: string },
    ) => {
       if (to.hash) {
          return {

@@ -57,8 +57,8 @@
    }
 
    // Separate main sponsors and regular sponsors
-   const mainSponsors = sponsors.filter(sponsor => sponsor.main_sponsor);
-   const regularSponsors = sponsors.filter(sponsor => !sponsor.main_sponsor);
+   const mainSponsors = sponsors.filter((sponsor) => sponsor.main_sponsor);
+   const regularSponsors = sponsors.filter((sponsor) => !sponsor.main_sponsor);
 </script>
 
 <style scoped>

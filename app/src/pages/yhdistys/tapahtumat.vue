@@ -11,7 +11,8 @@
                $i18n.locale === 'fi'
                   ? 'Tapahtumakalenteriin voit lisätä tulevat tapahtumat omalle sähköiselle kalenterillesi tuomalla osoitteen https:///serveriry.fi/api/calendar.ics kalenteriisi.'
                   : 'Add coming events to your own electronic calendar by importing https:///serveriry.fi/api/calendar.ics url to your calendar.'
-            }}</p>
+            }}
+         </p>
 
          <h1 class="custom-page-title text-left font-bold">{{ $t('h1_events_coming') }}</h1>
 

@@ -1,24 +1,24 @@
 <template>
-<!--   <Carousel-->
-<!--      class="w-full"-->
-<!--      :wrap-around="true"-->
-<!--      :autoplay="3000"-->
-<!--      :transition="1000"-->
-<!--      :settings="settings"-->
-<!--      :breakpoints="breakpoints"-->
-<!--   >-->
-<!--      <Slide v-for="sponsor in sponsors" :key="sponsor.name">-->
-<!--         <partner-card-->
-<!--            :url="sponsor.url"-->
-<!--            :img="sponsor.img"-->
-<!--            :img_dark="sponsor.img_dark"-->
-<!--            :alt="'Serverin toimintaa tukee ' + sponsor.name + ' ja tässä heidän logo'"-->
-<!--            :name="sponsor.name"-->
-<!--            :fi_text="sponsor.fi_text"-->
-<!--            :en_text="sponsor.en_text"-->
-<!--         />-->
-<!--      </Slide>-->
-<!--   </Carousel>-->
+   <!--   <Carousel-->
+   <!--      class="w-full"-->
+   <!--      :wrap-around="true"-->
+   <!--      :autoplay="3000"-->
+   <!--      :transition="1000"-->
+   <!--      :settings="settings"-->
+   <!--      :breakpoints="breakpoints"-->
+   <!--   >-->
+   <!--      <Slide v-for="sponsor in sponsors" :key="sponsor.name">-->
+   <!--         <partner-card-->
+   <!--            :url="sponsor.url"-->
+   <!--            :img="sponsor.img"-->
+   <!--            :img_dark="sponsor.img_dark"-->
+   <!--            :alt="'Serverin toimintaa tukee ' + sponsor.name + ' ja tässä heidän logo'"-->
+   <!--            :name="sponsor.name"-->
+   <!--            :fi_text="sponsor.fi_text"-->
+   <!--            :en_text="sponsor.en_text"-->
+   <!--         />-->
+   <!--      </Slide>-->
+   <!--   </Carousel>-->
 </template>
 
 <script setup lang="ts">
@@ -57,7 +57,6 @@
    //    1024: { itemsToShow: 4, snapAlign: 'center' },
    //    1440: { itemsToShow: 6, snapAlign: 'center' },
    // });
-
 </script>
 
 <style scoped>

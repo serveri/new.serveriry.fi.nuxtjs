@@ -19,7 +19,7 @@
    import { useI18n, useSwitchLocalePath } from '#i18n';
    const { t, locales, locale } = useI18n();
 
-   const switchLocalePath = useSwitchLocalePath()
+   const switchLocalePath = useSwitchLocalePath();
 
    function clicked(code: string) {
       const en = document.getElementById(`locale-en`);
