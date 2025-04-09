@@ -9,9 +9,12 @@
       "postinstall": "nuxt prepare",
       "lint:script": "eslint --ext .ts,vue --ignore-path .gitignore .",
       "lint:style": "stylelint src/**/*.{css,scss,vue}",
+      "lint:reset": "eslint",
       "format": "prettier --write src/**/*.{tsx,jsx,ts,js,vue}"
    },
    "dependencies": {
+      "@eslint/eslintrc": "^3.3.1",
+      "@eslint/js": "^9.24.0",
       "@fortawesome/fontawesome-svg-core": "^6.7.2",
       "@fortawesome/free-brands-svg-icons": "^6.7.2",
       "@fortawesome/free-regular-svg-icons": "^6.7.2",
@@ -22,6 +25,7 @@
       "@nuxtjs/i18n": "^9.5.3",
       "@types/node": "^22.14.0",
       "@vueuse/core": "^13.1.0",
+      "globals": "^16.0.0",
       "nuxt": "^3.16.2",
       "nuxt-delay-hydration": "^1.3.8",
       "tailwindcss": "^3.4.17",

@@ -1,12 +1,6 @@
 <template>
    <div class="flex flex-col">
-      <a
-         :href="partner.url"
-         target="_blank"
-         tabindex="-1"
-         @mouseover="hover = true"
-         @mouseleave="hover = false"
-      >
+      <a :href="partner.url" target="_blank" tabindex="-1" @mouseover="hover = true" @mouseleave="hover = false">
          <img
             :src="computedImgSrc"
             :alt="partner.name"
@@ -32,8 +26,8 @@
       img: string;
       img_dark?: string;
       name: string;
-      fi_text: string;
-      en_text: string;
+      fi_text?: string | null;
+      en_text?: string | null;
    }>();
 
    // Hover state

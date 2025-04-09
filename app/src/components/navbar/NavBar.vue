@@ -34,20 +34,17 @@
                <!-- NavBar Links (defined in script) -->
                <div class="hidden md:block w-full">
                   <div class="flex space-x-0 xl:space-x-4 2xl:space-x-8 justify-end items-center h-full">
-                     <!--
-                     -->
                      <div v-for="item in navigation" :key="item.name">
                         <!-- IF -->
                         <div v-if="item.subMenu">
                            <DropDownMenu :menu="item" />
                         </div>
-
                         <!-- ELSE -->
                         <div v-else class="relative">
                            <nuxt-link :to="localePath(item.href)" tabindex="-1">
                               <button
                                  :class="[
-                                    $route.path === localePath(item.href)
+                                    route.path === localePath(item.href)
                                        ? 'text-custom-primary'
                                        : 'text-gray-700 dark:text-gray-300',
                                     'nav-link',
@@ -59,7 +56,7 @@
                            </nuxt-link>
                         </div>
                      </div>
-                     <lang-switcher />
+                     <LangSwitcher />
                      <DarkMode id="nav" />
                   </div>
                </div>
@@ -87,7 +84,7 @@
                      :to="localePath(item.href)"
                      tabindex="0"
                      :class="[
-                        $route.path === localePath(item.href)
+                        route.path === localePath(item.href)
                            ? 'text-custom-primary'
                            : 'text-gray-700 dark:text-gray-300 hover:bg-gray-700 hover:text-white',
                         'items-center justify-start block px-3 py-2 rounded-md text-base font-bold uppercase whitespace-nowrap cursor-pointer select-none',
@@ -99,7 +96,7 @@
                </div>
             </div>
             <!-- Languages -->
-            <lang-switcher />
+            <LangSwitcher />
             <DarkMode id="mobile" />
          </div>
       </div>
@@ -107,10 +104,20 @@
 </template>
 
 <script setup>
+   import { ref } from 'vue';
+   import { useRoute } from 'vue-router';
+   import { useLocalePath, useI18n } from '#i18n';
    import { Disclosure } from '@headlessui/vue';
    import { Bars3Icon, XMarkIcon } from '@heroicons/vue/24/outline';
    import ServerLogo from '@/components/navbar/ServerLogo.vue';
    import LangSwitcher from '@/components/navbar/LangSwitcher.vue';
+   import DropDownMenu from '@/components/navbar/dropdown/DropDownMenu.vue';
+   import DropDownMobile from '@/components/navbar/dropdown/DropDownMobile.vue';
+   import DarkMode from '@/components/navbar/DarkModeToggle.vue';
+
+   const localePath = useLocalePath();
+   const { t } = useI18n();
+   const route = useRoute();
 
    const navigation = [
       {
@@ -153,31 +160,12 @@
          ],
       },
    ];
-</script>
 
-<script>
-   import DropDownMenu from '@/components/navbar/dropdown/DropDownMenu.vue';
-   import DropDownMobile from '@/components/navbar/dropdown/DropDownMobile.vue';
-   import DarkMode from '@/components/navbar/DarkModeToggle.vue';
+   const isOpen = ref(false);
 
-   export default {
-      components: {
-         DropDownMenu,
-         DropDownMobile,
-         DarkMode,
-      },
-      data() {
-         return {
-            menu: 'Error occurred',
-            isOpen: false,
-         };
-      },
-      methods: {
-         toggleMenu() {
-            this.isOpen = !this.isOpen;
-         },
-      },
-   };
+   function toggleMenu() {
+      isOpen.value = !isOpen.value;
+   }
 </script>
 
 <style>

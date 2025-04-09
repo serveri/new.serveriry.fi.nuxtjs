@@ -72,8 +72,11 @@
 </template>
 
 <script setup>
+   import { useLocalePath } from '#i18n';
    import ServerLogoRound from '@/components/footer/ServerLogoRound.vue';
    import FooterSocialMedia from '@/components/footer/FooterSocialMedia.vue';
+
+   const localePath = useLocalePath();
 
    const links = [
       { text: 'rules-footer', href: '/yhdistys/saannot' },
@@ -83,6 +86,7 @@
       { text: 'tkt', href: 'https://www.uef.fi/fi/koulutus/tietojenkasittelytiede' },
       { text: 'skripti', href: 'https://www.skripti.org/' },
    ];
+
    const socialMedia = [
       {
          name: 'Instagram',
@@ -115,17 +119,8 @@
          icon: 'fa fa-m',
       },
    ];
-</script>
 
-<script>
-   export default {
-      data() {
-         return {
-            date: new Date().getFullYear(),
-            name: 'CustomFooter',
-         };
-      },
-   };
+   const date = new Date().getFullYear();
 </script>
 
 <style scoped></style>

@@ -1,38 +1,29 @@
 <template>
    <div class="p-4">
-      <div
-         v-for="(locale, index) in $i18n.locales"
-         :id="'locale-' + locale.code"
-         :key="index"
-         @click="clicked(locale.code)"
-      >
-         <!-- Fix this weird bug: parent element must be hidden too: causes padding in nav flex-->
-         <nuxt-link
-            v-if="$i18n.locale === locale.code"
-            :to="switchLocalePath(locale.code)"
-            :title="$t('change-language')"
-         >
+      <div v-for="(loc, index) in locales" :id="'locale-' + loc.code" :key="index" @click="clicked(loc.code)">
+         <nuxt-link v-if="locale === loc.code" :to="switchLocalePath(loc.code)" :title="t('change-language')">
             <img
-               :src="'/images/' + (locale.code === 'fi' ? 'gb' : 'fi') + '.svg'"
-               :alt="locale.code"
+               :src="'/images/' + (loc.code === 'fi' ? 'en' : 'fi') + '.svg'"
+               :alt="loc.code"
                class="h-10 md:h-6 hidden"
             />
          </nuxt-link>
-         <nuxt-link v-else :to="switchLocalePath(locale.code)" :title="$t('change-language')">
-            <img
-               :src="'/images/' + (locale.code === 'fi' ? 'gb' : 'fi') + '.svg'"
-               :alt="locale.code"
-               class="h-10 md:h-6"
-            />
+         <nuxt-link v-else :to="switchLocalePath(loc.code)" :title="t('change-language')">
+            <img :src="'/images/' + (loc.code === 'fi' ? 'en' : 'fi') + '.svg'" :alt="loc.code" class="h-10 md:h-6" />
          </nuxt-link>
       </div>
    </div>
 </template>
 
 <script setup lang="ts">
+   import { useI18n, useSwitchLocalePath } from '#i18n';
+   const { t, locales, locale } = useI18n();
+
+   const switchLocalePath = useSwitchLocalePath()
+
    function clicked(code: string) {
-      const en: HTMLElement | null = document.getElementById(`locale-en`);
-      const fi: HTMLElement | null = document.getElementById(`locale-fi`);
+      const en = document.getElementById(`locale-en`);
+      const fi = document.getElementById(`locale-fi`);
       if (code === 'en') {
          en?.classList.add('hidden');
          fi?.classList.remove('hidden');

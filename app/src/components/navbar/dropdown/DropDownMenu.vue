@@ -5,14 +5,14 @@
          <!-- I am sorry for this purkka koodi -->
          <div
             :class="[
-               $route.path.split('/').slice(-2)[0] === localePath(menu.href).split('/').slice(-1)[0]
+               route.path.split('/').slice(-2)[0] === localePath(props.menu.href).split('/').slice(-1)[0]
                   ? 'text-custom-primary dark:text-custom-secondary-dark'
                   : 'text-gray-700 dark:text-gray-300',
                'nav-link',
             ]"
-            :aria-current="menu.current ? 'page' : undefined"
+            :aria-current="props.menu.current ? 'page' : undefined"
          >
-            {{ $t(menu.name) }}
+            {{ t(props.menu.name) }}
             <DropDownArrow />
          </div>
       </MenuButton>
@@ -27,38 +27,44 @@
          <MenuItems
             class="absolute px-1 py-1 md:px-6 md:py-2 md:pb-4 right-0 z-10 mt-2 min-w-max origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none whitespace-nowrap dark:bg-[#282828]"
          >
-            <MenuItem v-for="subMenu in menu.subMenu" :key="subMenu.name" v-slot="{ close }">
+            <MenuItem v-for="subMenu in props.menu.subMenu" :key="subMenu.name" v-slot="{ close }">
                <nuxt-link
                   :to="localePath(subMenu.href)"
                   :class="[
-                     $route.path === localePath(subMenu.href)
+                     route.path === localePath(subMenu.href)
                         ? 'text-custom-primary dark:text-custom-secondary-dark'
                         : 'text-gray-700 dark:text-gray-200',
                      'nav-link-parent',
                   ]"
-                  ><span class="nav-dropdown-link" tabindex="1" @click="close">
-                     {{ $t(subMenu.name) }}
-                  </span></nuxt-link
                >
+                  <span class="nav-dropdown-link" tabindex="1" @click="close">
+                     {{ t(subMenu.name) }}
+                  </span>
+               </nuxt-link>
             </MenuItem>
          </MenuItems>
       </transition>
    </Menu>
 </template>
 
-<script setup>
+<script setup lang="ts">
    import { Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/vue';
+   import { useI18n, useLocalePath } from '#i18n';
+   import { useRoute } from 'vue-router';
    import DropDownArrow from '@/components/navbar/dropdown/DropDownArrow.vue';
-</script>
 
-<script>
-   export default {
-      name: 'DropDownMenu',
-      props: {
-         // eslint-disable-next-line vue/require-default-prop
-         menu: Object,
-      },
-   };
+   const { t } = useI18n();
+   const localePath = useLocalePath();
+   const route = useRoute();
+
+   const props = defineProps<{
+      menu: {
+         href: string;
+         current?: boolean;
+         name: string;
+         subMenu: Array<{ name: string; href: string }>;
+      };
+   }>();
 </script>
 
 <style>
