@@ -12,7 +12,7 @@
             ]"
             :aria-current="menu.current ? 'page' : undefined"
          >
-            {{ $t(menu.name) }}
+            {{ t(menu.name) }}
             <DropDownArrow />
          </nuxt-link>
       </MenuButton>
@@ -36,7 +36,7 @@
                         'block px-4 py-1 text-lg text-left text-black hover:bg-zinc-600 hover:text-white even:bg-zinc-200 odd:bg-zinc-50 dark:text-gray-200 dark:hover:bg-gray-600 dark:hover:text-white dark:even:bg-zinc-800 dark:odd:bg-zinc-700 w-full',
                      ]"
                      ><span class="nav-dropdown-link" @click="toggleMenu">
-                        {{ $t(subMenu.name) }}
+                        {{ t(subMenu.name) }}
                      </span></nuxt-link
                   >
                </MenuItem>
@@ -49,6 +49,9 @@
 <script setup>
    import { Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/vue';
    import DropDownArrow from '@/components/navbar/dropdown/DropDownArrow.vue';
+   import { useI18n, useLocalePath } from '#i18n';
+   const { t } = useI18n();
+   const localePath = useLocalePath();
 </script>
 
 <script>
