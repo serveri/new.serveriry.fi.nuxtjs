@@ -1,19 +1,19 @@
 <template>
    <Head>
-      <Title>{{ news[$i18n.locale + '_title'] }} - Serveri ry</Title>
-      <Meta name="og:title" :content="news[$i18n.locale + '_title'] + ' - Serveri ry'" />
+      <Title>{{ news[locale + '_title'] }} - Serveri ry</Title>
+      <Meta name="og:title" :content="news[locale + '_title'] + ' - Serveri ry'" />
       <Meta
          name="description"
          :content="
-            news[$i18n.locale + '_text'].replaceAll('#', '').match(new RegExp(`^.{1,150}\\b`))?.[0] ||
-            news[$i18n.locale + '_text'].slice(0, 150).replaceAll('#', '')
+            news[locale + '_text'].replaceAll('#', '').match(new RegExp(`^.{1,150}\\b`))?.[0] ||
+            news[locale + '_text'].slice(0, 150).replaceAll('#', '')
          "
       />
       <Meta
          name="og:description"
          :content="
-            news[$i18n.locale + '_text'].replaceAll('#', '').match(new RegExp(`^.{1,150}\\b`))?.[0] ||
-            news[$i18n.locale + '_text'].slice(0, 150).replaceAll('#', '')
+            news[locale + '_text'].replaceAll('#', '').match(new RegExp(`^.{1,150}\\b`))?.[0] ||
+            news[locale + '_text'].slice(0, 150).replaceAll('#', '')
          "
       />
       <Meta
@@ -29,7 +29,7 @@
       <!--  news article with image header and content   -->
       <div class="NewsCard">
          <article class="py-8">
-            <h2 class="card-header py-6 text-2xl font-extrabold">{{ news[$i18n.locale + '_title'] }}</h2>
+            <h2 class="card-header py-6 text-2xl font-extrabold">{{ news[locale + '_title'] }}</h2>
 
             <img
                class="object-cover aspect-video w-full p-0 m-0"
@@ -38,10 +38,10 @@
             />
 
             <p class="news-date font-normal uppercase py-2 text-xs">
-               {{ $t('news_released') }}
+               {{ t('news_released') }}
                <span>
                   {{
-                     released_date.toLocaleDateString($i18n.locale, {
+                     released_date.toLocaleDateString(locale, {
                         weekday: 'long',
                         year: 'numeric',
                         month: 'long',
@@ -53,7 +53,7 @@
                </span>
             </p>
 
-            <vue-markdown class="rich-text py-2" :source="news[$i18n.locale + '_text']" />
+            <vue-markdown class="rich-text py-2" :source="news[locale + '_text']" />
          </article>
       </div>
    </div>
@@ -62,7 +62,10 @@
 <script setup lang="ts">
    import VueMarkdown from 'vue-markdown-render';
    import type { Data } from '@/types';
+   import { useI18n, useLocalePath } from '#i18n';
 
+   const { t, locale } = useI18n();
+   const localePath = useLocalePath();
    const config = useRuntimeConfig();
 
    // This hard coded data will be replaced with data from directus

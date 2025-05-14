@@ -1,7 +1,7 @@
 <template>
    <div class="flex flex-col justify-center items-center">
       <Head>
-         <Title>{{ $t('title_front-page') }} - Serveri ry</Title>
+         <Title>{{ t('title_front-page') }} - Serveri ry</Title>
       </Head>
       <section>
          <HeroSection class="w-screen" :content="content" />
@@ -55,7 +55,7 @@
       </section>
 
       <section>
-         <h2 class="custom-page-title my-7">Löydät Serverin myös täältä!</h2>
+         <h2 class="custom-page-title my-7">{{ locale === 'en' ? 'You can also find Serveri here!' : 'Löydät Serverin myös täältä!' }}</h2>
 
          <div class="grid grid-cols-2 gap-8 mb-8 sm:grid-cols-3 md:grid-cols-4 md:gap-8 lg:grid-cols-6 lg:gap-7">
             <SocialmediaIcon
@@ -86,6 +86,9 @@
    import type { Data } from '@/types';
    import { toRaw } from 'vue';
    import PartnerPageSection from '@/components/partners/PartnerPageSection.vue';
+   import { useI18n, useLocalePath } from '#i18n';
+   const { t, locale } = useI18n();
+   const localePath = useLocalePath();
    const config = useRuntimeConfig();
 
    interface Content {

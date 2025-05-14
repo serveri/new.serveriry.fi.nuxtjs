@@ -6,12 +6,12 @@
          </div>
 
          <div>
-            <h2 class="card-header pt-3 text-2xl font-extrabold">{{ content[$i18n.locale + '_title'] }}</h2>
+            <h2 class="card-header pt-3 text-2xl font-extrabold">{{ content[locale + '_title'] }}</h2>
 
             <p class="news-date font-normal uppercase mt-1 py-1 text-xs">
                {{ $t('news_released') }}
                <span>{{
-                  releaseDate.toLocaleDateString($i18n.locale, {
+                  releaseDate.toLocaleDateString(locale, {
                      weekday: 'long',
                      year: 'numeric',
                      month: 'long',
@@ -20,10 +20,10 @@
                }}</span>
             </p>
 
-            <p class="mt-1 mb-3 line-clamp-6">{{ content[$i18n.locale + '_text'].replaceAll('#', '') }}</p>
+            <p class="mt-1 mb-3 line-clamp-6">{{ content[locale + '_text'].replaceAll('#', '') }}</p>
 
             <a :href="'/yhdistys/uutinen/' + content.url" class="pt-3">
-               <button class="btn-custom-primary" type="button">{{ 'Lue lisää' }}</button>
+               <button class="btn-custom-primary" type="button">{{ locale === 'en' ? 'Read more' : 'Lue lisää' }}</button>
             </a>
          </div>
       </div>
@@ -31,6 +31,8 @@
 </template>
 
 <script setup lang="ts">
+  import { useI18n } from '#i18n';
+   const { locale } = useI18n();
    const content = defineProps({
       url: {
          type: String,

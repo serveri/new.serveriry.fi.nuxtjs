@@ -27,10 +27,10 @@
       class="flex gap-5 items-center justify-center sm:justify-start sm:h-16 fixed bottom-0 w-full h-24 p-4 bg-white"
    >
       <button class="p-2 text-white bg-custom-primary hover:bg-custom-secondary" @click="deleteCookies">
-         Poista keksit 😐
+         {{ locale === 'en' ? 'Remove Cookies 😐' : 'Poista keksit 😐' }}
       </button>
       <button class="p-2 text-white bg-custom-primary hover:bg-custom-secondary" @click="hideDiv">
-         Keksit kelpaavat 😏
+         {{ locale === 'en' ? 'Cookies are fine for me 😏' : 'Keksit kelpaavat 😏' }}
       </button>
    </div>
 
@@ -124,6 +124,8 @@
 </script>
 
 <script setup lang="ts">
+   import { useI18n } from '#i18n';
+   const { locale } = useI18n();
    import NavBar from '@/components/navbar/NavBar.vue';
    import CustomFooter from '@/components/footer/CustomFooter.vue';
    import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';

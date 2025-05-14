@@ -1,19 +1,19 @@
 <template>
    <Head>
-      <Title>{{ events[$i18n.locale + '_otsikko'] }} - Serveri ry</Title>
-      <Meta name="og:title" :content="events[$i18n.locale + '_otsikko'] + ' - Serveri ry'" />
+      <Title>{{ events[locale + '_otsikko'] }} - Serveri ry</Title>
+      <Meta name="og:title" :content="events[locale + '_otsikko'] + ' - Serveri ry'" />
       <Meta
          name="description"
          :content="
-            events[$i18n.locale + '_kuvaus'].match(new RegExp(`^.{1,150}\\b`))?.[0] ||
-            events[$i18n.locale + '_kuvaus'].slice(0, 150)
+            events[locale + '_kuvaus'].match(new RegExp(`^.{1,150}\\b`))?.[0] ||
+            events[locale + '_kuvaus'].slice(0, 150)
          "
       />
       <Meta
          name="og:description"
          :content="
-            events[$i18n.locale + '_kuvaus'].match(new RegExp(`^.{1,150}\\b`))?.[0] ||
-            events[$i18n.locale + '_kuvaus'].slice(0, 150)
+            events[locale + '_kuvaus'].match(new RegExp(`^.{1,150}\\b`))?.[0] ||
+            events[locale + '_kuvaus'].slice(0, 150)
          "
       />
       <Meta
@@ -30,7 +30,7 @@
       <div class="NewsCard">
          <article class="py-8">
             <h2 class="card-header py-6 text-3xl sm:text-6xl font-bold text-center">
-               {{ events[$i18n.locale + '_otsikko'] }}
+               {{ events[locale + '_otsikko'] }}
             </h2>
 
             <img
@@ -43,10 +43,10 @@
 
             <div class="sm:inline-flex items-center py-2 gap-8">
                <p class="events-date font-normal uppercase text-xs">
-                  {{ $t('news_released') }}
+                  {{ t('news_released') }}
                   <span>
                      {{
-                        released_date.toLocaleDateString($i18n.locale, {
+                        released_date.toLocaleDateString(locale, {
                            weekday: 'long',
                            year: 'numeric',
                            month: 'long',
@@ -115,13 +115,13 @@
                </div>
             </div>
 
-            <vue-markdown class="rich-text py-2" :source="events[$i18n.locale + '_kuvaus']" />
+            <vue-markdown class="rich-text py-2" :source="events[locale + '_kuvaus']" />
 
             <p v-if="alku_aika" class="events-date font-normal uppercase py-2 text-xs">
-               {{ $t('event_start') }}
+               {{ t('event_start') }}
                <span>
                   {{
-                     alku_aika.toLocaleDateString($i18n.locale, {
+                     alku_aika.toLocaleDateString(locale, {
                         weekday: 'long',
                         year: 'numeric',
                         month: 'long',
@@ -133,10 +133,10 @@
                </span>
             </p>
             <p v-if="loppu_aika" class="events-date font-normal uppercase py-2 text-xs">
-               {{ $t('event_end') }}
+               {{ t('event_end') }}
                <span>
                   {{
-                     loppu_aika.toLocaleDateString($i18n.locale, {
+                     loppu_aika.toLocaleDateString(locale, {
                         weekday: 'long',
                         year: 'numeric',
                         month: 'long',
@@ -228,6 +228,9 @@
 <script setup lang="ts">
    import VueMarkdown from 'vue-markdown-render';
    import type { Data } from '@/types';
+   import { useI18n, useLocalePath } from '#i18n';
+   const { t, locale } = useI18n();
+   const localePath = useLocalePath();
    const config = useRuntimeConfig();
 
    // This hard coded data will be replaced with data from directus
