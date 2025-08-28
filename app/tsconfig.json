@@ -5,7 +5,7 @@
          "@/*": ["./src/*"]
       },
       "skipLibCheck": true,
-      "types": ["@nuxt/types", "@nuxtjs/i18n"],
+      "types": ["@nuxt/types", "@nuxtjs/i18n", "node"],
       "resolve": {
          "extensions": [".ts", ".vue"]
       }

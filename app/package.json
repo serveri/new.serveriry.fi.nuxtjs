@@ -23,7 +23,6 @@
       "@headlessui/vue": "^1.7.23",
       "@heroicons/vue": "^2.2.0",
       "@nuxtjs/i18n": "^9.5.3",
-      "@types/node": "^22.14.0",
       "@vueuse/core": "^13.1.0",
       "globals": "^16.0.0",
       "nuxt": "^3.16.2",
@@ -35,6 +34,7 @@
       "vue3-carousel": "^0.15.0"
    },
    "devDependencies": {
+      "@types/node": "^24.3.0",
       "@typescript-eslint/eslint-plugin": "^8.29.1",
       "@typescript-eslint/parser": "^8.29.1",
       "@vue/eslint-config-prettier": "^10.2.0",
