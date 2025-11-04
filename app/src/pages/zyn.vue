@@ -3,12 +3,12 @@
       <h1 class="header-text pt-4 text-white px-4">Serveri ❤️ ZynZyn</h1>
       <h2 class="text-center mb-4 text-white px-4">
          The video below is iframe to
-         <a class="underline text-white" href="https://web.archive.org/web/20241121032847/https://zyn.pilipali.io/"
+         <a class="underline text-white" href="https://zyn.pilipali.io/"
             >web.archive.org</a
          >. It might take a little time to start working, if no one has used it for a while.
       </h2>
       <iframe
-         src="https://web.archive.org/web/20241121032847/https://zyn.pilipali.io/"
+         src="https://zyn.pilipali.io/"
          frameborder="0"
          allow="autoplay"
          allowfullscreen
