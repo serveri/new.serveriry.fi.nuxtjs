@@ -4,7 +4,7 @@
       <h2 class="text-center mb-4 text-white px-4">
          The video below is iframe to
          <a class="underline text-white" href="https://zyn.pilipali.io/"
-            >web.archive.org</a
+            >zyn.pilipali.io</a
          >. It might take a little time to start working, if no one has used it for a while.
       </h2>
       <iframe
