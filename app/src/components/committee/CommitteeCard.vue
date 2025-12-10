@@ -70,12 +70,12 @@
    const props = defineProps({
       img: {
          type: String,
-         default: '/images/placeholder-square.jpg',
+         default: 'https://api.serveriry.fi/assets/3e47b669-5e97-4a9d-b48e-f3161e669551',
          required: true,
       },
       hover_img: {
          type: String,
-         default: '/images/placeholder-square.jpg',
+         default: 'https://api.serveriry.fi/assets/3e47b669-5e97-4a9d-b48e-f3161e669551',
          required: false,
       },
       email: {
@@ -141,7 +141,7 @@
 </script>
 
 <style scoped>
-   @import 'tailwindcss';
+@reference "tailwindcss";
    .card-container {
       -webkit-box-shadow: 0 0 26px -5px rgba(0, 0, 0, 0.27);
       -moz-box-shadow: 0 0 26px -5px rgba(0, 0, 0, 0.27);

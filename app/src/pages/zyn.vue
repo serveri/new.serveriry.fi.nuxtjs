@@ -43,7 +43,7 @@
 </script>
 
 <style scoped>
-   @import 'tailwindcss';
+@reference "tailwindcss";
    .iframe-container {
       width: 100%;
       height: 100vh;

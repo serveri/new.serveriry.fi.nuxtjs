@@ -43,7 +43,7 @@
 </script>
 
 <style scoped>
-   @import 'tailwindcss';
+@reference "tailwindcss";
    img {
       height: 12rem;
       width: 12rem;

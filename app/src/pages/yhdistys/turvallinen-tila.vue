@@ -32,7 +32,7 @@
 </script>
 
 <style>
-   @import 'tailwindcss';
+@reference "tailwindcss";
    p {
       @apply tracking-wide;
    }

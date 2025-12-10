@@ -1,7 +1,6 @@
 import { H3Event, send, defineEventHandler, getQuery, createError } from 'h3';
-import { useRuntimeConfig } from '#imports';
 
-export default defineEventHandler(async (event: H3Event) => {
+defineEventHandler(async (event: H3Event) => {
    const config = useRuntimeConfig();
    const query = getQuery(event);
    const selectedLocale = query.lang === 'en' ? 'en' : 'fi'; // Default to 'fi' if no language specified

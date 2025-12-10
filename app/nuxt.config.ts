@@ -39,5 +39,25 @@ export default {
       },
    },
 
+   // Reduce build-time noise by relaxing Vite's chunk size warning threshold
+   vite: {
+      build: {
+         chunkSizeWarningLimit: 2048, // 2 MB
+         rollupOptions: {
+            output: {
+               manualChunks: {
+                  'vue-vendor': ['vue', 'vue-router', '@vueuse/core'],
+                  fontawesome: [
+                     '@fortawesome/vue-fontawesome',
+                     '@fortawesome/free-solid-svg-icons',
+                     '@fortawesome/free-regular-svg-icons',
+                     '@fortawesome/free-brands-svg-icons',
+                  ],
+               },
+            },
+         },
+      },
+   },
+
    compatibilityDate: '2024-08-19',
 };

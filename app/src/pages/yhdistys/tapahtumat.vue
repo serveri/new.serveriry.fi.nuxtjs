@@ -94,7 +94,7 @@
 </script>
 
 <style scoped>
-   @import 'tailwindcss';
+@reference "tailwindcss";
    .custom-grid {
       @apply grid grid-cols-1 gap-4;
    }

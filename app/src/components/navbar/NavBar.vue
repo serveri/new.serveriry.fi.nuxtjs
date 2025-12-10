@@ -169,7 +169,7 @@
 </script>
 
 <style>
-   @import 'tailwindcss';
+   @reference "tailwindcss";
    @config '../../../tailwind.config.js';
    .nav-link {
       @apply px-1 py-1 md:px-3 md:py-2 text-sm lg:text-lg font-bold uppercase whitespace-nowrap tracking-wide;

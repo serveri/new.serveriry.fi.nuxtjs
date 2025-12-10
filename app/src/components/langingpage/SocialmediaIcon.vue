@@ -61,7 +61,7 @@
 </script>
 
 <style scoped>
-   @import 'tailwindcss';
+@reference "tailwindcss";
    .some-container {
       min-height: 180px;
       /*box-shadow: 0 0 26px -5px rgba(0, 0, 0, 0.27);*/

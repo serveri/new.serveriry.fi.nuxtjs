@@ -60,7 +60,7 @@
 </script>
 
 <style scoped>
-   @import 'tailwindcss';
+@reference "tailwindcss";
    .carousel__slide {
       @apply px-3 py-8;
       height: 200px;

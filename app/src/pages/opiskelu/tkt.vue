@@ -377,7 +377,7 @@
 </script>
 
 <style scoped>
-   @import 'tailwindcss';
+@reference "tailwindcss";
    th {
       background-color: rgb(0 119 138 / var(--tw-bg-opacity));
       @apply text-white dark:text-white;

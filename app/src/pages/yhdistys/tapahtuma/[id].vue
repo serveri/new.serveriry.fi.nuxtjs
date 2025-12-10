@@ -188,7 +188,7 @@
                            class="w-full sm:w-auto text-black dark:text-white bg-transparent hover:bg-linear-to-r from-[#5a31af] via-purple-500 to-pink-500 outline-solid outline-1 outline-[#5a31af] hover:outline-0 focus:ring-4 rounded-md focus:outline-hidden focus:ring-purple-800 font-bold px-5 py-2.5 text-center inline-flex items-center mr-2 mb-2 justify-center"
                         >
                            <img
-                              src="/images/kideapp.webp"
+                              :src="kideappImg"
                               alt="KideApp logo"
                               loading="lazy"
                               class="h-10 pr-4"
@@ -208,7 +208,7 @@
                            class="w-full sm:w-auto text-black dark:text-white bg-transparent hover:bg-linear-to-r from-[#5a31af] via-purple-500 to-pink-500 outline-solid outline-1 outline-[#5a31af] hover:outline-0 focus:ring-4 rounded-md focus:outline-hidden focus:ring-purple-800 font-bold px-5 py-2.5 text-center inline-flex items-center mr-2 mb-2 justify-center"
                         >
                            <img
-                              src="/images/maps.png"
+                              :src="mapsImg"
                               alt="KideApp logo"
                               loading="lazy"
                               class="h-10 pr-4 dark:invert"
@@ -232,6 +232,8 @@
    const { t, locale } = useI18n();
    const localePath = useLocalePath();
    const config = useRuntimeConfig();
+   const kideappImg = 'https://api.serveriry.fi/assets/879a7a96-2e84-45be-b828-5d0fcd605f69';
+   const mapsImg = 'https://api.serveriry.fi/assets/0d3c7ebd-048f-4dd3-9811-1f7fa5993016';
 
    // This hard coded data will be replaced with data from directus
    let events;

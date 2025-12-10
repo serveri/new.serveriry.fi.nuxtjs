@@ -62,7 +62,7 @@
 </script>
 
 <style scoped>
-   @import 'tailwindcss';
+@reference "tailwindcss";
    .partners {
       padding-bottom: 3rem;
    }
