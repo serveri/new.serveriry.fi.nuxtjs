@@ -38,31 +38,47 @@
 
 <script setup lang="ts">
    import PartnerCard from '@/components/partners/PartnerCard.vue';
-   import type { Data } from '@/types';
+   // Define a local Partner type to correctly type fetched data
+   interface Partner {
+      name: string;
+      url: string;
+      img: string;
+      img_dark?: string; // optional string, no null
+      main_sponsor: boolean;
+      content_fi?: string | null;
+      content_en?: string | null;
+   }
+
    const config = useRuntimeConfig();
 
-   let sponsors;
+   // Strongly type the sponsors list
+   let sponsors: Partner[]; // remove redundant initializer
    try {
-      const { data } = (await useFetch(`${config.public['API_URL']}items/partners`)) as { data: Data };
-      sponsors = data.value.data;
+      const { data } = await useFetch<{ data: Partner[] }>(
+         `${config.public['API_URL']}items/partners`
+      );
+      const payload = data.value?.data as unknown;
+      sponsors = Array.isArray(payload) ? (payload as Partner[]) : [];
    } catch (e) {
       sponsors = [
          {
             name: 'Yrityksen logo puuttuu',
             url: 'https://serveriry.fi',
             img: 'https://api.serveriry.fi/assets/9db2e4a2-e9d7-4dab-8156-8cc0f482775d',
+            // set undefined instead of null to match type
+            img_dark: undefined,
             main_sponsor: false,
          },
       ];
    }
 
-   // Separate main sponsors and regular sponsors
-   const mainSponsors = sponsors.filter((sponsor) => sponsor.main_sponsor);
-   const regularSponsors = sponsors.filter((sponsor) => !sponsor.main_sponsor);
+   // Separate main sponsors and regular sponsors with typed callbacks
+   const mainSponsors: Partner[] = sponsors.filter((sponsor: Partner) => sponsor.main_sponsor);
+   const regularSponsors: Partner[] = sponsors.filter((sponsor: Partner) => !sponsor.main_sponsor);
 </script>
 
 <style scoped>
-@reference "tailwindcss";
+   /* remove non-standard @reference at-rule */
    .partners {
       padding-bottom: 3rem;
    }

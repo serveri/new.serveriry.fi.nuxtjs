@@ -4,33 +4,12 @@
          <HeroSection class="w-screen" :content="content" />
       </section>
 
-      <section class="sm:-my-12 xl:sm:-my-24 2xl:sm:-my-32 flex flex-col lg:flex-row md:gap-8">
+      <section class="sm:-mt-12 xl:sm:-mt-24 2xl:sm:-mt-32 flex flex-col lg:flex-row md:gap-8">
          <DescriptionText :en_description="content.en_long_desc" :fi_description="content.fi_long_desc" />
          <TopNews />
       </section>
 
-      <section class="py-8 w-screen sm:mt-12 xl:mt-28 2xl:mt-32">
-         <div class="flex self-center justify-center">
-            <SponsorCarousel />
-         </div>
-      </section>
-
-      <section v-if="!showDiv" class="py-8 flex flex-col md:flex-row w-full gap-8">
-         <LastNews
-            class="md:w-1/2"
-            v-if="lastArticle"
-            :url="lastArticle?.id"
-            :img="lastArticle.image"
-            :fi_title="lastArticle.fi_title"
-            :en_title="lastArticle.en_title"
-            :date="lastArticle.date_created"
-            :fi_text="lastArticle.fi_text"
-            :en_text="lastArticle.en_text"
-         />
-         <!--<InstagramFeed />-->
-      </section>
-
-      <section v-else class="py-8 flex flex-col md:flex-row items-center w-full gap-8">
+      <section class="w-full container mx-auto mt-8">
          <LastNews
             v-if="lastArticle"
             :url="lastArticle.id"
@@ -79,7 +58,6 @@
    import HeroSection from '@/components/langingpage/HeroSection.vue';
    import DescriptionText from '@/components/langingpage/DescriptionText.vue';
    import TopNews from '@/components/langingpage/TopNews.vue';
-   import SponsorCarousel from '@/components/langingpage/SponsorCarousel.vue';
    import SocialmediaIcon from '@/components/langingpage/SocialmediaIcon.vue';
    import type { Data } from '@/types';
    import { toRaw, computed, watchEffect } from 'vue';
@@ -93,10 +71,6 @@
    watchEffect(() => {
       useHead({ title: pageTitle.value });
    });
-
-   // Ensure SSR-consistent rendering based on cookie consent
-   const consent = useCookie<string>('cookieconsent_status');
-   const showDiv = computed(() => consent.value === 'deny');
 
    interface Content {
       fi_title: string;

@@ -5,7 +5,7 @@
       "dev": "nuxt dev",
       "start": "nuxt start",
       "generate": "nuxt generate",
-      "preview": "nuxt preview --port 30001",
+      "preview": "nuxt preview",
       "postinstall": "nuxt prepare",
       "lint:script": "eslint --ext .ts,vue --ignore-path .gitignore .",
       "lint:style": "stylelint src/**/*.{css,scss,vue}",
