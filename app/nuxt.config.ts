@@ -20,23 +20,16 @@ export default {
          redirectOn: 'root',
       },
       bundle: {
-         optimizeTranslationDirective: false
+         optimizeTranslationDirective: false,
       },
       defaultLocale: 'fi',
       locales: [
-         {
-            code: 'fi',
-            name: 'Finnish',
-            file: 'fi.json',
-         },
-         {
-            code: 'en',
-            name: 'English',
-            file: 'en.json',
-         },
+         { code: 'fi', name: 'Finnish', file: 'fi.json' },
+         { code: 'en', name: 'English', file: 'en.json' },
       ],
       lazy: true,
       langDir: 'lang',
+      // strategy: 'no_prefix', // uncomment if you don’t want locale prefixes in routes
    },
 
    runtimeConfig: {
