@@ -64,7 +64,7 @@
 </script>
 
 <style scoped>
-@reference "tailwindcss";
+   @reference "tailwindcss";
    .custom-grid {
       display: grid;
       gap: 2rem;

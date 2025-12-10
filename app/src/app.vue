@@ -118,7 +118,7 @@
 
    // SSR: determine theme from color-scheme cookie and set Html class via head htmlAttrs
    const headers = useRequestHeaders(['cookie']);
-   const cookieStr = (headers && headers.cookie) ? headers.cookie : '';
+   const cookieStr = headers && headers.cookie ? headers.cookie : '';
    const hasDark = cookieStr.split(';').some((c) => (c || '').trim().startsWith('color-scheme=dark'));
 
    useHead({
@@ -126,14 +126,12 @@
       meta: [
          {
             name: 'description',
-            content:
-               'Itä-Suomen yliopiston Kuopion kampuksen tietojenkäsittelytieteen opiskelijoiden ainejärjestö.',
+            content: 'Itä-Suomen yliopiston Kuopion kampuksen tietojenkäsittelytieteen opiskelijoiden ainejärjestö.',
          },
          { name: 'og:title', content: 'Serveri ry' },
          {
             name: 'og:description',
-            content:
-               'Itä-Suomen yliopiston Kuopion kampuksen tietojenkäsittelytieteen opiskelijoiden ainejärjestö.',
+            content: 'Itä-Suomen yliopiston Kuopion kampuksen tietojenkäsittelytieteen opiskelijoiden ainejärjestö.',
          },
          { name: 'og:image', content: config.public['API_URL'] + 'assets/c90a01ea-5b87-4832-995a-f7ca42c81108' },
          { name: 'og:url', content: 'https://serveriry.fi/' },

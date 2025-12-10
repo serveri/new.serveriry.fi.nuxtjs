@@ -68,7 +68,7 @@
 </script>
 
 <style>
-@reference "tailwindcss";
+   @reference "tailwindcss";
    @config '../../../../tailwind.config.js';
    .nav-link {
       @apply flex items-center justify-between font-medium text-sm lg:text-lg md:font-bold uppercase whitespace-nowrap tracking-wide;

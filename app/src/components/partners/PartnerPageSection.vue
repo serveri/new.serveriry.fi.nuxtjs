@@ -54,9 +54,7 @@
    // Strongly type the sponsors list
    let sponsors: Partner[]; // remove redundant initializer
    try {
-      const { data } = await useFetch<{ data: Partner[] }>(
-         `${config.public['API_URL']}items/partners`
-      );
+      const { data } = await useFetch<{ data: Partner[] }>(`${config.public['API_URL']}items/partners`);
       const payload = data.value?.data as unknown;
       sponsors = Array.isArray(payload) ? (payload as Partner[]) : [];
    } catch (e) {

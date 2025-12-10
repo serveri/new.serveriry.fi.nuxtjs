@@ -31,7 +31,7 @@
 </script>
 
 <style>
-@reference "tailwindcss";
+   @reference "tailwindcss";
    .custom-paragraph p {
       @apply font-light tracking-wide text-gray-500 dark:text-gray-400 text-lg text-center;
    }
