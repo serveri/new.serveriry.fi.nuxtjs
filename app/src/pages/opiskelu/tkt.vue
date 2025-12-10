@@ -377,6 +377,7 @@
 </script>
 
 <style scoped>
+   @import 'tailwindcss';
    th {
       background-color: rgb(0 119 138 / var(--tw-bg-opacity));
       @apply text-white dark:text-white;
@@ -391,10 +392,10 @@
       @apply mt-4 table-fixed w-full;
    }
    .table-header {
-      @apply text-left break-words py-4 px-2;
+      @apply text-left wrap-break-word py-4 px-2;
    }
    .table-data {
-      @apply break-words py-2 px-3;
+      @apply wrap-break-word py-2 px-3;
    }
    .table-row {
       @apply even:bg-stone-100 odd:bg-stone-200 dark:odd:bg-stone-700 dark:even:bg-stone-800;

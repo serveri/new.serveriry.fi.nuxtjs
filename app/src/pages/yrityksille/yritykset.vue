@@ -64,6 +64,7 @@
 </script>
 
 <style scoped>
+   @import 'tailwindcss';
    h2 {
       font-size: x-large;
       padding: 1rem 0;

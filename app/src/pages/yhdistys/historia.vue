@@ -16,7 +16,7 @@
             <ul>
                <li v-for="year in Object.keys(iframes)" :key="year" class="py-4">
                   <h3 class="text-2xl">{{ year }}</h3>
-                  <iframe :src="iframes[year]" width="100%" height="500px" class="outline outline-1" />
+                  <iframe :src="iframes[year]" width="100%" height="500px" class="outline-solid outline-1" />
                </li>
             </ul>
          </div>

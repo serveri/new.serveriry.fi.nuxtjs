@@ -1,7 +1,7 @@
 <template>
    <a :href="'/yhdistys/uutinen/' + content.url" class="grid-item md:max-w-lg">
       <div class="news-card">
-         <div class="rounded-sm">
+         <div class="rounded-xs">
             <img class="w-full max-h-64 object-cover" :src="content.img" alt="Cover image for the news card" />
          </div>
 
@@ -68,6 +68,7 @@
 </script>
 
 <style scoped>
+   @import 'tailwindcss';
    .news-card {
       -webkit-box-shadow: 0 0 26px -5px rgba(0, 0, 0, 0.27);
       -moz-box-shadow: 0 0 26px -5px rgba(0, 0, 0, 0.27);

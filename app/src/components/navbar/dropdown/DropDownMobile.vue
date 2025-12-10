@@ -26,7 +26,7 @@
       >
          <div>
             <MenuItems
-               class="absolute right-0 z-10 mt-2 w-full origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none whitespace-nowrap bg-transparent"
+               class="absolute right-0 z-10 mt-2 w-full origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-hidden whitespace-nowrap bg-transparent"
             >
                <MenuItem v-for="subMenu in menu.subMenu" v-slot="{ active, close }" :key="subMenu.name">
                   <nuxt-link

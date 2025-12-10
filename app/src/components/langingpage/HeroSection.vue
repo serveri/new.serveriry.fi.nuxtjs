@@ -1,5 +1,5 @@
 <template>
-   <div class="py-20 bg-no-repeat bg-fixed bg-[url('/images/serveritoverit.png')] bg-cover w-screen h-96 md:h-[40rem]">
+   <div class="py-20 bg-no-repeat bg-fixed bg-[url('/images/serveritoverit.png')] bg-cover w-screen h-96 md:h-160">
       <div class="flex w-full justify-center text-center absolute">
          <div>
             <h1 class="text text-5xl font-extrabold text-gray-900 dark:text-gray-900 sm:text-6xl lg:text-8xl pb-2">
@@ -22,7 +22,7 @@
          </div>
       </div>
       <!-- curve -->
-      <div class="flex items-end h-80 md:h-[36rem]">
+      <div class="flex items-end h-80 md:h-144">
          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
             <path
                fill-opacity="1"
@@ -46,6 +46,7 @@
 </script>
 
 <style scoped>
+   @import 'tailwindcss';
    svg {
       @apply fill-white dark:fill-zinc-800;
    }

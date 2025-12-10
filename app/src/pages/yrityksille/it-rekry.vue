@@ -25,6 +25,8 @@
 </script>
 
 <style>
+   @import 'tailwindcss';
+
    p {
       @apply tracking-wide;
    }

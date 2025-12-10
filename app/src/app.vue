@@ -36,7 +36,7 @@
 
    <div
       v-if="isHidden && isConsent && isPageLoaded"
-      class="flex items-center justify-center fixed bottom-4 left-4 w-[3rem] h-[3rem] bg-black dark:bg-white rounded-full cursor-pointer"
+      class="flex items-center justify-center fixed bottom-4 left-4 w-12 h-12 bg-black dark:bg-white rounded-full cursor-pointer"
       @click="handleSmallCookie()"
    >
       <client-only>

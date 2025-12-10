@@ -60,55 +60,55 @@
                <div>
                   <span
                      v-if="events.tyyppi?.includes('ilmainen')"
-                     class="bg-green-100 text-green-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-gray-700 dark:text-green-400 border border-green-400"
+                     class="bg-green-100 text-green-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded-sm dark:bg-gray-700 dark:text-green-400 border border-green-400"
                      title="Tapahtuma on ilmainen"
                      >Ilmainen</span
                   >
                   <span
                      v-if="events.tyyppi?.includes('mainos')"
-                     class="bg-yellow-100 text-yellow-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-gray-700 dark:text-yellow-300 border border-yellow-300"
+                     class="bg-yellow-100 text-yellow-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded-sm dark:bg-gray-700 dark:text-yellow-300 border border-yellow-300"
                      title="Tapahtuma on mainos eikä Serveri ry osallistu sen järjestämiseen."
                      >Mainos</span
                   >
                   <span
                      v-if="events.tyyppi?.includes('alkoholiton')"
-                     class="bg-indigo-100 text-indigo-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-gray-700 dark:text-indigo-400 border border-indigo-400"
+                     class="bg-indigo-100 text-indigo-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded-sm dark:bg-gray-700 dark:text-indigo-400 border border-indigo-400"
                      title="Alkoholiton tapahtuma."
                      >Alkoholiton</span
                   >
                   <span
                      v-if="events.tyyppi?.includes('poikkitieteellinen')"
-                     class="bg-pink-100 text-pink-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-gray-700 dark:text-pink-400 border border-pink-400"
+                     class="bg-pink-100 text-pink-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded-sm dark:bg-gray-700 dark:text-pink-400 border border-pink-400"
                      title="Kivaa yhdessä muiden alojen opiskelijoiden kanssa"
                      >Poikkitieteellinen</span
                   >
                   <span
                      v-if="events.tyyppi?.includes('turvallinen_tila')"
-                     class="bg-purple-100 text-purple-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-gray-700 dark:text-purple-400 border border-purple-400"
+                     class="bg-purple-100 text-purple-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded-sm dark:bg-gray-700 dark:text-purple-400 border border-purple-400"
                      title="Tapahtumassa noudatetaan turvallisen tilan periaatteita."
                      >Turvallinen tila</span
                   >
                   <span
                      v-if="events.tyyppi?.includes('excursio')"
-                     class="bg-red-100 text-red-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-gray-700 dark:text-red-400 border border-red-400"
+                     class="bg-red-100 text-red-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded-sm dark:bg-gray-700 dark:text-red-400 border border-red-400"
                      title="Excursio"
                      >Excursio</span
                   >
                   <span
                      v-if="events.tyyppi?.includes('ulkoilma')"
-                     class="bg-indigo-100 text-indigo-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-gray-700 dark:text-indigo-400 border border-indigo-400"
+                     class="bg-indigo-100 text-indigo-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded-sm dark:bg-gray-700 dark:text-indigo-400 border border-indigo-400"
                      title="Tapahtumapaikka sijaitsee ulkotiloissa."
                      >Ulkoilma</span
                   >
                   <span
                      v-if="events.tyyppi?.includes('collab')"
-                     class="bg-green-100 text-green-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-gray-700 dark:text-green-400 border border-green-400"
+                     class="bg-green-100 text-green-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded-sm dark:bg-gray-700 dark:text-green-400 border border-green-400"
                      title="Serveri ry osallistuu tapahtuman järjestämiseen yhteistyössä jonkun tahon kanssa."
                      >Yhteistyö</span
                   >
                   <span
                      v-if="events.tyyppi?.includes('ulkoinen')"
-                     class="bg-red-100 text-red-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-gray-700 dark:text-red-400 border border-red-400"
+                     class="bg-red-100 text-red-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded-sm dark:bg-gray-700 dark:text-red-400 border border-red-400"
                      title="Tapahtuma on ulkopuolisen tahon järjestämä."
                      >Ulkoinen järjestäjä</span
                   >
@@ -185,7 +185,7 @@
                         <button
                            type="button"
                            role="link"
-                           class="w-full sm:w-auto text-black dark:text-white bg-transparent hover:bg-gradient-to-r from-[#5a31af] via-purple-500 to-pink-500 outline outline-1 outline-[#5a31af] hover:outline-0 focus:ring-4 rounded-md focus:outline-none focus:ring-purple-800 font-bold px-5 py-2.5 text-center inline-flex items-center mr-2 mb-2 justify-center"
+                           class="w-full sm:w-auto text-black dark:text-white bg-transparent hover:bg-linear-to-r from-[#5a31af] via-purple-500 to-pink-500 outline-solid outline-1 outline-[#5a31af] hover:outline-0 focus:ring-4 rounded-md focus:outline-hidden focus:ring-purple-800 font-bold px-5 py-2.5 text-center inline-flex items-center mr-2 mb-2 justify-center"
                         >
                            <img
                               src="/images/kideapp.webp"
@@ -205,7 +205,7 @@
                            type="button"
                            role="link"
                            title="Reittiohjeet - Google Maps"
-                           class="w-full sm:w-auto text-black dark:text-white bg-transparent hover:bg-gradient-to-r from-[#5a31af] via-purple-500 to-pink-500 outline outline-1 outline-[#5a31af] hover:outline-0 focus:ring-4 rounded-md focus:outline-none focus:ring-purple-800 font-bold px-5 py-2.5 text-center inline-flex items-center mr-2 mb-2 justify-center"
+                           class="w-full sm:w-auto text-black dark:text-white bg-transparent hover:bg-linear-to-r from-[#5a31af] via-purple-500 to-pink-500 outline-solid outline-1 outline-[#5a31af] hover:outline-0 focus:ring-4 rounded-md focus:outline-hidden focus:ring-purple-800 font-bold px-5 py-2.5 text-center inline-flex items-center mr-2 mb-2 justify-center"
                         >
                            <img
                               src="/images/maps.png"
@@ -285,5 +285,3 @@
       };
    }
 </script>
-
-<style scoped></style>

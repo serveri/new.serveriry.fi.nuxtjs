@@ -21,5 +21,3 @@
       name: 'Kiitos',
    };
 </script>
-
-<style scoped></style>

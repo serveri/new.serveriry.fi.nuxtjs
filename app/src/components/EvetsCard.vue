@@ -1,7 +1,7 @@
 <template>
    <a :href="'/yhdistys/tapahtuma/' + content.url" class="grid-item md:max-w-lg">
       <div class="event-card">
-         <div class="rounded-sm">
+         <div class="rounded-xs">
             <img
                class="w-full max-h-64 object-cover"
                :src="content.img?.startsWith('http') ? content.img : '/assets/b3ed6d7f-c124-4136-9234-cbd91fccff0f'"
@@ -72,6 +72,7 @@
 </script>
 
 <style scoped>
+   @import 'tailwindcss';
    .event-card {
       -webkit-box-shadow: 0 0 26px -5px rgba(0, 0, 0, 0.27);
       -moz-box-shadow: 0 0 26px -5px rgba(0, 0, 0, 0.27);

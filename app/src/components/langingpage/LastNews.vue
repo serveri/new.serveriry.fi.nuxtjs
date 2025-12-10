@@ -1,7 +1,7 @@
 <template>
    <div class="md:flex md:items-center">
       <div class="w-full">
-         <div class="rounded-sm w-full">
+         <div class="rounded-xs w-full">
             <img class="w-full h-64 object-cover" :src="content.img" alt="Cover image for the news card" />
          </div>
 

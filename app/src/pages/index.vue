@@ -7,7 +7,7 @@
          <HeroSection class="w-screen" :content="content" />
       </section>
 
-      <section class="sm:my-[-3rem] xl:sm:my-[-6rem] 2xl:sm:my-[-8rem] flex flex-col lg:flex-row md:gap-8">
+      <section class="sm:-my-12 xl:sm:-my-24 2xl:sm:-my-32 flex flex-col lg:flex-row md:gap-8">
          <DescriptionText :en_description="content.en_long_desc" :fi_description="content.fi_long_desc" />
          <TopNews />
       </section>
@@ -227,6 +227,7 @@
 </script>
 
 <style>
+   @import 'tailwindcss';
    p {
       @apply tracking-wide;
    }

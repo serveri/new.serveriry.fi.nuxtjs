@@ -1,6 +1,6 @@
 <template>
    <div class="flex flex-col items-center">
-      <div class="card-container flex flex-col sm:min-w-[16.5rem] min-w-full">
+      <div class="card-container flex flex-col sm:min-w-66 min-w-full">
          <div class="member-info flex flex-wrap justify-center px-4">
             <div class="w-9/12 sm:w-11/12" @mouseover="hover = true" @mouseleave="hover = false">
                <img
@@ -12,7 +12,7 @@
             </div>
          </div>
 
-         <div class="sm:min-h-[10rem]">
+         <div class="sm:min-h-40">
             <div class="member-header text-center py-2">
                <h2 class="member-name font-extrabold pt-1 text-2xl">{{ props.name }}</h2>
                <h2 class="member-role text-md font-bold line-clamp-2">{{ props[$i18n.locale + '_role'] }}</h2>
@@ -41,7 +41,7 @@
             </div>
          </div>
 
-         <div class="button-container text-center relative flex-grow pt-4">
+         <div class="button-container text-center relative grow pt-4">
             <div class="role-desc">
                <p v-if="isExpanded" class="role-text p-3 text-left pb-8">
                   {{ props[$i18n.locale + '_desc'] }}
@@ -141,6 +141,7 @@
 </script>
 
 <style scoped>
+   @import 'tailwindcss';
    .card-container {
       -webkit-box-shadow: 0 0 26px -5px rgba(0, 0, 0, 0.27);
       -moz-box-shadow: 0 0 26px -5px rgba(0, 0, 0, 0.27);

@@ -3,7 +3,7 @@
       <!-- Using the $t helper in template remains valid if configured -->
       <h2 class="custom-page-title uppercase">{{ $t('coming-events') }}</h2>
       <div
-         class="p-4 sm:py-6 sm:px-12 flex flex-col self-center w-full sm:w-2/3 md:w-1/2 lg:w-full border border-gray-200 rounded-lg shadow dark:border-gray-700"
+         class="p-4 sm:py-6 sm:px-12 flex flex-col self-center w-full sm:w-2/3 md:w-1/2 lg:w-full border border-gray-200 rounded-lg shadow-sm dark:border-gray-700"
       >
          <div v-if="events.length > 0">
             <div v-for="event in events" :id="event.link" :key="event.link">

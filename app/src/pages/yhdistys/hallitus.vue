@@ -64,6 +64,7 @@
 </script>
 
 <style scoped>
+   @import 'tailwindcss';
    .custom-grid {
       display: grid;
       gap: 2rem;
