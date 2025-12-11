@@ -1,7 +1,7 @@
 <template>
    <a :href="'/yhdistys/tapahtuma/' + content.url" class="grid-item md:max-w-lg">
       <div class="event-card">
-         <div class="rounded-xs">
+         <div class="rounded-sm">
             <img
                class="w-full max-h-64 object-cover"
                :src="content.img?.startsWith('http') ? content.img : '/assets/b3ed6d7f-c124-4136-9234-cbd91fccff0f'"

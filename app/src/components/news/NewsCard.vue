@@ -1,7 +1,7 @@
 <template>
    <a :href="'/yhdistys/uutinen/' + content.url" class="grid-item md:max-w-lg">
       <div class="news-card">
-         <div class="rounded-xs">
+         <div class="rounded-sm">
             <img class="w-full max-h-64 object-cover" :src="content.img" alt="Cover image for the news card" />
          </div>
 

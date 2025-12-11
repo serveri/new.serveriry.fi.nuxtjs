@@ -113,7 +113,7 @@ td {
 
 .btn-gradient-blue {
   @apply px-5 py-2.5 mr-2 mb-2 text-white font-medium rounded-lg text-sm text-center;
-  @apply bg-linear-to-r from-cyan-400 via-cyan-500 to-cyan-600 hover:bg-linear-to-br;
+  @apply bg-gradient-to-r from-cyan-400 via-cyan-500 to-cyan-600 hover:bg-gradient-to-br;
 }
 
 .btn-custom-primary {

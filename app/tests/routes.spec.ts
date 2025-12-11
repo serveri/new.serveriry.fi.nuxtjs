@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test';
 
-type RouteCheck = { path: string; selector: string; description?: string };
+type RouteCheck = { path: string; selector: string; description?: string; notText?: string; expectText?: string; expectFail?: boolean };
 
 const routes: RouteCheck[] = [
   // Home
@@ -39,16 +39,62 @@ const routes: RouteCheck[] = [
   // Misc pages
   { path: '/zyn', selector: '.iframe-container', description: 'Zyn' },
   { path: '/viinapiru', selector: '.audio-player-container', description: 'Viinapiru' },
+
+   // calendar
+   { path: '/api/calendar.ics', selector: '', description: 'Calendar file' },
+   // Events
+   { path: '/yhdistys/tapahtuma/1', selector: 'h2.card-header', description: 'Single event success', notText: 'Tapahtuman nimeä ei löytynyt' },
+   { path: '/yhdistys/tapahtuma/0', selector: 'h2.card-header', description: 'Single event failed', expectFail: true, expectText: 'Tapahtuman nimeä ei löytynyt' },
+   // Blogs
+   { path: '/yhdistys/uutinen/8fdc5a57-db2f-4df4-8b8d-a936eab7f60c', selector: 'h2.card-header', description: 'Single blog success', notText: 'Uutisen otsikon pitäisi olla tässä' },
+   { path: '/yhdistys/uutinen/0', selector: 'h2.card-header', description: 'Single blog failed', expectFail: true, expectText: 'Uutisen otsikon pitäisi olla tässä' },
+
+   // 404 error page: assert status code heading renders "404"
+   { path: '/404', selector: 'h1.font-bold', description: '404 error page', expectFail: true, expectText: '404' },
 ];
 
 test.describe('Route smoke tests', () => {
   for (const route of routes) {
-    test(`GET ${route.path} renders ${route.description ?? route.selector}`, async ({ page }) => {
+    test(`GET ${route.path} renders ${route.description ?? route.selector}`, async ({ page, request }) => {
+      // Special-case API file download: verify status and headers
+      if (route.path === '/api/calendar.ics') {
+        const response = await request.get(route.path);
+        expect(response.status()).toBe(200);
+        const contentType = response.headers()['content-type'] || '';
+        expect(contentType.toLowerCase()).toContain('text/calendar');
+        const disposition = response.headers()['content-disposition'] || '';
+        const dispLower = disposition.toLowerCase();
+        expect(dispLower).toContain('attachment');
+        // Allow either explicit tapahtumat-fi.ics or any *.ics filename
+        expect(dispLower).toMatch(/filename=.*\.ics/);
+        const body = await response.body();
+        // Minimal sanity check: .ics should contain BEGIN:VCALENDAR
+        expect(body.toString('utf-8')).toMatch(/BEGIN:VCALENDAR/);
+        return;
+      }
+
       await page.goto(route.path, { waitUntil: 'domcontentloaded' });
-      await expect(page).toHaveTitle(/Serveri ry|Serveri/);
-      // Assert presence of expected DOM element(s)
-      const locator = page.locator(route.selector);
-      await expect(locator.first()).toBeVisible();
+      // If not expecting failure, assert title; for expected failure pages, we may still render with 200
+      if (!route.expectFail) {
+        await expect(page).toHaveTitle(/Serveri ry|Serveri/);
+      }
+
+      // Assert presence or absence of expected DOM element(s)
+      const isNegated = route.selector.startsWith('!');
+      const sel = isNegated ? route.selector.slice(1) : route.selector;
+      const locator = page.locator(sel);
+      if (isNegated) {
+        await expect(locator).toHaveCount(0);
+      } else {
+        await expect(locator.first()).toBeVisible();
+        const text = (await locator.first().innerText()).trim();
+        if (route.notText) {
+          expect(text.toLowerCase()).not.toBe(route.notText.toLowerCase());
+        }
+        if (route.expectText) {
+          expect(text.trim()).toBe(route.expectText.trim());
+        }
+      }
     });
   }
 });

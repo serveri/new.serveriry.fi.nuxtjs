@@ -1,6 +1,6 @@
 <template>
    <div
-      class="py-20 bg-no-repeat bg-fixed bg-cover w-screen h-96 md:h-160"
+      class="py-20 bg-no-repeat bg-fixed bg-cover w-screen h-96 md:h-[40rem]"
       :style="{ backgroundImage: `url(${heroBg})` }"
    >
       <div class="flex w-full justify-center text-center absolute">

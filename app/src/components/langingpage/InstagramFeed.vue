@@ -2,7 +2,7 @@
 <template>
    <!-- CSS is static, maybe make it more responsive -->
    <div
-      class="flex md:w-1/2 flex-col items-center lg:pl-10 md:pl-5 sm:pl-0 sm:grid sm:grid-cols-2 gap-2 sm:h-[100vw] md:h-[52vw] xl:h-164 md:border-l border-gray-200 dark:border-gray-700"
+      class="flex md:w-1/2 flex-col items-center lg:pl-10 md:pl-5 sm:pl-0 sm:grid sm:grid-cols-2 gap-2 sm:h-[100vw] md:h-[52vw] xl:h-[41rem] md:border-l border-gray-200 dark:border-gray-700"
    >
       <h2 class="custom-page-title sm:hidden">Instagram Feed</h2>
       <iframe
