@@ -10,7 +10,6 @@
             class="absolute top-0 left-0 w-full h-full"
             src="https://www.youtube.com/embed/PMIhWO6C_FY"
             title="YouTube video player"
-            frameborder="0"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
             allowfullscreen
          ></iframe>
@@ -53,11 +52,7 @@
                   </tr>
                </thead>
                <tbody>
-                  <tr
-                     v-for="course in courses.filter((item: { tyyppi: string }) => item.tyyppi == 'yleisopinnot')"
-                     :key="course.name"
-                     class="table-row"
-                  >
+                  <tr v-for="course in coursesYleis" :key="course.nimi" class="table-row">
                      <td class="table-data">
                         <p>{{ course.nimi }}</p>
                      </td>
@@ -93,11 +88,7 @@
                   </tr>
                </thead>
                <tbody>
-                  <tr
-                     v-for="course in courses.filter((item: { tyyppi: string }) => item.tyyppi == 'perusopinnot')"
-                     :key="course.name"
-                     class="table-row"
-                  >
+                  <tr v-for="course in coursesPerus" :key="course.nimi" class="table-row">
                      <td class="table-data">
                         <p>{{ course.nimi }}</p>
                      </td>
@@ -134,11 +125,7 @@
                   </tr>
                </thead>
                <tbody>
-                  <tr
-                     v-for="course in courses.filter((item: { tyyppi: string }) => item.tyyppi == 'pakolliset')"
-                     :key="course.name"
-                     class="table-row"
-                  >
+                  <tr v-for="course in coursesPakolliset" :key="course.nimi" class="table-row">
                      <td class="table-data">
                         <p>{{ course.nimi }}</p>
                      </td>
@@ -175,11 +162,7 @@
                   </tr>
                </thead>
                <tbody>
-                  <tr
-                     v-for="course in courses.filter((item: { tyyppi: string }) => item.tyyppi == 'valinnaiset')"
-                     :key="course.name"
-                     class="table-row"
-                  >
+                  <tr v-for="course in coursesValinnaiset" :key="course.nimi" class="table-row">
                      <td class="table-data">
                         <p>{{ course.nimi }}</p>
                      </td>
@@ -215,11 +198,7 @@
                   </tr>
                </thead>
                <tbody>
-                  <tr
-                     v-for="course in courses.filter((item: { tyyppi: string }) => item.tyyppi == 'kieliviesti')"
-                     :key="course.name"
-                     class="table-row"
-                  >
+                  <tr v-for="course in coursesKieliViesti" :key="course.nimi" class="table-row">
                      <td class="table-data">
                         <p>{{ course.nimi }}</p>
                      </td>
@@ -252,11 +231,7 @@
                   </tr>
                </thead>
                <tbody>
-                  <tr
-                     v-for="course in courses.filter((item: { tyyppi: string }) => item.tyyppi == 'syventavat')"
-                     :key="course.name"
-                     class="table-row"
-                  >
+                  <tr v-for="course in coursesSyventavat" :key="course.nimi" class="table-row">
                      <td class="table-data">
                         <p>{{ course.nimi }}</p>
                      </td>
@@ -295,11 +270,7 @@
                   </tr>
                </thead>
                <tbody>
-                  <tr
-                     v-for="course in courses.filter((item: { tyyppi: string }) => item.tyyppi == 'val-syventavat')"
-                     :key="course.name"
-                     class="table-row"
-                  >
+                  <tr v-for="course in coursesValSyventavat" :key="course.nimi" class="table-row">
                      <td class="table-data">
                         <p>{{ course.nimi }}</p>
                      </td>
@@ -320,14 +291,32 @@
 </template>
 
 <script setup lang="ts">
+   import { computed } from 'vue';
    import type { Data } from '@/types';
 
    const config = useRuntimeConfig();
 
-   let courses;
+   interface Course {
+      tyyppi:
+         | 'yleisopinnot'
+         | 'perusopinnot'
+         | 'pakolliset'
+         | 'valinnaiset'
+         | 'kieliviesti'
+         | 'syventavat'
+         | 'val-syventavat'
+         | string;
+      nimi: string;
+      laajuus: string;
+      kuvaus: string;
+      sort?: number;
+   }
+
+   let courses: Course[] = [];
    try {
       const { data } = (await useFetch(`${config.public['API_URL']}items/tutkinto_rakenne`)) as { data: Data };
-      courses = data.value.data;
+      const payload = (data.value?.data ?? []) as unknown;
+      courses = Array.isArray(payload) ? (payload as Course[]) : [];
    } catch (e) {
       courses = [
          {
@@ -373,13 +362,22 @@
          },
       ];
    }
-   // const pakolliset = courses.filter((item: { tyyppi: string }) => item.tyyppi == 'valinnaiset');
+
+   // Computed filtered arrays for template usage
+   const coursesYleis = computed(() => courses.filter((c) => c.tyyppi === 'yleisopinnot'));
+   const coursesPerus = computed(() => courses.filter((c) => c.tyyppi === 'perusopinnot'));
+   const coursesPakolliset = computed(() => courses.filter((c) => c.tyyppi === 'pakolliset'));
+   const coursesValinnaiset = computed(() => courses.filter((c) => c.tyyppi === 'valinnaiset'));
+   const coursesKieliViesti = computed(() => courses.filter((c) => c.tyyppi === 'kieliviesti'));
+   const coursesSyventavat = computed(() => courses.filter((c) => c.tyyppi === 'syventavat'));
+   const coursesValSyventavat = computed(() => courses.filter((c) => c.tyyppi === 'val-syventavat'));
 </script>
 
 <style scoped>
+   @reference "tailwindcss";
    th {
-      background-color: rgb(0 119 138 / var(--tw-bg-opacity));
-      @apply text-white dark:text-white;
+      /* Use Tailwind utilities via @apply instead of unresolved custom property */
+      @apply bg-[rgb(0_119_138)] text-white dark:text-white;
    }
    .table-container {
       @apply my-6;
@@ -391,10 +389,10 @@
       @apply mt-4 table-fixed w-full;
    }
    .table-header {
-      @apply text-left break-words py-4 px-2;
+      @apply text-left wrap-break-word py-4 px-2;
    }
    .table-data {
-      @apply break-words py-2 px-3;
+      @apply wrap-break-word py-2 px-3;
    }
    .table-row {
       @apply even:bg-stone-100 odd:bg-stone-200 dark:odd:bg-stone-700 dark:even:bg-stone-800;

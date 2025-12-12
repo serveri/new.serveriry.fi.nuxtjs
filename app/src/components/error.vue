@@ -1,5 +1,5 @@
 <template>
-   <div class="flex items-center justify-center w-screen sm:h-[80vh]">
+   <div class="flex items-center justify-center w-screen sm:h-[80vh] mt-8">
       <div class="px-40 py-20 rounded-md sm:shadow-xl bg-zinc-50 dark:bg-zinc-900">
          <div class="flex flex-col items-center">
             <h1 class="font-bold text-custom-primary dark:text-custom-primary text-9xl">

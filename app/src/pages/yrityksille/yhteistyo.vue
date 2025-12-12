@@ -3,7 +3,7 @@
       <Head>
          <Title>{{ $t('title_collaboration') }} - Serveri ry</Title>
       </Head>
-      <div class="p-4 pb-16 mx-auto max-w-screen-md">
+      <div class="p-4 pb-16 mx-auto max-w-(--breakpoint-md)">
          <vue-markdown class="rich-text custom-paragraph" :source="content[$i18n.locale + '_text']" />
       </div>
       <section>
@@ -31,7 +31,8 @@
 </script>
 
 <style>
+   @reference "tailwindcss";
    .custom-paragraph p {
-      @apply font-light tracking-wide text-gray-500 dark:text-gray-400 text-lg text-center !important;
+      @apply font-light tracking-wide text-gray-500 dark:text-gray-400 text-lg text-center;
    }
 </style>

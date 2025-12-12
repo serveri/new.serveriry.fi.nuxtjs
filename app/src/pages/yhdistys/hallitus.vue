@@ -45,8 +45,8 @@
    } catch (e) {
       members = [
          {
-            img: '/images/hallitus-placeholder.png',
-            hover_img: '/images/hallitus-placeholder.png',
+            img: 'https://api.serveriry.fi/assets/604e9b95-f188-4777-8356-1fd5a60681a5',
+            hover_img: 'https://api.serveriry.fi/assets/604e9b95-f188-4777-8356-1fd5a60681a5',
             fi_role: 'Jäsen',
             en_role: 'Member',
             email: 'email@serveriry.fi',
@@ -64,6 +64,7 @@
 </script>
 
 <style scoped>
+   @reference "tailwindcss";
    .custom-grid {
       display: grid;
       gap: 2rem;

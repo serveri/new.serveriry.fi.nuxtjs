@@ -1,19 +1,19 @@
 <template>
    <Head>
-      <Title>{{ events[locale + '_otsikko'] }} - Serveri ry</Title>
-      <Meta name="og:title" :content="events[locale + '_otsikko'] + ' - Serveri ry'" />
+      <Title>{{ events[langKey + '_otsikko'] }} - Serveri ry</Title>
+      <Meta name="og:title" :content="events[langKey + '_otsikko'] + ' - Serveri ry'" />
       <Meta
          name="description"
          :content="
-            events[locale + '_kuvaus'].match(new RegExp(`^.{1,150}\\b`))?.[0] ||
-            events[locale + '_kuvaus'].slice(0, 150)
+            events[langKey + '_kuvaus'].match(new RegExp(`^.{1,150}\\b`))?.[0] ||
+            events[langKey + '_kuvaus'].slice(0, 150)
          "
       />
       <Meta
          name="og:description"
          :content="
-            events[locale + '_kuvaus'].match(new RegExp(`^.{1,150}\\b`))?.[0] ||
-            events[locale + '_kuvaus'].slice(0, 150)
+            events[langKey + '_kuvaus'].match(new RegExp(`^.{1,150}\\b`))?.[0] ||
+            events[langKey + '_kuvaus'].slice(0, 150)
          "
       />
       <Meta
@@ -30,7 +30,7 @@
       <div class="NewsCard">
          <article class="py-8">
             <h2 class="card-header py-6 text-3xl sm:text-6xl font-bold text-center">
-               {{ events[locale + '_otsikko'] }}
+               {{ events[langKey + '_otsikko'] }}
             </h2>
 
             <img
@@ -60,62 +60,62 @@
                <div>
                   <span
                      v-if="events.tyyppi?.includes('ilmainen')"
-                     class="bg-green-100 text-green-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-gray-700 dark:text-green-400 border border-green-400"
+                     class="bg-green-100 text-green-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded-sm dark:bg-gray-700 dark:text-green-400 border border-green-400"
                      title="Tapahtuma on ilmainen"
                      >Ilmainen</span
                   >
                   <span
                      v-if="events.tyyppi?.includes('mainos')"
-                     class="bg-yellow-100 text-yellow-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-gray-700 dark:text-yellow-300 border border-yellow-300"
+                     class="bg-yellow-100 text-yellow-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded-sm dark:bg-gray-700 dark:text-yellow-300 border border-yellow-300"
                      title="Tapahtuma on mainos eikä Serveri ry osallistu sen järjestämiseen."
                      >Mainos</span
                   >
                   <span
                      v-if="events.tyyppi?.includes('alkoholiton')"
-                     class="bg-indigo-100 text-indigo-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-gray-700 dark:text-indigo-400 border border-indigo-400"
+                     class="bg-indigo-100 text-indigo-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded-sm dark:bg-gray-700 dark:text-indigo-400 border border-indigo-400"
                      title="Alkoholiton tapahtuma."
                      >Alkoholiton</span
                   >
                   <span
                      v-if="events.tyyppi?.includes('poikkitieteellinen')"
-                     class="bg-pink-100 text-pink-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-gray-700 dark:text-pink-400 border border-pink-400"
+                     class="bg-pink-100 text-pink-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded-sm dark:bg-gray-700 dark:text-pink-400 border border-pink-400"
                      title="Kivaa yhdessä muiden alojen opiskelijoiden kanssa"
                      >Poikkitieteellinen</span
                   >
                   <span
                      v-if="events.tyyppi?.includes('turvallinen_tila')"
-                     class="bg-purple-100 text-purple-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-gray-700 dark:text-purple-400 border border-purple-400"
+                     class="bg-purple-100 text-purple-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded-sm dark:bg-gray-700 dark:text-purple-400 border border-purple-400"
                      title="Tapahtumassa noudatetaan turvallisen tilan periaatteita."
                      >Turvallinen tila</span
                   >
                   <span
                      v-if="events.tyyppi?.includes('excursio')"
-                     class="bg-red-100 text-red-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-gray-700 dark:text-red-400 border border-red-400"
+                     class="bg-red-100 text-red-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded-sm dark:bg-gray-700 dark:text-red-400 border border-red-400"
                      title="Excursio"
                      >Excursio</span
                   >
                   <span
                      v-if="events.tyyppi?.includes('ulkoilma')"
-                     class="bg-indigo-100 text-indigo-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-gray-700 dark:text-indigo-400 border border-indigo-400"
+                     class="bg-indigo-100 text-indigo-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded-sm dark:bg-gray-700 dark:text-indigo-400 border border-indigo-400"
                      title="Tapahtumapaikka sijaitsee ulkotiloissa."
                      >Ulkoilma</span
                   >
                   <span
                      v-if="events.tyyppi?.includes('collab')"
-                     class="bg-green-100 text-green-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-gray-700 dark:text-green-400 border border-green-400"
+                     class="bg-green-100 text-green-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded-sm dark:bg-gray-700 dark:text-green-400 border border-green-400"
                      title="Serveri ry osallistuu tapahtuman järjestämiseen yhteistyössä jonkun tahon kanssa."
                      >Yhteistyö</span
                   >
                   <span
                      v-if="events.tyyppi?.includes('ulkoinen')"
-                     class="bg-red-100 text-red-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-gray-700 dark:text-red-400 border border-red-400"
+                     class="bg-red-100 text-red-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded-sm dark:bg-gray-700 dark:text-red-400 border border-red-400"
                      title="Tapahtuma on ulkopuolisen tahon järjestämä."
                      >Ulkoinen järjestäjä</span
                   >
                </div>
             </div>
 
-            <vue-markdown class="rich-text py-2" :source="events[locale + '_kuvaus']" />
+            <vue-markdown class="rich-text py-2" :source="events[langKey + '_kuvaus']" />
 
             <p v-if="alku_aika" class="events-date font-normal uppercase py-2 text-xs">
                {{ t('event_start') }}
@@ -185,15 +185,9 @@
                         <button
                            type="button"
                            role="link"
-                           class="w-full sm:w-auto text-black dark:text-white bg-transparent hover:bg-gradient-to-r from-[#5a31af] via-purple-500 to-pink-500 outline outline-1 outline-[#5a31af] hover:outline-0 focus:ring-4 rounded-md focus:outline-none focus:ring-purple-800 font-bold px-5 py-2.5 text-center inline-flex items-center mr-2 mb-2 justify-center"
+                           class="w-full sm:w-auto text-black dark:text-white bg-transparent hover:bg-gradient-to-r from-[#5a31af] via-purple-500 to-pink-500 outline-solid outline-1 outline-[#5a31af] hover:outline-0 focus:ring-4 rounded-md focus:outline-hidden focus:ring-purple-800 font-bold px-5 py-2.5 text-center inline-flex items-center mr-2 mb-2 justify-center"
                         >
-                           <img
-                              src="/images/kideapp.webp"
-                              alt="KideApp logo"
-                              loading="lazy"
-                              class="h-10 pr-4"
-                              tabindex="-1"
-                           />
+                           <img :src="kideappImg" alt="KideApp logo" loading="lazy" class="h-10 pr-4" tabindex="-1" />
 
                            Osta liput KideAppista
                         </button>
@@ -205,10 +199,10 @@
                            type="button"
                            role="link"
                            title="Reittiohjeet - Google Maps"
-                           class="w-full sm:w-auto text-black dark:text-white bg-transparent hover:bg-gradient-to-r from-[#5a31af] via-purple-500 to-pink-500 outline outline-1 outline-[#5a31af] hover:outline-0 focus:ring-4 rounded-md focus:outline-none focus:ring-purple-800 font-bold px-5 py-2.5 text-center inline-flex items-center mr-2 mb-2 justify-center"
+                           class="w-full sm:w-auto text-black dark:text-white bg-transparent hover:bg-gradient-to-r from-[#5a31af] via-purple-500 to-pink-500 outline-solid outline-1 outline-[#5a31af] hover:outline-0 focus:ring-4 rounded-md focus:outline-hidden focus:ring-purple-800 font-bold px-5 py-2.5 text-center inline-flex items-center mr-2 mb-2 justify-center"
                         >
                            <img
-                              src="/images/maps.png"
+                              :src="mapsImg"
                               alt="KideApp logo"
                               loading="lazy"
                               class="h-10 pr-4 dark:invert"
@@ -228,62 +222,57 @@
 <script setup lang="ts">
    import VueMarkdown from 'vue-markdown-render';
    import type { Data } from '@/types';
-   import { useI18n, useLocalePath } from '#i18n';
+   import { ref, computed } from 'vue';
    const { t, locale } = useI18n();
    const localePath = useLocalePath();
    const config = useRuntimeConfig();
+   const kideappImg = 'https://api.serveriry.fi/assets/879a7a96-2e84-45be-b828-5d0fcd605f69';
+   const mapsImg = 'https://api.serveriry.fi/assets/0d3c7ebd-048f-4dd3-9811-1f7fa5993016';
 
-   // This hard coded data will be replaced with data from directus
-   let events;
+   // Pick base language code to match API fields (fi/en)
+   const langKey = computed(() => (locale.value || 'fi').split('-')[0]);
+
+   // Reactive state for event and derived values
+   const events = ref<any>({
+      image: config.public['API_URL'] + 'assets/b3ed6d7f-c124-4136-9234-cbd91fccff0f',
+      fi_otsikko: 'Tapahtuman nimeä ei löytynyt',
+      en_otsikko: 'The events title cannot be found',
+      fi_kuvaus: 'Valitettavasti rest rajapintaan ei saada yhteyttä, ovatkohan serverit liekeissä?',
+      en_kuvaus: 'Unfortunately we cannot connect to the rest interface, maybe the servers are on fire?',
+      alku_aika: null,
+      loppu_aika: null,
+      tyyppi: null,
+   });
    const route = useRoute();
-   let released_date = new Date();
-   let alku_aika;
-   let loppu_aika;
-   let x;
-   let y;
-   try {
-      const { data } = (await useFetch(`${config.public['API_URL']}items/tapahtuma/${route.params.id}`)) as {
-         data: Data;
-      };
-      if (data.value.data) {
-         events = data.value.data;
-         released_date = new Date(events.date_created);
-         alku_aika = new Date(events.alku_aika);
-         loppu_aika = events.loppu_aika ? new Date(events.loppu_aika) : null;
-         events.image = events.kuva
-            ? `${config.public['API_URL']}assets/${events.kuva}`
-            : config.public['API_URL'] + 'assets/b3ed6d7f-c124-4136-9234-cbd91fccff0f';
-         if (events.sijainti) {
-            const matches = events.sijainti.match(/-?\d+(\.\d+)?/g);
-            y = parseFloat(matches[0]);
-            x = parseFloat(matches[1]);
+   const released_date = ref<Date>(new Date());
+   const alku_aika = ref<Date | null>(null);
+   const loppu_aika = ref<Date | null>(null);
+   const x = ref<number | null>(null);
+   const y = ref<number | null>(null);
+
+   const { data } = (await useFetch(`${config.public['API_URL']}items/tapahtuma/${route.params.id}`)) as {
+      data: Data;
+   };
+   if (data.value?.data) {
+      const e: any = data.value.data;
+      events.value = e;
+      released_date.value = new Date(e.date_created);
+      alku_aika.value = e.alku_aika ? new Date(e.alku_aika) : null;
+      loppu_aika.value = e.loppu_aika ? new Date(e.loppu_aika) : null;
+      events.value.image = e.kuva
+         ? `${config.public['API_URL']}assets/${e.kuva}`
+         : config.public['API_URL'] + 'assets/b3ed6d7f-c124-4136-9234-cbd91fccff0f';
+      // Handle GeoJSON { type: 'Point', coordinates: [lon, lat] }
+      if (e.sijainti?.coordinates && Array.isArray(e.sijainti.coordinates)) {
+         x.value = e.sijainti.coordinates[0];
+         y.value = e.sijainti.coordinates[1];
+      } else if (typeof e.sijainti === 'string') {
+         // Fallback: parse "lat, lon" string
+         const matches = e.sijainti.match(/-?\d+(\.\d+)?/g);
+         if (matches?.length >= 2) {
+            y.value = parseFloat(matches[0]);
+            x.value = parseFloat(matches[1]);
          }
-      } else {
-         events = {
-            image: config.public['API_URL'] + 'assets/b3ed6d7f-c124-4136-9234-cbd91fccff0f',
-            id: route.params.id,
-            fi_otsikko: 'Tapahtuman nimeä ei löytynyt',
-            en_otsikko: 'The events title cannot be found',
-            fi_kuvaus: 'Valitettavasti rest rajapintaan ei saada yhteyttä, ovatkohan serverit liekeissä?',
-            en_kuvaus: 'Unfortunately we cannot connect to the rest interface, maybe the servers are on fire?',
-            alku_aika: null,
-            loppu_aika: null,
-            tyyppi: null,
-         };
       }
-   } catch (error) {
-      events = {
-         image: config.public['API_URL'] + 'assets/b3ed6d7f-c124-4136-9234-cbd91fccff0f',
-         id: route.params.id,
-         fi_otsikko: 'Tapahtuman nimeä ei löytynyt',
-         en_otsikko: 'The events title cannot be found',
-         fi_kuvaus: 'Valitettavasti rest rajapintaan ei saada yhteyttä, ovatkohan serverit liekeissä?',
-         en_kuvaus: 'Unfortunately we cannot connect to the rest interface, maybe the servers are on fire?',
-         alku_aika: null,
-         loppu_aika: null,
-         tyyppi: null,
-      };
    }
 </script>
-
-<style scoped></style>

@@ -3,17 +3,10 @@
       <h1 class="header-text pt-4 text-white px-4">Serveri ❤️ ZynZyn</h1>
       <h2 class="text-center mb-4 text-white px-4">
          The video below is iframe to
-         <a class="underline text-white" href="https://zyn.pilipali.io/"
-            >zyn.pilipali.io</a
-         >. It might take a little time to start working, if no one has used it for a while.
+         <a class="underline text-white" href="https://zyn.pilipali.io/">zyn.pilipali.io</a>. It might take a little
+         time to start working, if no one has used it for a while.
       </h2>
-      <iframe
-         src="https://zyn.pilipali.io/"
-         frameborder="0"
-         allow="autoplay"
-         allowfullscreen
-         class="full-size-iframe"
-      >
+      <iframe src="https://zyn.pilipali.io/" frameborder="0" allow="autoplay" allowfullscreen class="full-size-iframe">
       </iframe>
    </div>
 </template>
@@ -43,6 +36,7 @@
 </script>
 
 <style scoped>
+   @reference "tailwindcss";
    .iframe-container {
       width: 100%;
       height: 100vh;

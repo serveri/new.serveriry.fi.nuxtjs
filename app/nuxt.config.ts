@@ -5,7 +5,7 @@ export default {
 
    postcss: {
       plugins: {
-         tailwindcss: {},
+         '@tailwindcss/postcss': {},
          autoprefixer: {},
       },
    },
@@ -20,29 +20,42 @@ export default {
          redirectOn: 'root',
       },
       bundle: {
-         optimizeTranslationDirective: false
+         optimizeTranslationDirective: false,
       },
       defaultLocale: 'fi',
       locales: [
-         {
-            code: 'fi',
-            name: 'Finnish',
-            file: 'fi.json',
-         },
-         {
-            code: 'en',
-            name: 'English',
-            file: 'en.json',
-         },
+         { code: 'fi', name: 'Finnish', file: 'fi.json' },
+         { code: 'en', name: 'English', file: 'en.json' },
       ],
       lazy: true,
       langDir: 'lang',
+      // strategy: 'no_prefix', // uncomment if you don’t want locale prefixes in routes
    },
 
    runtimeConfig: {
       // Config within public will be also exposed to the client
       public: {
          API_URL: process.env.NUXT_API_URL || 'https://api.serveriry.fi/',
+      },
+   },
+
+   // Reduce build-time noise by relaxing Vite's chunk size warning threshold
+   vite: {
+      build: {
+         chunkSizeWarningLimit: 2048, // 2 MB
+         rollupOptions: {
+            output: {
+               manualChunks: {
+                  'vue-vendor': ['vue', 'vue-router', '@vueuse/core'],
+                  fontawesome: [
+                     '@fortawesome/vue-fontawesome',
+                     '@fortawesome/free-solid-svg-icons',
+                     '@fortawesome/free-regular-svg-icons',
+                     '@fortawesome/free-brands-svg-icons',
+                  ],
+               },
+            },
+         },
       },
    },
 

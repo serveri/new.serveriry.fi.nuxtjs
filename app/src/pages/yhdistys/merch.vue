@@ -29,6 +29,7 @@
 </script>
 
 <style>
+   @reference "tailwindcss";
    p {
       @apply tracking-wide;
    }
@@ -53,7 +54,7 @@
       @apply text-xl italic font-semibold text-gray-900 dark:text-white;
    }
    .merch-content blockquote p::before {
-      content: url('/images/blockquote.svg');
+      content: url('https://api.serveriry.fi/assets/3759b452-ee3e-4c6c-9a3a-59e482fa2421');
       padding-right: 1rem;
    }
 </style>

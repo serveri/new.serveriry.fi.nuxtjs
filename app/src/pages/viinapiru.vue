@@ -99,6 +99,7 @@
 </script>
 
 <style scoped>
+   @reference "tailwindcss";
    .audio-player-container {
       display: flex;
       flex-direction: column;

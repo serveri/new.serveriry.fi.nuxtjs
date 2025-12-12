@@ -53,6 +53,7 @@
 </script>
 
 <style scoped>
+   @reference "tailwindcss";
    .custom-gridi {
       @apply grid grid-cols-1 gap-4;
    }

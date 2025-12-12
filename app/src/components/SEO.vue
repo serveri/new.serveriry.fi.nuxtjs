@@ -34,7 +34,7 @@
       <Meta property="og:site_name" content="Serveri ry" />
       <Meta property="og:locale:alternate" :content="$i18n.locale === 'fi' ? 'en_US' : 'fi_FI'" />
       <!-- Icon -->
-      <Link rel="icon" href="/images/rotta.svg" />
+      <Link rel="icon" href="https://api.serveriry.fi/assets/5404c898-6ac5-485b-bdb8-185ed5e1e374" />
 
       <!-- From API -->
       <Title v-if="seo.title"> {{ seo.title }} </Title>

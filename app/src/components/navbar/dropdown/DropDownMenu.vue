@@ -25,7 +25,7 @@
          leave-to-class="transform opacity-0 scale-95"
       >
          <MenuItems
-            class="absolute px-1 py-1 md:px-6 md:py-2 md:pb-4 right-0 z-10 mt-2 min-w-max origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none whitespace-nowrap dark:bg-[#282828]"
+            class="absolute px-1 py-1 md:px-6 md:py-2 md:pb-4 right-0 z-10 mt-2 min-w-max origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-hidden whitespace-nowrap dark:bg-[#282828]"
          >
             <MenuItem v-for="subMenu in props.menu.subMenu" :key="subMenu.name" v-slot="{ close }">
                <nuxt-link
@@ -68,6 +68,8 @@
 </script>
 
 <style>
+   @reference "tailwindcss";
+   @config '../../../../tailwind.config.js';
    .nav-link {
       @apply flex items-center justify-between font-medium text-sm lg:text-lg md:font-bold uppercase whitespace-nowrap tracking-wide;
    }

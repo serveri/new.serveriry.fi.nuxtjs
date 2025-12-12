@@ -1,48 +1,24 @@
 <template>
    <div class="flex flex-col justify-center items-center">
-      <Head>
-         <Title>{{ t('title_front-page') }} - Serveri ry</Title>
-      </Head>
       <section>
          <HeroSection class="w-screen" :content="content" />
       </section>
 
-      <section class="sm:my-[-3rem] xl:sm:my-[-6rem] 2xl:sm:my-[-8rem] flex flex-col lg:flex-row md:gap-8">
+      <section class="sm:-mt-12 xl:sm:-mt-24 2xl:sm:-mt-32 flex flex-col lg:flex-row md:gap-8">
          <DescriptionText :en_description="content.en_long_desc" :fi_description="content.fi_long_desc" />
          <TopNews />
       </section>
 
-      <section class="py-8 w-screen sm:mt-12 xl:mt-28 2xl:mt-32">
-         <div class="flex self-center justify-center">
-            <SponsorCarousel />
-         </div>
-      </section>
-
-      <section v-if="!showDiv" class="py-8 flex flex-col md:flex-row w-full gap-8">
+      <section class="w-full container mx-auto mt-8">
          <LastNews
-            class="md:w-1/2"
-            v-if="article"
-            :url="article?.id"
-            :img="article.image"
-            :fi_title="article.fi_title"
-            :en_title="article.en_title"
-            :date="article.date_created"
-            :fi_text="article.fi_text"
-            :en_text="article.en_text"
-         />
-         <InstagramFeed />
-      </section>
-
-      <section v-else class="py-8 flex flex-col md:flex-row items-center w-full gap-8">
-         <LastNews
-            v-if="article"
-            :url="article.id"
-            :img="article.image"
-            :fi_title="article.fi_title"
-            :en_title="article.en_title"
-            :date="article.date_created"
-            :fi_text="article.fi_text"
-            :en_text="article.en_text"
+            v-if="lastArticle"
+            :url="lastArticle.id"
+            :img="lastArticle.image"
+            :fi_title="lastArticle.fi_title"
+            :en_title="lastArticle.en_title"
+            :date="lastArticle.date_created"
+            :fi_text="lastArticle.fi_text"
+            :en_text="lastArticle.en_text"
          />
       </section>
 
@@ -55,7 +31,9 @@
       </section>
 
       <section>
-         <h2 class="custom-page-title my-7">{{ locale === 'en' ? 'You can also find Serveri here!' : 'Löydät Serverin myös täältä!' }}</h2>
+         <h2 class="custom-page-title my-7">
+            {{ locale === 'en' ? 'You can also find Serveri here!' : 'Löydät Serverin myös täältä!' }}
+         </h2>
 
          <div class="grid grid-cols-2 gap-8 mb-8 sm:grid-cols-3 md:grid-cols-4 md:gap-8 lg:grid-cols-6 lg:gap-7">
             <SocialmediaIcon
@@ -75,21 +53,24 @@
 </template>
 
 <script setup lang="ts">
-   import InstagramFeed from '@/components/langingpage/InstagramFeed.vue';
    import LastNews from '@/components/langingpage/LastNews.vue';
    import EmbeddedMap from '@/components/langingpage/EmbeddedMap.vue';
    import HeroSection from '@/components/langingpage/HeroSection.vue';
    import DescriptionText from '@/components/langingpage/DescriptionText.vue';
    import TopNews from '@/components/langingpage/TopNews.vue';
-   import SponsorCarousel from '@/components/langingpage/SponsorCarousel.vue';
    import SocialmediaIcon from '@/components/langingpage/SocialmediaIcon.vue';
    import type { Data } from '@/types';
-   import { toRaw } from 'vue';
+   import { toRaw, computed, watchEffect } from 'vue';
    import PartnerPageSection from '@/components/partners/PartnerPageSection.vue';
-   import { useI18n, useLocalePath } from '#i18n';
+   import { useI18n } from 'vue-i18n';
    const { t, locale } = useI18n();
-   const localePath = useLocalePath();
    const config = useRuntimeConfig();
+
+   // Page title via head
+   const pageTitle = computed(() => `${t('title_front-page')} - Serveri ry`);
+   watchEffect(() => {
+      useHead({ title: pageTitle.value });
+   });
 
    interface Content {
       fi_title: string;
@@ -149,14 +130,19 @@
    ];
    try {
       const { data } = (await useFetch(`${config.public['API_URL']}items/uutiset`)) as { data: Data };
-      for (const article of data.value.data) {
-         const _article = toRaw(article);
-         articles.push(_article);
+      const list = data?.value?.data;
+      if (Array.isArray(list)) {
+         for (const article of list) {
+            const _article = toRaw(article) as Article;
+            articles.push(_article);
+         }
       }
    } catch (e) {
       console.log('Error fetching articles: ', e);
    }
-   const article: Article = articles[articles.length - 1]; // Get the last article
+   const lastArticle = computed<Article | null>(() =>
+      articles.length > 0 ? (articles[articles.length - 1] as Article) : null,
+   );
 
    interface SoMe {
       nimi: string;
@@ -170,7 +156,7 @@
       {
          nimi: 'Telegram',
          url: 'https://example.com/',
-         img: '/images/placeholder-square.jpg',
+         img: 'https://api.serveriry.fi/assets/3e47b669-5e97-4a9d-b48e-f3161e669551',
          fi_kuvaus: '',
          en_kuvaus: '',
          custom_css: '',
@@ -178,56 +164,14 @@
    ];
    try {
       const { data } = (await useFetch(`${config.public['API_URL']}items/sosiaaliset_mediat`)) as { data: Data };
-      SoMes = {
-         ...SoMes,
-         ...data.value.data,
-      };
+      SoMes = Array.isArray(data.value.data) ? (data.value.data as SoMe[]) : SoMes;
    } catch (e) {
       console.log('Error fetching Social Medias');
    }
 </script>
 
-<script lang="ts">
-   export default {
-      computed: {
-         showDiv() {
-            if (process.client) {
-               // Check the cookie value and return a boolean
-               const cookieValue = this.getCookieValue('cookieconsent_status');
-               return cookieValue === 'deny'; // if cookie value is not allow, return true
-            }
-         },
-      },
-      methods: {
-         getCookieValue(cookieName: string) {
-            if (process.client) {
-               const name = cookieName + '=';
-               const decodedCookie = decodeURIComponent(document.cookie);
-               const cookieArray = decodedCookie.split(';');
-
-               for (let i = 0; i < cookieArray.length; i++) {
-                  let cookie = cookieArray[i];
-                  while (cookie.charAt(0) === ' ') {
-                     cookie = cookie.substring(1);
-                  }
-                  if (cookie.indexOf(name) === 0) {
-                     return cookie.substring(name.length, cookie.length);
-                  }
-               }
-               return '';
-            }
-         },
-         setCookieValue(cookieName: string, value: string) {
-            if (process.client) {
-               document.cookie = `${cookieName}=${value}; path=/`;
-            }
-         },
-      },
-   };
-</script>
-
-<style>
+<style scoped>
    p {
-      @apply tracking-wide;
+      letter-spacing: 0.025em;
    }
 </style>

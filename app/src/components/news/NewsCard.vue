@@ -68,6 +68,7 @@
 </script>
 
 <style scoped>
+   @reference "tailwindcss";
    .news-card {
       -webkit-box-shadow: 0 0 26px -5px rgba(0, 0, 0, 0.27);
       -moz-box-shadow: 0 0 26px -5px rgba(0, 0, 0, 0.27);
