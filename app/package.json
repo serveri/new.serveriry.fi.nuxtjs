@@ -35,7 +35,7 @@
       "tailwindcss": "^4.1.17",
       "vue": "^3.5.25",
       "vue-markdown-render": "^2.3.0",
-      "vue-router": "^4.6.3"
+      "vue-router": "^4.6.4"
    },
    "devDependencies": {
       "@tailwindcss/postcss": "^4.1.17",
