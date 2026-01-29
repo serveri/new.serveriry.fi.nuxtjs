@@ -117,33 +117,34 @@
       fi_text: string;
       en_text: string;
    }
-   const articles = ref<Article[]>([
-      {
-         id: 'f4d13a49-0539-442f-a5e9-6f486ff4d5d7',
-         image: config.public['API_URL'] + '/assets/231aba36-a03b-47c6-811a-b6dfe14ccddb',
-         fi_title: 'Api Error',
-         en_title: 'Api Error',
-         date_created: '09/25/2022',
-         fi_text: 'Api Error',
-         en_text: 'Api Error',
-      },
-   ]);
+   const lastArticle = ref<Article>({
+      id: 'f4d13a49-0539-442f-a5e9-6f486ff4d5d7',
+      image: config.public['API_URL'].replace(/\/$/, '') + '/assets/231aba36-a03b-47c6-811a-b6dfe14ccddb',
+      fi_title: 'Api Error',
+      en_title: 'Api Error',
+      date_created: '09/25/2022',
+      fi_text: 'Api Error',
+      en_text: 'Api Error',
+   });
 
    try {
-      const { data } = (await useFetch(
-         `${config.public['API_URL']}items/uutiset?filter[status][_eq]=published&sort=sort&limit=1`,
-      )) as { data: Data };
-      const list = data?.value?.data;
+      const { data, error } = (await useFetch(
+         `${config.public['API_URL']}items/uutiset?sort=-date_created&limit=1`,
+      )) as any;
+
+      if (error.value) {
+         console.error('Error fetching articles via useFetch:', error.value);
+      }
+
+      const list = data.value?.data;
       if (Array.isArray(list) && list.length > 0) {
-         const _article = toRaw(list[0]) as Article;
-         articles.value.push(_article);
+         lastArticle.value = toRaw(list[0]) as Article;
+      } else {
+         console.warn('Articles list is empty or invalid:', data.value);
       }
    } catch (e) {
-      console.log('Error fetching articles: ', e);
+      console.error('Unexpected error in article fetch block:', e);
    }
-   const lastArticle = computed<Article | null>(() =>
-      articles.value.length > 0 ? (articles.value[articles.value.length - 1] as Article) : null,
-   );
 
    interface SoMe {
       nimi: string;
