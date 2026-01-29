@@ -117,7 +117,7 @@
       fi_text: string;
       en_text: string;
    }
-   let articles: Article[] = [
+   const articles = ref<Article[]>([
       {
          id: 'f4d13a49-0539-442f-a5e9-6f486ff4d5d7',
          image: config.public['API_URL'] + '/assets/231aba36-a03b-47c6-811a-b6dfe14ccddb',
@@ -127,21 +127,22 @@
          fi_text: 'Api Error',
          en_text: 'Api Error',
       },
-   ];
+   ]);
+
    try {
-      const { data } = (await useFetch(`${config.public['API_URL']}items/uutiset`)) as { data: Data };
+      const { data } = (await useFetch(
+         `${config.public['API_URL']}items/uutiset?filter[status][_eq]=published&sort=sort&limit=1`,
+      )) as { data: Data };
       const list = data?.value?.data;
-      if (Array.isArray(list)) {
-         for (const article of list) {
-            const _article = toRaw(article) as Article;
-            articles.push(_article);
-         }
+      if (Array.isArray(list) && list.length > 0) {
+         const _article = toRaw(list[0]) as Article;
+         articles.value.push(_article);
       }
    } catch (e) {
       console.log('Error fetching articles: ', e);
    }
    const lastArticle = computed<Article | null>(() =>
-      articles.length > 0 ? (articles[articles.length - 1] as Article) : null,
+      articles.value.length > 0 ? (articles.value[articles.value.length - 1] as Article) : null,
    );
 
    interface SoMe {
