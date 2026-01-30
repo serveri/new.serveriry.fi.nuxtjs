@@ -43,7 +43,7 @@ requests to us.
 
 #### Command Line
 
-1. `nmp install`
+1. `npm install`
 2. `npm run dev`
 
 #### Docker
