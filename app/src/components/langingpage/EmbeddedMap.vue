@@ -30,7 +30,9 @@
       </div>
       <div class="w-full content relative py-6 sm:py-24 pointer-events-none">
          <div class="w-full sm:inline-flex sm:justify-end">
-            <div class="flex flex-col gap-6 py-10 px-8 sm:px-16 bg-white dark:bg-black rounded-lg shadow-sm pointer-events-auto">
+            <div
+               class="flex flex-col gap-6 py-10 px-8 sm:px-16 bg-white dark:bg-black rounded-lg shadow-sm pointer-events-auto"
+            >
                <p class="font-bold text-2xl uppercase">{{ $t('contact-us') }}</p>
                <div>
                   <p>Microkatu 1 E 24</p>
@@ -51,22 +53,10 @@
 </template>
 
 <script setup lang="ts">
+   import { useTrackingConsent } from '@/composables/useTrackingConsent';
+
+   defineOptions({ name: 'EmbeddedMap' });
    const { trackingAllowed } = useTrackingConsent();
-</script>
-
-<script lang="ts">
-   import colors from 'tailwindcss/colors';
-   import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
-
-   export default {
-      name: 'EmbeddedMap',
-      components: { FontAwesomeIcon },
-      methods: {
-         colors() {
-            return colors;
-         },
-      },
-   };
 </script>
 
 <style scoped></style>
