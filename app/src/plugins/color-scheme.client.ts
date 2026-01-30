@@ -17,10 +17,10 @@ export default defineNuxtPlugin(() => {
          cookieVal === 'dark' || cookieVal === 'light'
             ? cookieVal
             : lsVal === 'dark' || lsVal === 'light'
-              ? lsVal
-              : prefersDark
-                ? 'dark'
-                : 'light';
+               ? lsVal
+               : prefersDark
+                  ? 'dark'
+                  : 'light';
 
       // Apply to <html>
       const html = document.documentElement;
