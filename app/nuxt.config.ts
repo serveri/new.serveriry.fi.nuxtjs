@@ -33,9 +33,9 @@ export default {
    },
 
    runtimeConfig: {
-      // Config within public will be also exposed to the client
       public: {
          API_URL: process.env.NUXT_API_URL || 'https://api.serveriry.fi/',
+         cookieBannerDev: process.env.NODE_ENV === 'development',
       },
    },
 
