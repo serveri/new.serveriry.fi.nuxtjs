@@ -95,11 +95,24 @@
          Show banner
       </button>
    </div>
+   <div
+      v-if="isDismissed && isPageLoaded"
+      class="fixed bottom-4 left-4 z-[100] flex h-12 w-12 cursor-pointer items-center justify-center rounded-full bg-black text-white shadow-lg ring-2 ring-white/20 dark:bg-white dark:text-black dark:ring-black/20"
+      role="button"
+      title="Cookie notice"
+      aria-label="Show cookie notice"
+      @click="resetAndShowBanner"
+   >
+      <ClientOnly>
+         <FontAwesomeIcon class="fa-xl" :icon="['fas', 'cookie-bite']" />
+      </ClientOnly>
+   </div>
 </template>
 
 <script setup lang="ts">
    import { onMounted, ref } from 'vue';
    import { useI18n } from 'vue-i18n';
+   import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 
    const { locale } = useI18n();
    const config = useRuntimeConfig();
