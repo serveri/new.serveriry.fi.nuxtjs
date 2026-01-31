@@ -108,6 +108,10 @@
    "coming-events": "Coming events",
    "what-is-cs-like": "What is computer science like?",
    "contact-us": "Contact us",
+   "view_on_youtube": "View on YouTube",
+   "tracking_disabled_embed": "Embedded content disabled in cookie settings. Open in external site.",
+   "embed_cookies_required": "Cookies must be allowed to view this content.",
+
    "oops": "Whoopsie!",
    "404_msg": "Page cannot be found",
    "404_msg_long": "The page you are looking for may have been removed. Did you write the address correctly?",

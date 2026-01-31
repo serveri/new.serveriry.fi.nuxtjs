@@ -64,7 +64,7 @@
 </template>
 
 <script setup lang="ts">
-   import { reactive } from 'vue';
+   import { onMounted, reactive } from 'vue';
    import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 
    const props = defineProps({

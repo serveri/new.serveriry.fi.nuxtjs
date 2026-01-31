@@ -6,13 +6,31 @@
       <h1 class="custom-page-title">{{ $t('h1_what-is-cs') }}</h1>
 
       <div class="video-container relative h-0 overflow-hidden max-w-full w-full mb-6" style="padding-bottom: 56.25%">
-         <iframe
-            class="absolute top-0 left-0 w-full h-full"
-            src="https://www.youtube.com/embed/PMIhWO6C_FY"
-            title="YouTube video player"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            allowfullscreen
-         ></iframe>
+         <client-only>
+            <iframe
+               v-if="trackingAllowed"
+               class="absolute top-0 left-0 w-full h-full"
+               src="https://www.youtube.com/embed/PMIhWO6C_FY"
+               title="YouTube video player"
+               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+               allowfullscreen
+               sandbox="allow-scripts allow-same-origin"
+            ></iframe>
+            <div
+               v-else
+               class="absolute inset-0 flex flex-col items-center justify-center gap-2 rounded bg-zinc-200 dark:bg-zinc-700 px-4"
+            >
+               <p class="text-center text-sm">{{ $t('embed_cookies_required') }}</p>
+               <a
+                  href="https://www.youtube.com/watch?v=PMIhWO6C_FY"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="text-custom-primary underline"
+               >
+                  {{ $t('view_on_youtube') }}
+               </a>
+            </div>
+         </client-only>
       </div>
 
       <div>
@@ -291,6 +309,7 @@
 </template>
 
 <script setup lang="ts">
+   const { trackingAllowed } = useTrackingConsent();
    import { computed } from 'vue';
    import type { Data } from '@/types';
 

@@ -44,7 +44,6 @@
       if (typeof document !== 'undefined') {
          const expires = new Date('2040-01-01T12:00:00Z').toUTCString();
          const val = isDark.value ? 'dark' : 'light';
-         // Keep cookie and localStorage in sync so initial render matches after reload
          try {
             localStorage.setItem('color-scheme', val);
          } catch {}

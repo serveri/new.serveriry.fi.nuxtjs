@@ -6,13 +6,35 @@
          <a class="underline text-white" href="https://zyn.pilipali.io/">zyn.pilipali.io</a>. It might take a little
          time to start working, if no one has used it for a while.
       </h2>
-      <iframe src="https://zyn.pilipali.io/" frameborder="0" allow="autoplay" allowfullscreen class="full-size-iframe">
-      </iframe>
+      <client-only>
+         <iframe
+            v-if="trackingAllowed"
+            src="https://zyn.pilipali.io/"
+            frameborder="0"
+            allow="autoplay"
+            allowfullscreen
+            class="full-size-iframe"
+            sandbox="allow-scripts"
+         >
+         </iframe>
+         <div v-else class="flex h-full min-h-[50vh] flex-col items-center justify-center gap-4 px-4 text-white">
+            <p class="text-center">{{ $t('embed_cookies_required') }}</p>
+            <p class="text-center text-sm opacity-90">{{ $t('tracking_disabled_embed') }}</p>
+            <a
+               href="https://zyn.pilipali.io/"
+               target="_blank"
+               rel="noopener noreferrer"
+               class="rounded bg-custom-primary px-4 py-2 font-medium hover:bg-custom-secondary"
+            >
+               zyn.pilipali.io
+            </a>
+         </div>
+      </client-only>
    </div>
 </template>
 
 <script setup lang="ts">
-   // No script logic is needed for this page.
+   const { trackingAllowed } = useTrackingConsent();
 
    const setMediaSessionMetadata = () => {
       if ('mediaSession' in navigator) {
