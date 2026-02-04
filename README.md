@@ -43,8 +43,8 @@ requests to us.
 
 #### Command Line
 
-1. `npm install`
-2. `npm run dev`
+1. `pnpm install`
+2. `pnpm run dev`
 
 #### Docker
 
@@ -87,5 +87,5 @@ See docker compose [docs](./app/DOCKER-COMPOSE.md)
 [Vue]: https://vuejs.org/
 [serveri ry]: https://serveriry.fi
 [Directus]: https://directus.io/
-[prettify]: https://www.npmjs.com/package/prettify
+[prettify]: https://www.js.com/package/prettify
 [Nuxt 3]: https://nuxt.com/
