@@ -38,6 +38,16 @@
          { name: 'og:url', content: 'https://serveriry.fi/' },
       ],
       link: [{ rel: 'icon', href: 'https://api.serveriry.fi/assets/5404c898-6ac5-485b-bdb8-185ed5e1e374' }],
+      script: [
+         {
+            async: true,
+            src: 'https://analytics.bittive.com/js/pa-fDG6O3DAZF7sX9bdOg6c7.js',
+         },
+         {
+            innerHTML:
+               'window.plausible=window.plausible||function(){(plausible.q=plausible.q||[]).push(arguments)},plausible.init=plausible.init||function(i){plausible.o=i||{}};plausible.init()',
+         },
+      ],
       htmlAttrs: { lang: locale.value, class: hasDark ? 'dark' : '' },
    });
 </script>
