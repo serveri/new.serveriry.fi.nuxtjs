@@ -27,7 +27,12 @@
                      />
                      <p v-else class="py-2 text-zinc-600 dark:text-zinc-400">
                         <span class="block text-sm">{{ $t('embed_cookies_required') }}</span>
-                        <a :href="iframes[year]" target="_blank" rel="noopener noreferrer" class="text-custom-primary underline">
+                        <a
+                           :href="iframes[year]"
+                           target="_blank"
+                           rel="noopener noreferrer"
+                           class="text-custom-primary underline"
+                        >
                            {{ $t('tracking_disabled_embed') }} ({{ year }})
                         </a>
                      </p>
@@ -41,8 +46,11 @@
 
 <script setup lang="ts">
    import VueMarkdown from 'vue-markdown-render';
-   import type { Data } from '@/types';
    import SEO from '@/components/SEO.vue';
+   import { ref, computed } from 'vue';
+   import { useI18n } from 'vue-i18n';
+   import { useRuntimeConfig, useFetch } from 'nuxt/app';
+   import { useTrackingConsent } from '@/composables/useTrackingConsent';
    const config = useRuntimeConfig();
    const { trackingAllowed } = useTrackingConsent();
 
@@ -88,13 +96,13 @@
    });
 
    try {
-      const { data } = (await useFetch(`${config.public['API_URL']}items/history?fields=fi_text,en_text,seo.*`)) as {
+      const { data } = useFetch(`${config.public['API_URL']}items/history?fields=fi_text,en_text,seo.*`) as {
          data: { value: { data: HistoryContent } };
       };
       if (data.value?.data && typeof data.value.data === 'object') {
          content.value = { ...defaultContent, ...data.value.data };
       }
-   } catch (e) {
+   } catch {
       content.value = defaultContent;
    }
 

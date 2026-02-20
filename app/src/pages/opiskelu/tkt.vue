@@ -12,7 +12,15 @@
                class="absolute top-0 left-0 w-full h-full"
                src="https://www.youtube.com/embed/PMIhWO6C_FY"
                title="YouTube video player"
-               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+               allow="
+                  accelerometer;
+                  autoplay;
+                  clipboard-write;
+                  encrypted-media;
+                  gyroscope;
+                  picture-in-picture;
+                  web-share;
+               "
                allowfullscreen
                sandbox="allow-scripts allow-same-origin"
             ></iframe>
@@ -309,9 +317,12 @@
 </template>
 
 <script setup lang="ts">
-   const { trackingAllowed } = useTrackingConsent();
    import { computed } from 'vue';
    import type { Data } from '@/types';
+   import { useRuntimeConfig, useFetch } from 'nuxt/app';
+   import { useTrackingConsent } from '@/composables/useTrackingConsent';
+
+   const { trackingAllowed } = useTrackingConsent();
 
    const config = useRuntimeConfig();
 
@@ -336,7 +347,7 @@
       const { data } = (await useFetch(`${config.public['API_URL']}items/tutkinto_rakenne`)) as { data: Data };
       const payload = (data.value?.data ?? []) as unknown;
       courses = Array.isArray(payload) ? (payload as Course[]) : [];
-   } catch (e) {
+   } catch {
       courses = [
          {
             tyyppi: 'valinnaiset',
@@ -394,25 +405,32 @@
 
 <style scoped>
    @reference "tailwindcss";
+
    th {
       /* Use Tailwind utilities via @apply instead of unresolved custom property */
       @apply bg-[rgb(0_119_138)] text-white dark:text-white;
    }
+
    .table-container {
       @apply my-6;
    }
+
    .table-desc {
       @apply text-xl font-extrabold;
    }
+
    .course-table {
       @apply mt-4 table-fixed w-full;
    }
+
    .table-header {
       @apply text-left wrap-break-word py-4 px-2;
    }
+
    .table-data {
       @apply wrap-break-word py-2 px-3;
    }
+
    .table-row {
       @apply even:bg-stone-100 odd:bg-stone-200 dark:odd:bg-stone-700 dark:even:bg-stone-800;
    }
@@ -420,9 +438,11 @@
    .credits {
       @apply w-[22%] sm:w-1/3;
    }
+
    .name {
       @apply w-[31%] sm:w-1/3;
    }
+
    .desc {
       @apply w-[47%] sm:w-1/3;
    }
