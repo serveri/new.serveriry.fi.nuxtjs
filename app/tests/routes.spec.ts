@@ -12,7 +12,7 @@ const routes: RouteCheck[] = [
   { path: '/yhdistys/hallitus', selector: '.rich-text', description: 'Org: Board' },
   { path: '/yhdistys/toimikunta', selector: '.rich-text', description: 'Org: Committee' },
   { path: '/yhdistys/uutiset', selector: '.custom-gridi', description: 'Org: News' },
-  { path: '/yhdistys/tapahtumat', selector: '.custom-grid', description: 'Org: Events' },
+  { path: '/yhdistys/tapahtumat', selector: 'h1.custom-page-title', description: 'Org: Events' },
   { path: '/yhdistys/merch', selector: '.merch-content', description: 'Org: Merch' },
   { path: '/yhdistys/dokumentit', selector: 'h2.custom-page-title', description: 'Org: Documents' },
   { path: '/yhdistys/saannot', selector: 'h2.custom-page-title, .rich-text', description: 'Org: Rules' },

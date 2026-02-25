@@ -68,6 +68,26 @@ requests to us.
 1. Navigate to build repositary and run `git pull`
 2. Reload docker with `docker compose -f docker-compose.prod.yml up -d --build`
 
+## Testing GitHub Actions locally (act)
+
+This repository includes `.actrc` to hard-code the local runner mapping so `act` does not ask interactive image-size questions.
+
+### Prerequisites
+
+1. Docker Desktop running
+2. `act` installed, for example:
+   - Windows: `winget install nektos.act`
+   - macOS: `brew install act`
+   - Linux: `brew install act` (via Homebrew on Linux) or see https://github.com/nektos/act#installation
+
+### Run the Playwright workflow locally
+
+From repository root:
+
+1. `act -l`
+2. `act workflow_dispatch -j test -v`
+
+
 ### Other
 
 - Go inside container - `docker exec -it {{name}} bash`
