@@ -23,15 +23,40 @@ npx playwright install
 First start the app (dev or preview):
 
 ```
-npm run dev
+pnpm dev
 # or
-npm run build
-npm run preview
+pnpm build
+pnpm preview
 ```
 
 Then run tests:
 
 ```
-npm run test:e2e
+pnpm test:e2e
+```
+
+## Live Directus CMS tests (opt-in)
+
+CMS integration tests are tagged with `@cms` and excluded from normal runs, including CI default runs.
+
+Run them explicitly:
+
+```
+pnpm test:e2e:cms
+```
+
+Defaults used by the CMS test command:
+
+- `NUXT_API_URL` defaults to `https://api.serveriry.fi/` (from Nuxt runtime config)
+- `CMS_BASE_URL` defaults to `NUXT_API_URL` or `https://api.serveriry.fi/`
+
+Override these env vars if your local Directus is on a different URL/port.
+
+PowerShell example for local Directus:
+
+```
+$env:NUXT_API_URL='http://127.0.0.1:30001/'
+$env:CMS_BASE_URL='http://127.0.0.1:30001'
+pnpm test:e2e:cms
 ```
 
