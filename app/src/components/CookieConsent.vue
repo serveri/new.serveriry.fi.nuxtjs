@@ -12,10 +12,7 @@
                      : 'Käytämme välttämättömiä evästeitä asetuksille (teema ja kieli). Upotettu sisältö (esim. YouTube, Instagram, kartat) voi asettaa kolmannen osapuolen evästeitä, jos sallit.'
                }}
             </p>
-            <NuxtLink
-               to="/gdpr"
-               class="text-xs font-medium text-custom-primary underline hover:text-custom-secondary"
-            >
+            <NuxtLink to="/gdpr" class="text-xs font-medium text-custom-primary underline hover:text-custom-secondary">
                {{
                   locale === 'en'
                      ? 'Read more about cookies and data protection'
@@ -112,6 +109,7 @@
 <script setup lang="ts">
    import { onMounted, ref } from 'vue';
    import { useI18n } from 'vue-i18n';
+   import { useRuntimeConfig } from 'nuxt/app';
    import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 
    const { locale } = useI18n();
