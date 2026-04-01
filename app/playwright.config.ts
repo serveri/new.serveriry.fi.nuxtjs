@@ -1,5 +1,5 @@
 import { defineConfig } from '@playwright/test';
-import os from 'os';
+import * as os from 'os';
 
 const isCI = !!process.env.CI;
 

@@ -1,6 +1,17 @@
 name: Playwright Tests (v3)
 on:
   workflow_dispatch:
+    inputs:
+      run_cms:
+        description: Run live Directus CMS tests
+        required: false
+        default: false
+        type: boolean
+      cms_base_url:
+        description: Directus base URL for CMS tests
+        required: false
+        default: https://api.serveriry.fi/
+        type: string
   push:
     branches: [ main, master ]
   pull_request:
@@ -44,6 +55,46 @@ jobs:
       if: failure()
       with:
         name: playwright-debug-artifacts
+        path: |
+          app/playwright-report/
+          app/test-results/
+        if-no-files-found: ignore
+        retention-days: 7
+
+  cms-test:
+    if: github.event_name == 'workflow_dispatch' && inputs.run_cms == true
+    timeout-minutes: 60
+    runs-on: ubuntu-latest
+    container:
+      image: mcr.microsoft.com/playwright:v1.58.2-noble
+    env:
+      PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD: 1
+      NUXT_API_URL: ${{ inputs.cms_base_url }}
+      CMS_BASE_URL: ${{ inputs.cms_base_url }}
+    defaults:
+      run:
+        working-directory: ./app
+    steps:
+    - uses: actions/checkout@v4
+    - name: Install pnpm
+      uses: pnpm/action-setup@v3
+      with:
+        version: 9
+    - uses: actions/setup-node@v4
+      with:
+        node-version: 20
+        cache: pnpm
+        cache-dependency-path: app/pnpm-lock.yaml
+    - name: Install dependencies
+      run: |
+        pnpm install --frozen-lockfile
+        node -e "require.resolve('@oxc-parser/binding-linux-x64-gnu')"
+    - name: Run Playwright CMS tests
+      run: pnpm test:e2e:cms
+    - uses: actions/upload-artifact@v4
+      if: failure()
+      with:
+        name: playwright-cms-debug-artifacts
         path: |
           app/playwright-report/
           app/test-results/
