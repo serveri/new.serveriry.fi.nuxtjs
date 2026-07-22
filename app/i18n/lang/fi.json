@@ -59,7 +59,6 @@
    "title_change-language": "Vaihda kieli",
    "title_companies": "Firmat",
    "title_about_site": "Tietoa sivustosta",
-   
 
    "h1_front-page": "Mitä me teemme?",
    "h1_join-us": "Liity jäseneksi",
@@ -87,6 +86,7 @@
    "h1_skripti": "Skripti ry - Joensuun TKT-ainejärjestö",
    "h1_links": "Hyödyllisiä linkkejä",
    "h1_documents": "Dokumentit",
+   "documents_description": "Hallituksen julkisia dokumentteja.",
    "h1_annual_reports": "Toimintakertomus",
    "h1_action_plan": "Toimintasuunitelma",
    "h1_history": "Historia",
@@ -110,7 +110,7 @@
    "option_it_committee": "Järjestelmätoimikunta",
    "option_event_committee": "Tapahtumatoimikunta",
    "option_koppi_committee": "Koppitoimikunta",
-   
+
    "coming-events": "Tulevat tapahtumat",
    "what-is-cs-like": "Millaista tietojenkäsittelytiede on?",
    "contact-us": "Ota yhteyttä",

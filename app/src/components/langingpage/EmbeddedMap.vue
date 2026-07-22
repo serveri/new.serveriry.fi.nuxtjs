@@ -10,7 +10,8 @@
                src="https://www.openstreetmap.org/export/embed.html?bbox=27.61370658874512%2C62.88430491020435%2C27.642030715942386%2C62.89283197511212&amp;layer=mapnik&amp;marker=62.888568752496816%2C27.62786865234375"
                style="filter: grayscale(0.5) contrast(1.2) opacity(0.4)"
                class="pointer-events-none"
-               sandbox="allow-scripts"
+               sandbox="allow-scripts allow-same-origin"
+               referrerpolicy="strict-origin-when-cross-origin"
             ></iframe>
             <div
                v-else
@@ -58,5 +59,3 @@
    defineOptions({ name: 'EmbeddedMap' });
    const { trackingAllowed } = useTrackingConsent();
 </script>
-
-<style scoped></style>

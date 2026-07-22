@@ -1,5 +1,5 @@
 <template>
-   <Disclosure v-slot="{ open }" as="nav" class="bg-zinc-50 dark:bg-zinc-900 fixed w-full z-10">
+   <Disclosure as="nav" class="bg-zinc-50 dark:bg-zinc-900 fixed w-full z-10">
       <div class="px-6 lg:px-16 xl:px-32">
          <div class="relative flex items-center justify-between">
             <!-- Mobile menu button-->
@@ -116,7 +116,7 @@
    import DarkMode from '@/components/navbar/DarkModeToggle.vue';
 
    const localePath = useLocalePath();
-   const { t } = useI18n();
+   useI18n();
    const route = useRoute();
 
    const navigation = [
@@ -125,15 +125,15 @@
          href: '/yhdistys',
          current: false,
          subMenu: [
-            { name: 'history', href: '/yhdistys/historia' },
             { name: 'board', href: '/yhdistys/hallitus' },
-            { name: 'committee', href: '/yhdistys/toimikunta' },
             { name: 'news', href: '/yhdistys/uutiset' },
             { name: 'events', href: '/yhdistys/tapahtumat' },
-            { name: 'merch', href: '/yhdistys/merch' },
-            { name: 'documents', href: '/yhdistys/dokumentit' },
             { name: 'rules', href: '/yhdistys/saannot' },
             { name: 'safe-space', href: '/yhdistys/turvallinen-tila' },
+            { name: 'merch', href: '/yhdistys/merch' },
+            { name: 'committee', href: '/yhdistys/toimikunta' },
+            { name: 'history', href: '/yhdistys/historia' },
+            { name: 'documents', href: '/yhdistys/dokumentit' },
          ],
       },
       { name: 'join-us', href: '/jaseneksi', current: false },
@@ -170,13 +170,17 @@
 
 <style>
    @reference "tailwindcss";
+
    @config '../../../tailwind.config.js';
+
    .nav-link {
       @apply px-1 py-1 md:px-3 md:py-2 text-sm lg:text-lg font-bold uppercase whitespace-nowrap tracking-wide;
    }
+
    /* underline effect */
-   .nav-link:after {
+   .nav-link::after {
       @apply bg-custom-primary;
+
       content: '';
       position: absolute;
       width: 100%;
@@ -187,7 +191,8 @@
       transform-origin: bottom right;
       transition: transform 0.4s ease-out;
    }
-   .nav-link:hover:after {
+
+   .nav-link:hover::after {
       transform: scaleX(1);
       transform-origin: bottom left;
    }
