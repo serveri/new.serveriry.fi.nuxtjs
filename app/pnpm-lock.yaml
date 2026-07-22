@@ -132,6 +132,9 @@ importers:
       prettier:
         specifier: ^3.8.1
         version: 3.8.1
+      rolldown:
+        specifier: 1.2.0
+        version: 1.2.0
       stylelint:
         specifier: ^17.6.0
         version: 17.14.1(supports-color@10.2.2)(typescript@5.9.3)
