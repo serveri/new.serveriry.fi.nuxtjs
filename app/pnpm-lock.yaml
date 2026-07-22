@@ -129,10 +129,6 @@ importers:
       stylelint-config-standard:
         specifier: ^40.0.0
         version: 40.0.0(stylelint@17.14.1(supports-color@10.2.2)(typescript@5.9.3))
-    optionalDependencies:
-      '@oxc-parser/binding-linux-x64-gnu':
-        specifier: 0.123.0
-        version: 0.123.0
 
 packages:
 
@@ -1344,13 +1340,6 @@ packages:
     resolution: {integrity: sha512-2M1DPm/8w9I//YzFlFC9qXw+r2tJFh5CYwRlYTq2vUJQS7qoQftEDeCZ8EnN7KHtvSiXvYj8mZI5pR7DpXmcEw==}
     engines: {node: ^20.19.0 || >=22.12.0}
     cpu: [s390x]
-    os: [linux]
-    libc: [glibc]
-
-  '@oxc-parser/binding-linux-x64-gnu@0.123.0':
-    resolution: {integrity: sha512-sh7pw2g/u6LE1TaRRQsV9Kv9+1y+CywaaNwWWP+3bnEPk/L692oTG0hmEviUlawI8v3OGC+AhbjtAD+HXWQAkg==}
-    engines: {node: ^20.19.0 || >=22.12.0}
-    cpu: [x64]
     os: [linux]
     libc: [glibc]
 
@@ -7396,9 +7385,6 @@ snapshots:
     optional: true
 
   '@oxc-parser/binding-linux-s390x-gnu@0.140.0':
-    optional: true
-
-  '@oxc-parser/binding-linux-x64-gnu@0.123.0':
     optional: true
 
   '@oxc-parser/binding-linux-x64-gnu@0.128.0':
