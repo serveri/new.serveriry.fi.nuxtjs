@@ -8,3 +8,7 @@ app/.env
 .vs
 /app/dist/
 .unlighthouse
+.pnpm-store/
+app/node-compile-cache/
+app/playwright-report/
+app/test-results/

@@ -9,9 +9,10 @@ jobs:
     timeout-minutes: 60
     runs-on: ubuntu-latest
     container:
-      image: mcr.microsoft.com/playwright:v1.58.2-noble
+      image: mcr.microsoft.com/playwright:v1.61.1-noble
     env:
       PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD: 1
+      NODE_OPTIONS: "--max-old-space-size=2048"
     defaults:
       run:
         working-directory: ./app
@@ -38,7 +39,7 @@ jobs:
     - name: Run Playwright tests
       run: pnpm test:e2e
     - uses: actions/upload-artifact@v4
-      if: failure()
+      if: ${{ !env.ACT && failure() }}
       with:
         name: playwright-debug-artifacts
         path: |
