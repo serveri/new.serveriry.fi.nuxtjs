@@ -70,5 +70,21 @@
          "stylelint --fix"
       ],
       "*.{json,md,html}": "prettier --write"
+   },
+   "pnpm": {
+      "supportedArchitectures": {
+         "os": [
+            "win32",
+            "linux"
+         ],
+         "cpu": [
+            "x64",
+            "arm64"
+         ],
+         "libc": [
+            "glibc",
+            "musl"
+         ]
+      }
    }
 }
