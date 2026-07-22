@@ -70,14 +70,14 @@ importers:
         specifier: ^2.18.1
         version: 2.18.1
       '@oxc-minify/binding-linux-x64-gnu':
-        specifier: ^0.141.0
-        version: 0.141.0
+        specifier: 0.140.0
+        version: 0.140.0
       '@oxc-parser/binding-linux-x64-gnu':
-        specifier: ^0.141.0
-        version: 0.141.0
+        specifier: 0.140.0
+        version: 0.140.0
       '@oxc-transform/binding-linux-x64-gnu':
-        specifier: ^0.141.0
-        version: 0.141.0
+        specifier: 0.140.0
+        version: 0.140.0
       '@rolldown/binding-linux-x64-gnu':
         specifier: 1.2.0
         version: 1.2.0
@@ -1103,8 +1103,8 @@ packages:
     resolution: {integrity: sha512-4fQWCNKF8+3s4+5OjBZqD20FkO2UpWhMWg43BO3d9FWlFcUKtb065lj1gPK1VjTm6omvKw+6W3d91i1OpbYrBw==}
     engines: {node: '>=20.11.1'}
 
-  '@oxc-minify/binding-linux-x64-gnu@0.141.0':
-    resolution: {integrity: sha512-mP69bh2L/VVq10UEQ3wb0EsO0472TzOIZUfS/ADmxnr4gSxAzhRbO8w5QryL3BNyyyjSaXIlrAnAKO6G3srGwg==}
+  '@oxc-minify/binding-linux-x64-gnu@0.140.0':
+    resolution: {integrity: sha512-2dThpMwGQohXph9yzAQNVsSwMarzAD8LkDyKhCbkoRJ/O2knpQNM3d6mMjqNJquFJxuniHNHQsCvV2N1R9/VoQ==}
     engines: {node: ^20.19.0 || >=22.12.0}
     cpu: [x64]
     os: [linux]
@@ -1383,13 +1383,6 @@ packages:
     os: [linux]
     libc: [glibc]
 
-  '@oxc-parser/binding-linux-x64-gnu@0.141.0':
-    resolution: {integrity: sha512-qtyQVAAebFq57B2tifTlel3TgGqUtsYNI/e+p6aya9rN9lOZVTDvr215fGYSA9XWooxzMxDiVxkBLk2jQHbsOQ==}
-    engines: {node: ^20.19.0 || >=22.12.0}
-    cpu: [x64]
-    os: [linux]
-    libc: [glibc]
-
   '@oxc-parser/binding-linux-x64-musl@0.128.0':
     resolution: {integrity: sha512-4NehAe404MRdoZVS9DW8C5XbJwbXIc/KfVlYdpi5vE4081zc9Y0YzKVqyOYj/Puye7/Do+ohaONBFWlEHYl9hw==}
     engines: {node: ^20.19.0 || >=22.12.0}
@@ -1601,8 +1594,8 @@ packages:
     os: [linux]
     libc: [glibc]
 
-  '@oxc-transform/binding-linux-x64-gnu@0.141.0':
-    resolution: {integrity: sha512-lIsdGq4LA1IlbrZlmrhP/p0pCo4+5jrAlLp9BMzIHaV4mILBSr+ZtuTDkML4117cLHdzoWOqw0s3Rb7igOWtxw==}
+  '@oxc-transform/binding-linux-x64-gnu@0.140.0':
+    resolution: {integrity: sha512-E0qSFOMRArliAiASRwz55sU1XQxx2neimvhtfhvwUiVZf3OZqoIJfOz+W5nE/nGC3JGZgr8j6/rpWTgkwy1dFw==}
     engines: {node: ^20.19.0 || >=22.12.0}
     cpu: [x64]
     os: [linux]
@@ -7303,7 +7296,7 @@ snapshots:
       - vue
       - webpack
 
-  '@oxc-minify/binding-linux-x64-gnu@0.141.0': {}
+  '@oxc-minify/binding-linux-x64-gnu@0.140.0': {}
 
   '@oxc-parser/binding-android-arm-eabi@0.128.0':
     optional: true
@@ -7428,10 +7421,7 @@ snapshots:
   '@oxc-parser/binding-linux-x64-gnu@0.132.0':
     optional: true
 
-  '@oxc-parser/binding-linux-x64-gnu@0.140.0':
-    optional: true
-
-  '@oxc-parser/binding-linux-x64-gnu@0.141.0': {}
+  '@oxc-parser/binding-linux-x64-gnu@0.140.0': {}
 
   '@oxc-parser/binding-linux-x64-musl@0.128.0':
     optional: true
@@ -7549,7 +7539,7 @@ snapshots:
   '@oxc-transform/binding-linux-x64-gnu@0.128.0':
     optional: true
 
-  '@oxc-transform/binding-linux-x64-gnu@0.141.0': {}
+  '@oxc-transform/binding-linux-x64-gnu@0.140.0': {}
 
   '@oxc-transform/binding-linux-x64-musl@0.128.0':
     optional: true
