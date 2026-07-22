@@ -45,14 +45,13 @@ export default {
          chunkSizeWarningLimit: 2048, // 2 MB
          rollupOptions: {
             output: {
-               manualChunks: {
-                  'vue-vendor': ['vue', 'vue-router', '@vueuse/core'],
-                  fontawesome: [
-                     '@fortawesome/vue-fontawesome',
-                     '@fortawesome/free-solid-svg-icons',
-                     '@fortawesome/free-regular-svg-icons',
-                     '@fortawesome/free-brands-svg-icons',
-                  ],
+               manualChunks(id) {
+                  if (id.includes('node_modules/vue/') || id.includes('node_modules/vue-router/') || id.includes('node_modules/@vueuse/core/')) {
+                     return 'vue-vendor';
+                  }
+                  if (id.includes('node_modules/@fortawesome/vue-fontawesome/') || id.includes('node_modules/@fortawesome/free-solid-svg-icons/') || id.includes('node_modules/@fortawesome/free-regular-svg-icons/') || id.includes('node_modules/@fortawesome/free-brands-svg-icons/')) {
+                     return 'fontawesome';
+                  }
                },
             },
          },
