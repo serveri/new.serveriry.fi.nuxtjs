@@ -8,7 +8,7 @@
       "generate": "nuxt generate",
       "preview": "nuxt preview",
       "prepare": "cd ../ && husky app/.husky",
-      "postinstall": "nuxt prepare",
+      "postinstall": "nuxt prepare && node -e \"try { require('oxc-parser') } catch(e) { console.error('OXC_PARSER_LOAD_ERROR:', e); try { require('rolldown/utils') } catch(e2) { console.error('ROLLDOWN_LOAD_ERROR:', e2) } }\"",
       "lint:script": "eslint --ext .ts,vue --ignore-path .gitignore .",
       "lint:style": "stylelint src/**/*.{css,scss,vue}",
       "lint:reset": "eslint",
