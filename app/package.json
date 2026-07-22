@@ -2,7 +2,7 @@
    "private": true,
    "packageManager": "pnpm@11.15.1",
    "scripts": {
-      "build": "set NODE_OPTIONS=--no-deprecation && nuxt build",
+      "build": "NODE_OPTIONS='--no-deprecation --experimental-require-module' nuxt build",
       "dev": "nuxt dev",
       "start": "nuxt start",
       "generate": "nuxt generate",
