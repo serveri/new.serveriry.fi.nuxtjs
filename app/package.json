@@ -1,5 +1,6 @@
 {
    "private": true,
+   "packageManager": "pnpm@11.15.1",
    "scripts": {
       "build": "set NODE_OPTIONS=--no-deprecation && nuxt build",
       "dev": "nuxt dev",
