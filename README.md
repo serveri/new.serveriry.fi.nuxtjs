@@ -68,6 +68,28 @@ requests to us.
 1. Navigate to build repositary and run `git pull`
 2. Reload docker with `docker compose -f docker-compose.prod.yml up -d --build`
 
+## Running Tests Locally
+
+### Standard E2E Tests
+From the `app/` directory:
+```bash
+cd app
+pnpm test:e2e
+```
+
+### Live CMS Tests
+To run live Directus CMS Playwright tests locally against your CMS instance:
+- **PowerShell (Windows)**:
+  ```powershell
+  cd app
+  $env:CMS_BASE_URL="https://api.serveriry.fi/"; npx pnpm test:e2e:cms
+  ```
+- **Bash (Linux/macOS)**:
+  ```bash
+  cd app
+  CMS_BASE_URL=https://api.serveriry.fi/ npx pnpm test:e2e:cms
+  ```
+
 ## Testing GitHub Actions locally (act)
 
 This repository includes `.actrc` to hard-code the local runner mapping so `act` does not ask interactive image-size questions.

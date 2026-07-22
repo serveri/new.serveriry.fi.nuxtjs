@@ -18,17 +18,36 @@ See [Directus instructions](../backend/development/README.md) for information ab
 
 ### How to build
 
-1. `npm run build`
-2. `npm run start`
-3. Open browser at `http://localhost:3000`
-4. To stop, press `Ctrl + C` in terminal
+1. `cd app`
+2. `npm run build`
+3. `npm run start`
+4. Open browser at `http://localhost:3000`
+5. To stop, press `Ctrl + C` in terminal
+
+### How to run tests
+
+While frontend is running:
+
+- Run standard E2E tests:
+   ```bash
+   pnpm test:e2e
+   ```
+- Run live Directus CMS tests locally:
+   - **PowerShell (Windows)**:
+      ```powershell
+      $env:CMS_BASE_URL="https://api.serveriry.fi/"; npx pnpm test:e2e:cms
+      ```
+   - **Bash (Linux/macOS)**:
+      ```bash
+      CMS_BASE_URL=https://api.serveriry.fi/ npx pnpm test:e2e:cms
+      ```
 
 ## Tech
 
 This project uses following technologies:
 
 | Service  | Tech        | Version     | Explanation                                   |
-|----------|-------------|-------------|-----------------------------------------------|
+| -------- | ----------- | ----------- | --------------------------------------------- |
 | frontend | Vue         | v3.2.45     | Vue is used to build frontend :)              |
 | frontend | Nuxt        | v3.1.0      | Nuxt provides SSR and SEO for web application |
 | frontend | Vue router  | v4.1.6      | client-side navigation                        |
@@ -106,4 +125,3 @@ Example of how to define separate dark style:
 ```
 
 See official [documentation](https://tailwindcss.com/).
-
