@@ -5,7 +5,6 @@ export default {
 
    postcss: {
       plugins: {
-         '@tailwindcss/postcss': {},
          autoprefixer: {},
       },
    },
@@ -29,7 +28,7 @@ export default {
       ],
       lazy: true,
       langDir: 'lang',
-      // strategy: 'no_prefix', // uncomment if you don’t want locale prefixes in routes
+      // strategy: 'no_prefix', // uncomment if you don't want locale prefixes in routes
    },
 
    runtimeConfig: {
@@ -41,6 +40,9 @@ export default {
 
    // Reduce build-time noise by relaxing Vite's chunk size warning threshold
    vite: {
+      plugins: [
+         (await import('@tailwindcss/vite')).default(),
+      ],
       build: {
          chunkSizeWarningLimit: 2048, // 2 MB
          rollupOptions: {
@@ -60,3 +62,4 @@ export default {
 
    compatibilityDate: '2024-08-19',
 };
+

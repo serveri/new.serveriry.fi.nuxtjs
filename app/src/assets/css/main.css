@@ -1,6 +1,13 @@
 @import url('tailwindcss');
 
-@config '../../../tailwind.config.js';
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --color-custom-secondary: #00788a;
+  --color-custom-secondary-dark: #00c8e7;
+  --color-custom-primary: #009fb8;
+  --background-image-gradient-radial: radial-gradient(var(--tw-gradient-stops));
+}
 
 /*
   The default border color has changed to `currentcolor` in Tailwind CSS v4,
