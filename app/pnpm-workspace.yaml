@@ -11,3 +11,15 @@ onlyBuiltDependencies:
 
 overrides:
   picomatch@>=4.0.0 <4.0.4: ^4.0.4
+
+supportedArchitectures:
+  os:
+    - win32
+    - linux
+    - darwin
+  cpu:
+    - x64
+    - arm64
+  libc:
+    - glibc
+    - musl

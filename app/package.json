@@ -61,23 +61,6 @@
       "stylelint-config-recommended": "^18.0.0",
       "stylelint-config-standard": "^40.0.0"
    },
-   "pnpm": {
-      "supportedArchitectures": {
-         "os": [
-            "linux",
-            "win32",
-            "darwin"
-         ],
-         "cpu": [
-            "x64",
-            "arm64"
-         ],
-         "libc": [
-            "glibc",
-            "musl"
-         ]
-      }
-   },
    "lint-staged": {
       "*.{ts,tsx,js,jsx}": "eslint --fix",
       "*.{css,scss}": "stylelint --fix",
