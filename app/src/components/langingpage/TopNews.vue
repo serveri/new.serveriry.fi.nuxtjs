@@ -27,7 +27,7 @@
 <script setup lang="ts">
    // Import the necessary composable from i18n.
    // In Nuxt 3 with @nuxtjs/i18n v9, these composables are auto-imported from '#i18n'.
-   import { useLocalePath, useI18n } from '#i18n';
+   import { useLocalePath } from '#i18n';
    import ComingEvent from '@/components/langingpage/ComingEvent.vue';
    import type { Data } from '@/types';
 
@@ -35,9 +35,6 @@
 
    // Create the composable instance for locale path generation.
    const localePath = useLocalePath();
-   // Optionally, if you need to use translation in the script section,
-   // you can also destructure the t function (note: $t in template still works).
-   const { t } = useI18n();
 
    interface Event {
       id: string;
@@ -49,10 +46,13 @@
 
    let events: Event[] = [];
    try {
-      const { data } = (await useFetch(`${config.public.API_URL}items/tapahtuma`)) as { data: Data };
+      const { data } = (await useFetch(`${config.public.API_URL}items/tapahtuma?sort=-alku_aika&limit=100`)) as {
+         data: Data;
+      };
       const fetchedEvents = data.value.data as Event[];
 
       const today = new Date();
+      today.setHours(0, 0, 0, 0);
       const futureEvents = fetchedEvents.filter((item) => {
          const eventDate = new Date(item?.alku_aika);
          return !isNaN(eventDate.getTime()) && eventDate >= today;

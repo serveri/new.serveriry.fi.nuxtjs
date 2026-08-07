@@ -63,11 +63,14 @@
    // This hard coded data will be replaced with data from directus
    let events;
    try {
-      const { data } = (await useFetch(`${config.public['API_URL']}items/tapahtuma`)) as { data: Data };
+      const { data } = (await useFetch(`${config.public['API_URL']}items/tapahtuma?sort=-alku_aika&limit=100`)) as {
+         data: Data;
+      };
       events = data.value.data;
 
       // filter
       const today = new Date();
+      today.setHours(0, 0, 0, 0);
       events.pastData = events.filter((item) => new Date(item.alku_aika) < today);
       events.futureData = events.filter((item) => new Date(item.alku_aika) >= today);
 
@@ -80,7 +83,7 @@
             ? `${config.public['API_URL']}assets/${event.kuva}`
             : config.public['API_URL'] + 'assets/b3ed6d7f-c124-4136-9234-cbd91fccff0f';
       });
-   } catch (error) {
+   } catch {
       events = [
          {
             img: config.public['API_URL'] + 'assets/b3ed6d7f-c124-4136-9234-cbd91fccff0f',
@@ -95,10 +98,12 @@
 
 <style scoped>
    @reference "tailwindcss";
+
    .custom-grid {
       @apply grid grid-cols-1 gap-4;
    }
-   @media (min-width: 600px) {
+
+   @media (width >= 600px) {
       .custom-grid {
          grid-template-columns: repeat(auto-fit, minmax(21rem, 1fr));
       }
