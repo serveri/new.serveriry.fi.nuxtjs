@@ -4,7 +4,7 @@
          <HeroSection class="w-screen" :content="content" />
       </section>
 
-      <section class="sm:-mt-12 xl:sm:-mt-24 2xl:sm:-mt-32 flex flex-col lg:flex-row md:gap-8">
+      <section class="sm:-mt-12 xl:sm:-mt-24 2xl:sm:-mt-32 flex flex-col lg:flex-row lg:items-start md:gap-8">
          <DescriptionText :en_description="content.en_long_desc" :fi_description="content.fi_long_desc" />
          <TopNews />
       </section>
@@ -105,7 +105,7 @@
          ...content,
          ...data.value.data,
       };
-   } catch (e) {
+   } catch {
       console.log('Error fetching LandingPage');
    }
    interface Article {
@@ -167,7 +167,7 @@
    try {
       const { data } = (await useFetch(`${config.public['API_URL']}items/sosiaaliset_mediat`)) as { data: Data };
       SoMes = Array.isArray(data.value.data) ? (data.value.data as SoMe[]) : SoMes;
-   } catch (e) {
+   } catch {
       console.log('Error fetching Social Medias');
    }
 </script>

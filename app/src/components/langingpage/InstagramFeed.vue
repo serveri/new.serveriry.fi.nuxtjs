@@ -1,71 +1,84 @@
 <!--suppress HtmlDeprecatedAttribute -->
 <template>
-   <!-- CSS is static, maybe make it more responsive -->
-   <div
-      class="flex md:w-1/2 flex-col items-center lg:pl-10 md:pl-5 sm:pl-0 sm:grid sm:grid-cols-2 gap-2 sm:h-[100vw] md:h-[52vw] xl:h-[41rem] md:border-l border-gray-200 dark:border-gray-700"
-   >
-      <h2 class="custom-page-title sm:hidden">Instagram Feed</h2>
-      <client-only>
-         <template v-if="trackingAllowed">
+   <div class="flex w-full flex-col mt-6">
+      <ClientOnly>
+         <div v-if="trackingAllowed" class="grid grid-cols-1 sm:grid-cols-2 gap-3 w-full">
             <iframe
-               v-for="post in posts?.slice(0, 4)"
+               v-for="post in posts.slice(0, 2)"
                :key="post.postaus_id"
                title="Instagram post"
-               class="rounded-lg w-full h-[97vw] sm:h-full"
-               :src="`https://www.instagram.com/p/${post.postaus_id}/embed/?utm_source=ig_embed&amp%3Butm_campaign=loading`"
+               class="rounded-lg w-full h-[310px] border-0"
+               :src="`https://www.instagram.com/p/${post.postaus_id}/embed/`"
                height="100%"
                scrolling="no"
                allowtransparency="true"
                tabindex="-1"
-               sandbox="allow-scripts"
             ></iframe>
-         </template>
-         <div v-else class="flex flex-col items-center gap-2 rounded-lg bg-zinc-200 p-6 dark:bg-zinc-700">
-            <p class="text-center text-sm">{{ $t('embed_cookies_required') }}</p>
-            <p class="text-center text-xs opacity-90">{{ $t('tracking_disabled_embed') }}</p>
+         </div>
+         <div
+            v-else
+            class="flex flex-col items-center justify-center gap-3 rounded-lg bg-zinc-100 p-6 text-center dark:bg-zinc-800 w-full min-h-[180px] border border-gray-200 dark:border-gray-700"
+         >
+            <p class="text-sm font-semibold text-zinc-800 dark:text-zinc-100">{{ $t('embed_cookies_required') }}</p>
+            <p class="text-xs text-zinc-600 dark:text-zinc-400 max-w-xs">{{ $t('tracking_disabled_embed') }}</p>
+            <button
+               type="button"
+               class="rounded bg-custom-primary px-4 py-2 text-xs font-medium text-white hover:bg-custom-secondary transition-colors"
+               @click="enableEmbeds"
+            >
+               {{ $i18n.locale === 'fi' ? 'Salli upotukset' : 'Enable embeds' }}
+            </button>
             <a
                href="https://www.instagram.com/serveriry/"
                target="_blank"
                rel="noopener noreferrer"
-               class="text-custom-primary underline"
+               class="text-xs text-custom-primary underline hover:text-custom-secondary"
             >
                Instagram @serveriry
             </a>
          </div>
-      </client-only>
+      </ClientOnly>
    </div>
 </template>
 
 <script setup lang="ts">
-   import type { Data } from '@/types';
+   import { useTrackingConsent } from '@/composables/useTrackingConsent';
 
    interface InstagramPost {
       postaus_id: string;
+      sort?: number;
    }
 
    const config = useRuntimeConfig();
    const { trackingAllowed } = useTrackingConsent();
 
-   let posts: InstagramPost[] = [];
-   try {
-      const { data } = (await useFetch(`${config.public['API_URL']}items/instagram`)) as {
-         data: { value: { data: InstagramPost[] } };
-      };
-      posts = Array.isArray(data.value?.data) ? data.value.data : [];
-   } catch (e) {
-      posts = [
-         { postaus_id: 'CqFdw7MBG5N' },
-         { postaus_id: 'CqC49UgBFpR' },
-         { postaus_id: 'CpzqO4Ah9HC' },
-         { postaus_id: 'CphwTQLBho9' },
-      ];
-   }
-</script>
+   const fallbackPosts: InstagramPost[] = [{ postaus_id: 'Dbl4exTo7W0' }, { postaus_id: 'DbkniSACCZS' }];
 
-<script lang="ts">
-   export default {
-      name: 'InstagramFeed',
+   // Fetch server-side via useFetch to avoid CORS issues
+   const { data: apiResponse } = await useFetch<{ data: InstagramPost[] }>(
+      `${config.public['API_URL']}items/instagram?sort=-sort&limit=2`,
+      { default: () => ({ data: fallbackPosts }) },
+   );
+
+   const posts = computed(() => {
+      const raw = apiResponse.value?.data;
+      if (Array.isArray(raw) && raw.length > 0) {
+         return raw.map((item) => ({
+            ...item,
+            postaus_id: item.postaus_id ? item.postaus_id.replace(/\/+$/, '') : '',
+         }));
+      }
+      return fallbackPosts;
+   });
+
+   const enableEmbeds = () => {
+      if (typeof document !== 'undefined') {
+         const expires = new Date('2040-12-18T12:00:00Z').toUTCString();
+         document.cookie = `cookie_notice_dismissed=true; expires=${expires}; path=/;`;
+         document.cookie = `tracking_allowed=true; expires=${expires}; path=/;`;
+         if (typeof window !== 'undefined') {
+            window.dispatchEvent(new Event('tracking-consent-update'));
+         }
+      }
    };
 </script>
-
-<style scoped></style>

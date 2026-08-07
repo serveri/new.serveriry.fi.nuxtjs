@@ -1,5 +1,5 @@
 <template>
-   <div class="flex flex-col lg:ml-auto mt-8 sm:mt-0">
+   <div class="flex flex-col lg:ml-auto mt-8 sm:mt-0 w-full">
       <!-- Using the $t helper in template remains valid if configured -->
       <h2 class="custom-page-title uppercase">{{ $t('coming-events') }}</h2>
       <div
@@ -21,6 +21,8 @@
             <button class="btn-custom-primary" type="button">{{ $t('show-all-coming-events') }}</button>
          </nuxt-link>
       </div>
+
+      <InstagramFeed />
    </div>
 </template>
 
@@ -29,6 +31,7 @@
    // In Nuxt 3 with @nuxtjs/i18n v9, these composables are auto-imported from '#i18n'.
    import { useLocalePath } from '#i18n';
    import ComingEvent from '@/components/langingpage/ComingEvent.vue';
+   import InstagramFeed from '@/components/langingpage/InstagramFeed.vue';
    import type { Data } from '@/types';
 
    const config = useRuntimeConfig();
