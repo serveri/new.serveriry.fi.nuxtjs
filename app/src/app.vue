@@ -37,7 +37,12 @@
          { name: 'og:image', content: config.public['API_URL'] + 'assets/c90a01ea-5b87-4832-995a-f7ca42c81108' },
          { name: 'og:url', content: 'https://serveriry.fi/' },
       ],
-      link: [{ rel: 'icon', href: 'https://api.serveriry.fi/assets/5404c898-6ac5-485b-bdb8-185ed5e1e374' }],
+      link: [
+         { rel: 'icon', type: 'image/svg+xml', href: '/favicon.svg' },
+         { rel: 'icon', type: 'image/png', sizes: '96x96', href: '/favicon-96x96.png' },
+         { rel: 'shortcut icon', href: '/favicon.ico' },
+         { rel: 'apple-touch-icon', href: '/apple-touch-icon.png' },
+      ],
       script: [
          {
             async: true,

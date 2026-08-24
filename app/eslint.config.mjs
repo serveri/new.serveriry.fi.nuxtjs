@@ -34,6 +34,7 @@ export default [
             onMounted: 'readonly',
             useTrackingConsent: 'readonly',
             useHead: 'readonly',
+            useRequestHeaders: 'readonly',
             $fetch: 'readonly',
          },
          ecmaVersion: 2021,

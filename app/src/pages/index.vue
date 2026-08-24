@@ -60,16 +60,27 @@
    import TopNews from '@/components/langingpage/TopNews.vue';
    import SocialmediaIcon from '@/components/langingpage/SocialmediaIcon.vue';
    import type { Data } from '@/types';
-   import { toRaw, computed, watchEffect } from 'vue';
+   import { toRaw, computed } from 'vue';
    import PartnerPageSection from '@/components/partners/PartnerPageSection.vue';
    import { useI18n } from 'vue-i18n';
    const { t, locale } = useI18n();
    const config = useRuntimeConfig();
 
-   // Page title via head
+   // Page title & description for SEO
    const pageTitle = computed(() => `${t('title_front-page')} - Serveri ry`);
-   watchEffect(() => {
-      useHead({ title: pageTitle.value });
+   const metaDescription = computed(() =>
+      locale.value === 'en'
+         ? 'Serveri ry is the student association for Computer Science students at the University of Eastern Finland, Kuopio campus.'
+         : 'Serveri ry on Itä-Suomen yliopiston Kuopion kampuksen tietojenkäsittelytieteen opiskelijoiden ainejärjestö.',
+   );
+
+   useHead({
+      title: pageTitle,
+      meta: [
+         { name: 'description', content: metaDescription },
+         { property: 'og:title', content: pageTitle },
+         { property: 'og:description', content: metaDescription },
+      ],
    });
 
    interface Content {

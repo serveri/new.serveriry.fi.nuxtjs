@@ -1,6 +1,7 @@
 <template>
    <div
       v-if="!isDismissed && isPageLoaded"
+      data-nosnippet
       class="fixed inset-x-0 bottom-0 z-50 border-t border-zinc-200 bg-white p-4 text-sm dark:border-zinc-700 dark:bg-zinc-900"
    >
       <div class="flex w-full flex-col gap-3 md:flex-row md:items-center md:justify-between">

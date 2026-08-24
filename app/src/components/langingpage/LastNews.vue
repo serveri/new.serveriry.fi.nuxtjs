@@ -1,7 +1,7 @@
 <template>
    <div class="w-full bg-white dark:bg-zinc-900 shadow-lg rounded-xl overflow-hidden md:flex border border-gray-100">
       <div class="w-full md:w-1/2 lg:w-5/12 flex-shrink-0 relative">
-         <img class="w-full h-64 md:h-full object-cover" :src="content.img" alt="Cover image for the news card" />
+         <img class="w-full h-64 md:h-full object-cover" :src="content.img" :alt="title || 'Uutisen kansikuva'" />
       </div>
 
       <div class="p-6 md:p-8 md:w-1/2 lg:w-7/12 flex flex-col justify-center text-left">

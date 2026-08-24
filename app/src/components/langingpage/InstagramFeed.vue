@@ -17,6 +17,7 @@
          </div>
          <div
             v-else
+            data-nosnippet
             class="flex flex-col items-center justify-center gap-3 rounded-lg bg-zinc-100 p-6 text-center dark:bg-zinc-800 w-full min-h-[180px] border border-gray-200 dark:border-gray-700"
          >
             <p class="text-sm font-semibold text-zinc-800 dark:text-zinc-100">{{ $t('embed_cookies_required') }}</p>
