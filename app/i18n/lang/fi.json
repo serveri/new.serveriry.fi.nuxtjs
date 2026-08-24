@@ -167,5 +167,8 @@
    "event_ad_notice_contact": "Ota yhteyttä",
    "buy_tickets_kideapp": "Osta liput KideAppista",
    "directions": "Reittiohjeet",
-   "directions_google_maps": "Reittiohjeet - Google Maps"
+   "directions_google_maps": "Reittiohjeet - Google Maps",
+   "show_email": "Näytä sähköposti",
+   "copy_email": "Kopioi",
+   "copied_email": "Kopioitu!"
 }

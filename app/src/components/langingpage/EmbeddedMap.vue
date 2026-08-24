@@ -39,11 +39,7 @@
                   <p>70211 Kuopio</p>
                </div>
                <div>
-                  <p>
-                     <span class="pr-2">
-                        <client-only><font-awesome-icon icon="fa fa-envelope" /></client-only> </span
-                     >hallitus@serveriry.fi
-                  </p>
+                  <ObfuscatedEmail user="hallitus" />
                </div>
             </div>
          </div>

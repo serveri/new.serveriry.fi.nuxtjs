@@ -1,7 +1,7 @@
 export default {
    ssr: true,
    srcDir: 'src/',
-   css: ['~/assets/css/main.css'],
+   css: ['@fortawesome/fontawesome-svg-core/styles.css', '~/assets/css/main.css'],
 
    postcss: {
       plugins: {
@@ -40,18 +40,25 @@ export default {
 
    // Reduce build-time noise by relaxing Vite's chunk size warning threshold
    vite: {
-      plugins: [
-         (await import('@tailwindcss/vite')).default(),
-      ],
+      plugins: [(await import('@tailwindcss/vite')).default()],
       build: {
          chunkSizeWarningLimit: 2048, // 2 MB
          rollupOptions: {
             output: {
                manualChunks(id) {
-                  if (id.includes('node_modules/vue/') || id.includes('node_modules/vue-router/') || id.includes('node_modules/@vueuse/core/')) {
+                  if (
+                     id.includes('node_modules/vue/') ||
+                     id.includes('node_modules/vue-router/') ||
+                     id.includes('node_modules/@vueuse/core/')
+                  ) {
                      return 'vue-vendor';
                   }
-                  if (id.includes('node_modules/@fortawesome/vue-fontawesome/') || id.includes('node_modules/@fortawesome/free-solid-svg-icons/') || id.includes('node_modules/@fortawesome/free-regular-svg-icons/') || id.includes('node_modules/@fortawesome/free-brands-svg-icons/')) {
+                  if (
+                     id.includes('node_modules/@fortawesome/vue-fontawesome/') ||
+                     id.includes('node_modules/@fortawesome/free-solid-svg-icons/') ||
+                     id.includes('node_modules/@fortawesome/free-regular-svg-icons/') ||
+                     id.includes('node_modules/@fortawesome/free-brands-svg-icons/')
+                  ) {
                      return 'fontawesome';
                   }
                },
@@ -62,4 +69,3 @@ export default {
 
    compatibilityDate: '2024-08-19',
 };
-

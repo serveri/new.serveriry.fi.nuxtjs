@@ -162,5 +162,8 @@
    "event_ad_notice_contact": "Contact us",
    "buy_tickets_kideapp": "Buy tickets on Kide.app",
    "directions": "Directions",
-   "directions_google_maps": "Directions - Google Maps"
+   "directions_google_maps": "Directions - Google Maps",
+   "show_email": "Show email",
+   "copy_email": "Copy",
+   "copied_email": "Copied!"
 }

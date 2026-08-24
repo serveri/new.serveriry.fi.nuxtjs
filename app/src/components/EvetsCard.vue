@@ -1,6 +1,8 @@
 <template>
    <NuxtLink :to="localePath('/yhdistys/tapahtuma/' + content.url)" class="grid-item md:max-w-lg">
-      <div class="event-card">
+      <div
+         class="event-card bg-white dark:bg-zinc-900 justify-self-center overflow-hidden rounded-2xl h-full w-full dark:shadow-lg dark:shadow-zinc-600/50"
+      >
          <div class="rounded-sm">
             <img
                class="w-full max-h-64 object-cover"
@@ -99,12 +101,8 @@
 </script>
 
 <style scoped>
-   @reference "tailwindcss";
-
    .event-card {
       box-shadow: 0 0 26px -5px rgb(0 0 0 / 27%);
-
-      @apply dark:shadow-lg dark:shadow-zinc-600/50 dark:bg-zinc-900 justify-self-center overflow-hidden rounded-2xl h-full w-full;
    }
 
    .grid-item {

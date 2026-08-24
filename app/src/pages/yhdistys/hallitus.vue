@@ -42,14 +42,14 @@
       members = membersData.value.data;
       const { data: textData } = (await useFetch(`${config.public['API_URL']}items/hallitus_page`)) as { data: Data };
       text = textData.value.data;
-   } catch (e) {
+   } catch {
       members = [
          {
             img: 'https://api.serveriry.fi/assets/604e9b95-f188-4777-8356-1fd5a60681a5',
             hover_img: 'https://api.serveriry.fi/assets/604e9b95-f188-4777-8356-1fd5a60681a5',
             fi_role: 'Jäsen',
             en_role: 'Member',
-            email: 'email@serveriry.fi',
+            email: 'hallitus',
             telegram: 'telegram',
             name: 'API Error',
             fi_description: 'joo joku ongelma vissii serverit tulessa :O',
@@ -65,6 +65,7 @@
 
 <style scoped>
    @reference "tailwindcss";
+
    .custom-grid {
       display: grid;
       gap: 2rem;

@@ -1,11 +1,13 @@
 <template>
    <div class="flex flex-col items-center">
-      <div class="card-container flex flex-col sm:min-w-[16.5rem] min-w-full">
+      <div
+         class="card-container bg-white dark:bg-zinc-900 rounded-2xl w-full overflow-hidden max-w-sm p-4 justify-self-center dark:shadow-lg dark:shadow-zinc-600/50 flex flex-col sm:min-w-[16.5rem] min-w-full"
+      >
          <div class="member-info flex flex-wrap justify-center px-4">
             <div class="w-9/12 sm:w-11/12" @mouseover="hover = true" @mouseleave="hover = false">
                <img
                   :src="hover ? content.hover_img : content.img"
-                  class="member-image w-full"
+                  class="member-image rounded-full max-w-full align-middle border-none object-cover dark:shadow-lg dark:shadow-zinc-700 w-full"
                   alt="Hallituksen jäsenen kuva"
                   role="img"
                />
@@ -17,17 +19,12 @@
                <h2 class="member-name font-extrabold pt-1 text-2xl">{{ props.name }}</h2>
                <h2 class="member-role text-md font-bold line-clamp-2">{{ props[$i18n.locale + '_role'] }}</h2>
             </div>
-            <div class="member-desc text-center pb-4 text-sm">
-               <p v-if="props.email" class="flex justify-center px-2">
-                  <client-only>
-                     <font-awesome-icon class="fa-xl mr-1" :icon="['fas', 'envelope']" />
-                  </client-only>
-                  <a :href="'mailto:' + props.email + '@serveriry.fi'" class="member-email hover:underline"
-                     >{{ props.email }}@serveriry.fi</a
-                  >
-               </p>
+            <div class="member-desc text-center pb-4 text-sm flex flex-col items-center gap-1">
+               <div v-if="props.email" class="flex justify-center items-center px-2">
+                  <ObfuscatedEmail :email="props.email" />
+               </div>
 
-               <p v-if="props.telegram">
+               <p v-if="props.telegram" class="flex justify-center items-center">
                   <client-only>
                      <font-awesome-icon class="fa-xl mr-1" :icon="['fab', 'telegram']" />
                   </client-only>
@@ -51,10 +48,10 @@
             <button class="expandable-button bottom-0 absolute" type="button" @click="isExpanded = !isExpanded">
                <client-only>
                   <button v-if="isExpanded">
-                     <font-awesome-icon class="collapse-button fa-xl" :icon="['fas', 'chevron-up']" />
+                     <font-awesome-icon class="collapse-button fa-xl dark:invert" :icon="['fas', 'chevron-up']" />
                   </button>
                   <button v-else>
-                     <font-awesome-icon class="collapse-button fa-xl" :icon="['fas', 'chevron-down']" />
+                     <font-awesome-icon class="collapse-button fa-xl dark:invert" :icon="['fas', 'chevron-down']" />
                   </button>
                </client-only>
             </button>
@@ -141,27 +138,7 @@
 </script>
 
 <style scoped>
-   @reference "tailwindcss";
    .card-container {
-      -webkit-box-shadow: 0 0 26px -5px rgba(0, 0, 0, 0.27);
-      -moz-box-shadow: 0 0 26px -5px rgba(0, 0, 0, 0.27);
-      box-shadow: 0 0 26px -5px rgba(0, 0, 0, 0.27);
-   }
-   .card-container {
-      @apply rounded-2xl w-full overflow-hidden max-w-sm p-4 justify-self-center;
-   }
-   .card-container {
-      @apply dark:shadow-lg dark:shadow-zinc-600/50 dark:bg-zinc-900;
-   }
-
-   .collapse-button {
-      @apply dark:invert;
-   }
-
-   .member-image {
-      @apply rounded-full max-w-full align-middle border-none object-cover;
-   }
-   .member-image {
-      @apply dark:shadow-lg dark:shadow-zinc-700 dark:bg-zinc-900;
+      box-shadow: 0 0 26px -5px rgb(0 0 0 / 27%);
    }
 </style>
