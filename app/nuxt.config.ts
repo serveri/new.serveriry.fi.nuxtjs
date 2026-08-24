@@ -35,14 +35,12 @@ export default {
       '/items/**': {
          proxy: `${process.env.NUXT_API_URL || 'https://api.serveriry.fi/'}items/**`,
       },
-      '/assets/**': {
-         proxy: `${process.env.NUXT_API_URL || 'https://api.serveriry.fi/'}assets/**`,
-      },
    },
 
    runtimeConfig: {
       public: {
          API_URL: '/',
+         DIRECTUS_URL: process.env.NUXT_API_URL || 'https://api.serveriry.fi/',
          cookieBannerDev: process.env.NODE_ENV === 'development',
       },
    },

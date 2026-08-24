@@ -234,7 +234,7 @@
 
    // Reactive state for event and derived values
    const events = ref<any>({
-      image: config.public['API_URL'] + 'assets/b3ed6d7f-c124-4136-9234-cbd91fccff0f',
+      image: config.public.DIRECTUS_URL + 'assets/b3ed6d7f-c124-4136-9234-cbd91fccff0f',
       fi_otsikko: 'Tapahtuman nimeä ei löytynyt',
       en_otsikko: 'The events title cannot be found',
       fi_kuvaus: 'Valitettavasti rest rajapintaan ei saada yhteyttä, ovatkohan serverit liekeissä?',
@@ -260,8 +260,8 @@
       alku_aika.value = e.alku_aika ? new Date(e.alku_aika) : null;
       loppu_aika.value = e.loppu_aika ? new Date(e.loppu_aika) : null;
       events.value.image = e.kuva
-         ? `${config.public['API_URL']}assets/${e.kuva}`
-         : config.public['API_URL'] + 'assets/b3ed6d7f-c124-4136-9234-cbd91fccff0f';
+         ? `${config.public.DIRECTUS_URL}assets/${e.kuva}`
+         : e.image || `${config.public.DIRECTUS_URL}assets/b3ed6d7f-c124-4136-9234-cbd91fccff0f`;
       // Handle GeoJSON { type: 'Point', coordinates: [lon, lat] }
       if (e.sijainti?.coordinates && Array.isArray(e.sijainti.coordinates)) {
          x.value = e.sijainti.coordinates[0];

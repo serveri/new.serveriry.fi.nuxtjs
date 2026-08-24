@@ -80,8 +80,10 @@
 
       events.forEach((event) => {
          event.image = event.kuva
-            ? `${config.public['API_URL']}assets/${event.kuva}`
-            : config.public['API_URL'] + 'assets/b3ed6d7f-c124-4136-9234-cbd91fccff0f';
+            ? `${config.public.DIRECTUS_URL}assets/${event.kuva}`
+            : event.image?.startsWith('http')
+              ? event.image
+              : `${config.public.DIRECTUS_URL}assets/b3ed6d7f-c124-4136-9234-cbd91fccff0f`;
       });
    } catch {
       events = [

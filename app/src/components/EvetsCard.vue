@@ -6,7 +6,7 @@
          <div class="rounded-sm">
             <img
                class="w-full max-h-64 object-cover"
-               :src="content.img?.startsWith('http') ? content.img : '/assets/b3ed6d7f-c124-4136-9234-cbd91fccff0f'"
+               :src="content.img || 'https://api.serveriry.fi/assets/b3ed6d7f-c124-4136-9234-cbd91fccff0f'"
                :alt="title || 'Tapahtuman kansikuva'"
             />
          </div>
@@ -39,44 +39,15 @@
    const { locale } = useI18n();
    const localePath = useLocalePath();
 
-   const content = defineProps({
-      url: {
-         type: Number,
-         default: 1,
-         required: true,
-      },
-      img: {
-         type: String,
-         default: 'https://api.serveriry.fi/assets/9db2e4a2-e9d7-4dab-8156-8cc0f482775d',
-         required: true,
-      },
-      fi_title: {
-         type: String,
-         default: 'Uutisen otsikkoa ei löytynyt',
-         required: true,
-      },
-      en_title: {
-         type: String,
-         default: "News title wasn't found",
-         required: true,
-      },
-      start_time: {
-         type: Date,
-         default: new Date('01/01/1970'),
-         required: true,
-      },
-      fi_text: {
-         type: String,
-         default:
-            'Miksi serverit on niin kuumia? Koska kukaan ei voi vastustaa valkoisia haalareita! API ei muuten vastaa.',
-         required: true,
-      },
-      en_text: {
-         type: String,
-         default: 'Why are the servers so hot? Because no one can resist white overalls! BTW API does not respond.',
-         required: true,
-      },
-   });
+   const content = defineProps<{
+      url: number | string;
+      img?: string;
+      fi_title?: string;
+      en_title?: string;
+      start_time: Date;
+      fi_text?: string;
+      en_text?: string;
+   }>();
 
    const stripMarkdown = (md: string) => {
       if (!md) return '';
@@ -93,9 +64,9 @@
          .trim();
    };
 
-   const title = computed(() => (locale.value === 'en' ? content.en_title : content.fi_title));
+   const title = computed(() => (locale.value === 'en' ? content.en_title : content.fi_title) || '');
    const previewText = computed(() => {
-      const raw = locale.value === 'en' ? content.en_text : content.fi_text;
+      const raw = (locale.value === 'en' ? content.en_text : content.fi_text) || '';
       return stripMarkdown(raw);
    });
 </script>
