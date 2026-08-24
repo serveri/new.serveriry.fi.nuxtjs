@@ -31,9 +31,18 @@ export default {
       // strategy: 'no_prefix', // uncomment if you don't want locale prefixes in routes
    },
 
+   routeRules: {
+      '/items/**': {
+         proxy: `${process.env.NUXT_API_URL || 'https://api.serveriry.fi/'}items/**`,
+      },
+      '/assets/**': {
+         proxy: `${process.env.NUXT_API_URL || 'https://api.serveriry.fi/'}assets/**`,
+      },
+   },
+
    runtimeConfig: {
       public: {
-         API_URL: process.env.NUXT_API_URL || 'https://api.serveriry.fi/',
+         API_URL: '/',
          cookieBannerDev: process.env.NODE_ENV === 'development',
       },
    },

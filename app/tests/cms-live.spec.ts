@@ -55,7 +55,7 @@ test.describe('@cms Directus live CMS integration', () => {
   test('events page renders content from live CMS', async ({ page }) => {
     test.setTimeout(90_000);
 
-    const endpoint = new URL(`${DIRECTUS_EVENTS_PATH}?limit=20`, CMS_BASE_URL).toString();
+    const endpoint = new URL(`${DIRECTUS_EVENTS_PATH}?sort=-alku_aika&limit=20`, CMS_BASE_URL).toString();
     const response = await page.request.get(endpoint);
     expect(response.ok()).toBeTruthy();
 

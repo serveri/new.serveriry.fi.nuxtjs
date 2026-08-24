@@ -6,7 +6,7 @@
          'mt-20': true,
       }"
    >
-      <router-view />
+      <NuxtPage />
    </div>
 </template>
 
