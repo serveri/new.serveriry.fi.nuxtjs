@@ -8,6 +8,7 @@
    ],
    "rules": {
       "at-rule-no-unknown": null,
-      "import-notation": null
+      "import-notation": null,
+      "no-empty-source": null
    }
 }

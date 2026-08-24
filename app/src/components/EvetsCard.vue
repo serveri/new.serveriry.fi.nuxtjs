@@ -1,5 +1,5 @@
 <template>
-   <a :href="'/yhdistys/tapahtuma/' + content.url" class="grid-item md:max-w-lg">
+   <NuxtLink :to="localePath('/yhdistys/tapahtuma/' + content.url)" class="grid-item md:max-w-lg">
       <div class="event-card">
          <div class="rounded-sm">
             <img
@@ -10,11 +10,11 @@
          </div>
 
          <div class="px-4">
-            <h2 class="card-header pt-3 text-2xl font-extrabold">{{ content[$i18n.locale + '_title'] }}</h2>
+            <h2 class="card-header pt-3 text-2xl font-extrabold">{{ title }}</h2>
 
             <p class="news-date font-normal uppercase mt-1 text-xs">
                {{
-                  content.start_time.toLocaleDateString($i18n.locale, {
+                  content.start_time.toLocaleDateString(locale, {
                      weekday: 'long',
                      month: 'long',
                      day: 'numeric',
@@ -24,13 +24,19 @@
                }}
             </p>
 
-            <p class="card-content mt-1 mb-3 line-clamp-3">{{ content[$i18n.locale + '_text'] }}</p>
+            <p class="card-content mt-1 mb-3 line-clamp-3">{{ previewText }}</p>
          </div>
       </div>
-   </a>
+   </NuxtLink>
 </template>
 
 <script setup lang="ts">
+   import { computed } from 'vue';
+   import { useI18n } from 'vue-i18n';
+
+   const { locale } = useI18n();
+   const localePath = useLocalePath();
+
    const content = defineProps({
       url: {
          type: Number,
@@ -69,21 +75,38 @@
          required: true,
       },
    });
+
+   const stripMarkdown = (md: string) => {
+      if (!md) return '';
+      return md
+         .replace(/!\[.*?\]\(.*?\)/g, '')
+         .replace(/\[(.*?)\]\(.*?\)/g, '$1')
+         .replace(/#{1,6}\s*/g, '')
+         .replace(/(\*\*|__)(.*?)\1/g, '$2')
+         .replace(/(\*|_)(.*?)\1/g, '$2')
+         .replace(/`{1,3}(.*?)[`\n]/g, '$1')
+         .replace(/>\s+/g, '')
+         .replace(/[-*+]\s+/g, '')
+         .replace(/\n+/g, ' ')
+         .trim();
+   };
+
+   const title = computed(() => (locale.value === 'en' ? content.en_title : content.fi_title));
+   const previewText = computed(() => {
+      const raw = locale.value === 'en' ? content.en_text : content.fi_text;
+      return stripMarkdown(raw);
+   });
 </script>
 
 <style scoped>
    @reference "tailwindcss";
+
    .event-card {
-      -webkit-box-shadow: 0 0 26px -5px rgba(0, 0, 0, 0.27);
-      -moz-box-shadow: 0 0 26px -5px rgba(0, 0, 0, 0.27);
-      box-shadow: 0 0 26px -5px rgba(0, 0, 0, 0.27);
+      box-shadow: 0 0 26px -5px rgb(0 0 0 / 27%);
+
+      @apply dark:shadow-lg dark:shadow-zinc-600/50 dark:bg-zinc-900 justify-self-center overflow-hidden rounded-2xl h-full w-full;
    }
-   .event-card {
-      @apply dark:shadow-lg dark:shadow-zinc-600/50 dark:bg-zinc-900;
-   }
-   .event-card {
-      @apply justify-self-center overflow-hidden rounded-2xl h-full w-full;
-   }
+
    .grid-item {
       --aspect-ratio: 16/9;
    }

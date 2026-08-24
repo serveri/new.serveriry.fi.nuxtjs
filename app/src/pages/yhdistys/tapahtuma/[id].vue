@@ -61,56 +61,56 @@
                   <span
                      v-if="events.tyyppi?.includes('ilmainen')"
                      class="bg-green-100 text-green-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded-sm dark:bg-gray-700 dark:text-green-400 border border-green-400"
-                     title="Tapahtuma on ilmainen"
-                     >Ilmainen</span
+                     :title="t('event_tag_free_title')"
+                     >{{ t('event_tag_free') }}</span
                   >
                   <span
                      v-if="events.tyyppi?.includes('mainos')"
                      class="bg-yellow-100 text-yellow-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded-sm dark:bg-gray-700 dark:text-yellow-300 border border-yellow-300"
-                     title="Tapahtuma on mainos eikä Serveri ry osallistu sen järjestämiseen."
-                     >Mainos</span
+                     :title="t('event_tag_ad_title')"
+                     >{{ t('event_tag_ad') }}</span
                   >
                   <span
                      v-if="events.tyyppi?.includes('alkoholiton')"
                      class="bg-indigo-100 text-indigo-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded-sm dark:bg-gray-700 dark:text-indigo-400 border border-indigo-400"
-                     title="Alkoholiton tapahtuma."
-                     >Alkoholiton</span
+                     :title="t('event_tag_alcohol_free_title')"
+                     >{{ t('event_tag_alcohol_free') }}</span
                   >
                   <span
                      v-if="events.tyyppi?.includes('poikkitieteellinen')"
                      class="bg-pink-100 text-pink-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded-sm dark:bg-gray-700 dark:text-pink-400 border border-pink-400"
-                     title="Kivaa yhdessä muiden alojen opiskelijoiden kanssa"
-                     >Poikkitieteellinen</span
+                     :title="t('event_tag_cross_disciplinary_title')"
+                     >{{ t('event_tag_cross_disciplinary') }}</span
                   >
                   <span
                      v-if="events.tyyppi?.includes('turvallinen_tila')"
                      class="bg-purple-100 text-purple-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded-sm dark:bg-gray-700 dark:text-purple-400 border border-purple-400"
-                     title="Tapahtumassa noudatetaan turvallisen tilan periaatteita."
-                     >Turvallinen tila</span
+                     :title="t('event_tag_safe_space_title')"
+                     >{{ t('event_tag_safe_space') }}</span
                   >
                   <span
                      v-if="events.tyyppi?.includes('excursio')"
                      class="bg-red-100 text-red-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded-sm dark:bg-gray-700 dark:text-red-400 border border-red-400"
-                     title="Excursio"
-                     >Excursio</span
+                     :title="t('event_tag_excursion_title')"
+                     >{{ t('event_tag_excursion') }}</span
                   >
                   <span
                      v-if="events.tyyppi?.includes('ulkoilma')"
                      class="bg-indigo-100 text-indigo-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded-sm dark:bg-gray-700 dark:text-indigo-400 border border-indigo-400"
-                     title="Tapahtumapaikka sijaitsee ulkotiloissa."
-                     >Ulkoilma</span
+                     :title="t('event_tag_outdoor_title')"
+                     >{{ t('event_tag_outdoor') }}</span
                   >
                   <span
                      v-if="events.tyyppi?.includes('collab')"
                      class="bg-green-100 text-green-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded-sm dark:bg-gray-700 dark:text-green-400 border border-green-400"
-                     title="Serveri ry osallistuu tapahtuman järjestämiseen yhteistyössä jonkun tahon kanssa."
-                     >Yhteistyö</span
+                     :title="t('event_tag_collab_title')"
+                     >{{ t('event_tag_collab') }}</span
                   >
                   <span
                      v-if="events.tyyppi?.includes('ulkoinen')"
                      class="bg-red-100 text-red-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded-sm dark:bg-gray-700 dark:text-red-400 border border-red-400"
-                     title="Tapahtuma on ulkopuolisen tahon järjestämä."
-                     >Ulkoinen järjestäjä</span
+                     :title="t('event_tag_external_title')"
+                     >{{ t('event_tag_external') }}</span
                   >
                </div>
             </div>
@@ -155,11 +155,11 @@
                   <info-svg />
                   <span class="sr-only">Info</span>
                   <div>
-                     Tapahtumassa noudatetaan
-                     <nuxt-link :to="localePath('/yhdistys/turvallinen-tila')" class="text-blue-600 hover:underline"
-                        >turvallisemman tilan</nuxt-link
-                     >
-                     periaatteita. Osallistumalla tapahtumaan sitoudut noudattamaan näitä periaatteita.
+                     {{ t('event_safe_space_notice_before') }}
+                     <nuxt-link :to="localePath('/yhdistys/turvallinen-tila')" class="text-blue-600 hover:underline">{{
+                        t('event_safe_space_notice_link')
+                     }}</nuxt-link>
+                     {{ t('event_safe_space_notice_after') }}
                   </div>
                </div>
 
@@ -170,11 +170,11 @@
                   <info-svg />
                   <span class="sr-only">Info</span>
                   <div>
-                     Tapahtuma on <i class="cursor-pointer" title="Mainos voi olla maksettu tai ilmainen.">mainos</i>,
-                     eikä Serveri ry osallistu sen järjestämiseen. Haluaisitko sinä tai yrityksesi mainostaa tapahtumaa
-                     Serverin somessa ja verkkosivuilla?
+                     {{ t('event_ad_notice_1') }}
+                     <i class="cursor-pointer" :title="t('event_ad_notice_tooltip')">{{ t('event_ad_notice_ad') }}</i
+                     >, {{ t('event_ad_notice_2') }}
                      <nuxt-link :to="localePath('/yrityksille/yhteistyo')" class="hover:underline">
-                        Ota yhteyttä
+                        {{ t('event_ad_notice_contact') }}
                      </nuxt-link>
                   </div>
                </div>
@@ -189,7 +189,7 @@
                         >
                            <img :src="kideappImg" alt="KideApp logo" loading="lazy" class="h-10 pr-4" tabindex="-1" />
 
-                           Osta liput KideAppista
+                           {{ t('buy_tickets_kideapp') }}
                         </button>
                      </a>
                   </div>
@@ -198,17 +198,17 @@
                         <button
                            type="button"
                            role="link"
-                           title="Reittiohjeet - Google Maps"
+                           :title="t('directions_google_maps')"
                            class="w-full sm:w-auto text-black dark:text-white bg-transparent hover:bg-gradient-to-r from-[#5a31af] via-purple-500 to-pink-500 outline-solid outline-1 outline-[#5a31af] hover:outline-0 focus:ring-4 rounded-md focus:outline-hidden focus:ring-purple-800 font-bold px-5 py-2.5 text-center inline-flex items-center mr-2 mb-2 justify-center"
                         >
                            <img
                               :src="mapsImg"
-                              alt="KideApp logo"
+                              alt="Google Maps logo"
                               loading="lazy"
                               class="h-10 pr-4 dark:invert"
                               tabindex="-1"
                            />
-                           Reittiohjeet
+                           {{ t('directions') }}
                         </button>
                      </a>
                   </div>

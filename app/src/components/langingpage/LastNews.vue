@@ -22,11 +22,11 @@
          <p class="mt-4 mb-6 line-clamp-4 text-gray-600 leading-relaxed">{{ text }}</p>
 
          <div>
-            <a :href="'/yhdistys/uutinen/' + content.url" class="inline-block">
+            <NuxtLink :to="localePath('/yhdistys/uutinen/' + content.url)" class="inline-block">
                <button class="btn-custom-primary" type="button">
                   {{ locale === 'en' ? 'Read more' : 'Lue lisää' }}
                </button>
-            </a>
+            </NuxtLink>
          </div>
       </div>
    </div>
@@ -37,6 +37,7 @@
    import { computed } from 'vue';
 
    const { locale } = useI18n();
+   const localePath = useLocalePath();
 
    // Strongly-typed props to avoid dynamic string indexing errors
    const content = defineProps<{

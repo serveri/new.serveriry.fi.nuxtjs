@@ -11,7 +11,7 @@
       <vue-markdown class="rich-text py-2" :source="content[$i18n.locale + '_text']" />
    </div>
 
-   <form class="space-y-8" @submit="submitForm">
+   <form class="space-y-8" @submit.prevent="submitForm">
       <div>
          <label for="subject" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">{{
             $t('label_topic')
@@ -29,15 +29,16 @@
          </select>
       </div>
       <div v-if="subject">
-         <label for="contact" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">{{
+         <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">{{
             $t('label_name')
          }}</label>
          <input
-            id="contact"
+            id="name"
             v-model="person_name"
             type="text"
             class="block p-3 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 shadow-xs focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500 dark:shadow-sm-light"
-            placeholder="Sinun nimesi"
+            :placeholder="$t('placeholder_name')"
+            required
          />
       </div>
       <div v-if="subject">
@@ -49,46 +50,46 @@
             v-model="person_contact"
             type="text"
             class="block p-3 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 shadow-xs focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500 dark:shadow-sm-light"
-            placeholder="Sähköposti tai telegram-käyttäjätunnus"
+            :placeholder="$t('placeholder_contact')"
+            required
          />
       </div>
-      <div class="sm:col-span-2" v-if="subject">
+      <div v-if="subject" class="sm:col-span-2">
          <label for="introduction" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400">{{
-            $t('label_field')
+            $t('label_about_you')
          }}</label>
          <textarea
             id="introduction"
             v-model="person_info"
             rows="6"
             class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg shadow-xs border border-gray-300 focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-            placeholder="Esittele itsesi ja kerro mitä haluaisit tehdä toimikunnassa."
+            :placeholder="$t('placeholder_about_you')"
             required
          ></textarea>
       </div>
       <div v-if="subject === 'yllapito'" class="sm:col-span-2">
          <label for="skills" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400">{{
-            $t('label_field')
+            $t('label_skills')
          }}</label>
          <textarea
             id="skills"
             v-model="person_skills"
             rows="6"
             class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg shadow-xs border border-gray-300 focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-            placeholder="Esittele itsesi ja kerro mitä haluaisit tehdä toimikunnassa. Onko sinulla kokemusta vastaavista tehtävistä? Mikä sinua kiinnostaa?"
+            :placeholder="$t('placeholder_skills')"
             required
          ></textarea>
       </div>
       <div v-if="subject === 'yllapito'" class="sm:col-span-2">
          <label for="portfolio" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400">{{
-            $t('label_field')
+            $t('label_portfolio')
          }}</label>
          <textarea
             id="portfolio"
             v-model="person_portfolio"
             rows="6"
             class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg shadow-xs border border-gray-300 focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-            placeholder="Github tai muu portfolio"
-            required
+            :placeholder="$t('placeholder_portfolio')"
          ></textarea>
       </div>
       <button type="submit" class="btn-custom-primary">{{ $t('form_button') }}</button>
@@ -100,12 +101,13 @@
    import type { Data } from '@/types';
    const config = useRuntimeConfig();
    const router = useRouter();
+   const localePath = useLocalePath();
 
    let content;
    try {
       const { data } = (await useFetch(`${config.public['API_URL']}items/toimikunta`)) as { data: Data };
       content = data.value.data;
-   } catch (e) {
+   } catch {
       content = {
          fi_text: '# Hakemukset\nSisältöä ei voitu ladata.',
          en_text: '# Applications\nContent could not be loaded.',
@@ -119,8 +121,7 @@
    const person_skills = ref('');
    const person_portfolio = ref('');
 
-   async function submitForm(e) {
-      e.preventDefault();
+   async function submitForm() {
       // POST validated form data
       await fetch(config.public['API_URL'] + 'items/toimikuntahakemukset', {
          headers: {
@@ -138,7 +139,7 @@
          }),
       });
       // Redirect to success page
-      router.push('/opiskelu/kiitos_hakemus');
+      router.push(localePath('/opiskelu/kiitos_hakemus'));
 
       // Scroll top of page
       window.scrollTo(0, 0);
