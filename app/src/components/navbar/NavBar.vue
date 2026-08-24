@@ -1,5 +1,5 @@
 <template>
-   <Disclosure as="nav" class="bg-zinc-50 dark:bg-zinc-900 fixed w-full z-10">
+   <Disclosure as="nav" class="bg-zinc-50 dark:bg-zinc-900 fixed top-0 left-0 right-0 w-full z-50">
       <div class="px-6 lg:px-16 xl:px-32">
          <div class="relative flex items-center justify-between">
             <!-- Mobile menu button-->

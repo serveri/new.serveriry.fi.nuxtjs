@@ -1,5 +1,5 @@
 <template>
-   <div id="app" class="bg-white dark:bg-zinc-800 min-h-screen overflow-hidden">
+   <div id="app" class="bg-white dark:bg-zinc-800 min-h-screen overflow-x-clip">
       <NavBar />
       <PageContent />
       <CustomFooter />

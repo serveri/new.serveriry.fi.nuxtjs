@@ -1,11 +1,11 @@
 <template>
-   <NuxtLink :to="localePath('/yhdistys/tapahtuma/' + content.url)" class="grid-item md:max-w-lg">
+   <NuxtLink :to="localePath('/yhdistys/tapahtuma/' + content.url)" class="grid-item w-full">
       <div
          class="event-card bg-white dark:bg-zinc-900 justify-self-center overflow-hidden rounded-2xl h-full w-full dark:shadow-lg dark:shadow-zinc-600/50"
       >
          <div class="rounded-sm">
             <img
-               class="w-full max-h-64 object-cover"
+               class="w-full max-h-68 object-cover aspect-video"
                :src="content.img || 'https://api.serveriry.fi/assets/b3ed6d7f-c124-4136-9234-cbd91fccff0f'"
                :alt="title || 'Tapahtuman kansikuva'"
             />
