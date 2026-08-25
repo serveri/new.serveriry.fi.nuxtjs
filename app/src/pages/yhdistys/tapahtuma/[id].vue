@@ -34,7 +34,10 @@
             </h2>
 
             <img
-               class="object-cover w-full aspect-video p-0 m-0"
+               :class="[
+                  'w-full p-0 m-0',
+                  isFullsize ? 'h-auto max-h-[85vh] object-contain' : 'aspect-video object-cover',
+               ]"
                :src="
                   events.image ? events.image : config.public['API_URL'] + 'assets/b3ed6d7f-c124-4136-9234-cbd91fccff0f'
                "
@@ -115,7 +118,7 @@
                </div>
             </div>
 
-            <vue-markdown class="rich-text py-2" :source="events[langKey + '_kuvaus']" />
+            <MarkdownView class="rich-text py-2" :source="events[langKey + '_kuvaus'] || events.fi_kuvaus" />
 
             <p v-if="alku_aika" class="events-date font-normal uppercase py-2 text-xs">
                {{ t('event_start') }}
@@ -220,7 +223,6 @@
 </template>
 
 <script setup lang="ts">
-   import VueMarkdown from 'vue-markdown-render';
    import type { Data } from '@/types';
    import { ref, computed } from 'vue';
    import { useDirectusAsset } from '@/composables/useDirectusAsset';
@@ -244,6 +246,7 @@
       alku_aika: null,
       loppu_aika: null,
       tyyppi: null,
+      taysikokoinen_kuva: false,
    });
    const route = useRoute();
    const released_date = ref<Date>(new Date());
@@ -251,6 +254,10 @@
    const loppu_aika = ref<Date | null>(null);
    const x = ref<number | null>(null);
    const y = ref<number | null>(null);
+
+   const { getAssetUrl } = useDirectusAsset();
+
+   const isFullsize = computed(() => Boolean(events.value?.taysikokoinen_kuva));
 
    const { data } = (await useFetch(`${config.public['API_URL']}items/tapahtuma/${route.params.id}`)) as {
       data: Data;
@@ -261,15 +268,14 @@
       released_date.value = new Date(e.date_created);
       alku_aika.value = e.alku_aika ? new Date(e.alku_aika) : null;
       loppu_aika.value = e.loppu_aika ? new Date(e.loppu_aika) : null;
-      const { getAssetUrl } = useDirectusAsset();
+
+      const transformOpts = isFullsize.value
+         ? { width: 1600, quality: 85, fit: 'inside' as const }
+         : { width: 1280, height: 720, quality: 85, fit: 'cover' as const };
+
       events.value.image = e.kuva
-         ? getAssetUrl(e.kuva, { width: 1280, height: 720, quality: 85, fit: 'cover' })
-         : getAssetUrl(e.image || 'b3ed6d7f-c124-4136-9234-cbd91fccff0f', {
-              width: 1280,
-              height: 720,
-              quality: 85,
-              fit: 'cover',
-           });
+         ? getAssetUrl(e.kuva, transformOpts)
+         : getAssetUrl(e.image || 'b3ed6d7f-c124-4136-9234-cbd91fccff0f', transformOpts);
       // Handle GeoJSON { type: 'Point', coordinates: [lon, lat] }
       if (e.sijainti?.coordinates && Array.isArray(e.sijainti.coordinates)) {
          x.value = e.sijainti.coordinates[0];

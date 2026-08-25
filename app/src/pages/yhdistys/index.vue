@@ -3,12 +3,11 @@
       <Head>
          <Title>{{ $t('title_org') }} - Serveri ry</Title>
       </Head>
-      <vue-markdown class="rich-text" :source="content[$i18n.locale + '_text']" />
+      <MarkdownView class="rich-text" :source="content[$i18n.locale + '_text']" />
    </div>
 </template>
 
 <script setup lang="ts">
-   import VueMarkdown from 'vue-markdown-render';
    import type { Data } from '@/types';
    const config = useRuntimeConfig();
 
@@ -16,7 +15,7 @@
    try {
       const { data } = (await useFetch(`${config.public['API_URL']}items/yhdistys`)) as { data: Data };
       content = data.value.data;
-   } catch (e) {
+   } catch {
       content = {
          fi_text: '# Yhdistys \n rajapintaan ei saatu yhteyttä',
          en_text: '# Organization \n content missing',
@@ -26,6 +25,7 @@
 
 <style>
    @reference 'tailwindcss';
+
    p {
       @apply tracking-wide;
    }

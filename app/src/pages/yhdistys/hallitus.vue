@@ -3,7 +3,7 @@
       <Title>{{ $t('title_board') }} - Serveri ry</Title>
    </Head>
    <div>
-      <vue-markdown class="rich-text py-2" :source="text[$i18n.locale + '_text']" />
+      <MarkdownView class="rich-text py-2" :source="text[$i18n.locale + '_text']" />
 
       <h2 class="board-header font-extrabold mt-8 mb-1 text-3xl text-center">
          {{ $i18n.locale === 'fi' ? 'Kokoonpano' : 'Composition of the board' }}
@@ -29,7 +29,6 @@
 </template>
 
 <script setup lang="ts">
-   import VueMarkdown from 'vue-markdown-render';
    import type { Data } from '@/types';
    const config = useRuntimeConfig();
 

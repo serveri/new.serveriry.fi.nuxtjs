@@ -4,7 +4,7 @@
          <Title>{{ $t('title_feedback') }} - Serveri ry</Title>
       </Head>
 
-      <vue-markdown class="rich-text py-2" :source="content[$i18n.locale + '_text']" />
+      <MarkdownView class="rich-text py-2" :source="content[$i18n.locale + '_text']" />
    </div>
 
    <form class="space-y-8" @submit.prevent="submitForm">
@@ -38,7 +38,6 @@
 </template>
 
 <script setup lang="ts">
-   import VueMarkdown from 'vue-markdown-render';
    import type { Data } from '@/types';
    const config = useRuntimeConfig();
    const router = useRouter();

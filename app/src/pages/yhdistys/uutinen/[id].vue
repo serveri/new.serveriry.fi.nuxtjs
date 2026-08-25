@@ -29,7 +29,10 @@
             <h2 class="card-header py-6 text-2xl font-extrabold">{{ news[langKey + '_title'] || news.fi_title }}</h2>
 
             <img
-               class="object-cover aspect-video w-full p-0 m-0"
+               :class="[
+                  'w-full p-0 m-0',
+                  isFullsize ? 'h-auto max-h-[85vh] object-contain' : 'aspect-video object-cover',
+               ]"
                :src="displayImg"
                alt="Photo related to the news article."
             />
@@ -50,14 +53,13 @@
                </span>
             </p>
 
-            <vue-markdown class="rich-text py-2" :source="news[langKey + '_text'] || news.fi_text || ''" />
+            <MarkdownView class="rich-text py-2" :source="news[langKey + '_text'] || news.fi_text" />
          </article>
       </div>
    </div>
 </template>
 
 <script setup lang="ts">
-   import VueMarkdown from 'vue-markdown-render';
    import type { Data } from '@/types';
    import { ref, computed } from 'vue';
    import { useI18n } from '#i18n';
@@ -82,23 +84,27 @@
 
    const { getAssetUrl } = useDirectusAsset();
 
+   const isFullsize = computed(() =>
+      Boolean(news.value?.taysikokoinen_kuva || news.value?.fullsize_image || news.value?.taysikokoinen),
+   );
+
    const displayImg = computed(() => {
       const kuvaId =
          typeof news.value?.kuva === 'object' && news.value?.kuva !== null
             ? (news.value.kuva as any).id
             : news.value?.kuva;
+
+      const transformOpts = isFullsize.value
+         ? { width: 1600, quality: 85, fit: 'inside' as const }
+         : { width: 1280, height: 720, quality: 85, fit: 'cover' as const };
+
       if (kuvaId) {
-         return getAssetUrl(kuvaId, { width: 1280, height: 720, quality: 85, fit: 'cover' });
+         return getAssetUrl(kuvaId, transformOpts);
       }
       if (news.value?.image) {
-         return getAssetUrl(news.value.image, { width: 1280, height: 720, quality: 85, fit: 'cover' });
+         return getAssetUrl(news.value.image, transformOpts);
       }
-      return getAssetUrl('231aba36-a03b-47c6-811a-b6dfe14ccddb', {
-         width: 1280,
-         height: 720,
-         quality: 85,
-         fit: 'cover',
-      });
+      return getAssetUrl('231aba36-a03b-47c6-811a-b6dfe14ccddb', transformOpts);
    });
 
    try {

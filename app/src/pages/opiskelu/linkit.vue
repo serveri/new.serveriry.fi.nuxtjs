@@ -6,7 +6,7 @@
          <Meta name="og:title" :content="$t('title_forms') + ' - Serveri ry'" />
          <Meta name="og:description" content="Serveri ry:n lomakkeet ja linkit." />
       </Head>
-      <vue-markdown class="rich-text py-2" :source="content[langKey + '_text']" />
+      <MarkdownView class="rich-text py-2" :source="content[langKey + '_text']" />
    </div>
    <div class="mb-8 flex flex-col items-center w-full gap-4">
       <div v-for="(item, idx) in links" :key="idx">
@@ -24,7 +24,6 @@
 </template>
 
 <script setup lang="ts">
-   import VueMarkdown from 'vue-markdown-render';
    import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
    import { computed } from 'vue';
    import { useI18n } from 'vue-i18n';

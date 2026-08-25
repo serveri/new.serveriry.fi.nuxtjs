@@ -70,11 +70,11 @@
             <table class="course-table">
                <thead>
                   <tr>
-                     <th class="table-header name">Opintojakso</th>
+                     <th class="table-header name text-white">Opintojakso</th>
 
-                     <th class="table-header desc">Kurssikuvaus</th>
+                     <th class="table-header desc text-white">Kurssikuvaus</th>
 
-                     <th class="table-header credits">Laajuus (opintopisteet)</th>
+                     <th class="table-header credits text-white">Laajuus (opintopisteet)</th>
                   </tr>
                </thead>
                <tbody>
@@ -106,11 +106,11 @@
             <table class="course-table">
                <thead>
                   <tr>
-                     <th class="table-header name">Opintojakso</th>
+                     <th class="table-header name text-white">Opintojakso</th>
 
-                     <th class="table-header desc">Kurssikuvaus</th>
+                     <th class="table-header desc text-white">Kurssikuvaus</th>
 
-                     <th class="table-header credits">Laajuus (opintopisteet)</th>
+                     <th class="table-header credits text-white">Laajuus (opintopisteet)</th>
                   </tr>
                </thead>
                <tbody>
@@ -143,11 +143,11 @@
             <table class="course-table">
                <thead>
                   <tr>
-                     <th class="table-header name">Opintojakso</th>
+                     <th class="table-header name text-white">Opintojakso</th>
 
-                     <th class="table-header desc">Kurssikuvaus</th>
+                     <th class="table-header desc text-white">Kurssikuvaus</th>
 
-                     <th class="table-header credits">Laajuus (opintopisteet)</th>
+                     <th class="table-header credits text-white">Laajuus (opintopisteet)</th>
                   </tr>
                </thead>
                <tbody>
@@ -180,11 +180,11 @@
             <table class="course-table">
                <thead>
                   <tr>
-                     <th class="table-header name">Opintojakso</th>
+                     <th class="table-header name text-white">Opintojakso</th>
 
-                     <th class="table-header desc">Kurssikuvaus</th>
+                     <th class="table-header desc text-white">Kurssikuvaus</th>
 
-                     <th class="table-header credits">Laajuus (opintopisteet)</th>
+                     <th class="table-header credits text-white">Laajuus (opintopisteet)</th>
                   </tr>
                </thead>
                <tbody>
@@ -216,11 +216,11 @@
             <table class="course-table">
                <thead>
                   <tr>
-                     <th class="table-header name">Opintojakso</th>
+                     <th class="table-header name text-white">Opintojakso</th>
 
-                     <th class="table-header desc">Kurssikuvaus</th>
+                     <th class="table-header desc text-white">Kurssikuvaus</th>
 
-                     <th class="table-header credits">Laajuus (opintopisteet)</th>
+                     <th class="table-header credits text-white">Laajuus (opintopisteet)</th>
                   </tr>
                </thead>
                <tbody>
@@ -249,11 +249,11 @@
             <table class="course-table">
                <thead>
                   <tr>
-                     <th class="table-header name">Opintojakso</th>
+                     <th class="table-header name text-white">Opintojakso</th>
 
-                     <th class="table-header desc">Kurssikuvaus</th>
+                     <th class="table-header desc text-white">Kurssikuvaus</th>
 
-                     <th class="table-header credits">Laajuus (opintopisteet)</th>
+                     <th class="table-header credits text-white">Laajuus (opintopisteet)</th>
                   </tr>
                </thead>
                <tbody>
@@ -288,11 +288,11 @@
             <table class="course-table">
                <thead>
                   <tr>
-                     <th class="table-header name">Opintojakso</th>
+                     <th class="table-header name text-white">Opintojakso</th>
 
-                     <th class="table-header desc">Kurssikuvaus</th>
+                     <th class="table-header desc text-white">Kurssikuvaus</th>
 
-                     <th class="table-header credits">Laajuus (opintopisteet)</th>
+                     <th class="table-header credits text-white">Laajuus (opintopisteet)</th>
                   </tr>
                </thead>
                <tbody>
@@ -404,11 +404,12 @@
 </script>
 
 <style scoped>
-   @reference "tailwindcss";
+   @reference "@/assets/css/main.css";
 
    th {
-      /* Use Tailwind utilities via @apply instead of unresolved custom property */
-      @apply bg-[rgb(0_119_138)] text-white dark:text-white;
+      @apply bg-[rgb(0_119_138)] text-white;
+
+      color: #fff;
    }
 
    .table-container {
@@ -424,7 +425,9 @@
    }
 
    .table-header {
-      @apply text-left wrap-break-word py-4 px-2;
+      @apply text-left wrap-break-word py-4 px-2 text-white;
+
+      color: #fff;
    }
 
    .table-data {

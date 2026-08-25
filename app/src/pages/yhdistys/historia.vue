@@ -3,7 +3,7 @@
       <SEO :seo="content.seo" />
       <div>
          <h1 class="custom-page-title">{{ $t('h1_history') }}</h1>
-         <vue-markdown class="rich-text group-open:animate-fadeIn mb-8" :source="localeText" />
+         <MarkdownView class="rich-text group-open:animate-fadeIn mb-8" :source="localeText" />
 
          <h2 class="custom-page-title">
             {{
@@ -45,7 +45,6 @@
 </template>
 
 <script setup lang="ts">
-   import VueMarkdown from 'vue-markdown-render';
    import SEO from '@/components/SEO.vue';
    import { ref, computed } from 'vue';
    import { useI18n } from 'vue-i18n';

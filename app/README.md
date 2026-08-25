@@ -125,3 +125,27 @@ Example of how to define separate dark style:
 ```
 
 See official [documentation](https://tailwindcss.com/).
+
+### Images in Content & CMS
+
+#### Fullsize Hero Images
+
+By default, news and event header images are cropped to a 16:9 banner. To display an uncropped vertical poster or tall image on the detail page, enable the `taysikokoinen_kuva` boolean toggle in Directus.
+
+#### Markdown Image Scaling & Alignment
+
+When inserting images in article or event markdown bodies, you can scale and align images using pipe syntax:
+
+```markdown
+<!-- Scale by percentage -->
+
+![image description|50%](https://api.serveriry.fi...)
+
+<!-- Scale by pixels and center -->
+
+![image description|400px|center](https://api.serveriry.fi...)
+
+<!-- Align right or left -->
+
+![image description|300px|right](https://api.serveriry.fi...)
+```

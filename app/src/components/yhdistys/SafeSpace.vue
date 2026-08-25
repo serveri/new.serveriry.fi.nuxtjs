@@ -1,6 +1,6 @@
 <template>
    <div class="py-8">
-      <vue-markdown class="rich-text" :source="content['safe_space_' + $i18n.locale]" />
+      <MarkdownView class="rich-text" :source="content['safe_space_' + $i18n.locale]" />
       <p class="py-4">
          {{
             $t('updated_last_time') +
@@ -16,8 +16,6 @@
 </template>
 
 <script setup lang="ts">
-   import VueMarkdown from 'vue-markdown-render';
-
    const content = defineProps({
       safe_space_fi: {
          type: String,

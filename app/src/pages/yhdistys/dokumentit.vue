@@ -35,7 +35,7 @@
                      </span>
                      <h2 class="pl-2 text-2xl">TOIMINTASUUNNITELMA</h2>
                   </summary>
-                  <vue-markdown
+                  <MarkdownView
                      class="rich-text group-open:animate-fadeIn mt-4"
                      :source="group.actionPlan[$i18n.locale + '_content'] || group.actionPlan['fi_content']"
                   />
@@ -62,7 +62,7 @@
                      </span>
                      <h2 class="pl-2 text-2xl">TOIMINTAKERTOMUS</h2>
                   </summary>
-                  <vue-markdown
+                  <MarkdownView
                      class="rich-text group-open:animate-fadeIn mt-4"
                      :source="group.report[$i18n.locale + '_toimintakertomus'] || group.report['fi_toimintakertomus']"
                   />
@@ -75,7 +75,7 @@
 
 <script setup lang="ts">
    import { computed } from 'vue';
-   import VueMarkdown from 'vue-markdown-render';
+
    import { useRuntimeConfig, useFetch } from '#imports';
    import type { Data } from '@/types';
    const config = useRuntimeConfig();

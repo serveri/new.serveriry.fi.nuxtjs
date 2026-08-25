@@ -1,11 +1,10 @@
 <template>
    <div class="flex items-start lg:max-w-[60%] pb-6">
-      <vue-markdown class="rich-text py-2" :source="data[$i18n.locale + '_description']" />
+      <MarkdownView class="rich-text py-2" :source="data[$i18n.locale + '_description']" />
    </div>
 </template>
 
 <script setup>
-   import VueMarkdown from 'vue-markdown-render';
    const data = defineProps({
       en_description: {
          type: String,
