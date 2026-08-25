@@ -1,94 +1,60 @@
 <template>
-   <div class="some-container">
-      <a :href="Socialmedia.url" target="_blank" class="relative w-full group">
+   <div
+      class="some-container flex justify-center items-center rounded-2xl py-5 px-6 w-full min-h-[180px] cursor-pointer overflow-hidden"
+   >
+      <a
+         :href="url"
+         target="_blank"
+         rel="noopener noreferrer"
+         class="relative w-full h-full flex flex-col items-center justify-center group"
+      >
          <img
-            :src="config.public['API_URL'] + 'assets/' + Socialmedia.img"
-            :alt="Socialmedia.name"
+            :src="logoUrl"
+            :alt="name"
             loading="lazy"
-            :class="'some-logo scale-100 group-hover:scale-110 ' + custom_style"
+            :class="[
+               'h-28 w-full object-contain transition-transform duration-300 scale-100 group-hover:scale-110',
+               custom_style || '',
+            ]"
          />
-         <p class="info group-hover:opacity-100">
-            {{ Socialmedia.name }}
-            <!--            {{ Socialmedia[$i18n.locale + '_desc'] }}-->
+         <p
+            class="info absolute -bottom-2 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-all duration-300 text-xs font-semibold text-center whitespace-nowrap text-gray-800 dark:text-gray-200 pointer-events-none"
+         >
+            {{ name }}
          </p>
       </a>
    </div>
 </template>
 
 <script setup lang="ts">
-   const config = useRuntimeConfig();
-   const Socialmedia = defineProps({
-      url: {
-         type: String,
-         required: true,
-      },
-      img: {
-         type: String,
-         required: true,
-      },
-      name: {
-         type: String,
-         default: 'some name',
-         required: true,
-      },
-      fi_desc: {
-         type: String,
-         required: false,
-         default: 'Oletus Sosiaalinen Media',
-      },
-      en_desc: {
-         type: String,
-         required: false,
-         default: 'Default Social Media',
-      },
-      custom_style: {
-         type: String,
-         required: false,
-         default: '',
-      },
-   });
-</script>
+   import { computed } from 'vue';
+   import { useDirectusAsset } from '@/composables/useDirectusAsset';
 
-<script lang="ts">
-   export default {
-      name: 'SocialmediaIcon',
-      data() {
-         return {
-            hover: false,
-         };
+   const props = withDefaults(
+      defineProps<{
+         url: string;
+         img: string;
+         name?: string;
+         fi_desc?: string;
+         en_desc?: string;
+         custom_style?: string;
+      }>(),
+      {
+         name: 'Social Media',
+         fi_desc: '',
+         en_desc: '',
+         custom_style: '',
       },
-   };
+   );
+
+   const { getAssetUrl } = useDirectusAsset();
+   const logoUrl = computed(() => getAssetUrl(props.img));
 </script>
 
 <style scoped>
-   @reference "tailwindcss";
+   @reference "@/assets/css/main.css";
+
    .some-container {
       min-height: 180px;
-      /*box-shadow: 0 0 26px -5px rgba(0, 0, 0, 0.27);*/
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      overflow: hidden;
-   }
-   .some-container {
-      @apply rounded-2xl py-5 px-6 w-full cursor-pointer;
-      /*@apply dark:bg-zinc-900 dark:shadow-lg dark:shadow-zinc-600/50;*/
-   }
-   .some-logo {
-      height: 7rem;
-      width: 100%;
-      object-fit: contain;
-      -o-object-fit: contain;
-   }
-   .info {
-      position: absolute;
-      padding: 15px 60px;
-      bottom: -100px;
-      left: 50%;
-      text-align: center;
-      transform: translate(-50%, -50px);
-      opacity: 0;
-      white-space: nowrap;
-      transition: all 0.3s;
    }
 </style>

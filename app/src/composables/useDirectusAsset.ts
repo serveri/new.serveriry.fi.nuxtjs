@@ -4,16 +4,11 @@ export function useDirectusAsset() {
 
    const getAssetUrl = (
       src?: string | { id?: string } | null,
-      options: {
+      options?: {
          width?: number;
          height?: number;
          quality?: number;
          fit?: 'cover' | 'contain' | 'inside' | 'outside';
-      } = {
-         width: 800,
-         height: 450,
-         quality: 80,
-         fit: 'cover',
       },
    ): string => {
       if (!src) return '';
@@ -34,8 +29,8 @@ export function useDirectusAsset() {
          fullUrl = `${directusUrl}assets/${raw}`;
       }
 
-      // If it points to Directus assets, apply transformation parameters (which triggers server-side focal point cropping)
-      if (fullUrl.includes('/assets/')) {
+      // Only apply transformations when explicitly requested
+      if (options && fullUrl.includes('/assets/')) {
          try {
             const urlObj = new URL(fullUrl, directusUrl);
             if (options.fit) urlObj.searchParams.set('fit', options.fit);
