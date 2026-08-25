@@ -4,11 +4,7 @@
          class="event-card bg-white dark:bg-zinc-900 justify-self-center overflow-hidden rounded-2xl h-full w-full dark:shadow-lg dark:shadow-zinc-600/50"
       >
          <div class="rounded-sm">
-            <img
-               class="w-full max-h-68 object-cover aspect-video"
-               :src="content.img || 'https://api.serveriry.fi/assets/b3ed6d7f-c124-4136-9234-cbd91fccff0f'"
-               :alt="title || 'Tapahtuman kansikuva'"
-            />
+            <img class="w-full aspect-video object-cover" :src="displayImg" :alt="title || 'Tapahtuman kansikuva'" />
          </div>
 
          <div class="px-4">
@@ -35,6 +31,7 @@
 <script setup lang="ts">
    import { computed } from 'vue';
    import { useI18n } from 'vue-i18n';
+   import { useDirectusAsset } from '@/composables/useDirectusAsset';
 
    const { locale } = useI18n();
    const localePath = useLocalePath();
@@ -42,6 +39,7 @@
    const content = defineProps<{
       url: number | string;
       img?: string;
+      kuva?: string | object | null;
       fi_title?: string;
       en_title?: string;
       start_time: Date;
@@ -64,10 +62,29 @@
          .trim();
    };
 
+   const { getAssetUrl } = useDirectusAsset();
+
    const title = computed(() => (locale.value === 'en' ? content.en_title : content.fi_title) || '');
    const previewText = computed(() => {
       const raw = (locale.value === 'en' ? content.en_text : content.fi_text) || '';
       return stripMarkdown(raw);
+   });
+
+   const displayImg = computed(() => {
+      const kuvaId =
+         typeof content.kuva === 'object' && content.kuva !== null ? (content.kuva as any).id : content.kuva;
+      if (kuvaId) {
+         return getAssetUrl(kuvaId, { width: 960, height: 540, quality: 80, fit: 'cover' });
+      }
+      if (content.img) {
+         return getAssetUrl(content.img, { width: 960, height: 540, quality: 80, fit: 'cover' });
+      }
+      return getAssetUrl('b3ed6d7f-c124-4136-9234-cbd91fccff0f', {
+         width: 960,
+         height: 540,
+         quality: 80,
+         fit: 'cover',
+      });
    });
 </script>
 

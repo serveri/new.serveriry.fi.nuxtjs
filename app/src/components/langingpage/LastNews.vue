@@ -35,11 +35,10 @@
 <script setup lang="ts">
    import { useI18n } from 'vue-i18n';
    import { computed } from 'vue';
+   import { useDirectusAsset } from '@/composables/useDirectusAsset';
 
    const { locale } = useI18n();
    const localePath = useLocalePath();
-   const config = useRuntimeConfig();
-   const directusUrl = (config.public.DIRECTUS_URL || 'https://api.serveriry.fi/').replace(/\/$/, '') + '/';
 
    // Strongly-typed props to avoid dynamic string indexing errors
    const content = defineProps<{
@@ -55,16 +54,23 @@
 
    const releaseDate = new Date(content.date);
 
+   const { getAssetUrl } = useDirectusAsset();
+
    const displayImg = computed(() => {
       const kuvaId =
          typeof content.kuva === 'object' && content.kuva !== null ? (content.kuva as any).id : content.kuva;
       if (kuvaId) {
-         return `${directusUrl}assets/${kuvaId}`;
+         return getAssetUrl(kuvaId, { width: 960, height: 540, quality: 80, fit: 'cover' });
       }
       if (content.img) {
-         return content.img;
+         return getAssetUrl(content.img, { width: 960, height: 540, quality: 80, fit: 'cover' });
       }
-      return `${directusUrl}assets/231aba36-a03b-47c6-811a-b6dfe14ccddb`;
+      return getAssetUrl('231aba36-a03b-47c6-811a-b6dfe14ccddb', {
+         width: 960,
+         height: 540,
+         quality: 80,
+         fit: 'cover',
+      });
    });
 
    // Select localized title/text explicitly using locale.value

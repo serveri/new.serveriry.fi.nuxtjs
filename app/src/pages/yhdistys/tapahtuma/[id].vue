@@ -223,6 +223,8 @@
    import VueMarkdown from 'vue-markdown-render';
    import type { Data } from '@/types';
    import { ref, computed } from 'vue';
+   import { useDirectusAsset } from '@/composables/useDirectusAsset';
+
    const { t, locale } = useI18n();
    const localePath = useLocalePath();
    const config = useRuntimeConfig();
@@ -259,9 +261,15 @@
       released_date.value = new Date(e.date_created);
       alku_aika.value = e.alku_aika ? new Date(e.alku_aika) : null;
       loppu_aika.value = e.loppu_aika ? new Date(e.loppu_aika) : null;
+      const { getAssetUrl } = useDirectusAsset();
       events.value.image = e.kuva
-         ? `${config.public.DIRECTUS_URL}assets/${e.kuva}`
-         : e.image || `${config.public.DIRECTUS_URL}assets/b3ed6d7f-c124-4136-9234-cbd91fccff0f`;
+         ? getAssetUrl(e.kuva, { width: 1280, height: 720, quality: 85, fit: 'cover' })
+         : getAssetUrl(e.image || 'b3ed6d7f-c124-4136-9234-cbd91fccff0f', {
+              width: 1280,
+              height: 720,
+              quality: 85,
+              fit: 'cover',
+           });
       // Handle GeoJSON { type: 'Point', coordinates: [lon, lat] }
       if (e.sijainti?.coordinates && Array.isArray(e.sijainti.coordinates)) {
          x.value = e.sijainti.coordinates[0];

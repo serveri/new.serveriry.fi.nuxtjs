@@ -61,13 +61,13 @@
    import type { Data } from '@/types';
    import { ref, computed } from 'vue';
    import { useI18n } from '#i18n';
+   import { useDirectusAsset } from '@/composables/useDirectusAsset';
 
    const { t, locale } = useI18n();
    const config = useRuntimeConfig();
    const route = useRoute();
 
    const langKey = computed(() => (locale.value || 'fi').split('-')[0]);
-   const directusUrl = (config.public.DIRECTUS_URL || 'https://api.serveriry.fi/').replace(/\/$/, '') + '/';
 
    const news = ref<any>({
       image: '/assets/231aba36-a03b-47c6-811a-b6dfe14ccddb',
@@ -80,18 +80,25 @@
    });
    const released_date = ref<Date>(new Date());
 
+   const { getAssetUrl } = useDirectusAsset();
+
    const displayImg = computed(() => {
       const kuvaId =
          typeof news.value?.kuva === 'object' && news.value?.kuva !== null
             ? (news.value.kuva as any).id
             : news.value?.kuva;
       if (kuvaId) {
-         return `${directusUrl}assets/${kuvaId}`;
+         return getAssetUrl(kuvaId, { width: 1280, height: 720, quality: 85, fit: 'cover' });
       }
       if (news.value?.image) {
-         return news.value.image;
+         return getAssetUrl(news.value.image, { width: 1280, height: 720, quality: 85, fit: 'cover' });
       }
-      return `${directusUrl}assets/231aba36-a03b-47c6-811a-b6dfe14ccddb`;
+      return getAssetUrl('231aba36-a03b-47c6-811a-b6dfe14ccddb', {
+         width: 1280,
+         height: 720,
+         quality: 85,
+         fit: 'cover',
+      });
    });
 
    try {

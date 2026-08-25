@@ -5,7 +5,7 @@
       >
          <div class="rounded-sm">
             <img
-               class="w-full max-h-64 object-cover"
+               class="w-full aspect-video object-cover"
                :src="displayImg"
                :alt="content[$i18n.locale + '_title'] || 'Uutisen kansikuva'"
             />
@@ -35,10 +35,9 @@
 <script setup lang="ts">
    import { computed } from 'vue';
    import { useLocalePath } from '#i18n';
+   import { useDirectusAsset } from '@/composables/useDirectusAsset';
 
    const localePath = useLocalePath();
-   const config = useRuntimeConfig();
-   const directusUrl = (config.public.DIRECTUS_URL || 'https://api.serveriry.fi/').replace(/\/$/, '') + '/';
 
    const content = defineProps<{
       url: string;
@@ -51,16 +50,23 @@
       en_text?: string;
    }>();
 
+   const { getAssetUrl } = useDirectusAsset();
+
    const displayImg = computed(() => {
       const kuvaId =
          typeof content.kuva === 'object' && content.kuva !== null ? (content.kuva as any).id : content.kuva;
       if (kuvaId) {
-         return `${directusUrl}assets/${kuvaId}`;
+         return getAssetUrl(kuvaId, { width: 960, height: 540, quality: 80, fit: 'cover' });
       }
       if (content.img) {
-         return content.img;
+         return getAssetUrl(content.img, { width: 960, height: 540, quality: 80, fit: 'cover' });
       }
-      return `${directusUrl}assets/231aba36-a03b-47c6-811a-b6dfe14ccddb`;
+      return getAssetUrl('231aba36-a03b-47c6-811a-b6dfe14ccddb', {
+         width: 960,
+         height: 540,
+         quality: 80,
+         fit: 'cover',
+      });
    });
 </script>
 
