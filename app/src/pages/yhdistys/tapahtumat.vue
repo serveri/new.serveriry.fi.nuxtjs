@@ -1,32 +1,101 @@
 <template>
-   <div class="flex flex-col justify-center items-center w-full">
+   <div class="events-wide-container pb-16">
       <Head>
          <Title>{{ $t('title_events') }} - Serveri ry</Title>
       </Head>
-      <div class="relative w-full max-w-[1580px] px-4 sm:px-6 lg:px-8 pb-16">
-         <h1 class="custom-page-title">{{ $t('h1_events') }}</h1>
+      <h1 class="custom-page-title">{{ $t('h1_events') }}</h1>
 
-         <p class="max-w-3xl px-4 mx-auto text-center text-gray-600 dark:text-gray-300">
-            {{
-               $i18n.locale === 'fi'
-                  ? 'Tapahtumakalenteriin voit lisätä tulevat tapahtumat omalle sähköiselle kalenterillesi tuomalla osoitteen https://serveriry.fi/api/calendar.ics kalenteriisi.'
-                  : 'Add coming events to your own electronic calendar by importing https://serveriry.fi/api/calendar.ics url to your calendar.'
-            }}
-         </p>
+      <p class="max-w-3xl px-4 mx-auto text-center text-gray-600 dark:text-gray-300">
+         {{
+            $i18n.locale === 'fi'
+               ? 'Tapahtumakalenteriin voit lisätä tulevat tapahtumat omalle sähköiselle kalenterillesi tuomalla osoitteen https://serveriry.fi/api/calendar.ics kalenteriisi.'
+               : 'Add coming events to your own electronic calendar by importing https://serveriry.fi/api/calendar.ics url to your calendar.'
+         }}
+      </p>
 
-         <!-- Coming Events Section -->
-         <section class="mt-12">
-            <h2 class="custom-page-title text-left font-bold mb-6">{{ $t('h1_events_coming') }}</h2>
+      <!-- Coming Events Section -->
+      <section class="mt-12">
+         <h2 class="custom-page-title text-left font-bold mb-6">{{ $t('h1_events_coming') }}</h2>
 
-            <div class="w-full flex flex-col md:flex-row items-start">
-               <!-- Left spacer to align horizontally with past events -->
-               <div class="md:w-20 lg:w-24 flex-shrink-0 pr-4 hidden md:block"></div>
+         <div class="w-full flex flex-col md:flex-row items-start">
+            <!-- Left spacer to align horizontally with past events -->
+            <div class="md:w-20 lg:w-24 flex-shrink-0 pr-4 hidden md:block"></div>
 
-               <!-- Upcoming Events Grid -->
-               <div class="flex-1 w-full pl-0 md:pl-6 md:border-l-2 md:border-transparent">
-                  <div v-if="futureEvents.length > 0" class="custom-grid">
+            <!-- Upcoming Events Grid -->
+            <div class="flex-1 w-full pl-0 md:pl-6 md:border-l-2 md:border-transparent">
+               <div v-if="futureEvents.length > 0" class="custom-grid">
+                  <EvetsCard
+                     v-for="item in futureEvents"
+                     :id="item.id"
+                     :key="item.id"
+                     :url="item.id"
+                     :img="item.image"
+                     :fi_title="item.fi_otsikko"
+                     :en_title="item.en_otsikko"
+                     :start_time="new Date(item.alku_aika)"
+                     :fi_text="item.fi_kuvaus"
+                     :en_text="item.en_kuvaus"
+                  />
+               </div>
+               <p v-else class="text-gray-500 italic py-4">
+                  {{
+                     $i18n.locale === 'fi'
+                        ? 'Ei tulevia tapahtumia tällä hetkellä.'
+                        : 'No upcoming events at the moment.'
+                  }}
+               </p>
+            </div>
+         </div>
+      </section>
+
+      <!-- Past Events Section with Left-Side Year Indicator -->
+      <section class="mt-16 pb-8">
+         <h2 class="custom-page-title text-left font-bold mb-6">{{ $t('h1_events_past') }}</h2>
+
+         <div v-if="yearGroups.length > 0" class="space-y-12">
+            <div
+               v-for="group in yearGroups"
+               :key="group.year"
+               class="w-full flex flex-col md:flex-row items-start relative"
+            >
+               <!-- Mobile Year Indicator (Header with divider line between year and count) -->
+               <div class="flex md:hidden items-center gap-3 w-full mb-4 mt-2">
+                  <span
+                     class="text-2xl sm:text-3xl font-black tracking-tight text-[#5a31af] dark:text-purple-400 leading-none"
+                  >
+                     {{ group.year }}
+                  </span>
+                  <div class="flex-1 h-px bg-purple-200 dark:bg-purple-900/60"></div>
+                  <span
+                     class="text-xs uppercase tracking-wider font-semibold text-gray-500 dark:text-gray-400 whitespace-nowrap"
+                  >
+                     {{ getYearCount(group.year) }} {{ $i18n.locale === 'fi' ? 'tapahtumaa' : 'events' }}
+                  </span>
+               </div>
+
+               <!-- Desktop Year Indicator (Sticky sidebar on left, >= md) -->
+               <div
+                  class="hidden md:block md:w-20 lg:w-24 flex-shrink-0 md:sticky md:top-28 z-10 select-none self-start pr-4 md:text-right"
+               >
+                  <div class="flex flex-col items-end bg-transparent">
+                     <span
+                        class="text-3xl lg:text-4xl font-black tracking-tight text-[#5a31af] dark:text-purple-400 leading-none"
+                     >
+                        {{ group.year }}
+                     </span>
+                     <span
+                        class="text-xs uppercase tracking-wider font-semibold text-gray-500 dark:text-gray-400 mt-1.5"
+                     >
+                        {{ getYearCount(group.year) }} {{ $i18n.locale === 'fi' ? 'tapahtumaa' : 'events' }}
+                     </span>
+                  </div>
+               </div>
+
+               <!-- Events Grid for this Year -->
+               <div class="flex-1 w-full pl-0 md:pl-6 md:border-l-2 md:border-purple-200 md:dark:border-purple-900/60">
+                  <div class="custom-grid">
                      <EvetsCard
-                        v-for="item in futureEvents"
+                        v-for="item in group.events"
                         :id="item.id"
                         :key="item.id"
                         :url="item.id"
@@ -38,108 +107,35 @@
                         :en_text="item.en_kuvaus"
                      />
                   </div>
-                  <p v-else class="text-gray-500 italic py-4">
-                     {{
-                        $i18n.locale === 'fi'
-                           ? 'Ei tulevia tapahtumia tällä hetkellä.'
-                           : 'No upcoming events at the moment.'
-                     }}
-                  </p>
                </div>
             </div>
-         </section>
+         </div>
 
-         <!-- Past Events Section with Left-Side Year Indicator -->
-         <section class="mt-16">
-            <h2 class="custom-page-title text-left font-bold mb-6">{{ $t('h1_events_past') }}</h2>
-
-            <div v-if="yearGroups.length > 0" class="space-y-12">
-               <div
-                  v-for="group in yearGroups"
-                  :key="group.year"
-                  class="w-full flex flex-col md:flex-row items-start relative"
-               >
-                  <!-- Mobile Year Indicator (Header with divider line between year and count) -->
-                  <div class="flex md:hidden items-center gap-3 w-full mb-4 mt-2">
-                     <span
-                        class="text-2xl sm:text-3xl font-black tracking-tight text-[#5a31af] dark:text-purple-400 leading-none"
-                     >
-                        {{ group.year }}
-                     </span>
-                     <div class="flex-1 h-px bg-purple-200 dark:bg-purple-900/60"></div>
-                     <span
-                        class="text-xs uppercase tracking-wider font-semibold text-gray-500 dark:text-gray-400 whitespace-nowrap"
-                     >
-                        {{ getYearCount(group.year) }} {{ $i18n.locale === 'fi' ? 'tapahtumaa' : 'events' }}
-                     </span>
-                  </div>
-
-                  <!-- Desktop Year Indicator (Sticky sidebar on left, >= md) -->
-                  <div
-                     class="hidden md:block md:w-20 lg:w-24 flex-shrink-0 md:sticky md:top-28 z-10 select-none self-start pr-4 md:text-right"
-                  >
-                     <div class="flex flex-col items-end bg-transparent">
-                        <span
-                           class="text-3xl lg:text-4xl font-black tracking-tight text-[#5a31af] dark:text-purple-400 leading-none"
-                        >
-                           {{ group.year }}
-                        </span>
-                        <span
-                           class="text-xs uppercase tracking-wider font-semibold text-gray-500 dark:text-gray-400 mt-1.5"
-                        >
-                           {{ getYearCount(group.year) }} {{ $i18n.locale === 'fi' ? 'tapahtumaa' : 'events' }}
-                        </span>
-                     </div>
-                  </div>
-
-                  <!-- Events Grid for this Year -->
-                  <div
-                     class="flex-1 w-full pl-0 md:pl-6 md:border-l-2 md:border-purple-200 md:dark:border-purple-900/60"
-                  >
-                     <div class="custom-grid">
-                        <EvetsCard
-                           v-for="item in group.events"
-                           :id="item.id"
-                           :key="item.id"
-                           :url="item.id"
-                           :img="item.image"
-                           :fi_title="item.fi_otsikko"
-                           :en_title="item.en_otsikko"
-                           :start_time="new Date(item.alku_aika)"
-                           :fi_text="item.fi_kuvaus"
-                           :en_text="item.en_kuvaus"
-                        />
-                     </div>
-                  </div>
-               </div>
+         <!-- Loading & Infinite Scroll Sentinel -->
+         <div ref="sentinel" class="h-10 w-full flex items-center justify-center my-6">
+            <div
+               v-if="isLoadingMore"
+               class="flex items-center gap-2 text-[#5a31af] dark:text-purple-400 font-medium text-sm"
+            >
+               <svg class="animate-spin h-5 w-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                  <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                  <path
+                     class="opacity-75"
+                     fill="currentColor"
+                     d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                  ></path>
+               </svg>
+               <span>{{ $i18n.locale === 'fi' ? 'Ladataan lisää tapahtumia...' : 'Loading more events...' }}</span>
             </div>
+         </div>
 
-            <!-- Loading & Infinite Scroll Sentinel -->
-            <div ref="sentinel" class="h-10 w-full flex items-center justify-center my-6">
-               <div
-                  v-if="isLoadingMore"
-                  class="flex items-center gap-2 text-[#5a31af] dark:text-purple-400 font-medium text-sm"
-               >
-                  <svg class="animate-spin h-5 w-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                     <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
-                     <path
-                        class="opacity-75"
-                        fill="currentColor"
-                        d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
-                     ></path>
-                  </svg>
-                  <span>{{ $i18n.locale === 'fi' ? 'Ladataan lisää tapahtumia...' : 'Loading more events...' }}</span>
-               </div>
-            </div>
-
-            <!-- Manual Load More button fallback -->
-            <div v-if="hasMore && !isLoadingMore" class="flex justify-center my-8">
-               <button type="button" class="btn-custom-primary" @click="loadMore">
-                  {{ $i18n.locale === 'fi' ? 'Lataa lisää tapahtumia' : 'Load more events' }}
-               </button>
-            </div>
-         </section>
-      </div>
+         <!-- Manual Load More button fallback -->
+         <div v-if="hasMore && !isLoadingMore" class="flex justify-center my-8">
+            <button type="button" class="btn-custom-primary" @click="loadMore">
+               {{ $i18n.locale === 'fi' ? 'Lataa lisää tapahtumia' : 'Load more events' }}
+            </button>
+         </div>
+      </section>
    </div>
 </template>
 
@@ -311,6 +307,18 @@
 
 <style scoped>
    @reference "tailwindcss";
+
+   .events-wide-container {
+      width: 100%;
+   }
+
+   @media (width >= 1280px) {
+      .events-wide-container {
+         width: min(1580px, calc(100vw - 3rem));
+         max-width: min(1580px, calc(100vw - 3rem));
+         margin-left: calc(50% - min(1580px, calc(100vw - 3rem)) / 2);
+      }
+   }
 
    .custom-grid {
       @apply grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6;

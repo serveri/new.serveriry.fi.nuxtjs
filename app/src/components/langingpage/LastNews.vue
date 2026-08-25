@@ -1,7 +1,7 @@
 <template>
    <div class="w-full bg-white dark:bg-zinc-900 shadow-lg rounded-xl overflow-hidden md:flex border border-gray-100">
       <div class="w-full md:w-1/2 lg:w-5/12 flex-shrink-0 relative">
-         <img class="w-full h-64 md:h-full object-cover" :src="content.img" :alt="title || 'Uutisen kansikuva'" />
+         <img class="w-full h-64 md:h-full object-cover" :src="displayImg" :alt="title || 'Uutisen kansikuva'" />
       </div>
 
       <div class="p-6 md:p-8 md:w-1/2 lg:w-7/12 flex flex-col justify-center text-left">
@@ -38,11 +38,14 @@
 
    const { locale } = useI18n();
    const localePath = useLocalePath();
+   const config = useRuntimeConfig();
+   const directusUrl = (config.public.DIRECTUS_URL || 'https://api.serveriry.fi/').replace(/\/$/, '') + '/';
 
    // Strongly-typed props to avoid dynamic string indexing errors
    const content = defineProps<{
       url: string;
-      img: string;
+      img?: string;
+      kuva?: string | object | null;
       fi_title: string;
       en_title: string;
       date: string;
@@ -51,6 +54,18 @@
    }>();
 
    const releaseDate = new Date(content.date);
+
+   const displayImg = computed(() => {
+      const kuvaId =
+         typeof content.kuva === 'object' && content.kuva !== null ? (content.kuva as any).id : content.kuva;
+      if (kuvaId) {
+         return `${directusUrl}assets/${kuvaId}`;
+      }
+      if (content.img) {
+         return content.img;
+      }
+      return `${directusUrl}assets/231aba36-a03b-47c6-811a-b6dfe14ccddb`;
+   });
 
    // Select localized title/text explicitly using locale.value
    const title = computed(() => (locale.value === 'fi' ? content.fi_title : content.en_title));

@@ -20,14 +20,7 @@
             (news[langKey + '_text'] || news.fi_text || '').slice(0, 150).replaceAll('#', '')
          "
       />
-      <Meta
-         name="og:image"
-         :content="
-            news.image?.startsWith('http')
-               ? news.image
-               : config.public['API_URL'] + 'assets/231aba36-a03b-47c6-811a-b6dfe14ccddb'
-         "
-      />
+      <Meta name="og:image" :content="displayImg" />
    </Head>
    <div>
       <!--  news article with image header and content   -->
@@ -37,7 +30,7 @@
 
             <img
                class="object-cover aspect-video w-full p-0 m-0"
-               :src="news.image"
+               :src="displayImg"
                alt="Photo related to the news article."
             />
 
@@ -74,6 +67,7 @@
    const route = useRoute();
 
    const langKey = computed(() => (locale.value || 'fi').split('-')[0]);
+   const directusUrl = (config.public.DIRECTUS_URL || 'https://api.serveriry.fi/').replace(/\/$/, '') + '/';
 
    const news = ref<any>({
       image: '/assets/231aba36-a03b-47c6-811a-b6dfe14ccddb',
@@ -85,6 +79,20 @@
       date_created: new Date().toISOString(),
    });
    const released_date = ref<Date>(new Date());
+
+   const displayImg = computed(() => {
+      const kuvaId =
+         typeof news.value?.kuva === 'object' && news.value?.kuva !== null
+            ? (news.value.kuva as any).id
+            : news.value?.kuva;
+      if (kuvaId) {
+         return `${directusUrl}assets/${kuvaId}`;
+      }
+      if (news.value?.image) {
+         return news.value.image;
+      }
+      return `${directusUrl}assets/231aba36-a03b-47c6-811a-b6dfe14ccddb`;
+   });
 
    try {
       const { data } = (await useFetch(`${config.public['API_URL']}items/uutiset/${route.params.id}`)) as {

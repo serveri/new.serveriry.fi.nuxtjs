@@ -6,7 +6,7 @@
          <div class="rounded-sm">
             <img
                class="w-full max-h-64 object-cover"
-               :src="content.img"
+               :src="displayImg"
                :alt="content[$i18n.locale + '_title'] || 'Uutisen kansikuva'"
             />
          </div>
@@ -33,18 +33,35 @@
 </template>
 
 <script setup lang="ts">
+   import { computed } from 'vue';
    import { useLocalePath } from '#i18n';
 
    const localePath = useLocalePath();
+   const config = useRuntimeConfig();
+   const directusUrl = (config.public.DIRECTUS_URL || 'https://api.serveriry.fi/').replace(/\/$/, '') + '/';
+
    const content = defineProps<{
       url: string;
       img?: string;
+      kuva?: string | object | null;
       fi_title?: string;
       en_title?: string;
       date: Date;
       fi_text?: string;
       en_text?: string;
    }>();
+
+   const displayImg = computed(() => {
+      const kuvaId =
+         typeof content.kuva === 'object' && content.kuva !== null ? (content.kuva as any).id : content.kuva;
+      if (kuvaId) {
+         return `${directusUrl}assets/${kuvaId}`;
+      }
+      if (content.img) {
+         return content.img;
+      }
+      return `${directusUrl}assets/231aba36-a03b-47c6-811a-b6dfe14ccddb`;
+   });
 </script>
 
 <style scoped>

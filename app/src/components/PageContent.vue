@@ -18,6 +18,6 @@
 
    const isSpecialRoute = computed(() => {
       const path = $route.path || '';
-      return path.endsWith('zyn') || path.endsWith('viinapiru') || path.includes('/tapahtumat');
+      return path.endsWith('zyn') || path.endsWith('viinapiru');
    });
 </script>

@@ -7,6 +7,9 @@ import js from '@eslint/js';
 import tsParser from '@typescript-eslint/parser';
 
 export default [
+   {
+      ignores: ['.nuxt/**', '.output/**', 'dist/**', 'node_modules/**', 'coverage/**', '.github/**'],
+   },
    js.configs.recommended,
    ...pluginVue.configs['flat/recommended'],
    pluginPrettierRecommended,
@@ -23,6 +26,7 @@ export default [
             useFetch: 'readonly',
             useLocalePath: 'readonly',
             useI18n: 'readonly',
+            useState: 'readonly',
             defineNuxtConfig: 'readonly',
             definePageMeta: 'readonly',
             useRoute: 'readonly',
@@ -32,6 +36,7 @@ export default [
             computed: 'readonly',
             watch: 'readonly',
             onMounted: 'readonly',
+            onUnmounted: 'readonly',
             useTrackingConsent: 'readonly',
             useHead: 'readonly',
             useRequestHeaders: 'readonly',

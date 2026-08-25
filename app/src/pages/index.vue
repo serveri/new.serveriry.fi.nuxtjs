@@ -13,6 +13,7 @@
          <LastNews
             v-if="lastArticle"
             :url="lastArticle.id"
+            :kuva="lastArticle.kuva"
             :img="lastArticle.image"
             :fi_title="lastArticle.fi_title"
             :en_title="lastArticle.en_title"
@@ -149,7 +150,12 @@
 
       const list = data.value?.data;
       if (Array.isArray(list) && list.length > 0) {
-         lastArticle.value = toRaw(list[0]) as Article;
+         const article = toRaw(list[0]) as any;
+         const directusUrl = (config.public.DIRECTUS_URL || 'https://api.serveriry.fi/').replace(/\/$/, '') + '/';
+         if (article.kuva) {
+            article.image = `${directusUrl}assets/${article.kuva}`;
+         }
+         lastArticle.value = article as Article;
       } else {
          console.warn('Articles list is empty or invalid:', data.value);
       }
