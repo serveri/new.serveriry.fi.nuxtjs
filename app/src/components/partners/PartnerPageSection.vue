@@ -83,16 +83,16 @@
    .main-sponsors {
       display: grid;
       gap: 2rem;
-      grid-auto-rows: 10rem; /* Larger size for main sponsors */
-      grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr)); /* Larger column size */
+      grid-auto-rows: 11rem; /* Larger size for main sponsors */
+      grid-template-columns: repeat(auto-fit, minmax(22rem, 1fr)); /* Larger column size */
       margin-bottom: 3rem; /* Space between main and regular sponsors */
    }
 
    .regular-sponsors {
       display: grid;
       gap: 2rem;
-      grid-auto-rows: 8rem;
-      grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+      grid-auto-rows: 8.8rem;
+      grid-template-columns: repeat(auto-fit, minmax(16.5rem, 1fr));
    }
 
    .partner-card {
@@ -102,7 +102,7 @@
    }
 
    .main-partner-card {
-      transform: scale(1.2); /* Make main sponsor logos larger */
+      transform: scale(1.32); /* Make main sponsor logos larger */
    }
 
    @media (width <= 767px) {

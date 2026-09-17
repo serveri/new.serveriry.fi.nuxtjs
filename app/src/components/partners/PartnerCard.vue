@@ -60,8 +60,8 @@
 
 <style scoped>
    img {
-      height: 12rem;
-      width: 12rem;
+      height: 13.2rem;
+      width: 13.2rem;
       max-width: 100%;
       max-height: 100%;
       padding: 0.8rem;
@@ -71,8 +71,8 @@
    /* This targets the img inside the component when the parent adds the class */
    .main-partner-card img,
    .main-sponsor-img {
-      height: 15rem;
-      width: 15rem;
+      height: 16.5rem;
+      width: 16.5rem;
    }
 
    .scale-110 {

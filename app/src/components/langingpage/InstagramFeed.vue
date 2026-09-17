@@ -2,23 +2,27 @@
 <template>
    <div class="flex w-full flex-col mt-6">
       <ClientOnly>
-         <div v-if="trackingAllowed" class="grid grid-cols-1 sm:grid-cols-2 gap-3 w-full">
-            <iframe
+         <div v-if="trackingAllowed" class="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 w-full">
+            <div
                v-for="post in posts.slice(0, 2)"
                :key="post.postaus_id"
-               title="Instagram post"
-               class="rounded-lg w-full h-[310px] border-0"
-               :src="`https://www.instagram.com/p/${post.postaus_id}/embed/`"
-               height="100%"
-               scrolling="no"
-               allowtransparency="true"
-               tabindex="-1"
-            ></iframe>
+               class="rounded-lg overflow-hidden border border-gray-200 dark:border-gray-700 shadow-sm bg-white dark:bg-zinc-900"
+            >
+               <iframe
+                  title="Instagram post"
+                  class="w-full h-[310px] border-0"
+                  :src="`https://www.instagram.com/p/${post.postaus_id}/embed/`"
+                  height="100%"
+                  scrolling="no"
+                  allowtransparency="true"
+                  tabindex="-1"
+               ></iframe>
+            </div>
          </div>
          <div
             v-else
             data-nosnippet
-            class="flex flex-col items-center justify-center gap-3 rounded-lg bg-zinc-100 p-6 text-center dark:bg-zinc-800 w-full min-h-[180px] border border-gray-200 dark:border-gray-700"
+            class="flex flex-col items-center justify-center gap-3 rounded-lg bg-zinc-100 p-6 text-center dark:bg-zinc-800 w-full min-h-[180px] border border-gray-200 dark:border-gray-700 shadow-sm"
          >
             <p class="text-sm font-semibold text-zinc-800 dark:text-zinc-100">{{ $t('embed_cookies_required') }}</p>
             <p class="text-xs text-zinc-600 dark:text-zinc-400 max-w-xs">{{ $t('tracking_disabled_embed') }}</p>
