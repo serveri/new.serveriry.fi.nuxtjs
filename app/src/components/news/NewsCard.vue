@@ -26,7 +26,7 @@
                }}</span>
             </p>
 
-            <p class="card-content mt-1 mb-3 line-clamp-3">{{ content[$i18n.locale + '_text'].replaceAll('#', '') }}</p>
+            <p class="card-content mt-1 mb-3 line-clamp-3">{{ stripMarkdown(content[$i18n.locale + '_text']) }}</p>
          </div>
       </div>
    </NuxtLink>
@@ -36,6 +36,7 @@
    import { computed } from 'vue';
    import { useLocalePath } from '#i18n';
    import { useDirectusAsset } from '@/composables/useDirectusAsset';
+   import { stripMarkdown } from '@/composables/useMarkdownProcessor';
 
    const localePath = useLocalePath();
 

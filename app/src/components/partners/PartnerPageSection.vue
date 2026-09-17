@@ -57,7 +57,7 @@
       const { data } = await useFetch<{ data: Partner[] }>(`${config.public['API_URL']}items/partners`);
       const payload = data.value?.data as unknown;
       sponsors = Array.isArray(payload) ? (payload as Partner[]) : [];
-   } catch (e) {
+   } catch {
       sponsors = [
          {
             name: 'Yrityksen logo puuttuu',
@@ -76,7 +76,6 @@
 </script>
 
 <style scoped>
-   /* remove non-standard @reference at-rule */
    .partners {
       padding-bottom: 3rem;
    }
@@ -104,5 +103,29 @@
 
    .main-partner-card {
       transform: scale(1.2); /* Make main sponsor logos larger */
+   }
+
+   @media (width <= 767px) {
+      .partners {
+         padding-top: 1rem;
+         padding-bottom: 2rem;
+      }
+
+      .main-sponsors {
+         grid-template-columns: repeat(2, minmax(0, 1fr));
+         grid-auto-rows: 13rem;
+         gap: 1.5rem 2.5rem;
+         margin-bottom: 1.5rem;
+      }
+
+      .regular-sponsors {
+         grid-template-columns: repeat(2, minmax(0, 1fr));
+         grid-auto-rows: 10.5rem;
+         gap: 1.25rem 2rem;
+      }
+
+      .main-partner-card {
+         transform: scale(1.12);
+      }
    }
 </style>

@@ -1,11 +1,13 @@
 <template>
-   <div class="w-full bg-white dark:bg-zinc-900 shadow-lg rounded-xl overflow-hidden md:flex border border-gray-100">
+   <div
+      class="w-full bg-white dark:bg-zinc-900 shadow-lg rounded-xl overflow-hidden md:flex border border-gray-100 dark:border-zinc-800"
+   >
       <div class="w-full md:w-1/2 lg:w-5/12 flex-shrink-0 relative">
          <img class="w-full h-64 md:h-full object-cover" :src="displayImg" :alt="title || 'Uutisen kansikuva'" />
       </div>
 
       <div class="p-6 md:p-8 md:w-1/2 lg:w-7/12 flex flex-col justify-center text-left">
-         <h2 class="card-header text-2xl font-extrabold text-gray-900">{{ title }}</h2>
+         <h2 class="card-header text-2xl font-extrabold text-gray-900 dark:text-white">{{ title }}</h2>
 
          <p class="news-date font-medium uppercase mt-2 text-sm text-primary-600">
             {{ $t('news_released') }}
@@ -19,7 +21,9 @@
             }}</span>
          </p>
 
-         <p class="mt-4 mb-6 line-clamp-4 text-gray-600 leading-relaxed">{{ text }}</p>
+         <p class="mt-4 mb-5 md:mb-6 line-clamp-2 md:line-clamp-4 text-gray-600 dark:text-gray-300 leading-relaxed">
+            {{ text }}
+         </p>
 
          <div>
             <NuxtLink :to="localePath('/yhdistys/uutinen/' + content.url)" class="inline-block">
@@ -36,6 +40,7 @@
    import { useI18n } from 'vue-i18n';
    import { computed } from 'vue';
    import { useDirectusAsset } from '@/composables/useDirectusAsset';
+   import { stripMarkdown } from '@/composables/useMarkdownProcessor';
 
    const { locale } = useI18n();
    const localePath = useLocalePath();
@@ -75,7 +80,5 @@
 
    // Select localized title/text explicitly using locale.value
    const title = computed(() => (locale.value === 'fi' ? content.fi_title : content.en_title));
-   const text = computed(() => (locale.value === 'fi' ? content.fi_text : content.en_text).replaceAll('#', ''));
+   const text = computed(() => stripMarkdown(locale.value === 'fi' ? content.fi_text : content.en_text));
 </script>
-
-<style scoped></style>

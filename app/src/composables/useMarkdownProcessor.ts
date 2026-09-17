@@ -132,3 +132,35 @@ export function processMarkdown(content?: string): string {
 
    return safe;
 }
+
+/**
+ * Strip markdown formatting to produce clean plain text for card previews and meta descriptions.
+ */
+export function stripMarkdown(content?: string): string {
+   if (!content) return '';
+
+   return (
+      content
+         // Remove images ![alt](url)
+         .replace(/!\[.*?\]\(.*?\)/g, '')
+         // Replace links [text](url) with just text
+         .replace(/\[([^\]]+)\]\([^)]+\)/g, '$1')
+         // Remove headers #
+         .replace(/^#+\s+/gm, '')
+         .replace(/#/g, '')
+         // Remove bold and italic markers: ***text***, **text**, *text*, ___text___, __text__, _text_
+         .replace(/(\*\*|__)(.*?)\1/g, '$2')
+         .replace(/(\*|_)(.*?)\1/g, '$2')
+         // Remove any stray asterisks
+         .replace(/\*{1,3}/g, '')
+         // Remove strikethrough ~~text~~
+         .replace(/~~(.*?)~~/g, '$1')
+         // Remove inline code `code`
+         .replace(/`([^`]+)`/g, '$1')
+         // Remove blockquotes >
+         .replace(/^\s*>\s+/gm, '')
+         // Normalize whitespace and newlines to a single space
+         .replace(/\s+/g, ' ')
+         .trim()
+   );
+}

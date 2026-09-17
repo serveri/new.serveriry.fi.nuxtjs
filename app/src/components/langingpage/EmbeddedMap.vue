@@ -1,6 +1,6 @@
 <template>
-   <section class="relative w-screen h-[90vh] sm:h-auto">
-      <div class="absolute w-screen bg-gray-300 dark:bg-gray-600 h-[75vh] mt-[15vh] sm:h-full sm:mt-0">
+   <section class="relative w-screen h-[340px] sm:h-auto sm:min-h-[460px] flex items-center">
+      <div class="absolute inset-0 w-full h-full bg-gray-300 dark:bg-gray-600">
          <client-only>
             <iframe
                v-if="trackingAllowed"
@@ -27,18 +27,18 @@
             </div>
          </client-only>
       </div>
-      <div class="w-full content relative py-6 sm:py-24 pointer-events-none">
+      <div class="w-full content relative sm:py-24 pointer-events-none z-10">
          <div class="w-full sm:inline-flex sm:justify-end">
             <div
-               class="flex flex-col gap-6 py-10 px-8 sm:px-16 bg-white dark:bg-black rounded-lg shadow-sm pointer-events-auto"
+               class="absolute top-4 left-4 sm:static flex flex-col gap-1.5 sm:gap-6 py-2.5 px-3.5 sm:py-10 sm:px-16 bg-white/95 dark:bg-black/95 backdrop-blur-xs sm:bg-white sm:dark:bg-black rounded-lg shadow-md sm:shadow-sm pointer-events-auto max-w-[175px] sm:max-w-none text-left border border-gray-200/80 dark:border-gray-800 sm:border-0"
             >
-               <p class="font-bold text-2xl uppercase">{{ $t('contact-us') }}</p>
-               <div>
+               <p class="font-bold text-xs sm:text-2xl uppercase tracking-wide">{{ $t('contact-us') }}</p>
+               <div class="text-[11px] sm:text-base leading-snug">
                   <p>Microkatu 1 E 24</p>
                   <p>PL 1627</p>
                   <p>70211 Kuopio</p>
                </div>
-               <div>
+               <div class="text-[11px] sm:text-base break-all sm:break-normal">
                   <ObfuscatedEmail user="hallitus" />
                </div>
             </div>
