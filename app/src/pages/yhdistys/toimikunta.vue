@@ -18,14 +18,34 @@
          }}</label>
          <select
             id="subject"
+            ref="subjectSelect"
             v-model="subject"
             class="block p-3 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 shadow-xs focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500 dark:shadow-sm-light"
             required
+            @change="onSubjectChange"
          >
-            <option value="" disabled selected hidden>{{ $t('label_topic') }}</option>
-            <option value="yllapito">{{ $t('option_it_committee') }}</option>
-            <option value="tapahtuma">{{ $t('option_event_committee') }}</option>
-            <option value="koppi">{{ $t('option_koppi_committee') }}</option>
+            <option value="" disabled selected hidden>{{ $t('select_committee') }}</option>
+            <option
+               value="yllapito"
+               :disabled="!isCommitteeOpen('jarjestelmatk_true')"
+               :hidden="!isCommitteeOpen('jarjestelmatk_true')"
+            >
+               {{ $t('option_it_committee') }}
+            </option>
+            <option
+               value="tapahtuma"
+               :disabled="!isCommitteeOpen('tapahtumatk_true')"
+               :hidden="!isCommitteeOpen('tapahtumatk_true')"
+            >
+               {{ $t('option_event_committee') }}
+            </option>
+            <option
+               value="koppi"
+               :disabled="!isCommitteeOpen('koppitk_true')"
+               :hidden="!isCommitteeOpen('koppitk_true')"
+            >
+               {{ $t('option_koppi_committee') }}
+            </option>
          </select>
       </div>
       <div v-if="subject">
@@ -102,6 +122,7 @@
    const config = useRuntimeConfig();
    const router = useRouter();
    const localePath = useLocalePath();
+   const { t } = useI18n();
 
    let content: any;
    try {
@@ -114,35 +135,94 @@
       };
    }
 
+   const isCommitteeOpen = (key: string): boolean => {
+      const avoimet = content?.avoimet_toimikunnat;
+      if (!avoimet) return false;
+      if (Array.isArray(avoimet)) {
+         return avoimet.includes(key);
+      }
+      if (typeof avoimet === 'string') {
+         return avoimet
+            .split(',')
+            .map((s: string) => s.trim())
+            .includes(key);
+      }
+      if (typeof avoimet === 'object') {
+         return Boolean((avoimet as Record<string, any>)[key]);
+      }
+      return false;
+   };
+
    const subject = ref('');
+   const subjectSelect = ref<HTMLSelectElement | null>(null);
    const person_name = ref('');
    const person_contact = ref('');
    const person_info = ref('');
    const person_skills = ref('');
    const person_portfolio = ref('');
 
-   async function submitForm() {
-      // POST validated form data
-      await fetch(config.public['API_URL'] + 'items/toimikuntahakemukset', {
-         headers: {
-            'Content-Type': 'application/json',
-         },
-         method: 'POST',
-         mode: 'cors',
-         body: JSON.stringify({
-            subject: subject.value,
-            person_name: person_name.value,
-            person_contact: person_contact.value,
-            person_info: person_info.value,
-            skills: person_skills.value,
-            portfolio: person_portfolio.value,
-         }),
-      });
-      // Redirect to success page
-      router.push(localePath('/opiskelu/kiitos_hakemus'));
+   function onSubjectChange() {
+      if (subjectSelect.value) {
+         subjectSelect.value.setCustomValidity('');
+      }
+   }
 
-      // Scroll top of page
-      window.scrollTo(0, 0);
+   async function submitForm() {
+      const committeeKeyMap: Record<string, string> = {
+         yllapito: 'jarjestelmatk_true',
+         tapahtuma: 'tapahtumatk_true',
+         koppi: 'koppitk_true',
+      };
+
+      const requiredKey = committeeKeyMap[subject.value];
+      if (!requiredKey || !isCommitteeOpen(requiredKey)) {
+         if (subjectSelect.value) {
+            const hasAnyOpen = Object.values(committeeKeyMap).some((key) => isCommitteeOpen(key));
+            const errorMsg = hasAnyOpen ? t('validation_select_open_committee') : t('validation_no_committees_open');
+            subjectSelect.value.setCustomValidity(errorMsg);
+            subjectSelect.value.reportValidity();
+            subjectSelect.value.focus();
+         }
+         return;
+      }
+
+      try {
+         // POST validated form data
+         const response = await fetch(config.public['API_URL'] + 'items/toimikuntahakemukset', {
+            headers: {
+               'Content-Type': 'application/json',
+            },
+            method: 'POST',
+            mode: 'cors',
+            body: JSON.stringify({
+               subject: subject.value,
+               person_name: person_name.value,
+               person_contact: person_contact.value,
+               person_info: person_info.value,
+               skills: person_skills.value,
+               portfolio: person_portfolio.value,
+            }),
+         });
+
+         if (!response.ok) {
+            if (subjectSelect.value) {
+               subjectSelect.value.setCustomValidity(t('500_msg'));
+               subjectSelect.value.reportValidity();
+            }
+            return;
+         }
+
+         // Redirect to success page
+         router.push(localePath('/opiskelu/kiitos_hakemus'));
+
+         // Scroll top of page
+         window.scrollTo(0, 0);
+      } catch {
+         if (subjectSelect.value) {
+            subjectSelect.value.setCustomValidity(t('500_msg'));
+            subjectSelect.value.reportValidity();
+         }
+      }
    }
 </script>
 
