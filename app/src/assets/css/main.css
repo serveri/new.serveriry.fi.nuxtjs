@@ -107,10 +107,12 @@ td {
 }
 
 .custom-page-title {
-   font-size: 2em;
+   font-size: clamp(1.75rem, 5.5vw, 2.25rem);
    padding: 2rem 0;
    text-align: center;
    font-weight: 800;
+   overflow-wrap: break-word;
+   hyphens: auto;
 }
 
 .content {

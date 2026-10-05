@@ -24,7 +24,7 @@
       </section>
 
       <section class="w-full">
-         <h2 class="custom-page-title my-7 block md:hidden">{{ $t('partners') }}</h2>
+         <h2 class="custom-page-title my-7 block md:hidden max-w-full break-words">{{ $t('partners') }}</h2>
          <partner-page-section />
       </section>
 

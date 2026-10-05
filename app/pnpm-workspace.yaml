@@ -11,6 +11,10 @@ minimumReleaseAgeExclude:
   - colord@2.9.4
   - js-yaml@4.3.2
   - svgo@4.1.0
+  - '@oxc-minify/binding-linux-x64-gnu@0.153.0'
+  - '@oxc-parser/binding-linux-x64-gnu@0.153.0'
+  - '@oxc-transform/binding-linux-x64-gnu@0.153.0'
+  - postcss@8.5.29
 
 onlyBuiltDependencies:
   - '@parcel/watcher'
@@ -18,6 +22,12 @@ onlyBuiltDependencies:
 
 overrides:
   picomatch@>=4.0.0 <4.0.4: ^4.0.4
+  undici: ^8.11.2
+  devalue: ^5.9.4
+  markdown-it: ^14.3.2
+  brace-expansion@<1.1.21: ^1.1.21
+  brace-expansion@>=2.0.0 <2.1.7: ^2.1.7
+  brace-expansion@>=4.0.0 <5.0.12: ^5.0.12
 
 supportedArchitectures:
   os:
